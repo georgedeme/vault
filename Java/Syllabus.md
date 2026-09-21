@@ -7,7 +7,7 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 ## Part I — Foundations
 
 - [ ] [[Java/Introduction to Java|Introduction to Java]] — the JVM, JDK, and JRE; compiling and running a program; the structure of a minimal Java file
-- [ ] [[Java/Variables and Data Types|Variables and Data Types]] — primitive types, reference types, declaration, and initialization
+- [x] [[Java/Variables and Data Types|Variables and Data Types]] — primitive types, reference types, declaration, and initialization
 - [ ] [[Java/Operators|Operators]] — arithmetic, relational, logical, assignment, and bitwise operators; operator precedence
 - [x] [[Java/Type Casting|Type Casting]] — implicit and explicit conversion between types, and where the results are non-obvious
 

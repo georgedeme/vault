@@ -174,6 +174,20 @@
       "contentDigest": "fedecd98c697ed8c1b7efe315125ba1770d9aa7cb375e19a4ebfa998b0e15685",
       "providerUserMessageId": "fe17da7c-68aa-46b6-8088-bc35863dacd3",
       "providerAssistantMessageId": "76c041eb-e713-473c-aafb-ba9208788bca"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790018156720-z5720xg",
+      "userTurnOrdinal": 13,
+      "state": "accepted",
+      "localMessageId": "msg-1790018156716-m7bt7gv",
+      "timestamp": 1790018156716,
+      "rawDisplayText": "Create variables and data types chapter now.",
+      "canonicalText": "Create variables and data types chapter now.",
+      "images": [],
+      "contentDigest": "deaea1fab6b4eb0f66fb6baf6beeceaaccd501b4001f995daefc8df0551a887c",
+      "providerUserMessageId": "bfc7c871-9d75-4190-a711-2c25cc817047",
+      "providerAssistantMessageId": "a8ad73f5-53d7-4786-93ec-5bf2a3350088"
     }
   ]
 }
