@@ -1,12 +1,20 @@
 # Welcome
 
-This vault is where I collect notes on computer science topics as I learn them — mainly from my university coursework and personal study.
+This vault is a reference collection of computer science notes, compiled from university coursework and independent study. It is organized as a <span class="vault-accent">wiki-like knowledge base</span> rather than a personal journal, with the aim of being clear and useful to any reader.
 
-Expect things like:
-- Java programming (currently being taught at university)
+## Scope
+
+Topics are added incrementally as they are studied. Current and planned areas include:
+
+### Java
+- Programming fundamentals
+- Operator precedence
 - Logical operators
-- Java operator precedence
-- Detailed explanations of Java type casting
-- Other CS topics as they come up
+- Type casting
 
-The goal is to build a growing reference I can come back to and expand over time.
+### Other CS Topics
+- Additional subjects will be added here as coverage expands
+
+## Purpose
+
+The goal is to build a structured, growing reference that stays accurate and easy to navigate over time.

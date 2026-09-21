@@ -1,0 +1,43 @@
+/*
+  Vault color palette — used with intention, not decoration.
+  Two accent colors total, tied to the vault's existing theme
+  accent (green), plus a muted secondary (blue) for subordinate
+  structure. Body text and lists stay the theme default so pages
+  read cleanly rather than looking like a rainbow.
+*/
+
+:root {
+  --vault-accent: #6fe36b;   /* primary — matches theme accent color */
+  --vault-secondary: #7aa7d9; /* secondary — muted, for subheadings/labels */
+}
+
+/* Top-level structure: H1 and H2 in the primary accent */
+.markdown-rendered h1,
+.markdown-source-view.mod-cm6 .cm-header-1 {
+  color: var(--vault-accent);
+}
+
+.markdown-rendered h2,
+.markdown-source-view.mod-cm6 .cm-header-2 {
+  color: var(--vault-accent);
+  border-bottom: 1px solid rgba(111, 227, 107, 0.25);
+  padding-bottom: 0.2em;
+}
+
+/* Subordinate structure: H3+ in the muted secondary color */
+.markdown-rendered h3,
+.markdown-source-view.mod-cm6 .cm-header-3,
+.markdown-rendered h4,
+.markdown-source-view.mod-cm6 .cm-header-4 {
+  color: var(--vault-secondary);
+}
+
+/* Optional inline classes for sparing use within body text */
+.vault-accent {
+  color: var(--vault-accent);
+  font-weight: 600;
+}
+
+.vault-secondary {
+  color: var(--vault-secondary);
+}

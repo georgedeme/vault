@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790015141667-4r1ynxtkg",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790015141773-taht122",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790015141665-c95sgcv",
+      "timestamp": 1790015141665,
+      "rawDisplayText": "Change the tone. It is not meant to be a personal journal but rather a wiki-like resource that could be shared with anyone. Add nicer formatting. Make this look more formal and structured. I know I haven't given many subjects yet but I will add those here as I go.",
+      "canonicalText": "Change the tone. It is not meant to be a personal journal but rather a wiki-like resource that could be shared with anyone. Add nicer formatting. Make this look more formal and structured. I know I haven't given many subjects yet but I will add those here as I go.",
+      "context": {
+        "linkedContent": {
+          "path": "Welcome.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "59699171e19ba0fd3f8cbae08ab6301f53636a24970d386e2ca2a238098e6ca5",
+      "providerUserMessageId": "448091fc-5624-4f0a-9fe9-0c316dafd95b",
+      "providerAssistantMessageId": "0a5ec744-0d99-4c2c-8bf7-4d696ee45cb5"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790015206711-zoehqv8",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1790015206708-ct66z40",
+      "timestamp": 1790015206708,
+      "rawDisplayText": "Are you able to color the text in any way?",
+      "canonicalText": "Are you able to color the text in any way?",
+      "images": [],
+      "contentDigest": "c7e255e9f47408a2f7777f3bc9960144c1b2b0152ce293faee08f2f284b2cdbd",
+      "providerUserMessageId": "da6756d1-6fbf-44f2-9736-1c779629188e",
+      "providerAssistantMessageId": "d22d0a07-8e0f-4270-a634-ce89e428d9e8"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790015250305-aubxr6f",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1790015250303-yd06gc1",
+      "timestamp": 1790015250303,
+      "rawDisplayText": "Yes please add color with intention, so that it doesn't look too plain but without looking like a rainbow",
+      "canonicalText": "Yes please add color with intention, so that it doesn't look too plain but without looking like a rainbow",
+      "images": [],
+      "contentDigest": "2fd40788c33df33fde6da3b030821a07fae4d469e3ace7fa9727453be3ae94ef",
+      "providerUserMessageId": "a40de689-8d32-4e6b-913c-a2b9af893e2d",
+      "providerAssistantMessageId": "1d4e462c-962a-46ba-8f24-de661c48223a"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790015599257-z2qectj",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1790015599254-nvwh0bs",
+      "timestamp": 1790015599254,
+      "rawDisplayText": "Try using the two colors you can so I can see",
+      "canonicalText": "Try using the two colors you can so I can see",
+      "images": [],
+      "contentDigest": "cbe94a8f7b3fd3a969f740f564ae096f1b562fd8ed8db2f7a2f1d86a3a5ac099",
+      "providerUserMessageId": "68fb3e6f-9154-4f6c-b402-56cdb3ac9198",
+      "providerAssistantMessageId": "abd711f2-d1f8-4ca7-96c2-ce791ac243af"
+    }
+  ]
+}

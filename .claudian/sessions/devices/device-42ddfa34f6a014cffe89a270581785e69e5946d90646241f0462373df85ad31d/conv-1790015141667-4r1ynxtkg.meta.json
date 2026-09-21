@@ -1,0 +1,24 @@
+{
+  "id": "conv-1790015141667-4r1ynxtkg",
+  "providerId": "claude",
+  "title": "Transform to wiki-style resource",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790015141672,
+  "lastActivityAt": 1790015610662,
+  "sessionId": "72c78c1b-24d6-4560-a947-d368ded1489b",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "72c78c1b-24d6-4560-a947-d368ded1489b"
+  },
+  "linkedContentPath": "Welcome.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1028,
+    "cacheReadInputTokens": 37543,
+    "contextWindow": 1000000,
+    "contextTokens": 38573,
+    "percentage": 4,
+    "contextWindowIsAuthoritative": true
+  }
+}
