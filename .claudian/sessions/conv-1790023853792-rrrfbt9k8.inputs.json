@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790023853792-rrrfbt9k8",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790023853820-cmu4i0g",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790023853791-vx7kbbh",
+      "timestamp": 1790023853791,
+      "rawDisplayText": "Put the Type Casting and Variables and data types in a folder named foundations under the Java folder.",
+      "canonicalText": "Put the Type Casting and Variables and data types in a folder named foundations under the Java folder.",
+      "context": {
+        "linkedContent": {
+          "path": "Java/Syllabus.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "9ab6d2cd0f18032e07902a61d3d516fcc322bd3b3fa29df4bb46526aaa9167e3",
+      "providerUserMessageId": "e1eeb75a-4fad-45a8-b0e2-da407a0b1eb9",
+      "providerAssistantMessageId": "cc926bc0-1a8a-403d-aee1-89fcfffbdd46"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790023917104-7rskpy1",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1790023917097-ftpibtj",
+      "timestamp": 1790023917097,
+      "rawDisplayText": "I think I just enabled cli check now",
+      "canonicalText": "I think I just enabled cli check now",
+      "images": [],
+      "contentDigest": "ec23de6d6560041ac1e76c922472951c5249aacb8cba7131c62550c3956f8489",
+      "providerUserMessageId": "818a7054-afa8-493c-a7f9-5feb3ff82981",
+      "providerAssistantMessageId": "ee45cad3-41b0-4f16-985f-9a17520b762d"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790024010352-bov85np",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1790024010350-tj9htew",
+      "timestamp": 1790024010350,
+      "rawDisplayText": "Make sure the names of folders and notes are properly capitalized",
+      "canonicalText": "Make sure the names of folders and notes are properly capitalized",
+      "images": [],
+      "contentDigest": "288385dd26bbc8db2ef2322edf0eeb8a49f5b955c79fe3e0cc53c1665286fc9f",
+      "providerUserMessageId": "53305074-b9d8-40f9-a9ff-a496e339a6ad",
+      "providerAssistantMessageId": "7517e556-1a11-4c8b-b505-bdeb10c26dbf"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790024095814-edjs6bi",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1790024095811-qpbfxmz",
+      "timestamp": 1790024095811,
+      "rawDisplayText": "[[Java/Syllabus.md|Syllabus]] Proceed with the Control Flow folder and Conditional Statements chapter",
+      "canonicalText": "[[Java/Syllabus.md|Syllabus]] Proceed with the Control Flow folder and Conditional Statements chapter",
+      "images": [],
+      "contentDigest": "e3761988c4737b2e0e31a1967a59f2e714c58cd112204f2c13c0f332e4dbad76",
+      "providerUserMessageId": "ab2ebfc1-d40e-4e0c-95ba-77cf2aea3472",
+      "providerAssistantMessageId": "e671c338-78ce-4785-9ac3-d673b14c2360"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790024202656-3h1wgtz",
+      "userTurnOrdinal": 5,
+      "state": "accepted",
+      "localMessageId": "msg-1790024202654-uwigt2x",
+      "timestamp": 1790024202654,
+      "rawDisplayText": "Proceed with the next chapter in Control Flow folder",
+      "canonicalText": "Proceed with the next chapter in Control Flow folder",
+      "images": [],
+      "contentDigest": "c08522b739602d9dbec028567afb29566ac16ae2a57611e60bb2fb70c2ce1b4d",
+      "providerUserMessageId": "1f56ffb0-536b-4f62-8757-ee876054d1ac"
+    }
+  ]
+}

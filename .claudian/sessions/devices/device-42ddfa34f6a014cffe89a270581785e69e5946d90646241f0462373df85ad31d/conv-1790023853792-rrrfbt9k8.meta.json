@@ -1,0 +1,24 @@
+{
+  "id": "conv-1790023853792-rrrfbt9k8",
+  "providerId": "claude",
+  "title": "Organize Java fundamentals in foundations folder",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790023853794,
+  "lastActivityAt": 1790024202654,
+  "sessionId": "983bea50-dbce-4b00-92f1-49faa9f68426",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "983bea50-dbce-4b00-92f1-49faa9f68426"
+  },
+  "linkedContentPath": "Java/Syllabus.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 333,
+    "cacheReadInputTokens": 68182,
+    "contextWindow": 1000000,
+    "contextTokens": 68517,
+    "percentage": 7,
+    "contextWindowIsAuthoritative": true
+  }
+}
