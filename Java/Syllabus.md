@@ -14,7 +14,7 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 ## Part II — Control Flow
 
 - [x] [[Java/Control Flow/Conditional Statements|Conditional Statements]] — `if` / `else if` / `else`, `switch`
-- [ ] [[Java/Loops|Loops]] — `for`, `while`, `do-while`, `break`, `continue`
+- [x] [[Java/Control Flow/Loops|Loops]] — `for`, `while`, `do-while`, `break`, `continue`
 - [ ] [[Java/Arrays|Arrays]] — declaration, initialization, multi-dimensional arrays, common pitfalls
 
 ## Part III — Program Structure

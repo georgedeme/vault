@@ -74,7 +74,8 @@
       "canonicalText": "Proceed with the next chapter in Control Flow folder",
       "images": [],
       "contentDigest": "c08522b739602d9dbec028567afb29566ac16ae2a57611e60bb2fb70c2ce1b4d",
-      "providerUserMessageId": "1f56ffb0-536b-4f62-8757-ee876054d1ac"
+      "providerUserMessageId": "1f56ffb0-536b-4f62-8757-ee876054d1ac",
+      "providerAssistantMessageId": "c5cbaa8c-751d-433e-9759-a9fcc931d21b"
     }
   ]
 }
