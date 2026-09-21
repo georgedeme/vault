@@ -1,0 +1,16 @@
+# Vault formatting conventions
+
+When formatting notes, use these semantic classes (defined in
+.obsidian/snippets/note-colors.css) instead of raw inline styles:
+
+- <span class="hl-red">...</span>    — warnings, common mistakes
+- <span class="hl-blue">...</span>   — definitions / key terms
+- <span class="hl-green">...</span>  — worked examples
+- <span class="hl-yellow">...</span> — exam-relevant / high priority
+- <span class="hl-purple">...</span> — my own commentary/questions
+
+For whole paragraphs or sections, prefer native callouts
+(> [!note], > [!warning], > [!tip], > [!question]) over color spans.
+
+Use color sparingly — only where it adds retrieval value, not on
+every sentence.

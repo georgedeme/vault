@@ -1,6 +1,6 @@
 # Welcome
 
-This vault is a reference collection of computer science notes, compiled from university coursework and independent study. It is organized as a <span class="vault-accent">wiki-like knowledge base</span> rather than a personal journal, with the aim of being clear and useful to any reader.
+This vault is a reference collection of computer science notes, compiled from university coursework and independent study. It is organized as a <span class="hl-green">wiki-like knowledge base</span> rather than a personal journal, with the aim of being clear and useful to any reader.
 
 ## Scope
 

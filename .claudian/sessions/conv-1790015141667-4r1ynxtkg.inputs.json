@@ -62,6 +62,33 @@
       "contentDigest": "cbe94a8f7b3fd3a969f740f564ae096f1b562fd8ed8db2f7a2f1d86a3a5ac099",
       "providerUserMessageId": "68fb3e6f-9154-4f6c-b402-56cdb3ac9198",
       "providerAssistantMessageId": "abd711f2-d1f8-4ca7-96c2-ce791ac243af"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790015777891-lcwu2yq",
+      "userTurnOrdinal": 5,
+      "state": "accepted",
+      "localMessageId": "msg-1790015777886-21gqc9x",
+      "timestamp": 1790015777886,
+      "rawDisplayText": "Replace the colors in the snippet with these:\n/* Text-color classes */\n.hl-red    { color: #e63946; }\n.hl-orange { color: #f4a261; }\n.hl-yellow { color: #e9c46a; }\n.hl-green  { color: #2a9d8f; }\n.hl-blue   { color: #457b9d; }\n.hl-purple { color: #9b5de5; }\n\n/* Soft background-highlight variants, if you want those too */\n.bg-red    { background-color: #e6394633; border-radius: 3px; padding: 0 2px; }\n.bg-yellow { background-color: #e9c46a55; border-radius: 3px; padding: 0 2px; }",
+      "canonicalText": "Replace the colors in the snippet with these:\n/* Text-color classes */\n.hl-red    { color: #e63946; }\n.hl-orange { color: #f4a261; }\n.hl-yellow { color: #e9c46a; }\n.hl-green  { color: #2a9d8f; }\n.hl-blue   { color: #457b9d; }\n.hl-purple { color: #9b5de5; }\n\n/* Soft background-highlight variants, if you want those too */\n.bg-red    { background-color: #e6394633; border-radius: 3px; padding: 0 2px; }\n.bg-yellow { background-color: #e9c46a55; border-radius: 3px; padding: 0 2px; }",
+      "images": [],
+      "contentDigest": "796cb2a20babe6ad4b26d479723b143976f8c6177bf11edefeaa6170f1d07a0d",
+      "providerUserMessageId": "cee3bd5b-3521-48bf-a090-bb826e2b7216",
+      "providerAssistantMessageId": "f0c8077e-5ca6-45ff-942c-cf0093c2c3d4"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790016270000-smlkti9",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1790016269987-r4s7w9l",
+      "timestamp": 1790016269987,
+      "rawDisplayText": "Create a new folder in this vault and then add a new note in it. In that note explain type casting in java, in detail. List examples as needed for situations where the outcome of an operation between two different types isn't completely obvious. This should be a complete resource for type casting in different situations/operations.",
+      "canonicalText": "Create a new folder in this vault and then add a new note in it. In that note explain type casting in java, in detail. List examples as needed for situations where the outcome of an operation between two different types isn't completely obvious. This should be a complete resource for type casting in different situations/operations.",
+      "images": [],
+      "contentDigest": "d6eeee944fb8f6b1dff66fef3ec4f594043f0fb1cbb98bc38cd2e6d5e94a889c",
+      "providerUserMessageId": "7d274a8d-0c49-48a8-b33a-89da951a3aeb"
     }
   ]
 }
