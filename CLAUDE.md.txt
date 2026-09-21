@@ -37,3 +37,8 @@ reasonably belong in a given note's topic, that note has failed.
 When writing or expanding a note, deliberately look for the edge
 cases, gotchas, and "looks obvious but isn't" scenarios within its
 topic, and include them rather than sticking to the safe/common path.
+
+# DSA notes
+
+For data structures and algorithms notes: state the algorithm in
+pseudocode first, then give a working Java implementation.
