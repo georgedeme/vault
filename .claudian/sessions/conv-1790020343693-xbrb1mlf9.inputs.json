@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790020343693-xbrb1mlf9",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790020343723-8pfd420",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790020343692-8j4sk6t",
+      "timestamp": 1790020343692,
+      "rawDisplayText": "In the DSA folder create a folder called Foundations and inside it create the Complexity Analysis note(mentioned in the syllabus)",
+      "canonicalText": "In the DSA folder create a folder called Foundations and inside it create the Complexity Analysis note(mentioned in the syllabus)",
+      "images": [],
+      "contentDigest": "7d4a0cd6f8f33686c05db7958e96729d076c9c3d29b8c161cd023aa7b3199461",
+      "providerUserMessageId": "64d76f49-578c-4311-81df-543087e891db"
+    }
+  ]
+}

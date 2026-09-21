@@ -242,7 +242,22 @@
       "canonicalText": "If we have my own palette I dont need the stale one",
       "images": [],
       "contentDigest": "d011382c48790889e08d2157dbfd4db107da105f42c253abb510e191a29bedae",
-      "providerUserMessageId": "937fa12f-70ee-411b-983d-18232ac7d6b7"
+      "providerUserMessageId": "937fa12f-70ee-411b-983d-18232ac7d6b7",
+      "providerAssistantMessageId": "f163962e-02ee-422c-8f35-418f6106265c"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790019979992-e2cj5nu",
+      "userTurnOrdinal": 18,
+      "state": "accepted",
+      "localMessageId": "msg-1790019979986-qi4zdoq",
+      "timestamp": 1790019979986,
+      "rawDisplayText": "/usage",
+      "canonicalText": "/usage",
+      "images": [],
+      "contentDigest": "186699303358f7ad52f7b956f88624b70f1a3fb40ddd53db597a2180c9e7bcb2",
+      "providerUserMessageId": "0e86ec56-67d7-4288-bd10-48632e410007",
+      "providerAssistantMessageId": "1c4b1c09-bdc1-4b53-a69c-5ec4297f16d7"
     }
   ]
 }
