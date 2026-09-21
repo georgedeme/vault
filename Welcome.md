@@ -1,5 +1,12 @@
-This is your new *vault*.
+# Welcome
 
-Make a note of something, [[create a link]], or try [the Importer](https://help.obsidian.md/Plugins/Importer)!
+This vault is where I collect notes on computer science topics as I learn them — mainly from my university coursework and personal study.
 
-When you're ready, delete this note and make the vault your own.
+Expect things like:
+- Java programming (currently being taught at university)
+- Logical operators
+- Java operator precedence
+- Detailed explanations of Java type casting
+- Other CS topics as they come up
+
+The goal is to build a growing reference I can come back to and expand over time.
