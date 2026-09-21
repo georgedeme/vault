@@ -130,7 +130,50 @@
       "canonicalText": "In the type casting chapter in 2. explain the example with int to short a bit more(the calculation done to get that result)",
       "images": [],
       "contentDigest": "7b603fda1078e600eb8961d88a485c84951cae8c10be9ec629b3bbc8d9e5d03e",
-      "providerUserMessageId": "a475aeda-9420-4d1c-90fd-9963c2dda308"
+      "providerUserMessageId": "a475aeda-9420-4d1c-90fd-9963c2dda308",
+      "providerAssistantMessageId": "1d341702-3d87-405f-93f5-603aad7440fa"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790017586800-3zy2sb6",
+      "userTurnOrdinal": 10,
+      "state": "accepted",
+      "localMessageId": "msg-1790017586796-ubnrdki",
+      "timestamp": 1790017586796,
+      "rawDisplayText": "I'm seeing a bit of visual clutter in this chapter, please seperate the different units more clearly and pleasantly to the eye",
+      "canonicalText": "I'm seeing a bit of visual clutter in this chapter, please seperate the different units more clearly and pleasantly to the eye",
+      "images": [],
+      "contentDigest": "5238a2886ba3c1f541f7bfa7c66fdcc4b52d498c765ebe4910f12c8f598ef06b",
+      "providerUserMessageId": "cedaade6-dcb2-4f4e-b20e-2fa836d44f07",
+      "providerAssistantMessageId": "695dbb32-192b-4bd0-9ea9-5d5cdd797218"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790017697831-rncekd8",
+      "userTurnOrdinal": 11,
+      "state": "accepted",
+      "localMessageId": "msg-1790017697827-i58aor2",
+      "timestamp": 1790017697827,
+      "rawDisplayText": "I really like the collapsibles. Remember to use them in future note-taking, with care of course.",
+      "canonicalText": "I really like the collapsibles. Remember to use them in future note-taking, with care of course.",
+      "images": [],
+      "contentDigest": "c193980b5e27c69e6ab11bb9d6dd8c78d734b5c283f2638d7ae401bea8e342ae",
+      "providerUserMessageId": "6078fba4-1c7c-44b9-ae2c-c8be4667b791",
+      "providerAssistantMessageId": "3aec7162-14f4-4830-b5c5-c3863ddbf0a8"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790018052519-enr26vl",
+      "userTurnOrdinal": 12,
+      "state": "accepted",
+      "localMessageId": "msg-1790018052510-69j6oqm",
+      "timestamp": 1790018052510,
+      "rawDisplayText": "Remember that \"trick question\" examples and \"special cases\" are welcome in my notes since I want a complete resource. If I have to resort to searching elsewhere for something that should have been included here, my notes would have failed.",
+      "canonicalText": "Remember that \"trick question\" examples and \"special cases\" are welcome in my notes since I want a complete resource. If I have to resort to searching elsewhere for something that should have been included here, my notes would have failed.",
+      "images": [],
+      "contentDigest": "fedecd98c697ed8c1b7efe315125ba1770d9aa7cb375e19a4ebfa998b0e15685",
+      "providerUserMessageId": "fe17da7c-68aa-46b6-8088-bc35863dacd3",
+      "providerAssistantMessageId": "76c041eb-e713-473c-aafb-ba9208788bca"
     }
   ]
 }

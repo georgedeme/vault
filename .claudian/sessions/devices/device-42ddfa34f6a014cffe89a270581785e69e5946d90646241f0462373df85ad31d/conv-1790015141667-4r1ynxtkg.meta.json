@@ -4,7 +4,7 @@
   "title": "Transform to wiki-style resource",
   "titleGenerationStatus": "success",
   "createdAt": 1790015141672,
-  "lastActivityAt": 1790017506427,
+  "lastActivityAt": 1790018062141,
   "sessionId": "72c78c1b-24d6-4560-a947-d368ded1489b",
   "selectedModel": "sonnet",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "sonnet",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 573,
-    "cacheReadInputTokens": 55801,
+    "cacheCreationInputTokens": 517,
+    "cacheReadInputTokens": 81109,
     "contextWindow": 1000000,
-    "contextTokens": 56376,
-    "percentage": 6,
+    "contextTokens": 81628,
+    "percentage": 8,
     "contextWindowIsAuthoritative": true
   }
 }

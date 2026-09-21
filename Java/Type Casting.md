@@ -2,6 +2,22 @@
 
 Type casting is the conversion of a value from one data type to another. Java performs some conversions automatically and requires others to be written explicitly. Understanding which category a conversion falls into — and what happens to the value during the conversion — is essential, since several common operations produce results that are not immediately obvious from the source code.
 
+## Contents
+
+- [[#1. Two Categories of Casting|1. Two Categories of Casting]]
+- [[#2. Narrowing Between Integer Types — Overflow and Wraparound|2. Narrowing Between Integer Types — Overflow and Wraparound]]
+- [[#3. Narrowing Between Floating-Point and Integer Types|3. Narrowing Between Floating-Point and Integer Types]]
+- [[#4. Widening Between Integer and Floating-Point Types — Precision Loss|4. Widening Between Integer and Floating-Point Types — Precision Loss]]
+- [[#5. char — A Special Case|5. char — A Special Case]]
+- [[#6. Binary Numeric Promotion — Mixed-Type Arithmetic|6. Binary Numeric Promotion — Mixed-Type Arithmetic]]
+- [[#7. Reference (Object) Casting|7. Reference (Object) Casting]]
+- [[#8. What Casting Cannot Do|8. What Casting Cannot Do]]
+- [[#9. Autoboxing and Unboxing (Related, Not True Casting)|9. Autoboxing and Unboxing (Related, Not True Casting)]]
+- [[#10. Quick Reference — Non-Obvious Outcomes|10. Quick Reference — Non-Obvious Outcomes]]
+- [[#11. Summary|11. Summary]]
+
+---
+
 ## 1. Two Categories of Casting
 
 ### 1.1 Implicit Casting (Widening)
@@ -38,6 +54,8 @@ If the cast is omitted, the code does not compile:
 int i = d;   // compile error: incompatible types
 ```
 
+---
+
 ## 2. Narrowing Between Integer Types — Overflow and Wraparound
 
 When a value is narrowed to a smaller integer type, Java keeps only the lowest-order bits that fit in the destination type. If the original value doesn't fit, the result silently **wraps around** rather than throwing an error or clamping.
@@ -47,9 +65,10 @@ int i = 200;
 byte b = (byte) i;   // b == -56
 ```
 
-**Why:** `byte` is 8 bits, signed, range −128 to 127. The bit pattern for 200 is `11001000`. Reinterpreted as a signed 8-bit value, that pattern represents −56.
+> [!info]- Why does `200` become `-56`?
+> `byte` is 8 bits, signed, range −128 to 127. The bit pattern for 200 is `11001000`. Reinterpreted as a signed 8-bit value, that pattern represents −56.
 
-More examples:
+**More examples:**
 
 | Expression | Result | Reason |
 |---|---|---|
@@ -59,6 +78,29 @@ More examples:
 | `(int)(long) 3_000_000_000L` | `-1294967296` | exceeds `int` range (±2,147,483,647), wraps |
 
 This wraparound happens with **no warning or exception at runtime** — it is a frequent source of silent bugs, especially when casting user input or values from I/O into a smaller type without validating range first.
+
+> [!example]- Worked example — `(short)(int) 70000`
+> `70000` starts as an `int`, which is 32 bits wide. In binary, padded to 32 bits, it is:
+>
+> ```
+> 00000000 00000001 00010001 01110000
+> ```
+>
+> `short` is only 16 bits wide, so the cast keeps just the **lowest-order 16 bits** and discards the rest:
+>
+> ```
+> 32-bit int:   00000000 00000001 | 00010001 01110000
+>                  discarded       |    kept (16 bits)
+> ```
+>
+> The kept bits are `0001000101110000`. Reinterpreting this 16-bit pattern as a **signed** `short`:
+>
+> - The leftmost bit (the sign bit) is `0`, so the value is positive — no sign-flip happens this time, unlike the `byte` example above where the sign bit was `1`.
+> - Converting the remaining bits to decimal: `0001000101110000` = 4464.
+>
+> So `(short)(int) 70000` produces `4464` simply because the top 16 bits of `70000`'s 32-bit representation are thrown away, leaving a smaller, unrelated value behind. This result happens to be positive only because bit 15 of the truncated pattern was `0`; had that bit been `1`, the same discard-and-reinterpret process would have produced a negative `short`, exactly as it did for `byte` above.
+
+---
 
 ## 3. Narrowing Between Floating-Point and Integer Types
 
@@ -87,6 +129,8 @@ If a floating-point value is outside the range of the target integer type, the r
 | `(int) Double.NaN` | `0` | `NaN` converts to `0` by definition |
 | `(long) Double.POSITIVE_INFINITY` | `9223372036854775807` | clamped to `Long.MAX_VALUE` |
 
+---
+
 ## 4. Widening Between Integer and Floating-Point Types — Precision Loss
 
 Widening is not always lossless. `int` and `long` have more bits of precision than the mantissa of `float` (and, for very large `long` values, even `double`), so widening from a large integer type to a floating-point type can silently lose precision despite being an *implicit* conversion.
@@ -101,6 +145,8 @@ System.out.println(roundTrip == l);     // false — precision was lost
 ```
 
 `float` has only 24 bits of mantissa precision, so it cannot represent every value in `long`'s 64-bit range exactly, even though the compiler treats `long -> float` as "widening" and requires no cast.
+
+---
 
 ## 5. `char` — A Special Case
 
@@ -131,7 +177,10 @@ char b = 1;
 char c = (char) (a + b); // c == 'b'
 ```
 
-This is easy to get wrong when doing character-shifting logic (e.g. a Caesar cipher), where every intermediate `char + int` expression yields `int` and needs an explicit cast back.
+> [!tip] Common pitfall
+> This is easy to get wrong when doing character-shifting logic (e.g. a Caesar cipher), where every intermediate `char + int` expression yields `int` and needs an explicit cast back.
+
+---
 
 ## 6. Binary Numeric Promotion — Mixed-Type Arithmetic
 
@@ -160,7 +209,8 @@ int b = 2;
 double result = a / b;      // result == 3.0, NOT 3.5
 ```
 
-**Why:** `a / b` is evaluated entirely in `int` arithmetic first (`7 / 2 == 3`), and *then* the `int` result `3` is widened to `double` for the assignment. The division never "knows" it's about to be assigned to a `double`.
+> [!info]- Why does this happen?
+> `a / b` is evaluated entirely in `int` arithmetic first (`7 / 2 == 3`), and *then* the `int` result `3` is widened to `double` for the assignment. The division never "knows" it's about to be assigned to a `double`.
 
 To get the mathematically expected result, at least one operand must be a floating-point type **before** the division happens:
 
@@ -171,7 +221,8 @@ double result3 = a / 2.0;          // 3.5 — literal 2.0 is already double
 double result4 = (double) (a / b); // 3.0 — WRONG: casts the already-truncated int result
 ```
 
-`result4` is a common mistake: the parentheses cast the *result* of the integer division, not an operand, so truncation has already happened by the time the cast runs.
+> [!warning] Common mistake
+> `result4` is a common mistake: the parentheses cast the *result* of the integer division, not an operand, so truncation has already happened by the time the cast runs.
 
 ### 6.2 The Ternary Operator Also Applies Numeric Promotion
 
@@ -192,6 +243,8 @@ if (true) {
 ```
 
 In the ternary case, because the second branch (`2.0`) is `double`, the *entire expression* is typed `double` at compile time — so even though the `true` branch selects `x`, `x` is promoted to `5.0`. This rarely changes the numeric value, but it does change the static type of the expression, which matters when the ternary result feeds into overload resolution or is itself part of a larger expression.
+
+---
 
 ## 7. Reference (Object) Casting
 
@@ -249,12 +302,16 @@ Integer i = (Integer) s;   // compile error: incompatible types
 
 This differs from the `Animal`/`Dog` case above, where the cast compiles (because the types *are* related) but can still fail at runtime.
 
+---
+
 ## 8. What Casting Cannot Do
 
 - **`boolean` cannot be cast to or from any numeric type**, unlike in C/C++. `(int) true` is a compile error.
 - **Casting a `String` to a number is not casting** — `(int) "5"` does not compile. Use `Integer.parseInt("5")` or `Double.parseDouble("5")` instead.
 - **Casting a number to a `String` is not casting either** — use `String.valueOf(5)`, `Integer.toString(5)`, or string concatenation (`"" + 5`).
 - **Casting does not perform rounding for numeric narrowing** — see [[#3. Narrowing Between Floating-Point and Integer Types|section 3]]; use `Math.round()` first if rounding is intended.
+
+---
 
 ## 9. Autoboxing and Unboxing (Related, Not True Casting)
 
@@ -270,6 +327,8 @@ System.out.println(a == c);        // true — b is unboxed to int for the compa
 ```
 
 `Integer` values in the range −128 to 127 are cached by the JVM, so `==` comparisons on small boxed values can misleadingly return `true` while larger values return `false` — this is not a casting rule, but it is frequently confused with one.
+
+---
 
 ## 10. Quick Reference — Non-Obvious Outcomes
 
@@ -289,6 +348,8 @@ System.out.println(a == c);        // true — b is unboxed to int for the compa
 | `new Integer(1000) == new Integer(1000)` | `false` | reference comparison, not a casting issue |
 | `(Dog)(Animal) new Animal()` | throws `ClassCastException` | compiles, fails at runtime |
 | `(Integer)(Object) "text"` | throws `ClassCastException` | compiles, fails at runtime |
+
+---
 
 ## 11. Summary
 

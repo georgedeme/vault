@@ -1,7 +1,7 @@
 # Vault formatting conventions
 
 When formatting notes, use these semantic classes (defined in
-.obsidian/snippets/note-colors.css) instead of raw inline styles:
+.obsidian/snippets/colors.css) instead of raw inline styles:
 
 - <span class="hl-red">...</span>    — warnings, common mistakes
 - <span class="hl-blue">...</span>   — definitions / key terms
@@ -14,3 +14,26 @@ For whole paragraphs or sections, prefer native callouts
 
 Use color sparingly — only where it adds retrieval value, not on
 every sentence.
+
+# Collapsible callouts
+
+Use collapsed callouts (`> [!type]-`, e.g. `[!info]-`, `[!example]-`)
+for supplementary detail that isn't needed on a first read — worked
+examples, bit-level/step-by-step walkthroughs, deep "why" explanations.
+Keep primary explanations, and short pitfalls (`[!tip]`, `[!warning]`),
+expanded by default.
+
+Use with care: collapse only content that's genuinely secondary to
+the main flow, not every callout in a note.
+
+# Completeness — trick questions and special cases
+
+Notes should be a complete resource on their topic, not a summary.
+Actively include "trick question" examples and special/edge cases —
+the non-obvious ones, not just the textbook-straightforward ones.
+The bar: if he has to search elsewhere for something that should
+reasonably belong in a given note's topic, that note has failed.
+
+When writing or expanding a note, deliberately look for the edge
+cases, gotchas, and "looks obvious but isn't" scenarios within its
+topic, and include them rather than sticking to the safe/common path.
