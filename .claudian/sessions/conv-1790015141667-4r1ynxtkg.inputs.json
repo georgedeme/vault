@@ -118,6 +118,19 @@
       "contentDigest": "3e952812fb6413184d203f84a15f72153953675007e2c7d6e02439c424c9381e",
       "providerUserMessageId": "f94f9e09-ef8f-4f48-8362-021ae6565d05",
       "providerAssistantMessageId": "6a7de9c4-d83b-45bf-8fe7-31a4e672e948"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790017506431-metx49f",
+      "userTurnOrdinal": 9,
+      "state": "accepted",
+      "localMessageId": "msg-1790017506427-3667trc",
+      "timestamp": 1790017506427,
+      "rawDisplayText": "In the type casting chapter in 2. explain the example with int to short a bit more(the calculation done to get that result)",
+      "canonicalText": "In the type casting chapter in 2. explain the example with int to short a bit more(the calculation done to get that result)",
+      "images": [],
+      "contentDigest": "7b603fda1078e600eb8961d88a485c84951cae8c10be9ec629b3bbc8d9e5d03e",
+      "providerUserMessageId": "a475aeda-9420-4d1c-90fd-9963c2dda308"
     }
   ]
 }
