@@ -2,18 +2,13 @@
 
 This vault is a reference collection of computer science notes, compiled from university coursework and independent study. It is organized as a <span class="hl-green">wiki-like knowledge base</span> rather than a personal journal, with the aim of being clear and useful to any reader.
 
-## Scope
+## Map of Contents
 
-Topics are added incrementally as they are studied. Current and planned areas include:
+Each subject below has its own folder containing a syllabus note, which indexes that subject's chapters in the intended study order. This page only links out to those subjects — details live in the syllabus notes themselves.
 
-### Java
-- Programming fundamentals
-- Operator precedence
-- Logical operators
-- Type casting
+- [[Java/Syllabus|Java]]
 
-### Other CS Topics
-- Additional subjects will be added here as coverage expands
+More subjects will be added here as they are started.
 
 ## Purpose
 
