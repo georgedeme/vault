@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790087056371-0n9dn9xpr",
+  "providerId": "claude",
+  "title": "Propositional and predicate logic exam prep",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790087056376,
+  "lastActivityAt": 1790087181417,
+  "sessionId": "cb38982a-ff21-4c6d-9457-88a7123ec579",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "cb38982a-ff21-4c6d-9457-88a7123ec579"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 14254,
+    "cacheReadInputTokens": 31980,
+    "contextWindow": 1000000,
+    "contextTokens": 46236,
+    "percentage": 5,
+    "contextWindowIsAuthoritative": true
+  }
+}
