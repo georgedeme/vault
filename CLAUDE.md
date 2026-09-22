@@ -48,3 +48,23 @@ pseudocode first, then give a working Java implementation.
 Ignore the `Papaioannou/` folder in all situations: do not read, search,
 list, link to, or modify anything in it, unless explicitly asked to
 perform an action in it.
+
+# Reference notes for new notes
+
+Use the notes in `Λογική - ΕΠΛ 111/` as the model for all future notes:
+- Folder per topic, with a `00 - Ευρετήριο` index note, numbered topic
+  notes, a one-page cheat sheet (`Τυπολόγιο`), and practice-exercise
+  notes with solutions in collapsed `> [!success]- Λύση` callouts.
+- Each note: short intro line, then sections with headings.
+- Callouts: `> [!note]` for definitions, `> [!important]` for key rules,
+  `> [!warning]` for common mistakes, `> [!tip]` for tips.
+- A "Συχνά Λάθη" (common mistakes) section wherever relevant.
+- Tables for truth tables, comparisons and step-by-step proofs (with the
+  rule/justification named on each line).
+- Related notes cross-linked with [[wikilinks]] and a "Σχετικά" section
+  at the end.
+- Source material (slides) is the source of truth: keep its terminology
+  and notation, and flag anything that looks wrong with a short
+  "⚠️ Σημείωση" instead of silently changing it.
+
+Do not change the formatting of the existing notes in `Λογική - ΕΠΛ 111/`.
