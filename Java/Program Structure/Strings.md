@@ -184,7 +184,41 @@ String message = String.format("Name: %s, Age: %d", "Ada", 30);
 // message now holds "Name: Ada, Age: 30" — nothing is printed
 ```
 
-### 6.1 Common Conversions
+### 6.1 The Structure of a `printf`/`format` Call
+
+Both methods share the same parameter shape:
+
+```java
+printf(String format, Object... args)
+String.format(String format, Object... args)
+```
+
+- **The first parameter is always the format string** — a literal (or any `String`) containing ordinary text mixed with `%`-prefixed format specifiers. It is never itself one of the values being formatted; it's the *template*.
+- **Everything after it is a varargs list of arguments** (`Object... args`) — the values to substitute into the template. You can pass any number of them, comma-separated, exactly like calling a method with multiple parameters.
+- **Matching happens positionally, left to right**: the first `%` specifier encountered in the format string consumes the first argument, the second specifier consumes the second argument, and so on. The specifier's *type* (`%s`, `%d`, `%f`, ...) determines how its matched argument is converted to text — it does not select *which* argument is used; position does.
+
+```java
+System.out.printf("%s scored %d out of %d%n", "Ada", 90, 100);
+//                  ^1st        ^2nd       ^3rd
+//                  "Ada"        90         100
+// Ada scored 90 out of 100
+```
+
+Walking through this call: `"%s scored %d out of %d%n"` is the format string — everything outside `%...` (`" scored "`, `" out of "`) is printed verbatim, unchanged. The three arguments `"Ada"`, `90`, `100` are supplied after it, separated by commas, and each is consumed by the next `%` specifier in the string, in order. `%n` needs no argument at all — it always inserts a line separator regardless of position.
+
+Since primitive values (`int`, `double`, `boolean`, etc.) are autoboxed into their wrapper types to satisfy the `Object...` parameter, you can pass primitives, `String`s, and objects freely in the same call — no explicit conversion is needed on your part:
+
+```java
+int quantity = 3;
+double price = 4.5;
+String item = "apple";
+System.out.printf("%d %s(s) at $%.2f each%n", quantity, item, price);
+// 3 apple(s) at $4.50 each
+```
+
+**The number of specifiers that require an argument must match the number of arguments supplied** — every `%s`/`%d`/`%f`/etc. needs one corresponding argument in the same call; `%n` and `%%` are the only specifiers that don't consume one (see [[#6.4 Argument Order — Consuming, Skipping, and Reusing Arguments|section 6.4]] for what happens when the counts don't line up, and for reusing an argument more than once).
+
+### 6.2 Common Conversions
 
 | Specifier | Converts | Example |
 |---|---|---|
@@ -200,7 +234,7 @@ String message = String.format("Name: %s, Age: %d", "Ada", 30);
 > [!warning] Use `%n`, not `\n`
 > `%n` inserts the platform's own line separator (`\r\n` on Windows, `\n` on Unix); `\n` always inserts a bare line feed regardless of platform. Inside a format string, prefer `%n` for portability — it's a format specifier processed by `printf`/`format`, while `\n` is a plain Java escape sequence baked into the string before formatting ever runs. Both usually look identical on screen, but they're not the same character sequence.
 
-### 6.2 Width and Precision
+### 6.3 Width and Precision
 
 A specifier can include flags, a minimum field width, and (for `%f`/`%s`) a precision, in the form `%[flags][width][.precision]conversion`:
 
@@ -215,18 +249,26 @@ System.out.printf("[%8.2f]%n", 3.14159); // [    3.14]   — width 8, precision 
 > [!info]- Why does `%f` default to six decimal places?
 > `%f` with no explicit precision always pads or truncates to exactly **six** digits after the decimal point — this is the same default `printf` uses in C, which Java's format syntax deliberately mirrors. `3.14` becomes `3.140000` unless a precision like `%.2f` is specified.
 
-### 6.3 Argument Order Matters — and Can Be Overridden
+### 6.4 Argument Order — Consuming, Skipping, and Reusing Arguments
 
-Specifiers consume arguments left to right by default. An explicit index (`n$`) can reuse or reorder arguments:
+By default, as established in [[#6.1 The Structure of a `printf`/`format` Call|section 6.1]], specifiers consume arguments **left to right, one each**, in the order both appear. An explicit index (`n$`, placed right after the `%`) overrides that default and points a specifier at a *specific* argument position instead — which lets you reuse the same argument more than once, or print them out of order:
 
 ```java
 System.out.printf("%s is %d, and %1$s is still %2$d%n", "Ada", 30);
 // Ada is 30, and Ada is still 30 — %1$s and %2$d re-reference the 1st and 2nd args
 ```
 
+Reading that call: the first `%s` and `%d` consume arguments 1 and 2 normally (positional, no index given). `%1$s` then explicitly re-targets argument 1 (`"Ada"`) a second time, and `%2$d` re-targets argument 2 (`30`) a second time — without either of them, the format string would run out of arguments after the first two specifiers.
+
+```java
+System.out.printf("%2$s before %1$s%n", "second", "first");
+// first before second — explicit indices printed out of their argument order
+```
+
 > [!warning] Common mistakes
 > - **Type mismatch** — `%d` requires an integer type; passing a `double` (even `3.0`) throws `IllegalFormatConversionException` at runtime. Use `%f` for floating-point values.
-> - **Too few arguments** — a specifier with no matching argument throws `MissingFormatArgumentException` at runtime, not a compile error, since the format string is just a regular `String` as far as the compiler is concerned.
+> - **Too few arguments** — a specifier with no matching argument (more `%`-specifiers than values supplied) throws `MissingFormatArgumentException` at runtime, not a compile error, since the format string is just a regular `String` as far as the compiler is concerned and isn't checked against the argument list until the call actually executes.
+> - **Too many arguments** — extra arguments beyond what the specifiers consume are silently ignored; this is legal, not an error.
 > - **Forgetting `%n`/newline entirely** — `printf` (unlike `println`) never adds a trailing newline on its own; consecutive calls run together on one line unless you include `%n` yourself.
 
 ---

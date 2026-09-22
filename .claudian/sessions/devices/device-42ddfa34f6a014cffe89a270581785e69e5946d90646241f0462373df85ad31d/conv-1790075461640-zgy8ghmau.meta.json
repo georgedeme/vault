@@ -4,7 +4,7 @@
   "title": "Determine printf documentation placement",
   "titleGenerationStatus": "success",
   "createdAt": 1790075461644,
-  "lastActivityAt": 1790075603458,
+  "lastActivityAt": 1790076122387,
   "sessionId": "060ca459-8c49-4413-9142-06aa27fa1b26",
   "selectedModel": "sonnet",
   "providerState": {
@@ -14,11 +14,11 @@
   "usage": {
     "model": "sonnet",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 376,
-    "cacheReadInputTokens": 52287,
+    "cacheCreationInputTokens": 3108,
+    "cacheReadInputTokens": 59290,
     "contextWindow": 1000000,
-    "contextTokens": 52665,
-    "percentage": 5,
+    "contextTokens": 62400,
+    "percentage": 6,
     "contextWindowIsAuthoritative": true
   }
 }

@@ -48,6 +48,20 @@
       "contentDigest": "77015a90614064fd625ed196033b4a535b04f4814bc25e98ada290193615ca85",
       "providerUserMessageId": "b8687631-af0e-4386-9840-76f8d5801121",
       "providerAssistantMessageId": "1ae81a6e-242e-4781-aea7-47b6841a7951"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790076083520-legfxnt",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1790076083517-hwqa3mp",
+      "timestamp": 1790076083517,
+      "rawDisplayText": "Expand upon the printf segment. Make sure to explain the structure of the printf parameters(The first string contains the formatting desired and then are the arguments to be formatted). Make sure it fully explains how to use it",
+      "canonicalText": "Expand upon the printf segment. Make sure to explain the structure of the printf parameters(The first string contains the formatting desired and then are the arguments to be formatted). Make sure it fully explains how to use it",
+      "images": [],
+      "contentDigest": "1a2230cf1461edf2e9eee28634662b8b7cf49568fb27847b8e4ec4467dc516be",
+      "providerUserMessageId": "932288f7-5deb-4cb4-a87f-50ee32b76196",
+      "providerAssistantMessageId": "61ade02e-047c-4988-84ee-b6c7ce7c54f4"
     }
   ]
 }
