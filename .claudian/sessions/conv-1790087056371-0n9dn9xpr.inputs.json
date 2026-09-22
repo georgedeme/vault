@@ -127,6 +127,20 @@
       "contentDigest": "c9fa5cfc9c6bcb8b82fe3e0a7e9474e2c4149f80b740657a840cc2f7e5c74778",
       "providerUserMessageId": "b0aab56c-f736-4018-8577-6c2f09bfe016",
       "providerAssistantMessageId": "be1373c9-6236-4bb8-ae27-1fa13886e0ec"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790119355742-10bjlr4",
+      "userTurnOrdinal": 11,
+      "state": "accepted",
+      "localMessageId": "msg-1790119355722-z5m5edq",
+      "timestamp": 1790119355722,
+      "rawDisplayText": "[[ΕΠΛ111 Material/1. propositional and predicate logic.pdf|1. propositional and predicate logic.pdf]] Using this pdf and deriving translation exercises from it, analyze them to come up with rules/tricks that help with translating natural language sentences into logical statements. Then add those rules/tricks to [[Λογική - ΕΠΛ 111/02 - Προτεραιότητα και Μετάφραση.md|02 - Προτεραιότητα και Μετάφραση]] και [[Λογική - ΕΠΛ 111/06 - Μετάφραση με Ποσοδείκτες.md|06 - Μετάφραση με Ποσοδείκτες]]  ανάλογα με την περίπτωση.",
+      "canonicalText": "[[ΕΠΛ111 Material/1. propositional and predicate logic.pdf|1. propositional and predicate logic.pdf]] Using this pdf and deriving translation exercises from it, analyze them to come up with rules/tricks that help with translating natural language sentences into logical statements. Then add those rules/tricks to [[Λογική - ΕΠΛ 111/02 - Προτεραιότητα και Μετάφραση.md|02 - Προτεραιότητα και Μετάφραση]] και [[Λογική - ΕΠΛ 111/06 - Μετάφραση με Ποσοδείκτες.md|06 - Μετάφραση με Ποσοδείκτες]]  ανάλογα με την περίπτωση.",
+      "images": [],
+      "contentDigest": "75ab6c8f4ebb4c8160604ffa405399f32d360f95096f5204e55a217ffdd12f47",
+      "providerUserMessageId": "4c0a00e3-6e62-45f8-bb9c-f5ab688e88b9",
+      "providerAssistantMessageId": "81374384-2e87-4537-b890-d9d5c3636682"
     }
   ]
 }
