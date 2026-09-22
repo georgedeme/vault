@@ -85,6 +85,20 @@
       "contentDigest": "186699303358f7ad52f7b956f88624b70f1a3fb40ddd53db597a2180c9e7bcb2",
       "providerUserMessageId": "98e4d2f0-40ef-4648-8d23-465a05f0054d",
       "providerAssistantMessageId": "286c18d3-5b8a-44be-9a5b-ac2f5d046210"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790114421683-579edkx",
+      "userTurnOrdinal": 8,
+      "state": "accepted",
+      "localMessageId": "msg-1790114421677-wvg3r5e",
+      "timestamp": 1790114421677,
+      "rawDisplayText": "Remember to ignore the @Papaioannou/  folder in all situations, unless explicitly asked to perform any actions in it",
+      "canonicalText": "Remember to ignore the @Papaioannou/  folder in all situations, unless explicitly asked to perform any actions in it",
+      "images": [],
+      "contentDigest": "5f57b4722bb5ea50a52300ce7d50d056b8dbfd9226a5c172cfc0f02805f445ef",
+      "providerUserMessageId": "bbbff8a9-d3a8-4db1-8b36-65a6016a5f36",
+      "providerAssistantMessageId": "c0a8690a-2041-4e47-b6be-48df35419b4f"
     }
   ]
 }

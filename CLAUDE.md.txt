@@ -42,3 +42,9 @@ topic, and include them rather than sticking to the safe/common path.
 
 For data structures and algorithms notes: state the algorithm in
 pseudocode first, then give a working Java implementation.
+
+# Excluded folders
+
+Ignore the `Papaioannou/` folder in all situations: do not read, search,
+list, link to, or modify anything in it, unless explicitly asked to
+perform an action in it.
