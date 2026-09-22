@@ -3,5 +3,6 @@
   "accentColor": "#5ff55c",
   "enabledCssSnippets": [
     "colors"
-  ]
+  ],
+  "cssTheme": "Claude Warm"
 }
