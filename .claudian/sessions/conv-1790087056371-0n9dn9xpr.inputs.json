@@ -39,7 +39,8 @@
       "canonicalText": "You don't need pdftoppm. Both PDFs have a text layer, so extract the text instead of rendering images. Install PyMuPDF with `pip install pymupdf` and extract the text page by page (fall back to `pip install pypdf` if that fails). Save the extracted text of each PDF to a temporary .txt file with page numbers marked, read it from there, and then continue with the original task. Delete the temporary files when you're done.",
       "images": [],
       "contentDigest": "b9fccc7c4183ed7e94f8f9faa1962a0e356d78bc671976ed2f5f35cf584dd183",
-      "providerUserMessageId": "3b56dd81-4c4c-477c-950b-eff323aed311"
+      "providerUserMessageId": "3b56dd81-4c4c-477c-950b-eff323aed311",
+      "providerAssistantMessageId": "cfa8b1f2-609c-4bb3-9ba1-db7acbab713d"
     }
   ]
 }
