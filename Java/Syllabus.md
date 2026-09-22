@@ -20,7 +20,7 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 ## Part III — Program Structure
 
 - [ ] [[Java/Methods|Methods]] — declaration, parameters, return types, overloading
-- [ ] [[Java/Strings|Strings]] — the `String` class, immutability, common `String` methods, `StringBuilder`
+- [x] [[Java/Program Structure/Strings|Strings]] — the `String` class, immutability, common `String` methods, `StringBuilder`, formatted output with `printf`/`String.format`
 
 ## Part IV — Object-Oriented Programming
 

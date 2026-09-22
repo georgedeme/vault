@@ -1,0 +1,24 @@
+{
+  "id": "conv-1790075461640-zgy8ghmau",
+  "providerId": "claude",
+  "title": "Determine printf documentation placement",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790075461644,
+  "lastActivityAt": 1790075603458,
+  "sessionId": "060ca459-8c49-4413-9142-06aa27fa1b26",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "060ca459-8c49-4413-9142-06aa27fa1b26"
+  },
+  "linkedContentPath": "Java/Syllabus.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 376,
+    "cacheReadInputTokens": 52287,
+    "contextWindow": 1000000,
+    "contextTokens": 52665,
+    "percentage": 5,
+    "contextWindowIsAuthoritative": true
+  }
+}
