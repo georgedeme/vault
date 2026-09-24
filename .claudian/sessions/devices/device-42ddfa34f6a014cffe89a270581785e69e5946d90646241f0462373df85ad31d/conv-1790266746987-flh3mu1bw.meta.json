@@ -1,0 +1,13 @@
+{
+  "id": "conv-1790266746987-flh3mu1bw",
+  "providerId": "claude",
+  "title": "Create Mathematical Reasoning course materials",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790266746989,
+  "lastActivityAt": 1790266746989,
+  "sessionId": "d64f94f9-938c-49e5-a9c0-3628849da7bb",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "d64f94f9-938c-49e5-a9c0-3628849da7bb"
+  }
+}
