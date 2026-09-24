@@ -51,7 +51,7 @@ perform an action in it.
 
 # Reference notes for new notes
 
-Use the notes in `Λογική - ΕΠΛ 111/` as the model for all future notes:
+Use the notes in `ΕΠΛ111 Προτασιακή-Κατηγορική Λογική/` as the model for all future notes:
 - Folder per topic, with a `00 - Ευρετήριο` index note, numbered topic
   notes, a one-page cheat sheet (`Τυπολόγιο`), and practice-exercise
   notes with solutions in collapsed `> [!success]- Λύση` callouts.
@@ -67,4 +67,4 @@ Use the notes in `Λογική - ΕΠΛ 111/` as the model for all future notes:
   and notation, and flag anything that looks wrong with a short
   "⚠️ Σημείωση" instead of silently changing it.
 
-Do not change the formatting of the existing notes in `Λογική - ΕΠΛ 111/`.
+Do not change the formatting of the existing notes in `ΕΠΛ111 Προτασιακή-Κατηγορική Λογική/`.

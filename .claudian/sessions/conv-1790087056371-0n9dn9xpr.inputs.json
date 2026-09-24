@@ -163,6 +163,20 @@
       "contentDigest": "3e00ffa43979cf06015e27a270c0d72188c1d8acc33f14060ea7836722189258",
       "providerUserMessageId": "a95ba1b9-2d2a-4fc8-a9fb-bda1f2f1f292",
       "providerAssistantMessageId": "339cc2f4-c014-46f6-9ecc-9aca05d42b42"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790266109976-49ut66w",
+      "userTurnOrdinal": 13,
+      "state": "accepted",
+      "localMessageId": "msg-1790266109944-09wg0xy",
+      "timestamp": 1790266109944,
+      "rawDisplayText": "Rename the @Λογική - ΕΠΛ 111/  folder to \"ΕΠΛ111 Προτασιακή-Κατηγορική Λογική\". Then using the [[ΕΠΛ111 Material/Μαθηματικός Συλλογισμός (Mathematical Reasoning).pdf|Μαθηματικός Συλλογισμός (Mathematical Reasoning).pdf]]  construct notes on it in a new folder called \"ΕΠΛ111 Μαθηματικός Συλλογισμός\". Make sure that it is similar in it's method to the notes under @Λογική - ΕΠΛ 111/ . Explain analytically and include thought process explanations.",
+      "canonicalText": "Rename the @Λογική - ΕΠΛ 111/  folder to \"ΕΠΛ111 Προτασιακή-Κατηγορική Λογική\". Then using the [[ΕΠΛ111 Material/Μαθηματικός Συλλογισμός (Mathematical Reasoning).pdf|Μαθηματικός Συλλογισμός (Mathematical Reasoning).pdf]]  construct notes on it in a new folder called \"ΕΠΛ111 Μαθηματικός Συλλογισμός\". Make sure that it is similar in it's method to the notes under @Λογική - ΕΠΛ 111/ . Explain analytically and include thought process explanations.",
+      "images": [],
+      "contentDigest": "6302600f9dc3a1475c87525b55a5b5ed644f9b1f0810e413ebd376d6f83f5655",
+      "providerUserMessageId": "171fb568-fec1-429f-b1ea-da62187e124a",
+      "providerAssistantMessageId": "1ed63a9e-9fa6-44ef-bf6a-cd0d00c27673"
     }
   ]
 }
