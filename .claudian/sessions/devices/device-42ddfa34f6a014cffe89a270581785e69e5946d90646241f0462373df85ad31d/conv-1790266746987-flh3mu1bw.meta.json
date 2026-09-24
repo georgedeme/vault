@@ -4,10 +4,20 @@
   "title": "Create Mathematical Reasoning course materials",
   "titleGenerationStatus": "success",
   "createdAt": 1790266746989,
-  "lastActivityAt": 1790266746989,
+  "lastActivityAt": 1790267815202,
   "sessionId": "d64f94f9-938c-49e5-a9c0-3628849da7bb",
   "selectedModel": "opus",
   "providerState": {
     "providerSessionId": "d64f94f9-938c-49e5-a9c0-3628849da7bb"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1190,
+    "cacheReadInputTokens": 205170,
+    "contextWindow": 1000000,
+    "contextTokens": 206362,
+    "percentage": 21,
+    "contextWindowIsAuthoritative": true
   }
 }
