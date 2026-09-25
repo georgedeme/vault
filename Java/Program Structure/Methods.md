@@ -543,7 +543,7 @@ A method is <span class="hl-blue">recursive</span> when it calls itself. Every c
 1. a **base case**, which is answered directly without a recursive call, and
 2. a **recursive case**, which calls the method on a **smaller** input that moves toward the base case.
 
-Each recursive call gets its own stack frame ([[#6.2 The Call Stack|§ 6.2]]), so each level has its own copy of the parameters. The full topic (recursion trees, tail recursion, converting to iteration) is covered in [[DSA/Recursion|DSA: Recursion]].
+Each recursive call gets its own stack frame ([[#6.2 The Call Stack|§ 6.2]]), so each level has its own copy of the parameters. The full topic (recursion trees, tail recursion, converting to iteration) is covered in [[DSA/Foundations/Recursion|DSA: Recursion]].
 
 ### 9.1 Factorial
 
@@ -911,4 +911,4 @@ static void increment(int counter) { counter++; }
 - [[Java/Foundations/Operators#13. Evaluation Order — Not the Same as Precedence|Operators § 13]]: left-to-right evaluation
 - [[Java/Classes and Objects|Classes and Objects]]: instance methods, constructors, `this`, `static`
 - [[Java/Polymorphism|Polymorphism]]: overriding vs. overloading
-- [[DSA/Recursion|DSA: Recursion]]
+- [[DSA/Foundations/Recursion|DSA: Recursion]]

@@ -13,9 +13,9 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 ## Part I — Foundations
 
 - [x] [[DSA/Foundations/Complexity Analysis|Complexity Analysis]] — Big-O, Big-Θ, Big-Ω, amortized analysis, space complexity, recurrence relations, complexity of common operations
-- [ ] [[DSA/Recursion|Recursion]] — base cases, the call stack, recursion trees, tail recursion, converting recursion to iteration, stack overflow limits
-- [ ] [[DSA/Bit Manipulation|Bit Manipulation]] — bitwise operators, common tricks (clear/set/toggle, lowest set bit, power-of-two checks), bitmasks, `popcount`, XOR properties
-- [ ] [[DSA/Math for Algorithms|Math for Algorithms]] — GCD/LCM and Euclid's algorithm, modular arithmetic, fast (binary) exponentiation, modular inverse, Sieve of Eratosthenes, prime factorization, combinatorics (nCr, Pascal's triangle), Euler's totient, CRT *(advanced)*
+- [x] [[DSA/Foundations/Recursion|Recursion]] — base cases, the call stack, recursion trees, tail recursion, converting recursion to iteration, stack overflow limits
+- [x] [[DSA/Foundations/Bit Manipulation|Bit Manipulation]] — bitwise operators, common tricks (clear/set/toggle, lowest set bit, power-of-two checks), bitmasks, `popcount`, XOR properties
+- [x] [[DSA/Foundations/Math for Algorithms|Math for Algorithms]] — GCD/LCM and Euclid's algorithm, modular arithmetic, fast (binary) exponentiation, modular inverse, Sieve of Eratosthenes, prime factorization, combinatorics (nCr, Pascal's triangle), Euler's totient, CRT *(advanced)*
 
 ---
 

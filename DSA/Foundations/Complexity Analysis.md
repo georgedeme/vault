@@ -437,7 +437,7 @@ Forgetting the call stack is the most common space-complexity error. **Recursion
 | Recursion on a skewed BST | `O(n)` | height degenerates to `n` |
 
 > [!tip] Java does not eliminate tail calls
-> Even a tail-recursive method consumes one frame per call on the JVM, so deep recursion throws `StackOverflowError` at roughly 10⁴–10⁵ frames. A recursive solution over `n = 10⁶` must be converted to iteration with an explicit stack. See [[DSA/Recursion|Recursion]].
+> Even a tail-recursive method consumes one frame per call on the JVM, so deep recursion throws `StackOverflowError` at roughly 10⁴–10⁵ frames. A recursive solution over `n = 10⁶` must be converted to iteration with an explicit stack. See [[DSA/Foundations/Recursion|Recursion]].
 
 ### 9.2 "In-place" is a claim about auxiliary space
 
