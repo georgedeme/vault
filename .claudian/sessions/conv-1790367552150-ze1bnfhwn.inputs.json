@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790367552150-ze1bnfhwn",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790367552254-30aomy8",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790367552149-lr70tt7",
+      "timestamp": 1790367552149,
+      "rawDisplayText": "[[DSA/Syllabus.md|Syllabus]] Continue the foundations folder as described in the syllabus.",
+      "canonicalText": "[[DSA/Syllabus.md|Syllabus]] Continue the foundations folder as described in the syllabus.",
+      "images": [],
+      "contentDigest": "3f05406a172182df4b8b8f0d25dbdc4a4ef6a8ac0d3a04d7a5bb315f2c23b17e",
+      "providerUserMessageId": "716bf563-0f63-42e5-b255-f466463c39df"
+    }
+  ]
+}
