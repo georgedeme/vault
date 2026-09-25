@@ -4,10 +4,20 @@
   "title": "Build Linux knowledge base structure",
   "titleGenerationStatus": "success",
   "createdAt": 1790342773988,
-  "lastActivityAt": 1790342773988,
+  "lastActivityAt": 1790343506721,
   "sessionId": "c871ca9f-c1e7-4e76-a95c-9080a3e16a98",
   "selectedModel": "opus",
   "providerState": {
     "providerSessionId": "c871ca9f-c1e7-4e76-a95c-9080a3e16a98"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 653,
+    "cacheReadInputTokens": 111587,
+    "contextWindow": 1000000,
+    "contextTokens": 112242,
+    "percentage": 11,
+    "contextWindowIsAuthoritative": true
   }
 }
