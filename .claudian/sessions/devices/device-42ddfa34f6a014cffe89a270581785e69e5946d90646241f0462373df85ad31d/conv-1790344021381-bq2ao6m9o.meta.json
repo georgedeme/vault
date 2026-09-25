@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790344021381-bq2ao6m9o",
+  "providerId": "claude",
+  "title": "Review Syllabus and Expand Java Foundations",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790344021383,
+  "lastActivityAt": 1790344507064,
+  "sessionId": "d4210155-dcd3-4798-8647-07f0d4101991",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "d4210155-dcd3-4798-8647-07f0d4101991"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 1000000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}
