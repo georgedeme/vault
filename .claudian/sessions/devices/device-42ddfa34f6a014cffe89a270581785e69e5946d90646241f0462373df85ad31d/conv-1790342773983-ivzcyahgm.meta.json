@@ -1,0 +1,13 @@
+{
+  "id": "conv-1790342773983-ivzcyahgm",
+  "providerId": "claude",
+  "title": "Build Linux knowledge base structure",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790342773988,
+  "lastActivityAt": 1790342773988,
+  "sessionId": "c871ca9f-c1e7-4e76-a95c-9080a3e16a98",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "c871ca9f-c1e7-4e76-a95c-9080a3e16a98"
+  }
+}
