@@ -1,0 +1,14 @@
+{
+  "id": "conv-1790350579837-jn6y4y7i1",
+  "providerId": "claude",
+  "title": "Create Java arrays and methods notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790350579841,
+  "lastActivityAt": 1790350579841,
+  "sessionId": "9073ef72-5be1-4181-a0df-515767ffd2a1",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "9073ef72-5be1-4181-a0df-515767ffd2a1"
+  },
+  "linkedContentPath": "Java/Syllabus.md"
+}

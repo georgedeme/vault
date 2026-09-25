@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790350579837-jn6y4y7i1",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790350580325-cu9m2re",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790350579835-tpc772c",
+      "timestamp": 1790350579835,
+      "rawDisplayText": "[[Java/Syllabus.md|Syllabus]] Consult this and create the arrays and methods note, each in their respective category/folder.",
+      "canonicalText": "[[Java/Syllabus.md|Syllabus]] Consult this and create the arrays and methods note, each in their respective category/folder.",
+      "context": {
+        "linkedContent": {
+          "path": "Java/Syllabus.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "10195307d630aa40d132749a3a910446a9b9385c0d02e737431392a51d4d015c",
+      "providerUserMessageId": "469788ca-902c-40c1-9d3d-eeab662c7d40"
+    }
+  ]
+}
