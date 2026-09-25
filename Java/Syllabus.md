@@ -15,11 +15,11 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 
 - [x] [[Java/Control Flow/Conditional Statements|Conditional Statements]] — `if` / `else if` / `else`, `switch`
 - [x] [[Java/Control Flow/Loops|Loops]] — `for`, `while`, `do-while`, `break`, `continue`
-- [ ] [[Java/Arrays|Arrays]] — declaration, initialization, multi-dimensional arrays, common pitfalls
+- [x] [[Java/Control Flow/Arrays|Arrays]] — declaration, initialization, multi-dimensional arrays, common pitfalls
 
 ## Part III — Program Structure
 
-- [ ] [[Java/Methods|Methods]] — declaration, parameters, return types, overloading
+- [x] [[Java/Program Structure/Methods|Methods]] — declaration, parameters, return types, overloading, varargs, recursion
 - [x] [[Java/Program Structure/Strings|Strings]] — the `String` class, immutability, common `String` methods, `StringBuilder`, formatted output with `printf`/`String.format`
 
 ## Part IV — Object-Oriented Programming

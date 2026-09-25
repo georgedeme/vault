@@ -291,7 +291,7 @@ for (int x : a) {
 ```
 
 > [!warning] Common mistake: the for-each variable is a copy
-> Assigning to the loop variable does **not** change the array (see [[Java/Control Flow/Loops#4. The Enhanced for Loop (for-each)|Loops § 4]]):
+> Assigning to the loop variable does **not** change the array (see [[Java/Control Flow/Loops#4. The Enhanced `for` Loop (for-each)|Loops § 4]]):
 > ```java
 > for (int x : a) { x = 0; }     // a is unchanged
 > for (int i = 0; i < a.length; i++) { a[i] = 0; }   // a is now all zeros

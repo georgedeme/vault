@@ -4,11 +4,21 @@
   "title": "Create Java arrays and methods notes",
   "titleGenerationStatus": "success",
   "createdAt": 1790350579841,
-  "lastActivityAt": 1790350579841,
+  "lastActivityAt": 1790351158360,
   "sessionId": "9073ef72-5be1-4181-a0df-515767ffd2a1",
   "selectedModel": "opus",
   "providerState": {
     "providerSessionId": "9073ef72-5be1-4181-a0df-515767ffd2a1"
   },
-  "linkedContentPath": "Java/Syllabus.md"
+  "linkedContentPath": "Java/Syllabus.md",
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 136,
+    "cacheReadInputTokens": 122118,
+    "contextWindow": 1000000,
+    "contextTokens": 122256,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
 }

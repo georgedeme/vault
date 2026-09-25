@@ -256,7 +256,7 @@ public class M {
 }
 ```
 
-Only the `(String[])` version is the entry point. The others are ordinary overloads (see [[Java/Methods|Methods]]).
+Only the `(String[])` version is the entry point. The others are ordinary overloads (see [[Java/Program Structure/Methods#7. Method Overloading|Methods § 7]]).
 
 ### 7.3 Exit Status
 
