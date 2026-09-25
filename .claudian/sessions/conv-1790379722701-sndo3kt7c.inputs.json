@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790379722701-sndo3kt7c",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790379723185-1i13qqo",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790379722699-rptemz3",
+      "timestamp": 1790379722699,
+      "rawDisplayText": "Consult the @Uni/ΕΠΛ131/ΕΠΛ131 Material/  and create a syllabus based on the 4 pdfs. Then start creating the notes under the @Uni/ΕΠΛ111/ directory. This isn't supposed to be a complete resource for java, but more focused on covering what is required for this specific course. So make sure that everything in it is covered, but if there's anything additional that could add/assist with the rest, add it. More will be added at a later date.",
+      "canonicalText": "Consult the @Uni/ΕΠΛ131/ΕΠΛ131 Material/  and create a syllabus based on the 4 pdfs. Then start creating the notes under the @Uni/ΕΠΛ111/ directory. This isn't supposed to be a complete resource for java, but more focused on covering what is required for this specific course. So make sure that everything in it is covered, but if there's anything additional that could add/assist with the rest, add it. More will be added at a later date.",
+      "images": [],
+      "contentDigest": "6f935f33e82454a37531e904c8f36e6b5f597de30c5406d7f2ef833f0018dee0",
+      "providerUserMessageId": "f459b425-9979-4790-a6dd-4ce6e67c50a9"
+    }
+  ]
+}

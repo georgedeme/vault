@@ -1,0 +1,13 @@
+{
+  "id": "conv-1790379722701-sndo3kt7c",
+  "providerId": "claude",
+  "title": "Generate syllabus and course notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790379722705,
+  "lastActivityAt": 1790379722705,
+  "sessionId": "1e0d7512-6df8-4241-89d2-6bf9b19bd140",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "1e0d7512-6df8-4241-89d2-6bf9b19bd140"
+  }
+}
