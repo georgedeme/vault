@@ -2,7 +2,7 @@
 
 A <span class="hl-blue">method</span> is a named block of code that belongs to a class, takes zero or more inputs (**parameters**), and may produce one output (the **return value**). Methods let you write a piece of logic once, give it a name, and call it from anywhere. This chapter covers how a method is declared and called, return types and the compiler's `return` rules, how arguments are passed (always by value, including references), local variables and the call stack, overloading and how the compiler picks an overload, variable-length arguments, and recursion.
 
-Instance methods, constructors, and `this` are covered in [[Java/Classes and Objects|Classes and Objects]], and overriding in [[Java/Inheritance|Inheritance]]. This chapter uses `static` methods for its examples, because those can be called straight from `main`.
+Instance methods, constructors, and `this` are covered in [[Classes and Objects|Classes and Objects]], and overriding in [[Java/Inheritance|Inheritance]]. This chapter uses `static` methods for its examples, because those can be called straight from `main`.
 
 ## Contents
 
@@ -88,7 +88,7 @@ public static int max(int a, int b) throws IllegalStateException {
 > }
 > new Dog();   // prints nothing: the compiler supplied a default constructor
 > ```
-> A method may have the same name as its class. It compiles, but it is an ordinary method that `new` never calls. Constructors have **no** return type, not even `void`. See [[Java/Classes and Objects|Classes and Objects]].
+> A method may have the same name as its class. It compiles, but it is an ordinary method that `new` never calls. Constructors have **no** return type, not even `void`. See [[Classes and Objects|Classes and Objects]].
 
 ---
 
@@ -129,7 +129,7 @@ public class App {
 }
 ```
 
-Either make the helper `static`, or create an object and call the method on it. The difference between `static` and instance members is covered in [[Java/Classes and Objects|Classes and Objects]].
+Either make the helper `static`, or create an object and call the method on it. The difference between `static` and instance members is covered in [[Classes and Objects|Classes and Objects]].
 
 ---
 
@@ -909,6 +909,6 @@ static void increment(int counter) { counter++; }
 - [[Introduction to Java#7. The `main` Method|Introduction to Java § 7]]: the `main` method and its overloads
 - [[Type Casting|Type Casting]]: the widening and boxing conversions behind overload resolution
 - [[Operators#13. Evaluation Order — Not the Same as Precedence|Operators § 13]]: left-to-right evaluation
-- [[Java/Classes and Objects|Classes and Objects]]: instance methods, constructors, `this`, `static`
+- [[Classes and Objects|Classes and Objects]]: instance methods, constructors, `this`, `static`
 - [[Java/Polymorphism|Polymorphism]]: overriding vs. overloading
 - [[DSA/Foundations/Recursion|DSA: Recursion]]

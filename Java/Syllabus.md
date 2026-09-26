@@ -24,7 +24,7 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 
 ## Part IV — Object-Oriented Programming
 
-- [ ] [[Java/Classes and Objects|Classes and Objects]] — fields, constructors, `this`, instance vs. static members
+- [x] [[Classes and Objects|Classes and Objects]] — fields, constructors, `this`, instance vs. static members
 - [ ] [[Java/Encapsulation|Encapsulation]] — access modifiers, getters and setters, why state is hidden
 - [ ] [[Java/Inheritance|Inheritance]] — `extends`, method overriding, `super`
 - [ ] [[Java/Polymorphism|Polymorphism]] — dynamic dispatch, upcasting/downcasting in practice
