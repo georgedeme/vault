@@ -4,7 +4,7 @@
   "title": "Number folders for proper sorting",
   "titleGenerationStatus": "success",
   "createdAt": 1790382462614,
-  "lastActivityAt": 1790428223450,
+  "lastActivityAt": 1790428920285,
   "sessionId": "71448afe-cf70-477b-9d99-c394cf1f5e4e",
   "selectedModel": "opus",
   "providerState": {
@@ -12,12 +12,12 @@
   },
   "usage": {
     "model": "opus",
-    "inputTokens": 0,
-    "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1705,
+    "cacheReadInputTokens": 258016,
     "contextWindow": 1000000,
-    "contextTokens": 0,
-    "percentage": 0,
+    "contextTokens": 259723,
+    "percentage": 26,
     "contextWindowIsAuthoritative": true
   }
 }
