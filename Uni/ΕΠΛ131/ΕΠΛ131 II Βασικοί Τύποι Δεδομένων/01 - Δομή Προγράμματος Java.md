@@ -29,6 +29,7 @@ public class IntOps {                          // όνομα κλάσης = όν
 > [!warning] Συχνά λάθη εκτέλεσης
 > - `java IntOps.class` ✗ → γράφεις **το όνομα της κλάσης**, όχι του αρχείου.
 > - Άλλαξες τον κώδικα αλλά δεν ξανάτρεξες `javac` → τρέχει η **παλιά** έκδοση.
+> - **Ελληνικά σε Windows:** αν το αρχείο έχει ελληνικά (σε σχόλια, strings ή ονόματα μεταβλητών), το `javac` στα Windows μπορεί να βγάλει `unmappable character for encoding windows-1252`. Λύση: `javac -encoding UTF-8 IntOps.java`.
 
 ## 3. Ορίσματα γραμμής εντολής (command-line arguments)
 
