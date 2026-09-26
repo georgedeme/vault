@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790431759452-80bbl5821",
+  "providerId": "claude",
+  "title": "Types of functions reference",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790431759453,
+  "lastActivityAt": 1790432126288,
+  "sessionId": "573ca5ad-3fbd-4ca3-9eea-adb2172b49ed",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "573ca5ad-3fbd-4ca3-9eea-adb2172b49ed"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 4184,
+    "cacheReadInputTokens": 93597,
+    "contextWindow": 1000000,
+    "contextTokens": 97783,
+    "percentage": 10,
+    "contextWindowIsAuthoritative": true
+  }
+}
