@@ -13,7 +13,8 @@
       "canonicalText": "Consult the @Uni/ΕΠΛ131/ΕΠΛ131 Material/  and create a syllabus based on the 4 pdfs. Then start creating the notes under the @Uni/ΕΠΛ111/ directory. This isn't supposed to be a complete resource for java, but more focused on covering what is required for this specific course. So make sure that everything in it is covered, but if there's anything additional that could add/assist with the rest, add it. More will be added at a later date.",
       "images": [],
       "contentDigest": "6f935f33e82454a37531e904c8f36e6b5f597de30c5406d7f2ef833f0018dee0",
-      "providerUserMessageId": "f459b425-9979-4790-a6dd-4ce6e67c50a9"
+      "providerUserMessageId": "f459b425-9979-4790-a6dd-4ce6e67c50a9",
+      "providerAssistantMessageId": "e1e0785c-61ec-4034-b721-6c27cda105bc"
     }
   ]
 }
