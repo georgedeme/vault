@@ -1,0 +1,13 @@
+{
+  "id": "conv-1790434633022-qo8mu4oe4",
+  "providerId": "claude",
+  "title": "Review exercises and expand examples",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790434633024,
+  "lastActivityAt": 1790434633024,
+  "sessionId": "8143afe6-54bb-4c30-afbc-446d2765e1ff",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "8143afe6-54bb-4c30-afbc-446d2765e1ff"
+  }
+}

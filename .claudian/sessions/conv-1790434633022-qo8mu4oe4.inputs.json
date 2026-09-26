@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790434633022-qo8mu4oe4",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790434633066-x7zmkuo",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790434633020-gheocif",
+      "timestamp": 1790434633020,
+      "rawDisplayText": "@Uni/ΜΑΣ012/99 - Material/  I added more material, specifically exercises. Consult those exercises and update/add accordingly, to make sure that you have covered the necessary examples",
+      "canonicalText": "@Uni/ΜΑΣ012/99 - Material/  I added more material, specifically exercises. Consult those exercises and update/add accordingly, to make sure that you have covered the necessary examples",
+      "images": [],
+      "contentDigest": "5fce4be331a659daa70cb64e2782fdb9445f224d1e29a38f698d161be3d0c6c1",
+      "providerUserMessageId": "d49a8305-ee6d-47e4-9707-146fbd02ca45"
+    }
+  ]
+}
