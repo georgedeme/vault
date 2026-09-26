@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790432683950-fk92u06wo",
+  "providerId": "claude",
+  "title": "Line intercepts: ordinate and abscissa",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790432683953,
+  "lastActivityAt": 1790432738152,
+  "sessionId": "25ae4917-d1d0-47c6-acbc-38f7c6727f84",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "25ae4917-d1d0-47c6-acbc-38f7c6727f84"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 488,
+    "cacheReadInputTokens": 44100,
+    "contextWindow": 1000000,
+    "contextTokens": 44590,
+    "percentage": 4,
+    "contextWindowIsAuthoritative": true
+  }
+}
