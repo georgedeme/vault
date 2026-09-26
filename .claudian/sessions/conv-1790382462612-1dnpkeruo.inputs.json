@@ -29,6 +29,19 @@
       "contentDigest": "fac57ee4df0756a9fc91b240a24424ff267a50c7bb90e2ff15abb63f3f78d3d2",
       "providerUserMessageId": "c84f6cba-0ce9-4228-b929-466480f5699f",
       "providerAssistantMessageId": "9567aefb-1e6a-4866-a61f-cd9e7a997b40"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790383159534-xb3dbev",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1790383159531-j574afb",
+      "timestamp": 1790383159531,
+      "rawDisplayText": "[[Uni/ΜΑΣ012/Material/MAS012_1_Fall2026_2027.docx|MAS012_1_Fall2026_2027.docx]] Consult this syllabus to create the first and second chapter(in greek) under the @Uni/ΜΑΣ012/ folder. Each of those chapters should be one seperate folder, with other notes inside. Provide examples and explain them, aside from the theory. Consult the books stated in the document if possible.",
+      "canonicalText": "[[Uni/ΜΑΣ012/Material/MAS012_1_Fall2026_2027.docx|MAS012_1_Fall2026_2027.docx]] Consult this syllabus to create the first and second chapter(in greek) under the @Uni/ΜΑΣ012/ folder. Each of those chapters should be one seperate folder, with other notes inside. Provide examples and explain them, aside from the theory. Consult the books stated in the document if possible.",
+      "images": [],
+      "contentDigest": "d79aa6a84d8ca80f0af63a602691f95e531730505c313cd4ed159e2186928fd2",
+      "providerUserMessageId": "463cbef5-1510-490a-9cb9-ef67cec88f8c"
     }
   ]
 }
