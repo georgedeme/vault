@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790431063687-1fun8fktj",
+  "providerId": "claude",
+  "title": "Search for periodic functions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790431063689,
+  "lastActivityAt": 1790431214286,
+  "sessionId": "388f08b3-5165-439c-93a0-02c2aa99c10c",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "388f08b3-5165-439c-93a0-02c2aa99c10c"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 3315,
+    "cacheReadInputTokens": 53204,
+    "contextWindow": 1000000,
+    "contextTokens": 56521,
+    "percentage": 6,
+    "contextWindowIsAuthoritative": true
+  }
+}
