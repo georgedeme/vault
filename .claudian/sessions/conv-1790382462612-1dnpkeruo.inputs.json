@@ -41,7 +41,8 @@
       "canonicalText": "[[Uni/ΜΑΣ012/Material/MAS012_1_Fall2026_2027.docx|MAS012_1_Fall2026_2027.docx]] Consult this syllabus to create the first and second chapter(in greek) under the @Uni/ΜΑΣ012/ folder. Each of those chapters should be one seperate folder, with other notes inside. Provide examples and explain them, aside from the theory. Consult the books stated in the document if possible.",
       "images": [],
       "contentDigest": "d79aa6a84d8ca80f0af63a602691f95e531730505c313cd4ed159e2186928fd2",
-      "providerUserMessageId": "463cbef5-1510-490a-9cb9-ef67cec88f8c"
+      "providerUserMessageId": "463cbef5-1510-490a-9cb9-ef67cec88f8c",
+      "providerAssistantMessageId": "ea17f790-19cc-4cf5-820d-db730bf61e5f"
     },
     {
       "schemaVersion": 1,
@@ -54,7 +55,8 @@
       "canonicalText": "You dont have to read those notes. Just consult the Anton one and any other sources you deem trustworthy for this important matter. These notes should be concise.",
       "images": [],
       "contentDigest": "2aaa68f9fd947c870b62e889ba8c65fa392b1bf2512c29c341be418ca338e45a",
-      "providerUserMessageId": "00966aea-4159-4dd9-bf1e-bf82a1b69ab1"
+      "providerUserMessageId": "00966aea-4159-4dd9-bf1e-bf82a1b69ab1",
+      "providerAssistantMessageId": "60de0aa9-956c-469a-bea9-0f76edd72def"
     },
     {
       "schemaVersion": 1,
@@ -69,6 +71,33 @@
       "contentDigest": "14d532ab45cf33b5d929b0860f79e778d23f4b497371db1a4943bfd04527bb9c",
       "providerUserMessageId": "60031361-3ae7-4128-9529-90ee4db43694",
       "providerAssistantMessageId": "591d79de-2bb4-4318-b290-4a5914042890"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790428042989-ro2e7fz",
+      "userTurnOrdinal": 5,
+      "state": "accepted",
+      "localMessageId": "msg-1790428042975-ogz7aqh",
+      "timestamp": 1790428042975,
+      "rawDisplayText": "/usage",
+      "canonicalText": "/usage",
+      "images": [],
+      "contentDigest": "186699303358f7ad52f7b956f88624b70f1a3fb40ddd53db597a2180c9e7bcb2",
+      "providerUserMessageId": "e88ffbe1-0e1c-4839-a8a1-52e1fb876005",
+      "providerAssistantMessageId": "356b4f61-c67f-40a5-9a11-2ffa2a896d6d"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790428223455-xcn98w3",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1790428223450-5c58o21",
+      "timestamp": 1790428223450,
+      "rawDisplayText": "I replaced the docx with a pdf for easier access. Continue with the syllabus, the 2 next chapters",
+      "canonicalText": "I replaced the docx with a pdf for easier access. Continue with the syllabus, the 2 next chapters",
+      "images": [],
+      "contentDigest": "daed4442a0be2c5bedc5e8b1bc32c6ce33f8d58dbcc42624eb657c67993893af",
+      "providerUserMessageId": "860d00ff-622c-4f5c-a1c7-a2fb5916e1e6"
     }
   ]
 }
