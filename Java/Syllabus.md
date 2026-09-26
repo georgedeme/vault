@@ -6,21 +6,21 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 
 ## Part I — Foundations
 
-- [x] [[Java/Foundations/Introduction to Java|Introduction to Java]] — the JVM, JDK, and JRE; compiling and running a program; the structure of a minimal Java file
-- [x] [[Java/Foundations/Variables and Data Types|Variables and Data Types]] — primitive types, reference types, declaration, and initialization
-- [x] [[Java/Foundations/Operators|Operators]] — arithmetic, relational, logical, assignment, and bitwise operators; operator precedence
-- [x] [[Java/Foundations/Type Casting|Type Casting]] — implicit and explicit conversion between types, and where the results are non-obvious
+- [x] [[Introduction to Java|Introduction to Java]] — the JVM, JDK, and JRE; compiling and running a program; the structure of a minimal Java file
+- [x] [[Variables and Data Types|Variables and Data Types]] — primitive types, reference types, declaration, and initialization
+- [x] [[Operators|Operators]] — arithmetic, relational, logical, assignment, and bitwise operators; operator precedence
+- [x] [[Type Casting|Type Casting]] — implicit and explicit conversion between types, and where the results are non-obvious
 
 ## Part II — Control Flow
 
-- [x] [[Java/Control Flow/Conditional Statements|Conditional Statements]] — `if` / `else if` / `else`, `switch`
-- [x] [[Java/Control Flow/Loops|Loops]] — `for`, `while`, `do-while`, `break`, `continue`
-- [x] [[Java/Control Flow/Arrays|Arrays]] — declaration, initialization, multi-dimensional arrays, common pitfalls
+- [x] [[Conditional Statements|Conditional Statements]] — `if` / `else if` / `else`, `switch`
+- [x] [[Loops|Loops]] — `for`, `while`, `do-while`, `break`, `continue`
+- [x] [[Arrays|Arrays]] — declaration, initialization, multi-dimensional arrays, common pitfalls
 
 ## Part III — Program Structure
 
-- [x] [[Java/Program Structure/Methods|Methods]] — declaration, parameters, return types, overloading, varargs, recursion
-- [x] [[Java/Program Structure/Strings|Strings]] — the `String` class, immutability, common `String` methods, `StringBuilder`, formatted output with `printf`/`String.format`
+- [x] [[Methods|Methods]] — declaration, parameters, return types, overloading, varargs, recursion
+- [x] [[Strings|Strings]] — the `String` class, immutability, common `String` methods, `StringBuilder`, formatted output with `printf`/`String.format`
 
 ## Part IV — Object-Oriented Programming
 

@@ -68,3 +68,20 @@ Use the notes in `ΕΠΛ111 Προτασιακή-Κατηγορική Λογικ
   "⚠️ Σημείωση" instead of silently changing it.
 
 Do not change the formatting of the existing notes in `ΕΠΛ111 Προτασιακή-Κατηγορική Λογική/`.
+
+# Numbering folders and notes for sort order
+
+Always name new folders and notes with a zero-padded numeric prefix
+(`NN - Name`) so Obsidian's alphabetical sort matches the intended order:
+- Use two digits (`01`, `02`, … `10`), never `1`, `2`, … `10`, so that
+  `10` doesn't sort before `2`. Use three digits if a folder could hold 100+ items.
+- `00` is reserved for the index note (`00 - Ευρετήριο`).
+- Topic/unit folders use the unit's number from the source material
+  (e.g. unit IV → `04 - …`). Leave gaps for missing units rather than
+  renumbering (e.g. keep `01` free if unit I isn't there yet).
+- Support folders that should sort last (e.g. `Material`) get `99 - …`.
+- Keep names short: don't repeat the parent folder's name (e.g. no
+  course code like `ΕΠΛ131` inside `Uni/ΕΠΛ131/`), and don't add
+  Roman numerals or other secondary numbering on top of the numeric prefix.
+  E.g. `Uni/ΕΠΛ131/04 - Πίνακες Μιας Διάστασης`, not `04 - ΕΠΛ131 IV Πίνακες …`.
+- When moving or renaming, use Obsidian (see File Operations) so links update.

@@ -15,6 +15,20 @@
       "contentDigest": "6f935f33e82454a37531e904c8f36e6b5f597de30c5406d7f2ef833f0018dee0",
       "providerUserMessageId": "f459b425-9979-4790-a6dd-4ce6e67c50a9",
       "providerAssistantMessageId": "e1e0785c-61ec-4034-b721-6c27cda105bc"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790382325829-nhhz2g7",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1790382325826-n6ec37t",
+      "timestamp": 1790382325826,
+      "rawDisplayText": "Number the folders in @Java/",
+      "canonicalText": "Number the folders in @Java/",
+      "images": [],
+      "contentDigest": "a54df20d70aba88c6d649f57cec733c576b6655e48303bb2034c74d36995ae29",
+      "providerUserMessageId": "1259bad5-725f-4f86-b692-10d685f25442",
+      "providerAssistantMessageId": "d91661aa-d994-4a73-9386-4146b3f5d436"
     }
   ]
 }

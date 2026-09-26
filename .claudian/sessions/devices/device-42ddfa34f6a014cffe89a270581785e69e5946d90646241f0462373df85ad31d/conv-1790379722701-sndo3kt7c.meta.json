@@ -4,7 +4,7 @@
   "title": "Generate syllabus and course notes",
   "titleGenerationStatus": "success",
   "createdAt": 1790379722705,
-  "lastActivityAt": 1790381876401,
+  "lastActivityAt": 1790382373305,
   "sessionId": "1e0d7512-6df8-4241-89d2-6bf9b19bd140",
   "selectedModel": "opus",
   "providerState": {
@@ -13,11 +13,11 @@
   "usage": {
     "model": "opus",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 4623,
-    "cacheReadInputTokens": 394264,
+    "cacheCreationInputTokens": 556,
+    "cacheReadInputTokens": 414167,
     "contextWindow": 1000000,
-    "contextTokens": 398889,
-    "percentage": 40,
+    "contextTokens": 414725,
+    "percentage": 41,
     "contextWindowIsAuthoritative": true
   }
 }

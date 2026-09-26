@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790382462612-1dnpkeruo",
+  "providerId": "claude",
+  "title": "Number folders for proper sorting",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790382462614,
+  "lastActivityAt": 1790382645957,
+  "sessionId": "71448afe-cf70-477b-9d99-c394cf1f5e4e",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "71448afe-cf70-477b-9d99-c394cf1f5e4e"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1506,
+    "cacheReadInputTokens": 38743,
+    "contextWindow": 1000000,
+    "contextTokens": 40251,
+    "percentage": 4,
+    "contextWindowIsAuthoritative": true
+  }
+}

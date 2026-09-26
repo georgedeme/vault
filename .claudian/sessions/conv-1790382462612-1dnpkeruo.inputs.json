@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790382462612-1dnpkeruo",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790382462657-u84hevx",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790382462611-nynw28w",
+      "timestamp": 1790382462611,
+      "rawDisplayText": "Number the folders in @Uni/ΕΠΛ131/  with numbers at the beginning of the folder so that obsidian sorts them properly. Remember for future reference to number folders and notes in a way that will sort them properly.",
+      "canonicalText": "Number the folders in @Uni/ΕΠΛ131/  with numbers at the beginning of the folder so that obsidian sorts them properly. Remember for future reference to number folders and notes in a way that will sort them properly.",
+      "images": [],
+      "contentDigest": "9264e0a832030ec09345b95c1f9d91f70380b7931aeda3554c2001473a511742",
+      "providerUserMessageId": "e6229fd8-f052-4791-856a-cfabefc36702",
+      "providerAssistantMessageId": "2e7be86e-5f81-4159-9158-cdb044e20136"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790382622169-vmmqsj0",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1790382622167-kmpchkb",
+      "timestamp": 1790382622167,
+      "rawDisplayText": "@Uni/ΕΠΛ131/ \nPlease remove the \"ΕΠΛ131\" from the folder titles as well as the roman numerals. The folders are already in a folder called \"ΕΠΛ131\" so mentioning it again, per folder, is unecessary. Additionally the folders are already numbered, no need for the roman numerals",
+      "canonicalText": "@Uni/ΕΠΛ131/ \nPlease remove the \"ΕΠΛ131\" from the folder titles as well as the roman numerals. The folders are already in a folder called \"ΕΠΛ131\" so mentioning it again, per folder, is unecessary. Additionally the folders are already numbered, no need for the roman numerals",
+      "images": [],
+      "contentDigest": "fac57ee4df0756a9fc91b240a24424ff267a50c7bb90e2ff15abb63f3f78d3d2",
+      "providerUserMessageId": "c84f6cba-0ce9-4228-b929-466480f5699f",
+      "providerAssistantMessageId": "9567aefb-1e6a-4866-a61f-cd9e7a997b40"
+    }
+  ]
+}
