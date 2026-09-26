@@ -4,10 +4,20 @@
   "title": "Review exercises and expand examples",
   "titleGenerationStatus": "success",
   "createdAt": 1790434633024,
-  "lastActivityAt": 1790434633024,
+  "lastActivityAt": 1790434959037,
   "sessionId": "8143afe6-54bb-4c30-afbc-446d2765e1ff",
   "selectedModel": "opus",
   "providerState": {
     "providerSessionId": "8143afe6-54bb-4c30-afbc-446d2765e1ff"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 540,
+    "cacheReadInputTokens": 110224,
+    "contextWindow": 1000000,
+    "contextTokens": 110766,
+    "percentage": 11,
+    "contextWindowIsAuthoritative": true
   }
 }
