@@ -4,7 +4,7 @@
   "title": "Java Classes and Objects chapter",
   "titleGenerationStatus": "success",
   "createdAt": 1790440477956,
-  "lastActivityAt": 1790515186952,
+  "lastActivityAt": 1790518064520,
   "sessionId": "a75d56a2-1276-4ea1-89ba-2d5478c7ad00",
   "selectedModel": "opus",
   "providerState": {
@@ -13,11 +13,11 @@
   "usage": {
     "model": "opus",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 1306,
-    "cacheReadInputTokens": 123096,
+    "cacheCreationInputTokens": 541,
+    "cacheReadInputTokens": 139105,
     "contextWindow": 1000000,
-    "contextTokens": 124404,
-    "percentage": 12,
+    "contextTokens": 139648,
+    "percentage": 14,
     "contextWindowIsAuthoritative": true
   }
 }

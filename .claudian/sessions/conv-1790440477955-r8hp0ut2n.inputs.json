@@ -29,6 +29,34 @@
       "contentDigest": "47748346db7116fb2df0b42e26795026cd5d8366f5af77a211b57320646e8f30",
       "providerUserMessageId": "7342da5e-2944-449d-afd1-427175eb1924",
       "providerAssistantMessageId": "cf149b7e-d6f3-40a5-b89c-38dabf8da03f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790517904423-hwzeb60",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1790517904412-mrnxs8o",
+      "timestamp": 1790517904412,
+      "rawDisplayText": "[[Public/index.md|index]] Change this to be less personal. This isn't a blog, it's a resource that I may share with other people.",
+      "canonicalText": "[[Public/index.md|index]] Change this to be less personal. This isn't a blog, it's a resource that I may share with other people.",
+      "images": [],
+      "contentDigest": "d1ae2cd86c7c230c00b731bbc201a0f3ca5637202efb4e32cb77d4801a77deab",
+      "providerUserMessageId": "4c32ba72-1a97-40a8-9e39-279ba6874c13",
+      "providerAssistantMessageId": "cce22456-4826-424b-bfd8-7805142844f0"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790518058883-g95sq6r",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1790518058880-jvzubj3",
+      "timestamp": 1790518058880,
+      "rawDisplayText": "You want to install python?",
+      "canonicalText": "You want to install python?",
+      "images": [],
+      "contentDigest": "56ba4e9442035aac4d362bc3c2dfc28c9ede9249a0ee1de00b0aaf02b0bd6e64",
+      "providerUserMessageId": "a856282e-40b8-450f-9bfa-c74b130d1bb2",
+      "providerAssistantMessageId": "2ee94f91-fd12-43b4-b12f-9ceaaa424b14"
     }
   ]
 }
