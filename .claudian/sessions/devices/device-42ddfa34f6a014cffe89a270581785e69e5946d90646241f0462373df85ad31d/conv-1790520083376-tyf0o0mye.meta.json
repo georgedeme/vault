@@ -4,7 +4,7 @@
   "title": "Hooks overview",
   "titleGenerationStatus": "success",
   "createdAt": 1790520083381,
-  "lastActivityAt": 1790520902906,
+  "lastActivityAt": 1790521205587,
   "sessionId": "dd1d072d-9d25-447a-b9b5-db3312a59ac1",
   "selectedModel": "opus",
   "providerState": {
@@ -13,11 +13,11 @@
   "usage": {
     "model": "opus",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 1650,
-    "cacheReadInputTokens": 85649,
+    "cacheCreationInputTokens": 827,
+    "cacheReadInputTokens": 96001,
     "contextWindow": 1000000,
-    "contextTokens": 87301,
-    "percentage": 9,
+    "contextTokens": 96830,
+    "percentage": 10,
     "contextWindowIsAuthoritative": true
   }
 }

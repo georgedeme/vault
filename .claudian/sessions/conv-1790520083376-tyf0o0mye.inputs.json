@@ -71,6 +71,33 @@
       "contentDigest": "c5b5dcc4adf21c11b4b31775e09c4414ca211a6f38d88ed3b86b7cc470519b37",
       "providerUserMessageId": "c9d97a00-ee86-4d83-bf1b-aa503bedce59",
       "providerAssistantMessageId": "950e17cc-0dc4-476b-9aca-384b944cdaba"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790521001859-sdhpb8p",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1790521001850-38xxu6q",
+      "timestamp": 1790521001850,
+      "rawDisplayText": "Go ahead, in this order:\n\n1. While the plugin is still disabled, edit its settings file directly:\n   change vaultPath from \"/\" to \"Public/\" AND turn off the auto-publish\n   timer. Show me both changes.\n2. Revert 3829c0a and push to my-notes-site to restore the site.\n3. Re-enable the plugin and run status. Only continue if it shows the\n   notes as published and 0 pending deletions. If anything is marked for\n   deletion, stop and show me.\n4. Then run the dry run and the publish.\n\nLeave auto-publish off permanently; the Stop hook replaces it.",
+      "canonicalText": "Go ahead, in this order:\n\n1. While the plugin is still disabled, edit its settings file directly:\n   change vaultPath from \"/\" to \"Public/\" AND turn off the auto-publish\n   timer. Show me both changes.\n2. Revert 3829c0a and push to my-notes-site to restore the site.\n3. Re-enable the plugin and run status. Only continue if it shows the\n   notes as published and 0 pending deletions. If anything is marked for\n   deletion, stop and show me.\n4. Then run the dry run and the publish.\n\nLeave auto-publish off permanently; the Stop hook replaces it.",
+      "images": [],
+      "contentDigest": "dbdea7e48b0f21a51e66541bfaba57f4864a15adf2444a5211c4636854ebcf49",
+      "providerUserMessageId": "53224609-a9b6-4efa-9aaf-53cfa82629dd",
+      "providerAssistantMessageId": "8d684ac5-beb1-41e6-af24-bcde609b0b79"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790521205594-oq0rnyt",
+      "userTurnOrdinal": 7,
+      "state": "accepted",
+      "localMessageId": "msg-1790521205587-1hk8xvx",
+      "timestamp": 1790521205587,
+      "rawDisplayText": "1. Move _mr.txt out of Public/ into [somewhere else in the vault], and let the\n   plugin remove it from the site.\n2. Show me the diff for one of the 101 changed notes. If the only difference\n   is frontmatter, go ahead with the dry run and publish without waiting for\n   me. If the note body differs too, stop and show me.\n3. After publishing, run status again and confirm: 0 changed, 0 deleted,\n   all notes published.",
+      "canonicalText": "1. Move _mr.txt out of Public/ into [somewhere else in the vault], and let the\n   plugin remove it from the site.\n2. Show me the diff for one of the 101 changed notes. If the only difference\n   is frontmatter, go ahead with the dry run and publish without waiting for\n   me. If the note body differs too, stop and show me.\n3. After publishing, run status again and confirm: 0 changed, 0 deleted,\n   all notes published.",
+      "images": [],
+      "contentDigest": "5f1f4e26eb76020d97ea2b3b07fa48dd69f2bbffe2051238243bb47baded47c9",
+      "providerUserMessageId": "112c9824-7e2b-487b-ba8d-788eeb8c7347"
     }
   ]
 }
