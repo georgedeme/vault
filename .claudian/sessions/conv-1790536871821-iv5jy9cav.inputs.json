@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790536871821-iv5jy9cav",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790536871868-1tgs97r",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790536871819-dlciwp6",
+      "timestamp": 1790536871819,
+      "rawDisplayText": "@Java/  Where are references mentioned in this folder?",
+      "canonicalText": "@Java/  Where are references mentioned in this folder?",
+      "images": [],
+      "contentDigest": "499b43891fb8d644c3e672c9def22702b095de0a7463d0cb8fbcc88397de90de",
+      "providerUserMessageId": "f6660553-0846-4ec4-9742-66db3800e1fa",
+      "providerAssistantMessageId": "0c3f3048-2b59-45c0-bbf8-c2d54844402d"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790536871821-iv5jy9cav",
+  "providerId": "claude",
+  "title": "Find references in Java folder",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790536871823,
+  "lastActivityAt": 1790536898373,
+  "sessionId": "c1fa9187-f446-4746-927a-d07a9c32adb4",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "c1fa9187-f446-4746-927a-d07a9c32adb4"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 7776,
+    "cacheReadInputTokens": 29092,
+    "contextWindow": 1000000,
+    "contextTokens": 36870,
+    "percentage": 4,
+    "contextWindowIsAuthoritative": true
+  }
+}
