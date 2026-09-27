@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790522853036-1s3skxf48",
+  "providerId": "claude",
+  "title": "Update Quartz page title and push",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790522853039,
+  "lastActivityAt": 1790522900282,
+  "sessionId": "b016a9d7-21ae-4f95-afb8-47b3e2f97cd0",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "b016a9d7-21ae-4f95-afb8-47b3e2f97cd0"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 658,
+    "cacheReadInputTokens": 29070,
+    "contextWindow": 1000000,
+    "contextTokens": 29730,
+    "percentage": 3,
+    "contextWindowIsAuthoritative": true
+  }
+}
