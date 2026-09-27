@@ -4,10 +4,20 @@
   "title": "Investigate homepage og:image mismatch",
   "titleGenerationStatus": "success",
   "createdAt": 1790529736108,
-  "lastActivityAt": 1790529736108,
+  "lastActivityAt": 1790530257950,
   "sessionId": "cfdbd743-bb34-4b6d-8975-abf9af4495c3",
   "selectedModel": "opus",
   "providerState": {
     "providerSessionId": "cfdbd743-bb34-4b6d-8975-abf9af4495c3"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1591,
+    "cacheReadInputTokens": 54282,
+    "contextWindow": 1000000,
+    "contextTokens": 55875,
+    "percentage": 6,
+    "contextWindowIsAuthoritative": true
   }
 }
