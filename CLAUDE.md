@@ -85,3 +85,15 @@ Always name new folders and notes with a zero-padded numeric prefix
   Roman numerals or other secondary numbering on top of the numeric prefix.
   E.g. `Uni/ΕΠΛ131/04 - Πίνακες Μιας Διάστασης`, not `04 - ΕΠΛ131 IV Πίνακες …`.
 - When moving or renaming, use Obsidian (see File Operations) so links update.
+
+# Publishing
+
+When I ask to publish, run:
+
+    obsidian.com quartz-syncer:mark path="Public/**" state=publish && obsidian.com quartz-syncer:publish
+
+- Use `Public/**`, not `Public/**/*.md` — the latter misses notes directly
+  in `Public/` (e.g. `Public/index.md`, the site homepage).
+- `state=publish` only sets the flag; never use `toggle`, `unpublish` or `unset`.
+- The same command also runs automatically as a Stop hook in
+  `.claude/settings.json`; keep the two in sync if either changes.

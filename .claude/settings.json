@@ -1,11 +1,16 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(obsidian.com quartz-syncer:*)"
+    ]
+  },
   "hooks": {
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "obsidian quartz-syncer:mark path=\"Public/**/*.md\" state=publish && obsidian quartz-syncer:publish"
+            "command": "obsidian.com quartz-syncer:mark path=\"Public/**\" state=publish && obsidian.com quartz-syncer:publish"
           }
         ]
       }
