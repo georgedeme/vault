@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790520083376-tyf0o0mye",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790520083407-s7iqpni",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790520083375-16ovhu8",
+      "timestamp": 1790520083375,
+      "rawDisplayText": "/hooks",
+      "canonicalText": "/hooks",
+      "images": [],
+      "contentDigest": "d5f6b925de06231265207ba7f4ccaf42510195ec300bd4028421f0c1c59ecac0",
+      "providerUserMessageId": "a2016efd-5284-4579-940b-c99cf48c79e9",
+      "providerAssistantMessageId": "82328199-c923-459a-8eb9-8b9ba52016d0"
+    }
+  ]
+}

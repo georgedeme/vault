@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790520083376-tyf0o0mye",
+  "providerId": "claude",
+  "title": "Hooks overview",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790520083381,
+  "lastActivityAt": 1790520084354,
+  "sessionId": "dd1d072d-9d25-447a-b9b5-db3312a59ac1",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "dd1d072d-9d25-447a-b9b5-db3312a59ac1"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 1000000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}

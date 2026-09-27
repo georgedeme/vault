@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "obsidian quartz-syncer:mark path=\"Public/**/*.md\" state=publish && obsidian quartz-syncer:publish"
+          }
+        ]
+      }
+    ]
+  }
+}
