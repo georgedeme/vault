@@ -1,0 +1,13 @@
+{
+  "id": "conv-1790529736105-spnuh4gkn",
+  "providerId": "claude",
+  "title": "Investigate homepage og:image mismatch",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790529736108,
+  "lastActivityAt": 1790529736108,
+  "sessionId": "cfdbd743-bb34-4b6d-8975-abf9af4495c3",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "cfdbd743-bb34-4b6d-8975-abf9af4495c3"
+  }
+}
