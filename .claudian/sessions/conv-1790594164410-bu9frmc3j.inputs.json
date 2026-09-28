@@ -15,6 +15,20 @@
       "contentDigest": "b685af84fe94c603696fb6e25c0018f3bd498cb04b7b35fde796090df17c8421",
       "providerUserMessageId": "b05f7f09-82e3-44fb-b4d5-9f56b6ca145f",
       "providerAssistantMessageId": "42256033-67e6-4850-89b6-a58ae82ef2f1"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790610267168-5bzqptv",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1790610267158-szza7p0",
+      "timestamp": 1790610267158,
+      "rawDisplayText": "/usage",
+      "canonicalText": "/usage",
+      "images": [],
+      "contentDigest": "186699303358f7ad52f7b956f88624b70f1a3fb40ddd53db597a2180c9e7bcb2",
+      "providerUserMessageId": "e14b9f49-f2d0-41e4-a943-c6d5ecbce9bf",
+      "providerAssistantMessageId": "0efe9c48-a226-48a2-965e-745e799f246b"
     }
   ]
 }
