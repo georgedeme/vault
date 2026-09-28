@@ -320,13 +320,14 @@ Autoboxing (converting a primitive to its wrapper class, e.g. `int` → `Integer
 ```java
 Integer a = 1000;
 Integer b = 1000;
-System.out.println(a == b);        // false — compares object references, not values
+System.out.println(a == b);        // usually false — compares object references, not values
+System.out.println(a.equals(b));   // true — compares values (the correct way)
 
 int c = 1000;
-System.out.println(a == c);        // true — b is unboxed to int for the comparison
+System.out.println(a == c);        // true — a is unboxed to int for the comparison
 ```
 
-`Integer` values in the range −128 to 127 are cached by the JVM, so `==` comparisons on small boxed values can misleadingly return `true` while larger values return `false` — this is not a casting rule, but it is frequently confused with one.
+`Integer` values in the range −128 to 127 are cached by the JVM, so `==` comparisons on small boxed values can misleadingly return `true` while larger values return `false` — this is not a casting rule, but it is frequently confused with one. The upper bound of the cache can be raised with the JVM option `-XX:AutoBoxCacheMax=<n>`, in which case `a == b` above could print `true`; that's why the result is only "usually" `false`. To compare wrapper values, use `a.equals(b)` (or `a.intValue() == b.intValue()`), never `==`.
 
 ---
 
