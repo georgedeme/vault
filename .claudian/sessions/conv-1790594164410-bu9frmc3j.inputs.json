@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790594164410-bu9frmc3j",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790594165288-ptd5spe",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790594164408-h29czew",
+      "timestamp": 1790594164408,
+      "rawDisplayText": "@Public/Uni/ΜΑΣ012/99 - Material/Βοηθήματα Μαθηματικών/  I added new material in this folder. These are notes provided by my university for this course. Please see them and enrich the existing notes in @Public/Uni/ΜΑΣ012/  with whatever seems necessary.",
+      "canonicalText": "@Public/Uni/ΜΑΣ012/99 - Material/Βοηθήματα Μαθηματικών/  I added new material in this folder. These are notes provided by my university for this course. Please see them and enrich the existing notes in @Public/Uni/ΜΑΣ012/  with whatever seems necessary.",
+      "images": [],
+      "contentDigest": "b685af84fe94c603696fb6e25c0018f3bd498cb04b7b35fde796090df17c8421",
+      "providerUserMessageId": "b05f7f09-82e3-44fb-b4d5-9f56b6ca145f"
+    }
+  ]
+}

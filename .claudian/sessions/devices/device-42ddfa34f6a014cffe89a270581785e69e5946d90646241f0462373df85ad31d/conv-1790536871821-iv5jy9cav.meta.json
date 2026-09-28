@@ -5,8 +5,11 @@
   "titleGenerationStatus": "success",
   "createdAt": 1790536871823,
   "lastActivityAt": 1790536898373,
-  "sessionId": null,
+  "sessionId": "c1fa9187-f446-4746-927a-d07a9c32adb4",
   "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "c1fa9187-f446-4746-927a-d07a9c32adb4"
+  },
   "usage": {
     "model": "opus",
     "inputTokens": 2,
