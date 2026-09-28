@@ -4,7 +4,7 @@
   "title": "Enrich ΜΑΣ012 notes with new course materials",
   "titleGenerationStatus": "success",
   "createdAt": 1790594164415,
-  "lastActivityAt": 1790615977532,
+  "lastActivityAt": 1790616033650,
   "sessionId": "c29f4147-6405-414b-9936-a0fcfd62e24b",
   "selectedModel": "opus",
   "providerState": {
@@ -13,10 +13,10 @@
   "usage": {
     "model": "opus",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 665,
-    "cacheReadInputTokens": 765250,
+    "cacheCreationInputTokens": 1106,
+    "cacheReadInputTokens": 768810,
     "contextWindow": 1000000,
-    "contextTokens": 765917,
+    "contextTokens": 769918,
     "percentage": 77,
     "contextWindowIsAuthoritative": true
   }

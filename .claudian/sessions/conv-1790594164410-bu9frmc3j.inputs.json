@@ -93,7 +93,8 @@
       },
       "images": [],
       "contentDigest": "4ea3c196f2ea5696142161729d95bf5d0a3dc6de7af7a71e1ea97446af739b1f",
-      "providerUserMessageId": "7493d0fd-e559-442f-b92b-ca04333cba3c"
+      "providerUserMessageId": "7493d0fd-e559-442f-b92b-ca04333cba3c",
+      "providerAssistantMessageId": "7ec53071-b7a4-4c6d-9059-819cba329c91"
     }
   ]
 }

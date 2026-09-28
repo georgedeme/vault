@@ -22,7 +22,7 @@ Type casting is the conversion of a value from one data type to another. Java pe
 
 ### 1.1 Implicit Casting (Widening)
 
-Also called **widening conversion**. The compiler performs this automatically because it is guaranteed to be safe — no data is lost, since the destination type has a wider range than the source type.
+Also called **widening conversion**. The compiler performs this automatically because the destination type has a wider range than the source type, so the value's **magnitude** is always preserved. It is not always lossless, though: `int -> float`, `long -> float` and `long -> double` can silently lose **precision** (see [[#4. Widening Between Integer and Floating-Point Types — Precision Loss|section 4]]).
 
 ```java
 int i = 100;
@@ -51,8 +51,38 @@ int i = (int) d;   // explicit cast required, i == 9
 If the cast is omitted, the code does not compile:
 
 ```java
-int i = d;   // compile error: incompatible types
+int i = d;   // compile error: incompatible types: possible lossy conversion from double to int
 ```
+
+`short <-> char` and `byte -> char` also need an explicit cast even though the sizes don't shrink (or even grow), because neither type's range contains the other's: `char` has no negatives, and `short`/`byte` can't hold values above 32,767 / 127.
+
+### 1.3 Exceptions — Implicit Narrowing
+
+Narrowing is *usually* explicit, but there are two cases where the compiler narrows for you:
+
+1. **Compile-time constants.** If the right-hand side is a constant expression of type `int` (or `byte`/`short`/`char`) whose value fits in the target `byte`, `short` or `char`, the narrowing is implicit:
+
+   ```java
+   byte b = 10;              // OK — 10 is an int constant that fits in byte
+   char c = 'a' + 1;         // OK — constant expression, value 98 fits in char
+   final int K = 65;
+   char k = K;               // OK — K is a constant variable
+   byte tooBig = 200;        // compile error — doesn't fit in byte
+   int v = 5;
+   byte notConst = v;        // compile error — v is not a constant
+   int fromLong = 5L;        // compile error — rule doesn't apply to long constants
+   ```
+
+2. **Compound assignment operators** (`+=`, `-=`, `*=`, `/=`, …) contain a hidden cast back to the left-hand type: `b += x` means `b = (byte) (b + x)`. So they compile even when the plain form doesn't — and they can silently wrap:
+
+   ```java
+   byte b = 10;
+   // b = b + 1;   // compile error: b + 1 is int
+   b += 1;         // OK — implicit (byte) cast
+   b += 300;       // also compiles! b == (byte) 311 == 55, silent wraparound
+   ```
+
+   `++` and `--` behave the same way (`b++` compiles for a `byte`).
 
 ---
 
@@ -74,8 +104,10 @@ byte b = (byte) i;   // b == -56
 |---|---|---|
 | `(byte)(127 + 1)` | `-128` | wraps past the max `byte` value |
 | `(byte) 300` | `44` | 300 mod 256 = 44 |
-| `(short)(int) 70000` | `4464` | exceeds `short` range (±32,767), wraps |
-| `(int)(long) 3_000_000_000L` | `-1294967296` | exceeds `int` range (±2,147,483,647), wraps |
+| `(short)(int) 70000` | `4464` | exceeds `short` range (−32,768 to 32,767), wraps |
+| `(int)(long) 3_000_000_000L` | `-1294967296` | exceeds `int` range (−2,147,483,648 to 2,147,483,647), wraps |
+
+(The inner `(int)` and `(long)` casts are redundant — `70000` is already an `int` literal and `3_000_000_000L` already a `long` — they're only there to make the source type visible.)
 
 This wraparound happens with **no warning or exception at runtime** — it is a frequent source of silent bugs, especially when casting user input or values from I/O into a smaller type without validating range first.
 
@@ -120,7 +152,9 @@ If you want rounding instead of truncation, cast the result of `Math.round()`:
 int rounded = (int) Math.round(9.99);   // 10
 ```
 
-If a floating-point value is outside the range of the target integer type, the result is clamped to the nearest boundary (this differs from the wraparound behavior seen with integer-to-integer narrowing):
+The cast is needed because `Math.round(double)` returns a `long` (`Math.round(float)` returns an `int`). Also note that `Math.round` rounds halves **up** (towards positive infinity), not away from zero: `Math.round(2.5) == 3` but `Math.round(-2.5) == -2`.
+
+If a floating-point value is outside the range of `int` or `long`, the result is clamped to the nearest boundary (this differs from the wraparound behavior seen with integer-to-integer narrowing; for `byte`/`short`/`char` see the warning below the table):
 
 | Expression | Result | Reason |
 |---|---|---|
@@ -128,23 +162,49 @@ If a floating-point value is outside the range of the target integer type, the r
 | `(int) -1e30` | `-2147483648` | clamped to `Integer.MIN_VALUE` |
 | `(int) Double.NaN` | `0` | `NaN` converts to `0` by definition |
 | `(long) Double.POSITIVE_INFINITY` | `9223372036854775807` | clamped to `Long.MAX_VALUE` |
+| `(byte) 1e30` | `-1` | clamped to `int` first, **then** wrapped to `byte` (see below) |
+| `(byte) 300.7` | `44` | truncated to `int` `300`, then wrapped (300 mod 256) |
+
+> [!warning] Clamping only happens to `int` or `long`
+> A floating-point value cast to `byte`, `short` or `char` is converted in **two steps**: first to `int` (truncate toward zero, clamp if out of `int` range), then from `int` to the smaller type by ordinary integer narrowing, which **wraps**. So `(byte) 1e30` is not `127`: `1e30` clamps to `Integer.MAX_VALUE` (`0x7FFFFFFF`), and keeping its low 8 bits gives `0xFF` = `-1`. Likewise `(short) 1e30 == -1` and `(char) 1e30 == '￿'` (65535).
+
+### 3.1 Narrowing double to float
+
+Narrowing between the two floating-point types follows neither rule above — it **rounds** to the nearest `float`, and out-of-range values neither wrap nor clamp:
+
+| Expression | Result | Reason |
+|---|---|---|
+| `(float) 0.1` | nearest `float` to 0.1 | rounded (so `(float) 0.1 == 0.1` is `false`) |
+| `(float) 1e40` | `Infinity` | too large for `float` → overflows to ±`Infinity` |
+| `(float) 1e-50` | `0.0` | too small for `float` → underflows to (signed) zero |
 
 ---
 
 ## 4. Widening Between Integer and Floating-Point Types — Precision Loss
 
-Widening is not always lossless. `int` and `long` have more bits of precision than the mantissa of `float` (and, for very large `long` values, even `double`), so widening from a large integer type to a floating-point type can silently lose precision despite being an *implicit* conversion.
+Widening is not always lossless. `float` has only 24 bits of mantissa (significand) precision and `double` has 53, so `int -> float`, `long -> float` and `long -> double` can silently lose precision despite being *implicit* conversions. (`int -> double` is always exact, since 32 bits fit in 53.)
 
 ```java
-long l = 9_223_372_036_854_775_807L;   // Long.MAX_VALUE
-float f = l;                            // implicit widening — no cast needed
-System.out.println(f);                  // 9.223372E18 (not exact)
+int big = 16_777_217;                   // 2^24 + 1 — needs 25 bits
+float f = big;                          // implicit widening — no cast needed
+System.out.println((int) f);            // 16777216 — the last bit was lost
+System.out.println((int) f == big);     // false
 
-long roundTrip = (long) f;
-System.out.println(roundTrip == l);     // false — precision was lost
+long lb = (1L << 53) + 1;               // 2^53 + 1 — needs 54 bits
+double d = lb;                          // implicit widening
+System.out.println((long) d == lb);     // false — even double can't hold it
 ```
 
-`float` has only 24 bits of mantissa precision, so it cannot represent every value in `long`'s 64-bit range exactly, even though the compiler treats `long -> float` as "widening" and requires no cast.
+The first integer that `float` cannot represent exactly is 2^24 + 1 = 16,777,217; for `double` it is 2^53 + 1. Every `int`/`long` below those limits (in absolute value) converts exactly.
+
+> [!warning] Trick: a lossy round trip can still compare equal
+> ```java
+> long l = Long.MAX_VALUE;         // 2^63 − 1
+> float f = l;                     // rounds UP to exactly 2^63
+> System.out.println(f);           // 9.223372E18
+> System.out.println((long) f == l); // true!
+> ```
+> Precision *was* lost (`f` is 2^63, one more than `Long.MAX_VALUE`), but converting back with `(long) f` **clamps** the out-of-range value to `Long.MAX_VALUE` (see [[#3. Narrowing Between Floating-Point and Integer Types|section 3]]), which happens to equal the original. So a round-trip test does not prove that a conversion was exact.
 
 ---
 
@@ -177,6 +237,8 @@ char b = 1;
 char c = (char) (a + b); // c == 'b'
 ```
 
+Note that `char b = 1;` compiles without a cast because `1` is a constant that fits in `char` (see [[#1.3 Exceptions — Implicit Narrowing|1.3]]); likewise `char c = 'a' + 1;` compiles, and `c += 1;` compiles because of the hidden cast in compound assignment.
+
 > [!tip] Common pitfall
 > This is easy to get wrong when doing character-shifting logic (e.g. a Caesar cipher), where every intermediate `char + int` expression yields `int` and needs an explicit cast back.
 
@@ -184,7 +246,7 @@ char c = (char) (a + b); // c == 'b'
 
 ## 6. Binary Numeric Promotion — Mixed-Type Arithmetic
 
-When an operator (`+`, `-`, `*`, `/`, `%`, comparisons, the ternary operator, etc.) is applied to two operands of different numeric types, Java promotes both operands to a common type **before** performing the operation, following these rules in order:
+When a binary arithmetic, comparison or bitwise operator (`+`, `-`, `*`, `/`, `%`, `<`, `==`, `&`, `|`, `^`, etc.) is applied to two numeric operands — whether or not their types differ — Java promotes both operands to a common type **before** performing the operation, following these rules in order:
 
 1. If either operand is `double`, the other is converted to `double`.
 2. Else if either operand is `float`, the other is converted to `float`.
@@ -197,6 +259,11 @@ byte b1 = 10, b2 = 20;
 int sum = b1 + b2;          // fine — both bytes promoted to int
 byte sum2 = (byte) (b1 + b2); // fine — explicit cast back down
 ```
+
+Two related special cases:
+
+- **Unary `-`, `+` and `~`** also promote `byte`/`short`/`char` to `int`: `byte n = -b1;` is a compile error.
+- **Shift operators (`<<`, `>>`, `>>>`) do not use binary promotion.** Each operand is promoted on its own, and the result has the type of the (promoted) *left* operand: `1 << 33L` is an `int` (value `2`, since `int` shifts use only the low 5 bits of the distance: 33 & 31 = 1), not a `long`.
 
 ### 6.1 Integer Division Truncates Before Any Promotion to the Result Type
 
@@ -215,7 +282,7 @@ double result = a / b;      // result == 3.0, NOT 3.5
 To get the mathematically expected result, at least one operand must be a floating-point type **before** the division happens:
 
 ```java
-double result1 = (double) a / b;   // 3.5 — a is cast first, forcing float division
+double result1 = (double) a / b;   // 3.5 — a is cast first, forcing floating-point division
 double result2 = a / (double) b;   // 3.5 — same effect, either operand works
 double result3 = a / 2.0;          // 3.5 — literal 2.0 is already double
 double result4 = (double) (a / b); // 3.0 — WRONG: casts the already-truncated int result
@@ -226,7 +293,7 @@ double result4 = (double) (a / b); // 3.0 — WRONG: casts the already-truncated
 
 ### 6.2 The Ternary Operator Also Applies Numeric Promotion
 
-A subtle case: the conditional (ternary) operator `?:` applies binary numeric promotion across its two result branches, even though only one branch is ever "used" at runtime.
+A subtle case: when both result branches of the conditional (ternary) operator `?:` are numeric, it converts them to a common type — in most cases by binary numeric promotion — even though only one branch is ever "used" at runtime.
 
 ```java
 int x = 5;
@@ -243,6 +310,24 @@ if (true) {
 ```
 
 In the ternary case, because the second branch (`2.0`) is `double`, the *entire expression* is typed `double` at compile time — so even though the `true` branch selects `x`, `x` is promoted to `5.0`. This rarely changes the numeric value, but it does change the static type of the expression, which matters when the ternary result feeds into overload resolution or is itself part of a larger expression.
+
+> [!warning] Ternary exceptions and traps
+> The ternary's rules are **not** exactly binary numeric promotion:
+> - If one branch is `byte`/`short`/`char` and the other is an `int` **constant** that fits in that type, the result keeps the smaller type:
+>   ```java
+>   System.out.println(true ? 'a' : 0);  // prints a   (type char)
+>   int zero = 0;
+>   System.out.println(true ? 'a' : zero); // prints 97 (type int — zero is not a constant)
+>   ```
+>   Similarly, `byte` vs `short` gives `short` (not `int`).
+> - Wrapper-typed branches are **unboxed** and promoted too:
+>   ```java
+>   Object o = true ? Integer.valueOf(1) : Double.valueOf(2.0);
+>   System.out.println(o);   // 1.0 — a Double, not the Integer 1
+>
+>   Integer n = null;
+>   int r = true ? n : 0;    // NullPointerException — n is unboxed
+>   ```
 
 ---
 
@@ -274,7 +359,7 @@ Animal a2 = new Animal();
 Dog d2 = (Dog) a2;      // compiles, but throws ClassCastException at runtime
 ```
 
-The compiler only checks that the cast is *plausible* given the declared types (i.e. that the two types are related by inheritance); it cannot know what the actual runtime object will be. Use `instanceof` to check before downcasting:
+The compiler only checks that the cast is *plausible* given the declared types (i.e. that some object could exist that is an instance of both — for classes, that one is a subclass of the other); it cannot know what the actual runtime object will be. Use `instanceof` to check before downcasting:
 
 ```java
 if (a instanceof Dog) {
@@ -302,6 +387,15 @@ Integer i = (Integer) s;   // compile error: incompatible types
 
 This differs from the `Animal`/`Dog` case above, where the cast compiles (because the types *are* related) but can still fail at runtime.
 
+> [!warning] Interfaces are the exception
+> A cast from a **non-`final`** class to an interface compiles even if the class doesn't implement it, because some subclass might:
+> ```java
+> Animal a = new Animal();
+> Runnable r = (Runnable) a;   // compiles (a subclass of Animal could implement Runnable)
+>                              // → ClassCastException at runtime
+> ```
+> If the class is `final` (like `String` or `Integer`) and doesn't implement the interface, no such subclass can exist, so the cast is a compile error.
+
 ---
 
 ## 8. What Casting Cannot Do
@@ -309,13 +403,13 @@ This differs from the `Animal`/`Dog` case above, where the cast compiles (becaus
 - **`boolean` cannot be cast to or from any numeric type**, unlike in C/C++. `(int) true` is a compile error.
 - **Casting a `String` to a number is not casting** — `(int) "5"` does not compile. Use `Integer.parseInt("5")` or `Double.parseDouble("5")` instead.
 - **Casting a number to a `String` is not casting either** — use `String.valueOf(5)`, `Integer.toString(5)`, or string concatenation (`"" + 5`).
-- **Casting does not perform rounding for numeric narrowing** — see [[#3. Narrowing Between Floating-Point and Integer Types|section 3]]; use `Math.round()` first if rounding is intended.
+- **Casting a floating-point value to an integer type does not round** — it truncates; see [[#3. Narrowing Between Floating-Point and Integer Types|section 3]]; use `Math.round()` first if rounding is intended. (The one narrowing cast that *does* round is `double -> float`, see [[#3.1 Narrowing double to float|3.1]].)
 
 ---
 
 ## 9. Autoboxing and Unboxing (Related, Not True Casting)
 
-Autoboxing (converting a primitive to its wrapper class, e.g. `int` → `Integer`) and unboxing (the reverse) are conversions the compiler inserts automatically, but they are conceptually distinct from primitive widening/narrowing or reference casting. They are mentioned here because mixed expressions involving wrapper types can produce results that look like a casting problem but are actually an autoboxing/unboxing pitfall:
+Autoboxing (converting a primitive to its wrapper class, e.g. `int` → `Integer`) and unboxing (the reverse) are conversions the compiler inserts automatically, but they are conceptually distinct from primitive widening/narrowing or reference casting (although a cast expression may include them, e.g. `(Integer) 5` or `(int) someInteger`). They are mentioned here because mixed expressions involving wrapper types can produce results that look like a casting problem but are actually an autoboxing/unboxing pitfall:
 
 ```java
 Integer a = 1000;
@@ -329,6 +423,15 @@ System.out.println(a == c);        // true — a is unboxed to int for the compa
 
 `Integer` values in the range −128 to 127 are cached by the JVM, so `==` comparisons on small boxed values can misleadingly return `true` while larger values return `false` — this is not a casting rule, but it is frequently confused with one. The upper bound of the cache can be raised with the JVM option `-XX:AutoBoxCacheMax=<n>`, in which case `a == b` above could print `true`; that's why the result is only "usually" `false`. To compare wrapper values, use `a.equals(b)` (or `a.intValue() == b.intValue()`), never `==`.
 
+Other boxing gotchas that look like casting problems:
+
+| Code | Result | Why |
+|---|---|---|
+| `Long x = 5;` | compile error | Java won't widen **and** box in one step (`int -> long -> Long`); write `5L` |
+| `long y = Integer.valueOf(5);` | OK | unboxing **then** widening is allowed |
+| `Long.valueOf(1).equals(1)` | `false` | `1` is boxed to `Integer`, and a `Long` never equals an `Integer` |
+| `Integer n = null; int m = n;` | `NullPointerException` | unboxing `null` |
+
 ---
 
 ## 10. Quick Reference — Non-Obvious Outcomes
@@ -338,15 +441,20 @@ System.out.println(a == c);        // true — a is unboxed to int for the compa
 | `(byte)(127 + 1)` | `-128` | integer overflow wraparound |
 | `(int) 9.99` | `9` | truncation, not rounding |
 | `(int) -9.99` | `-9` | truncation toward zero |
-| `(char) -1` | `65535` | unsigned reinterpretation |
+| `(char) -1` | `'￿'` (65535 as `int`) | unsigned reinterpretation |
 | `7 / 2` | `3` | integer division truncates |
 | `(double) (7 / 2)` | `3.0` | cast applied after truncation already happened |
 | `(double) 7 / 2` | `3.5` | cast applied before division |
 | `'a' + 1` | `98` (an `int`) | char promotes to int in arithmetic |
 | `(char) ('a' + 1)` | `'b'` | explicit cast back to char |
-| `(int) 1e30` | `2147483647` | clamped, not wrapped, for float→int overflow |
+| `(int) 1e30` | `2147483647` | clamped, not wrapped, for floating-point→int overflow (`1e30` is a `double` literal) |
+| `(byte) 1e30` | `-1` | clamped to `int` first, then wrapped to `byte` |
 | `true ? 5 : 2.0` | `5.0` | ternary promotes both branches to a common type |
-| `new Integer(1000) == new Integer(1000)` | `false` | reference comparison, not a casting issue |
+| `true ? 'a' : 0` | `'a'` (a `char`) | ternary special case: `int` constant fits in `char` |
+| `(float) 1e40` | `Infinity` | `double -> float` overflows, doesn't clamp |
+| `byte b = 10; b += 300;` | `b == 54` | compound assignment hides a narrowing cast |
+| `(long)(float) Long.MAX_VALUE == Long.MAX_VALUE` | `true` | precision lost, but clamping hides it |
+| `new Integer(1000) == new Integer(1000)` | `false` | reference comparison, not a casting issue (`new Integer` is deprecated since Java 9 — use `Integer.valueOf`) |
 | `(Dog)(Animal) new Animal()` | throws `ClassCastException` | compiles, fails at runtime |
 | `(Integer)(Object) "text"` | throws `ClassCastException` | compiles, fails at runtime |
 
@@ -354,8 +462,8 @@ System.out.println(a == c);        // true — a is unboxed to int for the compa
 
 ## 11. Summary
 
-- **Widening** is implicit and generally safe, but can still lose *precision* (not magnitude) when converting large `int`/`long` values to `float`.
-- **Narrowing** is always explicit and can lose data two different ways depending on the types involved: **wraparound** (integer-to-integer) or **clamping** (floating-point-to-integer).
+- **Widening** is implicit and generally safe, but can still lose *precision* (not magnitude) when converting large `int`/`long` values to `float`, or large `long` values to `double`.
+- **Narrowing** is explicit except for fitting compile-time constants and compound assignment (`+=` etc.), and can lose data in different ways depending on the types involved: **wraparound** (integer-to-integer), **clamping** (floating-point-to-`int`/`long`, followed by wraparound for `byte`/`short`/`char`), or **rounding/overflow to `Infinity`** (`double -> float`).
 - **Truncation, not rounding**, is the rule whenever a fractional value is narrowed to an integer type.
 - **Operator promotion happens before assignment** — this is the root cause of the classic "integer division" surprise, and also applies, less intuitively, to the ternary operator.
 - **`char` is unsigned** and promotes to `int` under arithmetic, which affects both negative-number casts and character-arithmetic code.

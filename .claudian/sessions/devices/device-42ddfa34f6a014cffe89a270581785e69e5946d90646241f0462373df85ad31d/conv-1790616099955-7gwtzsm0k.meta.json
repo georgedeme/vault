@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790616099955-7gwtzsm0k",
+  "providerId": "claude",
+  "title": "Review Type Casting for inaccuracies",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790616099958,
+  "lastActivityAt": 1790616295243,
+  "sessionId": "32cdbfcc-b79a-4ee3-889b-ae3c8c82b227",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "32cdbfcc-b79a-4ee3-889b-ae3c8c82b227"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1335,
+    "cacheReadInputTokens": 54868,
+    "contextWindow": 1000000,
+    "contextTokens": 56205,
+    "percentage": 6,
+    "contextWindowIsAuthoritative": true
+  }
+}
