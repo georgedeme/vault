@@ -73,6 +73,27 @@
       "contentDigest": "5b6c25e92d9b9b580923953f55179c51db7ebc028e68c66a181027f315821d66",
       "providerUserMessageId": "7dbdfa67-a8c7-4d32-8905-6c1ab2a6b41c",
       "providerAssistantMessageId": "d64774d2-f3e4-446c-ae1a-683ead9db527"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790615977535-twq36rk",
+      "userTurnOrdinal": 5,
+      "state": "accepted",
+      "localMessageId": "msg-1790615977532-7443vmz",
+      "timestamp": 1790615977532,
+      "rawDisplayText": "Check this",
+      "canonicalText": "Check this",
+      "context": {
+        "editorSelection": {
+          "notePath": "Java/01 - Foundations/Type Casting.md",
+          "mode": "selection",
+          "selectedText": "(int) 1e30\t2147483647\tclamped, not wrapped, for float→int overflow",
+          "lineCount": 1
+        }
+      },
+      "images": [],
+      "contentDigest": "4ea3c196f2ea5696142161729d95bf5d0a3dc6de7af7a71e1ea97446af739b1f",
+      "providerUserMessageId": "7493d0fd-e559-442f-b92b-ca04333cba3c"
     }
   ]
 }
