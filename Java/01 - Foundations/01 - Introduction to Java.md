@@ -2,7 +2,7 @@
 
 Java is a **statically typed, object-oriented, garbage-collected** language whose source code is compiled not to machine code but to <span class="hl-blue">bytecode</span>, which is then executed by the <span class="hl-blue">Java Virtual Machine (JVM)</span>. This chapter covers the pieces of the Java platform (JVM, JRE, JDK), the path a program takes from a `.java` file to running code, the structure of a minimal program, and the rules around file names, `main`, and the command line that commonly trip up beginners.
 
-The next chapter, [[Variables and Data Types|Variables and Data Types]], starts on the language itself. This one is about the platform and program structure.
+The next chapter, [[02 - Variables and Data Types|Variables and Data Types]], starts on the language itself. This one is about the platform and program structure.
 
 ## Contents
 
@@ -30,7 +30,7 @@ The next chapter, [[Variables and Data Types|Variables and Data Types]], starts 
 |---|---|
 | **Compiled to bytecode** | `javac` turns source into platform-independent `.class` files, not into a native `.exe`. |
 | **Runs on a virtual machine** | The JVM executes bytecode, so the same `.class` file runs on Windows, Linux, and macOS: "write once, run anywhere". |
-| **Statically typed** | Every variable's type is known and checked at compile time (see [[Java/01 - Foundations/Variables and Data Types|Variables and Data Types]]). |
+| **Statically typed** | Every variable's type is known and checked at compile time (see [[Java/01 - Foundations/02 - Variables and Data Types|Variables and Data Types]]). |
 | **Object-oriented** | All code lives inside classes. There are no free-standing functions (before Java 25; see [[#7.4 Java 25+ — Instance Main Methods and Compact Source Files|7.4]]). |
 | **Garbage-collected** | Memory for objects is reclaimed automatically; there is no `free`/`delete`. |
 | **Case-sensitive** | `Main`, `main`, and `MAIN` are three different identifiers. |
@@ -168,7 +168,7 @@ public class Greet {
 
 - `args[0]` is the **first argument**, not the program name (unlike C/C++'s `argv[0]`).
 - With no arguments, `args` is an **empty array** (`args.length == 0`), **never `null`**. Accessing `args[0]` then throws `ArrayIndexOutOfBoundsException`.
-- Every argument is a `String`. Convert explicitly with `Integer.parseInt(args[2])` (see [[Type Casting#8. What Casting Cannot Do|What Casting Cannot Do]]).
+- Every argument is a `String`. Convert explicitly with `Integer.parseInt(args[2])` (see [[04 - Type Casting#8. What Casting Cannot Do|What Casting Cannot Do]]).
 
 ### 5.4 Packages and the Classpath
 
@@ -256,7 +256,7 @@ public class M {
 }
 ```
 
-Only the `(String[])` version is the entry point. The others are ordinary overloads (see [[Methods#7. Method Overloading|Methods § 7]]).
+Only the `(String[])` version is the entry point. The others are ordinary overloads (see [[01 - Methods#7. Method Overloading|Methods § 7]]).
 
 ### 7.3 Exit Status
 
@@ -284,9 +284,9 @@ Only the `(String[])` version is the entry point. The others are ordinary overlo
 
 ## 8. Statements, Blocks, and Comments
 
-- A **statement** ends with `;`. A **block** is zero or more statements in `{ }`, and it also defines a variable scope (see [[Variables and Data Types#8. Scope and Shadowing|Scope and Shadowing]]).
+- A **statement** ends with `;`. A **block** is zero or more statements in `{ }`, and it also defines a variable scope (see [[02 - Variables and Data Types#8. Scope and Shadowing|Scope and Shadowing]]).
 - **Whitespace and line breaks are insignificant** (except inside string literals and to separate tokens). The whole program could be on one line.
-- An empty statement `;` is legal: `if (x > 0);` compiles, and it is a classic bug (see [[Conditional Statements|Conditional Statements]]).
+- An empty statement `;` is legal: `if (x > 0);` compiles, and it is a classic bug (see [[01 - Conditional Statements|Conditional Statements]]).
 
 ### 8.1 Three Kinds of Comments
 
@@ -344,7 +344,7 @@ System.out.println("a\u0022.length());   // prints 1
 | `System.out.println(x)` | prints `x`, then a newline |
 | `System.out.println()` | prints just a newline |
 | `System.out.print(x)` | prints `x`, **no** newline |
-| `System.out.printf(fmt, ...)` | formatted output, no automatic newline (see [[Java/03 - Program Structure/Strings#6. Formatted Output — `printf` and `String.format`|Strings § 6]]) |
+| `System.out.printf(fmt, ...)` | formatted output, no automatic newline (see [[Java/03 - Program Structure/02 - Strings#6. Formatted Output — `printf` and `String.format`|Strings § 6]]) |
 | `System.err.println(x)` | prints to **standard error** (often shown in red in IDEs; not captured by `>` redirection) |
 
 `println` is **overloaded** for every primitive type, `char[]`, `String`, and `Object`. That leads to some less obvious results:
@@ -382,7 +382,7 @@ int y = 5 / 0;          // compiles! runtime: ArithmeticException: / by zero
 double z = 5.0 / 0;     // compiles and runs: z == Infinity, no error at all
 ```
 
-The last two are covered in detail in [[Operators#3. Division and Remainder — The Special Cases|Operators § 3]].
+The last two are covered in detail in [[03 - Operators#3. Division and Remainder — The Special Cases|Operators § 3]].
 
 > [!tip] Reading compiler errors
 > Fix the **first** error first. One missing `;` or `}` can cause a cascade of misleading errors further down, and they often disappear once the first is fixed. The reported line is where the compiler *noticed* the problem, which may be after where it actually is (e.g. a missing `;` is reported at the start of the next line).
@@ -521,7 +521,7 @@ public class U {
 
 ## Related
 
-- [[Java/Syllabus|Syllabus]]
-- Next: [[Variables and Data Types|Variables and Data Types]]
-- [[Operators|Operators]]: runtime arithmetic errors, `char` arithmetic
-- [[Strings|Strings]]: `printf` and formatted output
+- [[00 - Syllabus|Syllabus]]
+- Next: [[02 - Variables and Data Types|Variables and Data Types]]
+- [[03 - Operators|Operators]]: runtime arithmetic errors, `char` arithmetic
+- [[02 - Strings|Strings]]: `printf` and formatted output

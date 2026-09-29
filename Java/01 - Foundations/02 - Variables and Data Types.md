@@ -2,7 +2,7 @@
 
 A <span class="hl-blue">variable</span> is a named storage location that holds a value of a specific type. Java is **statically and strongly typed**: every variable's type is fixed at compile time, and the compiler rejects any operation that isn't valid for that type. This chapter covers how variables are declared, the two fundamental type categories, how literals are written, and the handful of places where the rules produce results that aren't obvious from a quick reading of the code.
 
-For how values convert *between* types (widening, narrowing, promotion), see [[Type Casting|Type Casting]] — this chapter focuses on declaring and initializing variables, not converting them.
+For how values convert *between* types (widening, narrowing, promotion), see [[04 - Type Casting|Type Casting]] — this chapter focuses on declaring and initializing variables, not converting them.
 
 ## Contents
 
@@ -70,7 +70,7 @@ Java has exactly **eight primitive types**. They are not objects, hold their val
 > [!info]- Why doesn't the spec define a bit size for `boolean`?
 > The Java Language Specification deliberately leaves `boolean`'s in-memory size unspecified — it's conceptually one bit, but the JVM is free to implement it however is most efficient (in practice, most JVMs use a full byte or even a 32-bit `int` slot on the stack for a `boolean` local variable). This is different from `byte`/`short`/`int`/etc., whose sizes **are** fixed exactly by the spec. It has no practical effect on your code, but it explains why `boolean` has no defined bit-width in the table above.
 
-`byte`, `short`, `int`, `long`, `float`, and `double` are all numeric and participate in arithmetic and widening/narrowing as described in [[Type Casting|Type Casting]]. `char` is numeric too (it can be used in arithmetic), but is unsigned and represents a UTF-16 code unit rather than a general-purpose number. `boolean` is not numeric at all — see [[Type Casting#8. What Casting Cannot Do|What Casting Cannot Do]] for why it can't be cast to or from numeric types.
+`byte`, `short`, `int`, `long`, `float`, and `double` are all numeric and participate in arithmetic and widening/narrowing as described in [[04 - Type Casting|Type Casting]]. `char` is numeric too (it can be used in arithmetic), but is unsigned and represents a UTF-16 code unit rather than a general-purpose number. `boolean` is not numeric at all — see [[04 - Type Casting#8. What Casting Cannot Do|What Casting Cannot Do]] for why it can't be cast to or from numeric types.
 
 ---
 

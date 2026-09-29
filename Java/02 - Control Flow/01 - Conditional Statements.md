@@ -342,7 +342,7 @@ String grade = (score >= 90) ? "A" : (score >= 80) ? "B" : (score >= 70) ? "C" :
 An `else if` chain or a `switch` expression is usually clearer once there are more than two outcomes.
 
 > [!tip] See also
-> The ternary operator has its own numeric-promotion behavior that can produce surprising types when its two branches don't match — covered in [[Type Casting#6.2 The Ternary Operator Also Applies Numeric Promotion|Type Casting, section 6.2]].
+> The ternary operator has its own numeric-promotion behavior that can produce surprising types when its two branches don't match — covered in [[04 - Type Casting#6.2 The Ternary Operator Also Applies Numeric Promotion|Type Casting, section 6.2]].
 
 ---
 
@@ -365,7 +365,7 @@ if (isAdult == true) { }     // intended comparison (though `if (isAdult)` is th
 ```
 
 - **Forgetting `break` in a traditional `switch`** — see [[#6. Fallthrough — Why break Matters|section 6]].
-- **Comparing objects (including boxed types and `String`) with `==` inside a condition** instead of `.equals()` — this compares references, not contents, and is a frequent source of conditions that are `true`/`false` unpredictably depending on caching or interning. See the autoboxing caching pitfall in [[Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting, section 9]].
+- **Comparing objects (including boxed types and `String`) with `==` inside a condition** instead of `.equals()` — this compares references, not contents, and is a frequent source of conditions that are `true`/`false` unpredictably depending on caching or interning. See the autoboxing caching pitfall in [[04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting, section 9]].
 - **Non-exhaustive `switch` expressions.** Unlike a `switch` statement, a `switch` expression must cover every possible input (via `default` or, for an `enum`, every constant) — otherwise it fails to compile.
 
 ---

@@ -2,7 +2,7 @@
 
 A `String` represents a sequence of characters. Unlike C-style languages, Java's `String` is not a primitive or a raw character array — it's a full class (`java.lang.String`), and it is **immutable**: once created, a `String` object's contents can never change. Every method that looks like it "modifies" a string actually returns a brand-new one. This chapter covers the `String` class, its common methods, the mutable `StringBuilder` alternative, and formatted output with `printf`/`String.format`.
 
-For how `String` fits among Java's types generally, see [[Variables and Data Types|Variables and Data Types]] — this chapter assumes that background and focuses on `String`-specific behavior.
+For how `String` fits among Java's types generally, see [[02 - Variables and Data Types|Variables and Data Types]] — this chapter assumes that background and focuses on `String`-specific behavior.
 
 ## Contents
 

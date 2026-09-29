@@ -2,7 +2,7 @@
 
 A <span class="hl-blue">method</span> is a named block of code that belongs to a class, takes zero or more inputs (**parameters**), and may produce one output (the **return value**). Methods let you write a piece of logic once, give it a name, and call it from anywhere. This chapter covers how a method is declared and called, return types and the compiler's `return` rules, how arguments are passed (always by value, including references), local variables and the call stack, overloading and how the compiler picks an overload, variable-length arguments, and recursion.
 
-Instance methods, constructors, and `this` are covered in [[Classes and Objects|Classes and Objects]], and overriding in [[Java/Inheritance|Inheritance]]. This chapter uses `static` methods for its examples, because those can be called straight from `main`.
+Instance methods, constructors, and `this` are covered in [[01 - Classes and Objects|Classes and Objects]], and overriding in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]. This chapter uses `static` methods for its examples, because those can be called straight from `main`.
 
 ## Contents
 
@@ -45,7 +45,7 @@ public class Geometry {
 }
 ```
 
-Java has no free-standing functions. Every method belongs to a class (or interface, enum, or record). Utilities like `Math.sqrt` are `static` methods of a class. Even the top-level methods of a Java 25+ compact source file are members of an implicitly declared class (see [[Introduction to Java#7.4 Java 25+ — Instance Main Methods and Compact Source Files|Introduction to Java § 7.4]]).
+Java has no free-standing functions. Every method belongs to a class (or interface, enum, or record). Utilities like `Math.sqrt` are `static` methods of a class. Even the top-level methods of a Java 25+ compact source file are members of an implicitly declared class (see [[01 - Introduction to Java#7.4 Java 25+ — Instance Main Methods and Compact Source Files|Introduction to Java § 7.4]]).
 
 ---
 
@@ -59,11 +59,11 @@ public static int max(int a, int b) throws IllegalStateException {
 
 | Part | Example | Required? | Meaning |
 |---|---|---|---|
-| Modifiers | `public static` | no | access level ([[Java/Encapsulation|Encapsulation]]), `static`, `final`, `abstract`, … |
+| Modifiers | `public static` | no | access level ([[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]), `static`, `final`, `abstract`, … |
 | Return type | `int` | **yes** | the type returned, or `void` |
 | Name | `max` | **yes** | by convention a verb in `lowerCamelCase`: `computeTotal`, `isEmpty` |
 | Parameter list | `(int a, int b)` | **yes** (may be empty `()`) | each parameter needs its own type |
-| `throws` clause | `throws IllegalStateException` | no | exceptions the method may throw ([[Java/Exception Handling|Exception Handling]]) |
+| `throws` clause | `throws IllegalStateException` | no | exceptions the method may throw ([[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]]) |
 | Body | `{ … }` | yes (except `abstract`/interface methods) | the statements to run |
 
 > [!warning] Common mistakes in the header
@@ -88,7 +88,7 @@ public static int max(int a, int b) throws IllegalStateException {
 > }
 > new Dog();   // prints nothing: the compiler supplied a default constructor
 > ```
-> A method may have the same name as its class. It compiles, but it is an ordinary method that `new` never calls. Constructors have **no** return type, not even `void`. See [[Classes and Objects|Classes and Objects]].
+> A method may have the same name as its class. It compiles, but it is an ordinary method that `new` never calls. Constructors have **no** return type, not even `void`. See [[01 - Classes and Objects|Classes and Objects]].
 
 ---
 
@@ -102,7 +102,7 @@ double r = Math.sqrt(16);           // static method of another class: ClassName
 String s = "hello".toUpperCase();   // instance method: object.method(...)
 ```
 
-- Arguments are **evaluated left to right**, fully, before the method body starts. `f(i++, i++)` with `i == 1` passes `1` and `2`, and `i` is `3` afterwards (see [[Operators#13. Evaluation Order — Not the Same as Precedence|Operators § 13]]).
+- Arguments are **evaluated left to right**, fully, before the method body starts. `f(i++, i++)` with `i == 1` passes `1` and `2`, and `i` is `3` afterwards (see [[03 - Operators#13. Evaluation Order — Not the Same as Precedence|Operators § 13]]).
 - The number of arguments, their order, and their types must match a declared parameter list (after the conversions in [[#7.2 How the Compiler Chooses an Overload|§ 7.2]]).
 - A non-`void` return value **may be ignored**: `Math.max(1, 2);` is a legal statement. A `void` method's result **cannot be used** at all:
 
@@ -129,7 +129,7 @@ public class App {
 }
 ```
 
-Either make the helper `static`, or create an object and call the method on it. The difference between `static` and instance members is covered in [[Classes and Objects|Classes and Objects]].
+Either make the helper `static`, or create an object and call the method on it. The difference between `static` and instance members is covered in [[01 - Classes and Objects|Classes and Objects]].
 
 ---
 
@@ -206,7 +206,7 @@ if (false) { … }                       // OK: deliberately allowed, for "condi
 
 ### 4.4 The Returned Value Is Converted Like an Assignment
 
-`return expr;` follows the same rules as assigning `expr` to a variable of the return type (see [[Type Casting|Type Casting]]):
+`return expr;` follows the same rules as assigning `expr` to a variable of the return type (see [[04 - Type Casting|Type Casting]]):
 
 ```java
 static double half()  { return 5; }        // OK: int widened to 5.0
@@ -284,7 +284,7 @@ after (2):    s ─────► "hello world"
              sb ─────► "X!!!"        (discarded when modify returns)
 ```
 
-The same holds for arrays (see [[Arrays#10. Arrays and Methods|Arrays § 10]]).
+The same holds for arrays (see [[03 - Arrays#10. Arrays and Methods|Arrays § 10]]).
 
 ### 5.3 The Classic `swap` That Doesn't Work
 
@@ -320,7 +320,7 @@ String t = "hi";   shout(t);  // t is still "hi"
 Integer k = 5;     bump(k);   // k is still 5
 ```
 
-This is not "strings are passed by value and objects by reference". Everything is passed the same way. `String` simply gives the method nothing it can mutate. See [[Strings#1. The String Class and Immutability|Strings § 1]].
+This is not "strings are passed by value and objects by reference". Everything is passed the same way. `String` simply gives the method nothing it can mutate. See [[02 - Strings#1. The String Class and Immutability|Strings § 1]].
 
 ### 5.5 `final` Parameters
 
@@ -350,8 +350,8 @@ static int f(int x) {
 ```
 
 - A local variable (or parameter) **cannot be redeclared** in a nested block of the same method.
-- Local variables have **no default value**. They must be definitely assigned before they are read (fields, by contrast, default to `0`/`false`/`null`, see [[Variables and Data Types#6. Default Values|Default Values]]).
-- A parameter **may** have the same name as a field. It then **shadows** the field inside the method, and `this.name` is needed to reach the field (see [[Variables and Data Types#8. Scope and Shadowing|Scope and Shadowing]]).
+- Local variables have **no default value**. They must be definitely assigned before they are read (fields, by contrast, default to `0`/`false`/`null`, see [[02 - Variables and Data Types#6. Default Values|Default Values]]).
+- A parameter **may** have the same name as a field. It then **shadows** the field inside the method, and `this.name` is needed to reach the field (see [[02 - Variables and Data Types#8. Scope and Shadowing|Scope and Shadowing]]).
 - A method **cannot see another method's** local variables, not even those of the method that called it.
 
 ### 6.2 The Call Stack
@@ -397,7 +397,7 @@ add(1, 2, 3);      // add(int, int, int)     → 6
 add("x", 1);       // add(String, int)       → "x1"
 ```
 
-`System.out.println` is overloaded for every primitive type, `char[]`, `String`, and `Object`. That is why it can print anything, and why `println(char[])` behaves differently from `println(Object)` (see [[Arrays#6.3 Printing Arrays|Arrays § 6.3]]).
+`System.out.println` is overloaded for every primitive type, `char[]`, `String`, and `Object`. That is why it can print anything, and why `println(char[])` behaves differently from `println(Object)` (see [[03 - Arrays#6.3 Printing Arrays|Arrays § 6.3]]).
 
 ### 7.1 What Does and Doesn't Count as a Different Overload
 
@@ -475,7 +475,7 @@ o(5);              // OK: boxing to Integer, then widening to Object (phase 2)
 > Object obj = "hello";      // declared Object, runtime String
 > p(obj);                    // Object : the compiler only knows obj is an Object
 > ```
-> This is the key difference from **overriding** (runtime choice, based on the actual object). See [[Java/Polymorphism|Polymorphism]].
+> This is the key difference from **overriding** (runtime choice, based on the actual object). See [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]].
 
 > [!example]- Worked example: an ambiguous call with two parameters
 > ```java
@@ -577,7 +577,7 @@ static long factorial(int n) {
 > The calls go **down** until the base case, and the multiplications happen on the way back **up**, as each frame is popped.
 
 > [!warning] Overflow comes quickly
-> `factorial` returns `long` because `13!` already overflows `int`. Even `long` overflows at `21!`: `factorial(21)` silently returns `-4249290049419214848`. See [[Operators#4. Integer Overflow|Operators § 4]]. Use `java.math.BigInteger` for larger values.
+> `factorial` returns `long` because `13!` already overflows `int`. Even `long` overflows at `21!`: `factorial(21)` silently returns `-4249290049419214848`. See [[03 - Operators#4. Integer Overflow|Operators § 4]]. Use `java.math.BigInteger` for larger values.
 
 ### 9.2 Fibonacci — Correct but Exponential
 
@@ -652,7 +652,7 @@ static int bad(int n) {
 - **Expecting a method to change the caller's primitive or reassigned reference.** Java is always pass-by-value. Return the new value instead.
 - **The broken `swap(int a, int b)`**, which only swaps local copies.
 - **Using the result of a `void` method**, e.g. `int[] sorted = Arrays.sort(a);`.
-- **Ignoring a return value that matters**, e.g. `s.toUpperCase();` or `Math.abs(x);` on its own line (see [[Strings#1. The String Class and Immutability|Strings § 1]]).
+- **Ignoring a return value that matters**, e.g. `s.toUpperCase();` or `Math.abs(x);` on its own line (see [[02 - Strings#1. The String Class and Immutability|Strings § 1]]).
 - **Overloading by return type only**: it is a duplicate-method compile error.
 - **Passing an `int` literal to a `short`/`byte` parameter** (`s(5)`): method calls don't narrow constants. Cast it: `s((short) 5)`.
 - **Passing an `int` to a `Long` parameter** (`L(5)`): Java won't widen and then box. Use `5L`.
@@ -904,11 +904,11 @@ static void increment(int counter) { counter++; }
 
 ## Related
 
-- [[Java/Syllabus|Syllabus]]
-- Previous: [[Arrays|Arrays]] · Next: [[Strings|Strings]]
-- [[Introduction to Java#7. The `main` Method|Introduction to Java § 7]]: the `main` method and its overloads
-- [[Type Casting|Type Casting]]: the widening and boxing conversions behind overload resolution
-- [[Operators#13. Evaluation Order — Not the Same as Precedence|Operators § 13]]: left-to-right evaluation
-- [[Classes and Objects|Classes and Objects]]: instance methods, constructors, `this`, `static`
-- [[Java/Polymorphism|Polymorphism]]: overriding vs. overloading
+- [[00 - Syllabus|Syllabus]]
+- Previous: [[03 - Arrays|Arrays]] · Next: [[02 - Strings|Strings]]
+- [[01 - Introduction to Java#7. The `main` Method|Introduction to Java § 7]]: the `main` method and its overloads
+- [[04 - Type Casting|Type Casting]]: the widening and boxing conversions behind overload resolution
+- [[03 - Operators#13. Evaluation Order — Not the Same as Precedence|Operators § 13]]: left-to-right evaluation
+- [[01 - Classes and Objects|Classes and Objects]]: instance methods, constructors, `this`, `static`
+- [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: overriding vs. overloading
 - [[DSA/Foundations/Recursion|DSA: Recursion]]

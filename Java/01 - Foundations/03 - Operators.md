@@ -2,7 +2,7 @@
 
 An <span class="hl-blue">operator</span> is a symbol that performs an operation on one, two, or three <span class="hl-blue">operands</span> and produces a result. Most operators look the same as in mathematics or C, which makes them easy to misread. The operand types decide what the operator actually does (`7 / 2` and `7.0 / 2` do different things), and precedence, associativity, and evaluation order decide how a compound expression is grouped and evaluated. This chapter goes through each operator family and the places where Java's rules give results you might not expect.
 
-How operands of *different* types are converted before an operation (binary numeric promotion) is covered in [[Type Casting#6. Binary Numeric Promotion — Mixed-Type Arithmetic|Type Casting § 6]]. This chapter assumes those rules and links back where they matter.
+How operands of *different* types are converted before an operation (binary numeric promotion) is covered in [[04 - Type Casting#6. Binary Numeric Promotion — Mixed-Type Arithmetic|Type Casting § 6]]. This chapter assumes those rules and links back where they matter.
 
 ## Contents
 
@@ -65,7 +65,7 @@ How operands of *different* types are converted before an operation (binary nume
 > - If **either** is `float`/`double`, the operation is **floating-point** arithmetic.
 > - `byte`, `short`, and `char` are **always promoted to at least `int`** first. `byte + byte` is an `int`.
 >
-> Full rules: [[Type Casting#6. Binary Numeric Promotion — Mixed-Type Arithmetic|Type Casting § 6]].
+> Full rules: [[04 - Type Casting#6. Binary Numeric Promotion — Mixed-Type Arithmetic|Type Casting § 6]].
 
 ```java
 System.out.println(7 / 2);      // 3
@@ -340,7 +340,7 @@ Normally an `int` expression can't be assigned to a `byte`/`short`/`char` withou
 | `final int one = 1; char c = one + 65;` | ✅ | a `final` variable initialized with a constant **is** a constant |
 | `short s = 5; s = s * 1;` | ❌ | `s` isn't a constant |
 | `int i = 5L;` | ❌ | the rule doesn't cover `long` constants |
-| `float f = 1.5;` | ❌ | nor `double` constants (see [[Java/01 - Foundations/Variables and Data Types#4.3 The `float` Suffix|the `float` suffix]]) |
+| `float f = 1.5;` | ❌ | nor `double` constants (see [[Java/01 - Foundations/02 - Variables and Data Types#4.3 The `float` Suffix|the `float` suffix]]) |
 
 ---
 
@@ -407,7 +407,7 @@ n == l            // compile error: incomparable types: Integer and Long
 n.equals(l)       // false : different classes
 ```
 
-See [[Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]] and [[Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]].
+See [[02 - Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]] and [[04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]].
 
 > [!info]- When does `==` on strings return `true` unexpectedly?
 > Compile-time constant expressions are computed by the compiler and **pooled**:
@@ -577,7 +577,7 @@ String label = (age >= 18) ? "adult" : "minor";
 int max = (a > b) ? a : b;
 ```
 
-- Only the selected branch is **evaluated**, but both branches determine the **type**. `true ? 5 : 2.0` is `5.0` (see [[Type Casting#6.2 The Ternary Operator Also Applies Numeric Promotion|Type Casting § 6.2]]).
+- Only the selected branch is **evaluated**, but both branches determine the **type**. `true ? 5 : 2.0` is `5.0` (see [[04 - Type Casting#6.2 The Ternary Operator Also Applies Numeric Promotion|Type Casting § 6.2]]).
 - It is **right-associative**: `a ? b : c ? d : e` means `a ? b : (c ? d : e)`.
 - It can't stand alone as a statement: `x > 0 ? foo() : bar();` is a compile error.
 - **Unboxing trap:** if one branch is a boxed `Integer` that is `null` and the other is a primitive `int`, the result type is `int` and the `null` gets unboxed:
@@ -587,7 +587,7 @@ Integer maybe = null;
 int v = true ? maybe : 0;   // NullPointerException
 ```
 
-For choosing between the ternary and `if`/`else`, see [[Conditional Statements#10. The Ternary Operator vs. `if` / `else`|Conditional Statements § 10]].
+For choosing between the ternary and `if`/`else`, see [[01 - Conditional Statements#10. The Ternary Operator vs. `if` / `else`|Conditional Statements § 10]].
 
 ### 10.2 `instanceof`
 
@@ -602,7 +602,7 @@ null instanceof Object    // false : null is never an instance of anything (no e
 if (o instanceof String s && s.length() > 1) { ... }   // pattern matching (Java 16+)
 ```
 
-In the last line, `s` is in scope on the right of `&&` because that side only runs if the test succeeded. With `||` it would **not** be in scope. More in [[Type Casting#7. Reference (Object) Casting|Type Casting § 7]].
+In the last line, `s` is in scope on the right of `&&` because that side only runs if the test succeeded. With `||` it would **not** be in scope. More in [[04 - Type Casting#7. Reference (Object) Casting|Type Casting § 7]].
 
 ---
 
@@ -620,7 +620,7 @@ If **either** operand of `+` is a `String`, it means concatenation. The other op
 "x" + null          // "xnull"
 ```
 
-`-`, `*`, `/` have no string meaning: `"a" - "a"` and `s -= "a"` are compile errors. Performance of `+` in loops and `StringBuilder` are covered in [[Strings#4. String Concatenation|Strings § 4]].
+`-`, `*`, `/` have no string meaning: `"a" - "a"` and `s -= "a"` are compile errors. Performance of `+` in loops and `StringBuilder` are covered in [[02 - Strings#4. String Concatenation|Strings § 4]].
 
 ---
 
@@ -701,7 +701,7 @@ Exceptions to "all operands first": `&&`, `||`, and `? :` may **skip** operands 
 
 ## 14. Common Pitfalls
 
-- **Integer division** where a fraction was expected: `double avg = sum / count;` with `int`s. Cast an operand first: `(double) sum / count` ([[Type Casting#6.1 Integer Division Truncates Before Any Promotion to the Result Type|Type Casting § 6.1]]).
+- **Integer division** where a fraction was expected: `double avg = sum / count;` with `int`s. Cast an operand first: `(double) sum / count` ([[04 - Type Casting#6.1 Integer Division Truncates Before Any Promotion to the Result Type|Type Casting § 6.1]]).
 - **`n % 2 == 1` as an odd test.** It fails for negative `n`. Use `n % 2 != 0`.
 - **Overflow in an `int` expression assigned to a `long`.** Make the first operand `long` (`24L * …`).
 - **`i = i++`**, and several `++` on one variable in a single expression.
@@ -908,8 +908,8 @@ long r = 1L << 35;
 
 ## Related
 
-- [[Java/Syllabus|Syllabus]]
-- Previous: [[Variables and Data Types|Variables and Data Types]] · Next: [[Type Casting|Type Casting]]
-- [[Introduction to Java|Introduction to Java]]
-- [[Conditional Statements|Conditional Statements]]: conditions, `switch`, the ternary operator
-- [[Strings|Strings]]: `equals` vs `==`, concatenation performance
+- [[00 - Syllabus|Syllabus]]
+- Previous: [[02 - Variables and Data Types|Variables and Data Types]] · Next: [[04 - Type Casting|Type Casting]]
+- [[01 - Introduction to Java|Introduction to Java]]
+- [[01 - Conditional Statements|Conditional Statements]]: conditions, `switch`, the ternary operator
+- [[02 - Strings|Strings]]: `equals` vs `==`, concatenation performance

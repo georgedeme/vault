@@ -2,7 +2,7 @@
 
 An <span class="hl-blue">array</span> is a **fixed-length**, **zero-indexed** container that holds values of **one type**. In Java an array is an **object**. It lives on the heap, the variable holds a *reference* to it, and it carries its own `length`. That one fact explains most of the surprising behaviour: assignment makes an alias rather than a copy, `==` and `.equals()` compare identity, printing shows `[I@1b6d3586`, and a method can change the caller's array. This chapter covers declaring, creating, accessing, copying, and comparing arrays, multi-dimensional (jagged) arrays, the `java.util.Arrays` utility class, and the places where the rules are easy to get wrong.
 
-Loops over arrays are covered in [[Loops|Loops]]. Arrays as a data structure (dynamic arrays, amortized resizing, rotation) are covered in [[DSA/Arrays|DSA: Arrays]]. This chapter is about the Java language feature.
+Loops over arrays are covered in [[02 - Loops|Loops]]. Arrays as a data structure (dynamic arrays, amortized resizing, rotation) are covered in [[DSA/Arrays|DSA: Arrays]]. This chapter is about the Java language feature.
 
 ## Contents
 
@@ -42,7 +42,7 @@ Loops over arrays are covered in [[Loops|Loops]]. Arrays as a data structure (dy
 | Access time | `a[i]` is O(1): the address is computed directly from `i` |
 | Default contents | every element starts at its type's default value (`0`, `false`, `null`, …) |
 
-If you need a sequence that grows and shrinks, use `ArrayList` (see [[Java/Collections Framework|Collections Framework]]). An array cannot be resized. You can only create a new, bigger one and copy into it ([[#7. Copying Arrays|§ 7]]).
+If you need a sequence that grows and shrinks, use `ArrayList` (see [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]]). An array cannot be resized. You can only create a new, bigger one and copy into it ([[#7. Copying Arrays|§ 7]]).
 
 ---
 
@@ -80,7 +80,7 @@ int[] a;
 System.out.println(a.length);   // compile error: variable a might not have been initialized
 ```
 
-An array **field** that has not been assigned is `null` by default (see [[Variables and Data Types#6. Default Values|Default Values]]), so the same code on a field compiles and throws `NullPointerException` at runtime.
+An array **field** that has not been assigned is `null` by default (see [[02 - Variables and Data Types#6. Default Values|Default Values]]), so the same code on a field compiles and throws `NullPointerException` at runtime.
 
 ---
 
@@ -125,7 +125,7 @@ int[] f = new int[-1];           // compiles! throws NegativeArraySizeException 
 ```
 
 > [!info]- Why is a zero-length array useful?
-> A method that returns "no results" should return an empty array, not `null`. The caller can then loop over it and check `length` without a `null` check. `new int[0]` and `{}` both create one. `main` also receives a zero-length (never `null`) `args` array when no command-line arguments are given (see [[Introduction to Java#5.3 Command-Line Arguments|Command-Line Arguments]]).
+> A method that returns "no results" should return an empty array, not `null`. The caller can then loop over it and check `length` without a `null` check. `new int[0]` and `{}` both create one. `main` also receives a zero-length (never `null`) `args` array when no command-line arguments are given (see [[01 - Introduction to Java#5.3 Command-Line Arguments|Command-Line Arguments]]).
 
 ### 3.2 With an Array Initializer
 
@@ -179,7 +179,7 @@ var c = {1, 2, 3};             // compile error: an initializer needs an explici
 var d[] = new int[3];          // compile error: var is not allowed as an element type of an array
 ```
 
-See [[Variables and Data Types#9.1 Where `var` Cannot Be Used|Where `var` Cannot Be Used]].
+See [[02 - Variables and Data Types#9.1 Where `var` Cannot Be Used|Where `var` Cannot Be Used]].
 
 ---
 
@@ -269,7 +269,7 @@ b[i++] = b[i];         // left index is 0 (i becomes 1), right side reads b[1]: 
 
 ## 5. Iterating Over an Array
 
-The loop forms are covered in detail in [[Loops|Loops]]. For arrays:
+The loop forms are covered in detail in [[02 - Loops|Loops]]. For arrays:
 
 ```java
 int[] a = {3, 1, 4, 1, 5};
@@ -291,7 +291,7 @@ for (int x : a) {
 ```
 
 > [!warning] Common mistake: the for-each variable is a copy
-> Assigning to the loop variable does **not** change the array (see [[Loops#4. The Enhanced `for` Loop (for-each)|Loops § 4]]):
+> Assigning to the loop variable does **not** change the array (see [[02 - Loops#4. The Enhanced `for` Loop (for-each)|Loops § 4]]):
 > ```java
 > for (int x : a) { x = 0; }     // a is unchanged
 > for (int i = 0; i < a.length; i++) { a[i] = 0; }   // a is now all zeros
@@ -366,11 +366,11 @@ The `[I` prefix is the JVM's name for `int[]`. Others are `[D` (`double[]`), `[Z
 > Object o = c;
 > System.out.println(o);             // [C@6d06d69c : the println(Object) overload is chosen at compile time
 > ```
-> Overload choice depends on the compile-time type of the argument. See [[Methods#7. Method Overloading|Methods § 7]].
+> Overload choice depends on the compile-time type of the argument. See [[01 - Methods#7. Method Overloading|Methods § 7]].
 
 ### 6.4 `final` Arrays Are Still Mutable
 
-`final` fixes the **reference**, not the contents (see [[Variables and Data Types#7.2 `final` Doesn't Mean Immutable|`final` Doesn't Mean Immutable]]):
+`final` fixes the **reference**, not the contents (see [[02 - Variables and Data Types#7.2 `final` Doesn't Mean Immutable|`final` Doesn't Mean Immutable]]):
 
 ```java
 final int[] a = {1, 2, 3};
@@ -664,7 +664,7 @@ int[][][] gap = new int[2][][4];     // compile error: cannot skip a middle dime
 
 ## 10. Arrays and Methods
 
-Java passes **every** argument by value (see [[Methods#5. Parameter Passing — Always Pass-by-Value|Methods § 5]]). For an array argument, the value that gets copied is the **reference**. So:
+Java passes **every** argument by value (see [[01 - Methods#5. Parameter Passing — Always Pass-by-Value|Methods § 5]]). For an array argument, the value that gets copied is the **reference**. So:
 
 - The method **can change the elements** of the caller's array (both variables refer to the same object).
 - The method **cannot make the caller's variable refer to a different array**. Reassigning the parameter only changes the method's local copy of the reference.
@@ -698,9 +698,9 @@ static int[] doubled(int[] arr) {
 
 > [!tip] Returning arrays
 > - Return an empty array (`new int[0]`) rather than `null` for "no results".
-> - If a method returns an internal array field, the caller can modify your object's state through it. Return a copy (`return data.clone();`) when that matters (see [[Java/Encapsulation|Encapsulation]]).
+> - If a method returns an internal array field, the caller can modify your object's state through it. Return a copy (`return data.clone();`) when that matters (see [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]).
 
-Varargs (`int... values`) are arrays under the hood. See [[Methods#8. Variable-Length Arguments (Varargs)|Methods § 8]].
+Varargs (`int... values`) are arrays under the hood. See [[01 - Methods#8. Variable-Length Arguments (Varargs)|Methods § 8]].
 
 ---
 
@@ -741,7 +741,7 @@ T[] arr = new T[10];                            // compile error inside a generi
 List<String>[] ok = new List[10];              // compiles with an "unchecked" warning
 ```
 
-Generics are checked only at compile time and erased at runtime, while arrays check their element type at runtime. The two models conflict, so Java forbids creating arrays of generic types. The usual answer is to use `List<List<String>>` instead. More in [[Java/Collections Framework|Collections Framework]].
+Generics are checked only at compile time and erased at runtime, while arrays check their element type at runtime. The two models conflict, so Java forbids creating arrays of generic types. The usual answer is to use `List<List<String>>` instead. More in [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]].
 
 ---
 
@@ -772,7 +772,7 @@ static double average(int[] a) {
 ```
 
 > [!warning] Two traps in one line
-> `int avg = sum / a.length;` truncates (integer division, see [[Operators#3. Division and Remainder — The Special Cases|Operators § 3]]), and if `a` is empty it throws `ArithmeticException: / by zero`. With a `double` cast and an empty array you get `NaN` instead (`0.0 / 0`), silently.
+> `int avg = sum / a.length;` truncates (integer division, see [[03 - Operators#3. Division and Remainder — The Special Cases|Operators § 3]]), and if `a` is empty it throws `ArithmeticException: / by zero`. With a `double` cast and an empty array you get `NaN` instead (`0.0 / 0`), silently.
 
 ### 12.2 Maximum (and Minimum)
 
@@ -823,7 +823,7 @@ static int indexOf(int[] a, int key) {
 }
 ```
 
-For `String[]` or other object arrays, compare with `a[i].equals(key)` (or `Objects.equals(a[i], key)` if elements may be `null`), never `==` (see [[Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]]).
+For `String[]` or other object arrays, compare with `a[i].equals(key)` (or `Objects.equals(a[i], key)` if elements may be `null`), never `==` (see [[02 - Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]]).
 
 ### 12.4 Reverse In Place
 
@@ -850,7 +850,7 @@ static void reverse(int[] a) {
 ```
 
 > [!warning] Common mistake: swapping all the way to the end
-> `for (int i = 0; i < a.length; i++) swap(a[i], a[a.length - 1 - i])` swaps every pair **twice**, putting the array back as it was. Stop at the middle (`i < a.length / 2`). Also, a `swap(int x, int y)` method cannot swap the caller's elements (see [[Methods#5. Parameter Passing — Always Pass-by-Value|Methods § 5]]). It must take the array and two indexes: `swap(int[] a, int i, int j)`.
+> `for (int i = 0; i < a.length; i++) swap(a[i], a[a.length - 1 - i])` swaps every pair **twice**, putting the array back as it was. Stop at the middle (`i < a.length / 2`). Also, a `swap(int x, int y)` method cannot swap the caller's elements (see [[01 - Methods#5. Parameter Passing — Always Pass-by-Value|Methods § 5]]). It must take the array and two indexes: `swap(int[] a, int i, int j)`.
 
 ### 12.5 Binary Search (Sorted Array)
 
@@ -882,7 +882,7 @@ static int binarySearch(int[] a, int key) {
 }
 ```
 
-The midpoint overflow is explained in [[Operators#4. Integer Overflow|Operators § 4]]. Using `low < high` instead of `low <= high` misses the key when it is the last remaining candidate.
+The midpoint overflow is explained in [[03 - Operators#4. Integer Overflow|Operators § 4]]. Using `low < high` instead of `low <= high` misses the key when it is the last remaining candidate.
 
 ### 12.6 Counting with a Frequency Array
 
@@ -906,7 +906,7 @@ static int[] letterCounts(String s) {
 }
 ```
 
-`ch - 'a'` is an `int` (char arithmetic, see [[Type Casting#5. `char` — A Special Case|Type Casting § 5]]), which is exactly what an index needs. Without the range check, an uppercase letter or a digit gives a negative index and an `ArrayIndexOutOfBoundsException`.
+`ch - 'a'` is an `int` (char arithmetic, see [[04 - Type Casting#5. `char` — A Special Case|Type Casting § 5]]), which is exactly what an index needs. Without the range check, an uppercase letter or a digit gives a negative index and an `ArrayIndexOutOfBoundsException`.
 
 ---
 
@@ -1183,9 +1183,9 @@ System.out.println(l1.get(0)[0]);
 
 ## Related
 
-- [[Java/Syllabus|Syllabus]]
-- Previous: [[Loops|Loops]] · Next: [[Methods|Methods]]
-- [[Variables and Data Types|Variables and Data Types]]: default values, reference types, `final`, `var`
-- [[Strings|Strings]]: `char[]` ↔ `String`, `length()` vs. `length`
-- [[Java/Collections Framework|Collections Framework]]: `ArrayList` as a resizable alternative
+- [[00 - Syllabus|Syllabus]]
+- Previous: [[02 - Loops|Loops]] · Next: [[01 - Methods|Methods]]
+- [[02 - Variables and Data Types|Variables and Data Types]]: default values, reference types, `final`, `var`
+- [[02 - Strings|Strings]]: `char[]` ↔ `String`, `length()` vs. `length`
+- [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]]: `ArrayList` as a resizable alternative
 - [[DSA/Arrays|DSA: Arrays]] · [[DSA/Binary Search|DSA: Binary Search]] · [[DSA/Sorting Algorithms|DSA: Sorting Algorithms]]

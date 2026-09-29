@@ -33,7 +33,7 @@ The companion topics are [[DSA/Foundations/Bit Manipulation|Bit Manipulation]] (
 | `int` | −2³¹ … 2³¹ − 1 | ±2.1 × 10⁹ |
 | `long` | −2⁶³ … 2⁶³ − 1 | ±9.2 × 10¹⁸ |
 
-Overflow is **silent**: the result wraps around modulo 2³² or 2⁶⁴ with no exception (details in [[Operators#4. Integer Overflow|Operators § 4]]).
+Overflow is **silent**: the result wraps around modulo 2³² or 2⁶⁴ with no exception (details in [[03 - Operators#4. Integer Overflow|Operators § 4]]).
 
 > [!warning] Cast *before* multiplying
 > ```java
@@ -923,7 +923,7 @@ static boolean isPerfectSquare(long n) { if (n < 0) return false; long r = isqrt
 - Previous: [[DSA/Foundations/Bit Manipulation|Bit Manipulation]] · Next: [[DSA/Arrays|Arrays]] (Part II)
 - [[DSA/Foundations/Complexity Analysis#1.1 What counts as "input size"?|Complexity Analysis § 1.1]]: pseudo-polynomial complexity of number algorithms
 - [[DSA/Foundations/Recursion#6.1 Fast power (halving)|Recursion § 6.1]]: recursive fast power
-- [[Operators#3. Division and Remainder — The Special Cases|Java: Operators § 3–4]]: `/`, `%`, and overflow
+- [[03 - Operators#3. Division and Remainder — The Special Cases|Java: Operators § 3–4]]: `/`, `%`, and overflow
 - [[DSA/Matrix Exponentiation|Matrix Exponentiation]]: fast exponentiation on matrices
 - [[DSA/String Hashing|String Hashing]]: polynomial hashing mod a prime
 - [[DSA/Classic DP Problems|Classic DP Problems]]: counting problems modulo `10⁹ + 7`

@@ -2,7 +2,7 @@
 
 A <span class="hl-blue">class</span> is a blueprint that describes a kind of thing: what data it holds (**fields**) and what it can do (**methods**). An <span class="hl-blue">object</span> is one concrete thing built from that blueprint, with its own copy of the data. This chapter covers how a class is declared, how `new` creates objects and what the variable actually holds, fields and their defaults, instance methods, constructors and constructor chaining, the `this` keyword, `static` (class-level) members, and the exact order in which a class and its objects are initialized.
 
-Access modifiers (`private`, `public`, …) and getters/setters are covered in [[Java/Encapsulation|Encapsulation]], and `extends`/`super` in [[Java/Inheritance|Inheritance]]. This chapter uses package-private members (no modifier) in most examples to keep the focus on classes and objects themselves.
+Access modifiers (`private`, `public`, …) and getters/setters are covered in [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]], and `extends`/`super` in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]. This chapter uses package-private members (no modifier) in most examples to keep the focus on classes and objects themselves.
 
 ## Contents
 
@@ -88,7 +88,7 @@ public class Student {
 
 ### 2.1 Files and Class Names
 
-- A `.java` file may contain **several** top-level classes, but **at most one** may be `public`, and that one must have the **same name as the file** (`public class Student` → `Student.java`). See [[Introduction to Java#6. Files, Classes, and Names|Introduction to Java § 6]].
+- A `.java` file may contain **several** top-level classes, but **at most one** may be `public`, and that one must have the **same name as the file** (`public class Student` → `Student.java`). See [[01 - Introduction to Java#6. Files, Classes, and Names|Introduction to Java § 6]].
 - Compiling produces **one `.class` file per class**, including non-public and nested ones (`Student.class`, `Helper.class`, `Outer$Inner.class`).
 - The order of members inside a class does not matter for methods: a method can use a field or call a method declared further down. It **does** matter for field initializers ([[#9.3 Forward References|§ 9.3]]).
 
@@ -104,13 +104,13 @@ System.out.println(e.toString());    // Empty@1b6d3586  (class name @ hex hash c
 System.out.println(e.equals(e));     // true
 ```
 
-The inherited versions are rarely what you want ([[#10.3 Printing and Comparing Objects|§ 10.3]]); overriding them is covered in [[Java/Inheritance|Inheritance]].
+The inherited versions are rarely what you want ([[#10.3 Printing and Comparing Objects|§ 10.3]]); overriding them is covered in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]].
 
 > [!info]- Records: a shortcut for "data carrier" classes (Java 16+)
 > ```java
 > record Point(int x, int y) { }
 > ```
-> declares a final class with two `private final` fields, a constructor `Point(int x, int y)`, accessor methods `x()` and `y()` (not `getX()`), and sensible `equals`, `hashCode`, and `toString` (`Point[x=1, y=2]`). Records are covered with immutable design in [[Java/Encapsulation|Encapsulation]]. This chapter uses ordinary classes, because records hide exactly the mechanics being explained here.
+> declares a final class with two `private final` fields, a constructor `Point(int x, int y)`, accessor methods `x()` and `y()` (not `getX()`), and sensible `equals`, `hashCode`, and `toString` (`Point[x=1, y=2]`). Records are covered with immutable design in [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]. This chapter uses ordinary classes, because records hide exactly the mechanics being explained here.
 
 ---
 
@@ -152,7 +152,7 @@ Point q = null;          // explicitly refers to nothing
 q.x = 5;                 // compiles, but throws NullPointerException at runtime
 ```
 
-- A **local** reference variable has no default value, so using it before assignment is a **compile** error (see [[Variables and Data Types#5. Local, Instance, and Static Variables|Variables and Data Types § 5]]).
+- A **local** reference variable has no default value, so using it before assignment is a **compile** error (see [[02 - Variables and Data Types#5. Local, Instance, and Static Variables|Variables and Data Types § 5]]).
 - A reference that is **`null`** compiles fine, and any attempt to reach a field or instance method through it throws `NullPointerException` at runtime.
 - A reference **field** defaults to `null`, so the same runtime error appears when a field was never assigned an object.
 
@@ -177,7 +177,7 @@ b = null;                // object #2 is still reachable through a
 ```
 
 > [!warning] Common mistake: expecting cleanup code to run
-> `Object.finalize()` is deprecated (Java 9) and was never guaranteed to run. `System.gc()` is only a hint. Resources such as files must be closed explicitly, normally with `try`-with-resources ([[Java/Exception Handling|Exception Handling]]), never by relying on the garbage collector.
+> `Object.finalize()` is deprecated (Java 9) and was never guaranteed to run. `System.gc()` is only a hint. Resources such as files must be closed explicitly, normally with `try`-with-resources ([[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]]), never by relying on the garbage collector.
 
 ---
 
@@ -203,7 +203,7 @@ class Settings {
 }
 ```
 
-Full table: [[Variables and Data Types#6. Default Values|Variables and Data Types § 6]].
+Full table: [[02 - Variables and Data Types#6. Default Values|Variables and Data Types § 6]].
 
 > [!warning] Trick: an initializer that creates an object runs once **per object**
 > `int[] slots = new int[4];` creates a fresh array for each `Settings`. Two `Settings` objects do **not** share `slots`. Sharing happens only with `static` fields ([[#8.1 Static Fields — One Copy per Class|§ 8.1]]).
@@ -220,7 +220,7 @@ Inside the class's own instance methods and constructors, a field can be written
 
 ### 4.3 `final` Fields
 
-A `final` field must be assigned **exactly once**, and the compiler checks it. It can be assigned either in its declaration, or in an instance initializer block, or in **every** constructor (a *blank final*, see [[Variables and Data Types#7.1 Blank Finals|Variables and Data Types § 7.1]]):
+A `final` field must be assigned **exactly once**, and the compiler checks it. It can be assigned either in its declaration, or in an instance initializer block, or in **every** constructor (a *blank final*, see [[02 - Variables and Data Types#7.1 Blank Finals|Variables and Data Types § 7.1]]):
 
 ```java
 class Account {
@@ -234,7 +234,7 @@ class Account {
 }
 ```
 
-`final` stops **reassigning** the field. If the field refers to a mutable object (an array, a `StringBuilder`), the object itself can still change ([[Variables and Data Types#7.2 `final` Doesn't Mean Immutable|`final` Doesn't Mean Immutable]]).
+`final` stops **reassigning** the field. If the field refers to a mutable object (an array, a `StringBuilder`), the object itself can still change ([[02 - Variables and Data Types#7.2 `final` Doesn't Mean Immutable|`final` Doesn't Mean Immutable]]).
 
 ---
 
@@ -263,8 +263,8 @@ System.out.println(a.get() + " " + b.get() + " " + a.isAbove(b));   // 2 1 true
 
 - The same method code serves every object. The JVM passes the target object in as a hidden parameter, which is what `this` refers to.
 - Calling an instance method needs an object: `reference.method(…)`. Through a `null` reference it throws `NullPointerException`.
-- An instance method of a class may use **another object's** fields of the same class (`other.count`), even `private` ones. Access control is per class, not per object ([[Java/Encapsulation|Encapsulation]]).
-- Declaration, parameters, overloading, and pass-by-value work exactly as in [[Methods|Methods]].
+- An instance method of a class may use **another object's** fields of the same class (`other.count`), even `private` ones. Access control is per class, not per object ([[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]).
+- Declaration, parameters, overloading, and pass-by-value work exactly as in [[01 - Methods|Methods]].
 
 > [!tip] Instance or static?
 > If a method uses any instance field or calls any instance method, it must be an instance method. If it uses only its parameters (like `Math.max`), make it `static` ([[#8.2 Static Methods|§ 8.2]]).
@@ -293,10 +293,10 @@ Point p = new Point(3, 4);     // arguments are passed to the constructor
 
 > [!important] Rules
 > - The name must be **exactly the class name**.
-> - There is **no return type**, not even `void`. With a return type it is an ordinary method that `new` never calls (see [[Methods#2.1 Where Methods Can (and Can't) Go|Methods § 2.1]]).
+> - There is **no return type**, not even `void`. With a return type it is an ordinary method that `new` never calls (see [[01 - Methods#2.1 Where Methods Can (and Can't) Go|Methods § 2.1]]).
 > - A bare `return;` is allowed (it ends the constructor early). `return value;` is a compile error (*unexpected return value*).
 > - Allowed modifiers: only access modifiers (`public`, `protected`, `private`, or none). `static`, `final`, and `abstract` are compile errors (*modifier static not allowed here*).
-> - Constructors are **not members** and are **not inherited**. A subclass must declare its own ([[Java/Inheritance|Inheritance]]).
+> - Constructors are **not members** and are **not inherited**. A subclass must declare its own ([[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]).
 > - A constructor can be called **only** through `new`, or as the first statement of another constructor (`this(…)` / `super(…)`). It cannot be called like a method: `p.Point(1, 2)` does not compile.
 
 ### 6.2 The Default Constructor
@@ -319,11 +319,11 @@ Box b = new Box();             // OK: uses the compiler-generated Box()
 > Box a = new Box(5);   // OK
 > Box b = new Box();    // compile error: constructor Box in class Box cannot be applied to given types
 > ```
-> The default constructor exists **only** when you write none. As soon as you add `Box(int)`, `new Box()` stops compiling. If you still need it, declare `Box() { }` yourself. This also breaks subclasses whose constructors implicitly call `super()` ([[Java/Inheritance|Inheritance]]).
+> The default constructor exists **only** when you write none. As soon as you add `Box(int)`, `new Box()` stops compiling. If you still need it, declare `Box() { }` yourself. This also breaks subclasses whose constructors implicitly call `super()` ([[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]).
 
 ### 6.3 Overloaded Constructors
 
-A class can have several constructors, as long as their parameter lists differ. The usual overload rules apply ([[Methods#7. Method Overloading|Methods § 7]]):
+A class can have several constructors, as long as their parameter lists differ. The usual overload rules apply ([[01 - Methods#7. Method Overloading|Methods § 7]]):
 
 ```java
 class Rectangle {
@@ -424,7 +424,7 @@ class Point {
 > }
 > new Point(3, 4).x     // 0, not 3
 > ```
-> This compiles without error (at most an IDE warning) and silently leaves the fields at their defaults. It is the most common constructor bug. See [[Variables and Data Types#8. Scope and Shadowing|Scope and Shadowing]].
+> This compiles without error (at most an IDE warning) and silently leaves the fields at their defaults. It is the most common constructor bug. See [[02 - Variables and Data Types#8. Scope and Shadowing|Scope and Shadowing]].
 
 When there is **no** name clash, `this.` is optional: `count++` inside `Counter` already means `this.count++`.
 
@@ -452,7 +452,7 @@ class Builder {
 String s = new Builder().add("a").add("b").add("c").sb.toString();   // "abc"
 ```
 
-Returning `this` is what makes **method chaining** (`sb.append(x).append(y)`) possible. `StringBuilder` itself works this way ([[Strings#5. StringBuilder|Strings § 5]]).
+Returning `this` is what makes **method chaining** (`sb.append(x).append(y)`) possible. `StringBuilder` itself works this way ([[02 - Strings#5. StringBuilder|Strings § 5]]).
 
 ### 7.4 What `this` Can't Do
 
@@ -526,7 +526,7 @@ class Temperature {
 double f = Temperature.toFahrenheit(100);           // 212.0 : called on the class
 ```
 
-This is exactly why `main`, which is `static`, cannot call the instance methods of its own class without first creating an object ([[Methods#3.1 Calling Instance Methods from `main`|Methods § 3.1]]).
+This is exactly why `main`, which is `static`, cannot call the instance methods of its own class without first creating an object ([[01 - Methods#3.1 Calling Instance Methods from `main`|Methods § 3.1]]).
 
 ### 8.3 Instance vs. Static at a Glance
 
@@ -563,7 +563,7 @@ System.out.println(b.total);    // 100 : ...but there is only one total
 ```
 
 > [!tip] Always write `ClassName.member` for statics
-> Accessing statics through a reference compiles (most IDEs warn), but it misleads readers into thinking the value belongs to that object. Static methods called through a reference also do **not** use dynamic dispatch: the declared type decides which one runs ([[Java/Polymorphism|Polymorphism]]).
+> Accessing statics through a reference compiles (most IDEs warn), but it misleads readers into thinking the value belongs to that object. Static methods called through a reference also do **not** use dynamic dispatch: the declared type decides which one runs ([[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]).
 
 ### 8.5 Constants: `static final`
 
@@ -634,7 +634,7 @@ On **every** `new`:
 
 1. Memory is allocated and **all** instance fields get their default values.
 2. The constructor is called with the arguments. If its first statement is `this(…)`, that other constructor is entered first (and so on).
-3. The superclass constructor runs (`super(…)`, explicit or implicit, see [[Java/Inheritance|Inheritance]]).
+3. The superclass constructor runs (`super(…)`, explicit or implicit, see [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]).
 4. The **instance field initializers** and **instance initializer blocks `{ … }`** run **top to bottom in source order**.
 5. The rest of the constructor body runs (and then, returning up the chain, the rest of any constructor that called `this(…)`).
 
@@ -743,11 +743,11 @@ q.x = 99;
 System.out.println(p.x); // 99
 ```
 
-To get an independent copy, create a new object and copy the fields (for example a *copy constructor* `Point(Point other) { this(other.x, other.y); }`). The same aliasing applies to arrays ([[Arrays#6.1 Assignment Creates an Alias, Not a Copy|Arrays § 6.1]]).
+To get an independent copy, create a new object and copy the fields (for example a *copy constructor* `Point(Point other) { this(other.x, other.y); }`). The same aliasing applies to arrays ([[03 - Arrays#6.1 Assignment Creates an Alias, Not a Copy|Arrays § 6.1]]).
 
 ### 10.2 Objects as Parameters and Return Values
 
-Passing an object to a method copies the reference. The method can change the object's fields (the caller sees it) but cannot make the caller's variable refer to another object (see [[Methods#5. Parameter Passing — Always Pass-by-Value|Methods § 5]]):
+Passing an object to a method copies the reference. The method can change the object's fields (the caller sees it) but cannot make the caller's variable refer to another object (see [[01 - Methods#5. Parameter Passing — Always Pass-by-Value|Methods § 5]]):
 
 ```java
 static void moveRight(Point p) { p.x++; }             // visible to the caller
@@ -788,7 +788,7 @@ System.out.println(new Point(1, 2));          // (1, 2)
 System.out.println("P = " + new Point(1, 2)); // P = (1, 2) : concatenation calls toString()
 ```
 
-Overriding `equals`/`hashCode` correctly is covered in [[Java/Inheritance|Inheritance]]. `==` on references is covered in [[Operators#7.3 `==` on References Compares Identity, Not Content|Operators § 7.3]].
+Overriding `equals`/`hashCode` correctly is covered in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]. `==` on references is covered in [[03 - Operators#7.3 `==` on References Compares Identity, Not Content|Operators § 7.3]].
 
 ### 10.4 Arrays of Objects Start Full of `null`
 
@@ -809,7 +809,7 @@ for (int i = 0; i < pts.length; i++) {
 
 ## 11. Putting It Together — A Complete Class
 
-This class uses every idea from the chapter. It also uses `private`, which is explained in the next chapter ([[Java/Encapsulation|Encapsulation]]): for now, read it as "only code inside `BankAccount` may touch this".
+This class uses every idea from the chapter. It also uses `private`, which is explained in the next chapter ([[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]): for now, read it as "only code inside `BankAccount` may touch this".
 
 ```java
 public class BankAccount {
@@ -1181,12 +1181,12 @@ class Player {
 
 ## Related
 
-- [[Java/Syllabus|Syllabus]]
-- Previous: [[Strings|Strings]] · Next: [[Java/Encapsulation|Encapsulation]]
-- [[Variables and Data Types|Variables and Data Types]]: instance/static variables, default values, blank finals, shadowing
-- [[Methods|Methods]]: declaring and overloading methods, pass-by-value, `static main`
-- [[Arrays|Arrays]]: arrays as objects, aliasing
-- [[Operators#7.3 `==` on References Compares Identity, Not Content|Operators § 7.3]]: `==` on references
-- [[Java/Encapsulation|Encapsulation]]: access modifiers, getters/setters, immutable classes
-- [[Java/Inheritance|Inheritance]]: `extends`, `super`, overriding `toString`/`equals`/`hashCode`
-- [[Java/Polymorphism|Polymorphism]]: dynamic dispatch, why static methods are not overridden
+- [[00 - Syllabus|Syllabus]]
+- Previous: [[02 - Strings|Strings]] · Next: [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]
+- [[02 - Variables and Data Types|Variables and Data Types]]: instance/static variables, default values, blank finals, shadowing
+- [[01 - Methods|Methods]]: declaring and overloading methods, pass-by-value, `static main`
+- [[03 - Arrays|Arrays]]: arrays as objects, aliasing
+- [[03 - Operators#7.3 `==` on References Compares Identity, Not Content|Operators § 7.3]]: `==` on references
+- [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]: access modifiers, getters/setters, immutable classes
+- [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]: `extends`, `super`, overriding `toString`/`equals`/`hashCode`
+- [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: dynamic dispatch, why static methods are not overridden

@@ -64,7 +64,7 @@ static long factorial(int n) {
 
 ## 2. The Call Stack
 
-Each call to a method creates a <span class="hl-blue">stack frame</span> holding its parameters, local variables, and the **return address** (where to resume in the caller). Frames are pushed on call and popped on return, so the most recent call always finishes first (LIFO). The Java-level mechanics are in [[Methods#6.2 The Call Stack|Methods § 6.2]].
+Each call to a method creates a <span class="hl-blue">stack frame</span> holding its parameters, local variables, and the **return address** (where to resume in the caller). Frames are pushed on call and popped on return, so the most recent call always finishes first (LIFO). The Java-level mechanics are in [[01 - Methods#6.2 The Call Stack|Methods § 6.2]].
 
 A recursive call is not special: it's an ordinary call that happens to target the same method. Every active call has **its own frame and its own copy of `n`**.
 
@@ -666,7 +666,7 @@ Time drops from `Θ(φⁿ)` to `Θ(n)` (number of distinct states × work per st
 - [[DSA/Syllabus|Syllabus]]
 - Previous: [[DSA/Foundations/Complexity Analysis|Complexity Analysis]] · Next: [[DSA/Foundations/Bit Manipulation|Bit Manipulation]]
 - [[DSA/Foundations/Complexity Analysis#6. Recurrence Relations|Complexity Analysis § 6–7]]: solving recurrences, the Master Theorem
-- [[Methods#9. Recursion|Java: Methods § 9]]: recursion from the language side; [[Methods#6.2 The Call Stack|§ 6.2]] on the call stack
+- [[01 - Methods#9. Recursion|Java: Methods § 9]]: recursion from the language side; [[01 - Methods#6.2 The Call Stack|§ 6.2]] on the call stack
 - [[DSA/Backtracking|Backtracking]]: choose, recurse, un-choose
 - [[DSA/Divide and Conquer|Divide and Conquer]]: merge sort, quickselect
 - [[DSA/Dynamic Programming Fundamentals|Dynamic Programming — Fundamentals]]: memoization and tabulation

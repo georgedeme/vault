@@ -1,0 +1,23 @@
+{
+  "id": "conv-1790694524469-di5l157ww",
+  "providerId": "claude",
+  "title": "Find generics in Java notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790694524473,
+  "lastActivityAt": 1790694838499,
+  "sessionId": "7d64aa70-c064-410c-8a59-5244c4af20e5",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "7d64aa70-c064-410c-8a59-5244c4af20e5"
+  },
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 390,
+    "cacheReadInputTokens": 30831,
+    "contextWindow": 1000000,
+    "contextTokens": 31223,
+    "percentage": 3,
+    "contextWindowIsAuthoritative": true
+  }
+}

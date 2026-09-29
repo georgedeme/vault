@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790694524469-di5l157ww",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790694525297-25x5e2q",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790694524467-02t8w1o",
+      "timestamp": 1790694524467,
+      "rawDisplayText": "@Java/  Are generics mentioned anywhere in these notes?",
+      "canonicalText": "@Java/  Are generics mentioned anywhere in these notes?",
+      "images": [],
+      "contentDigest": "ccf6eb6ca77d577c7249503f49dd9c6a85b70938ebc47a7f731eb852b200f5f3",
+      "providerUserMessageId": "835402a5-ed49-4981-bf8d-47ce07c5bdb4",
+      "providerAssistantMessageId": "e55a3f86-5cbe-4d93-878d-9eb9638e6357"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790694610646-kbk8op9",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1790694610644-6uwhgwm",
+      "timestamp": 1790694610644,
+      "rawDisplayText": "Where do you think the missing info could be written?",
+      "canonicalText": "Where do you think the missing info could be written?",
+      "images": [],
+      "contentDigest": "371ebcd186d69fd8f5269d4882fea363b46cef5ac05bfa7ff3b81922c15f042d",
+      "providerUserMessageId": "634426fa-13ab-444e-9007-11e3977dc314",
+      "providerAssistantMessageId": "cb1fe0f3-f044-4c7f-965d-2aea4833f6e8"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790694838507-ljst1te",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1790694838499-u392slk",
+      "timestamp": 1790694838499,
+      "rawDisplayText": "I deleted Collections Framework myself. Yeah number the notes in java as well. Also start writing the Generics note as you explained and add the short mentions",
+      "canonicalText": "I deleted Collections Framework myself. Yeah number the notes in java as well. Also start writing the Generics note as you explained and add the short mentions",
+      "images": [],
+      "contentDigest": "5293c61bbc0b0985ca2eda398badd631683165e18b544ef135ca8d53af3e86dc",
+      "providerUserMessageId": "692e3e17-c6dd-45b0-b29f-ab5d1a6a83af"
+    }
+  ]
+}

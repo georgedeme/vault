@@ -2,7 +2,7 @@
 
 <span class="hl-blue">Bit manipulation</span> means working directly on the binary representation of integers with bitwise operators. It gives `O(1)` tricks (power-of-two tests, lowest set bit), compact set representations (a whole subset of up to 64 elements in a single `long`), and the XOR identities behind a whole family of interview problems.
 
-It's also full of traps: two's complement, sign extension, masked shift distances, and Java's operator precedence each produce wrong-but-plausible answers. This note covers both the techniques and the traps. The language-level rules for the operators are in [[Operators#9. Bitwise and Shift Operators|Java: Operators § 9]].
+It's also full of traps: two's complement, sign extension, masked shift distances, and Java's operator precedence each produce wrong-but-plausible answers. This note covers both the techniques and the traps. The language-level rules for the operators are in [[03 - Operators#9. Bitwise and Shift Operators|Java: Operators § 9]].
 
 ## Contents
 
@@ -91,7 +91,7 @@ Java's `byte`, `short`, `int`, and `long` are **signed, two's complement** integ
 > int r = b >>> 4;             // 0x0FFFFFFF = 268435455, not 0x0F
 > int ok = (b & 0xFF) >>> 4;   // 0x0F = 15
 > ```
-> `b` is sign-extended to `0xFFFFFFF0` before the shift. Mask with `& 0xFF` to treat a byte as unsigned. Details in [[Operators#9.2 `>>>` on `byte` / `short` Doesn't Do What You'd Expect|Operators § 9.2]].
+> `b` is sign-extended to `0xFFFFFFF0` before the shift. Mask with `& 0xFF` to treat a byte as unsigned. Details in [[03 - Operators#9.2 `>>>` on `byte` / `short` Doesn't Do What You'd Expect|Operators § 9.2]].
 
 > [!warning] Precedence: bitwise operators bind *looser* than `==`
 > From highest to lowest: `~` → `* / %` → `+ -` → `<< >> >>>` → `< > <= >=` → `== !=` → `&` → `^` → `|` → `&&` → `||`.
@@ -715,8 +715,8 @@ All exist on both `Integer` and `Long`, run in `O(1)`, and most compile to a sin
 
 - [[DSA/Syllabus|Syllabus]]
 - Previous: [[DSA/Foundations/Recursion|Recursion]] · Next: [[DSA/Foundations/Math for Algorithms|Math for Algorithms]]
-- [[Operators#9. Bitwise and Shift Operators|Java: Operators § 9]]: operator semantics, masked shifts, precedence
-- [[Type Casting#2. Narrowing Between Integer Types — Overflow and Wraparound|Java: Type Casting § 2]]: wraparound and narrowing
+- [[03 - Operators#9. Bitwise and Shift Operators|Java: Operators § 9]]: operator semantics, masked shifts, precedence
+- [[04 - Type Casting#2. Narrowing Between Integer Types — Overflow and Wraparound|Java: Type Casting § 2]]: wraparound and narrowing
 - [[DSA/Fenwick Trees|Fenwick Trees]]: built on `i & −i`
 - [[DSA/Tries|Tries]]: bitwise trie for maximum XOR
 - [[DSA/Advanced DP|Advanced DP]]: bitmask DP and DP over subsets
