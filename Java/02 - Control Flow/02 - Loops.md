@@ -65,6 +65,8 @@ do {
 } while (!input.equals("quit"));
 ```
 
+`Scanner`, `nextLine`, and validation loops like this one are explained in [[Java/01 - Foundations/05 - Reading Input|Reading Input]].
+
 > [!warning] Don't forget the trailing semicolon
 > `do-while` is the only loop form that ends with a `;` after the `while (...)` clause. Omitting it is a compile error; including it on the other loop forms is also a compile error (it would create an empty-body loop — see [[#10. Common Pitfalls|Common Pitfalls]]).
 

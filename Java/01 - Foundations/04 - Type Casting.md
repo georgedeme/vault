@@ -401,7 +401,7 @@ This differs from the `Animal`/`Dog` case above, where the cast compiles (becaus
 ## 8. What Casting Cannot Do
 
 - **`boolean` cannot be cast to or from any numeric type**, unlike in C/C++. `(int) true` is a compile error.
-- **Casting a `String` to a number is not casting** — `(int) "5"` does not compile. Use `Integer.parseInt("5")` or `Double.parseDouble("5")` instead.
+- **Casting a `String` to a number is not casting** — `(int) "5"` does not compile. Use `Integer.parseInt("5")` or `Double.parseDouble("5")` instead (their rules and exceptions are in [[Java/01 - Foundations/05 - Reading Input#4. Parsing Strings into Numbers|Reading Input § 4]]).
 - **Casting a number to a `String` is not casting either** — use `String.valueOf(5)`, `Integer.toString(5)`, or string concatenation (`"" + 5`).
 - **Casting a floating-point value to an integer type does not round** — it truncates; see [[#3. Narrowing Between Floating-Point and Integer Types|section 3]]; use `Math.round()` first if rounding is intended. (The one narrowing cast that *does* round is `double -> float`, see [[#3.1 Narrowing double to float|3.1]].)
 

@@ -10,7 +10,7 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 - [x] [[02 - Variables and Data Types|Variables and Data Types]] — primitive types, reference types, declaration, and initialization
 - [x] [[03 - Operators|Operators]] — arithmetic, relational, logical, assignment, and bitwise operators; operator precedence
 - [x] [[04 - Type Casting|Type Casting]] — implicit and explicit conversion between types, and where the results are non-obvious
-- [ ] [[Java/01 - Foundations/05 - Reading Input|Reading Input]] — reading keyboard input with `Scanner`, parsing and validating it
+- [x] [[Java/01 - Foundations/05 - Reading Input|Reading Input]] — reading keyboard input with `Scanner` and `BufferedReader`, parsing and validating it
 
 ## Part II — Control Flow
 

@@ -11,16 +11,6 @@ When a chapter is written, delete its brief here (or trim it to anything still u
 
 ## Chapter Briefs
 
-### Part I — Foundations
-
-#### Reading Input
-
-[[Java/01 - Foundations/05 - Reading Input|Reading Input]]: reading keyboard input with `Scanner` and `BufferedReader`, parsing numbers, validating input.
-
-- **Cover:** `new Scanner(System.in)`; `next`, `nextLine`, `nextInt`, `nextDouble`, `hasNextInt`, … (token-based vs. line-based reading); an input-validation loop with `hasNextX`; `Integer.parseInt` / `Double.parseDouble`; `BufferedReader` + `readLine` (faster, throws `IOException`); reading until end of input. Command-line arguments are already in [[Java/01 - Foundations/01 - Introduction to Java#5.3 Command-Line Arguments|Introduction to Java § 5.3]]; link, don't repeat.
-- **Traps:** `nextInt()` followed by `nextLine()` returns `""` (the leftover newline); `InputMismatchException` leaves the bad token in the buffer, so a `try`/`catch` retry loop spins forever unless it calls `next()`; `nextDouble()` is **locale-dependent** (on a Greek-locale machine it expects `3,5`, not `3.5`; fix with `useLocale(Locale.US)`); `NumberFormatException` from `parseInt(" 42")` (spaces) and `parseInt("4.0")`; closing a `Scanner` on `System.in` closes `System.in` for good; two `Scanner`s on `System.in` steal each other's buffered input; comparing input with `==` instead of `equals`.
-- **Promised by:** none formally, but [[Java/02 - Control Flow/02 - Loops|Loops]] and [[Java/02 - Control Flow/03 - Arrays|Arrays]] use `Scanner` in examples without explaining it. Add back-links there.
-
 ### Part IV — Object-Oriented Programming
 
 #### Encapsulation
@@ -84,7 +74,7 @@ When a chapter is written, delete its brief here (or trim it to anything still u
 
 - **Cover:** the `Throwable` hierarchy (`Error`, `Exception`, `RuntimeException`); checked vs. unchecked and the "catch or declare" rule; `throw` vs. `throws`; `try`/`catch`/`finally`; multi-catch; **try-with-resources** and `AutoCloseable`, with suppressed exceptions; custom exceptions; reading a stack trace; good practice (don't swallow exceptions, don't catch `Exception` blindly).
 - **Traps:** catch blocks in the wrong order (a superclass before a subclass is an unreachable-code compile error); a `return` in `finally` overrides the `try`'s return and swallows exceptions; an exception thrown in `finally` masks the original one; `finally` runs even after `return` (but not after `System.exit`); catching a checked exception that the `try` can't throw is a compile error; overriding methods can't throw broader checked exceptions; generic classes can't extend `Throwable`, but `<T extends Exception> … throws T` is allowed.
-- **Promised by:** [[Java/03 - Program Structure/01 - Methods|Methods]] § 2 (the `throws` clause); [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] § 3.4 (try-with-resources for closing resources); [[Java/05 - Working with Data and Errors/02 - Generics#7.2 What Erasure Forbids|Generics § 7.2]].
+- **Promised by:** [[Java/03 - Program Structure/01 - Methods|Methods]] § 2 (the `throws` clause); [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] § 3.4 (try-with-resources for closing resources); [[Java/05 - Working with Data and Errors/02 - Generics#7.2 What Erasure Forbids|Generics § 7.2]]; [[Java/01 - Foundations/05 - Reading Input|Reading Input]] §§ 5.3–5.4 and 9.1 (uses `try`/`catch` with `InputMismatchException`/`NumberFormatException`, and `throws IOException`, with only a one-line explanation and a forward link).
 
 #### Comparable and Comparator
 
@@ -133,6 +123,7 @@ When a chapter is written, delete its brief here (or trim it to anything still u
 
 - **Cover:** `Path` and `Files` (`readAllLines`, `readString`, `lines`, `write`, `writeString`, `newBufferedReader`/`newBufferedWriter`); classic `java.io` (`FileReader`, `BufferedReader`, `PrintWriter`, `FileWriter`); try-with-resources throughout; appending vs. overwriting; character encodings (always name `UTF-8`); `Scanner` on a file; checking and creating files and directories.
 - **Traps:** relative paths resolve against the **working directory**, not the source file's folder; `new FileWriter(f)` truncates the file (append needs `true`); `Files.lines` must be closed; forgetting to `flush`/`close` loses buffered output; `IOException` is checked; the platform-default charset garbles non-ASCII (e.g. Greek) text; `\` vs. `/` in paths.
+- **Promised by:** [[Java/01 - Foundations/05 - Reading Input|Reading Input]] § 9.4 (`Scanner`/`BufferedReader` on a file; Greek console input and charsets) and § 10.1 (Scanners on files *should* be closed). Keyboard-reading traps (`nextInt`/`nextLine`, locale, `split` empty tokens) are already there: link, don't repeat.
 
 ### Later — Optional Chapters
 
@@ -180,4 +171,5 @@ Scope notes for the unscheduled chapters in the Syllabus. When one is promoted, 
 - *Collections Framework* moved from `03` to `04` in Part V, to come after *Comparable and Comparator*.
 - The `equals`/`hashCode` contract moved out of *Inheritance* into its own chapter, *Object Methods*. [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] now points there.
 - The Syllabus is kept short (titles and one-line descriptions only) at the user's request. All authoring detail lives in this guide.
+- **2026-09-29:** *Reading Input* written. It also covers `BufferedReader` (§ 9), `StringTokenizer`, `System.console()`, and a measured Scanner-vs-BufferedReader timing. It uses `try`/`catch` before *Exception Handling* with a one-line explanation, because a validation chapter without it would be incomplete. It recommends line-based reading (`nextLine` + `parseX`) as the default validation pattern. [[Java/01 - Foundations/04 - Type Casting|Type Casting]] and [[Java/02 - Control Flow/01 - Conditional Statements|Conditional Statements]] have no `Related` section, so their Previous/Next links couldn't be updated. Add them if those notes get a `Related` section.
 - **Known issue (not yet fixed):** the Contents links in [[Java/02 - Control Flow/01 - Conditional Statements|Conditional Statements]] and [[Java/02 - Control Flow/02 - Loops|Loops]], and two links to § 5 inside [[Java/01 - Foundations/04 - Type Casting|Type Casting]], leave out backticks that their headings have (e.g. `#1. The if Statement` for "1. The `if` Statement"). Check in Obsidian whether they jump, and fix them if not.

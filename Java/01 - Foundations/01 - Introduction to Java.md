@@ -168,7 +168,7 @@ public class Greet {
 
 - `args[0]` is the **first argument**, not the program name (unlike C/C++'s `argv[0]`).
 - With no arguments, `args` is an **empty array** (`args.length == 0`), **never `null`**. Accessing `args[0]` then throws `ArrayIndexOutOfBoundsException`.
-- Every argument is a `String`. Convert explicitly with `Integer.parseInt(args[2])` (see [[04 - Type Casting#8. What Casting Cannot Do|What Casting Cannot Do]]).
+- Every argument is a `String`. Convert explicitly with `Integer.parseInt(args[2])` (see [[04 - Type Casting#8. What Casting Cannot Do|What Casting Cannot Do]]). What `parseInt` accepts and rejects is in [[Java/01 - Foundations/05 - Reading Input#4. Parsing Strings into Numbers|Reading Input § 4]], and reading from the keyboard instead is covered in the rest of that chapter.
 
 ### 5.4 Packages and the Classpath
 

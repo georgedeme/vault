@@ -115,7 +115,7 @@ Every element gets its type's **default value**, whether the array is a local va
 The length expression is evaluated **at runtime** and can be any expression of type `int` (or of a type that promotes to `int`):
 
 ```java
-int n = scanner.nextInt();
+int n = scanner.nextInt();       // read from the keyboard (see Reading Input)
 int[] a = new int[n];            // OK: the length need not be a constant
 int[] b = new int['A'];          // OK: char promotes to int, length 65
 int[] c = new int[0];            // OK: an empty array, length 0
@@ -1186,6 +1186,7 @@ System.out.println(l1.get(0)[0]);
 - [[00 - Syllabus|Syllabus]]
 - Previous: [[02 - Loops|Loops]] · Next: [[01 - Methods|Methods]]
 - [[02 - Variables and Data Types|Variables and Data Types]]: default values, reference types, `final`, `var`
+- [[Java/01 - Foundations/05 - Reading Input|Reading Input]]: `Scanner`, reading an array's length and elements from the keyboard
 - [[02 - Strings|Strings]]: `char[]` ↔ `String`, `length()` vs. `length`
 - [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: invariant generics vs. covariant arrays, generic array creation
 - [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]]: `ArrayList` as a resizable alternative
