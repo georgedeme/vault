@@ -33,6 +33,7 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 ## Part V — Working with Data and Errors
 
 - [ ] [[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]] — `try` / `catch` / `finally`, checked vs. unchecked exceptions, custom exceptions
+- [x] [[Java/05 - Working with Data and Errors/02 - Generics|Generics]] — generic classes and methods, bounded types, invariance, wildcards and PECS, type erasure, raw types, autoboxing traps
 - [ ] [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]] — `List`, `Set`, `Map`, and choosing between implementations
 
 ## Notes

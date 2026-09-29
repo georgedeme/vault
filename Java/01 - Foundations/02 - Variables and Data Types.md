@@ -308,6 +308,9 @@ var name = "Ada";        // inferred as String
 var list = new ArrayList<String>(); // inferred as ArrayList<String>
 ```
 
+> [!warning] Trick: `var` with the diamond `<>` infers `Object`
+> `var list = new ArrayList<>();` compiles, but with no declared type to infer from, the list becomes an `ArrayList<Object>`: `list.add("a"); list.add(1);` both compile, and `String s = list.get(0);` does not. When using `var`, write the type argument on the right. See [[Java/05 - Working with Data and Errors/02 - Generics#2.3 The Diamond Operator|Generics § 2.3]].
+
 `var` is **not** dynamic typing — the type is fixed at compile time, exactly as if you'd written it explicitly. It's purely a source-code shorthand.
 
 ```java
@@ -341,6 +344,7 @@ x = "hello";   // compile error — x is int, permanently, despite the var synta
 | `char c = '\u0000';` printed | prints nothing (not `0`) | valid non-printing default char |
 | `final int[] a = {1}; a[0] = 2;` | compiles, `a[0] == 2` | `final` locks the reference, not the contents |
 | `var x = null;` | compile error | no type to infer from a bare `null` |
+| `var list = new ArrayList<>();` | `ArrayList<Object>` | the diamond has no target type to infer from |
 | `var a = 1, b = 2;` | compile error | `var` disallows multi-declarator statements |
 | `boolean b = 1;` | compile error | Java booleans are not interchangeable with integers |
 | `new String("hi") == "hi"` | `false` | one is pooled, one is a new heap object — use `.equals()` |

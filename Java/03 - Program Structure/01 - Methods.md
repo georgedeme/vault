@@ -66,6 +66,8 @@ public static int max(int a, int b) throws IllegalStateException {
 | `throws` clause | `throws IllegalStateException` | no | exceptions the method may throw ([[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]]) |
 | Body | `{ … }` | yes (except `abstract`/interface methods) | the statements to run |
 
+A method can also declare its own **type parameters**, written right before the return type: `static <T> T last(List<T> list)` works for a list of any type. These *generic methods* are covered in [[Java/05 - Working with Data and Errors/02 - Generics#3. Generic Methods|Generics § 3]].
+
 > [!warning] Common mistakes in the header
 > ```java
 > static int max(int a, b) { … }     // compile error: every parameter needs its own type
@@ -411,6 +413,7 @@ add("x", 1);       // add(String, int)       → "x1"
 | modifiers (`static`, `public`, `final`) | ❌ | same signature |
 | `throws` clause | ❌ | same signature |
 | `int[]` vs. `int...` | ❌ | varargs **is** an array: *cannot declare both f(int[]) and f(int...)* |
+| only the type arguments (`List<String>` vs. `List<Integer>`) | ❌ | *name clash: … have the same erasure*: both become `f(List)` after type erasure ([[Java/05 - Working with Data and Errors/02 - Generics#7.3 Overloads That Clash After Erasure|Generics § 7.3]]) |
 
 > [!info]- Why can't the return type distinguish overloads?
 > Because a return value can be ignored. For `f(5);` as a statement, nothing indicates whether `int f(int)` or `long f(int)` was meant. So the compiler chooses an overload from the arguments alone, and two methods with the same parameter types are considered duplicates.
@@ -911,4 +914,5 @@ static void increment(int counter) { counter++; }
 - [[03 - Operators#13. Evaluation Order — Not the Same as Precedence|Operators § 13]]: left-to-right evaluation
 - [[01 - Classes and Objects|Classes and Objects]]: instance methods, constructors, `this`, `static`
 - [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: overriding vs. overloading
+- [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: generic methods, overloads that clash after erasure
 - [[DSA/Foundations/Recursion|DSA: Recursion]]

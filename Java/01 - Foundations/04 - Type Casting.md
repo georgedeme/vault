@@ -432,6 +432,8 @@ Other boxing gotchas that look like casting problems:
 | `Long.valueOf(1).equals(1)` | `false` | `1` is boxed to `Integer`, and a `Long` never equals an `Integer` |
 | `Integer n = null; int m = n;` | `NullPointerException` | unboxing `null` |
 
+Generic collections can only hold wrappers (`List<Integer>`, never `List<int>`), so these traps show up constantly there, along with a few of their own, such as `list.remove(1)` removing an **index** rather than the value `1`. See [[Java/05 - Working with Data and Errors/02 - Generics#9. Generics and Autoboxing — Traps|Generics § 9]].
+
 ---
 
 ## 10. Quick Reference — Non-Obvious Outcomes

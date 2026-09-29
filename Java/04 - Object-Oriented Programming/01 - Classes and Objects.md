@@ -86,6 +86,8 @@ public class Student {
 | `class` + name | `class Student` | by convention a noun in `UpperCamelCase` |
 | Body `{ … }` | | contains fields, constructors, methods, initializer blocks, nested types, in **any order** |
 
+A class can also take **type parameters** after its name (`class Box<T> { T value; … }`) so that the same code works for `Box<String>`, `Box<Integer>`, and so on. See [[Java/05 - Working with Data and Errors/02 - Generics|Generics]].
+
 ### 2.1 Files and Class Names
 
 - A `.java` file may contain **several** top-level classes, but **at most one** may be `public`, and that one must have the **same name as the file** (`public class Student` → `Student.java`). See [[01 - Introduction to Java#6. Files, Classes, and Names|Introduction to Java § 6]].
@@ -1190,3 +1192,4 @@ class Player {
 - [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]: access modifiers, getters/setters, immutable classes
 - [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]: `extends`, `super`, overriding `toString`/`equals`/`hashCode`
 - [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: dynamic dispatch, why static methods are not overridden
+- [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: generic classes, why static members can't use `T`

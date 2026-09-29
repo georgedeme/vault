@@ -553,7 +553,7 @@ list.remove(0);              // UnsupportedOperationException
 List<String> growable = new ArrayList<>(Arrays.asList(arr));   // an independent, resizable copy
 ```
 
-<span class="hl-red">Trap: `Arrays.asList` on a primitive array.</span> Generics cannot hold primitives, so the whole `int[]` becomes the single element:
+<span class="hl-red">Trap: `Arrays.asList` on a primitive array.</span> Generics cannot hold primitives ([[Java/05 - Working with Data and Errors/02 - Generics#2.2 Type Arguments Must Be Reference Types|Generics § 2.2]]), so the whole `int[]` becomes the single element:
 
 ```java
 int[] p = {1, 2, 3};
@@ -741,7 +741,7 @@ T[] arr = new T[10];                            // compile error inside a generi
 List<String>[] ok = new List[10];              // compiles with an "unchecked" warning
 ```
 
-Generics are checked only at compile time and erased at runtime, while arrays check their element type at runtime. The two models conflict, so Java forbids creating arrays of generic types. The usual answer is to use `List<List<String>>` instead. More in [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]].
+Generics are checked only at compile time and erased at runtime, while arrays check their element type at runtime. The two models conflict, so Java forbids creating arrays of generic types. The usual answer is to use `List<List<String>>` instead. The full list of what erasure forbids, and why `new List<?>[10]` *is* allowed, is in [[Java/05 - Working with Data and Errors/02 - Generics#7.2 What Erasure Forbids|Generics § 7.2]]. Invariance vs. covariance is compared in [[Java/05 - Working with Data and Errors/02 - Generics#5.2 Arrays vs. Generics|Generics § 5.2]].
 
 ---
 
@@ -1187,5 +1187,6 @@ System.out.println(l1.get(0)[0]);
 - Previous: [[02 - Loops|Loops]] · Next: [[01 - Methods|Methods]]
 - [[02 - Variables and Data Types|Variables and Data Types]]: default values, reference types, `final`, `var`
 - [[02 - Strings|Strings]]: `char[]` ↔ `String`, `length()` vs. `length`
+- [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: invariant generics vs. covariant arrays, generic array creation
 - [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]]: `ArrayList` as a resizable alternative
 - [[DSA/Arrays|DSA: Arrays]] · [[DSA/Binary Search|DSA: Binary Search]] · [[DSA/Sorting Algorithms|DSA: Sorting Algorithms]]
