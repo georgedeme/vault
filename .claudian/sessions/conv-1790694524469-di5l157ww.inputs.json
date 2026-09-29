@@ -71,6 +71,34 @@
       "contentDigest": "39f537250cd0562db9ea3852aa6b66aba41d30babada486e9dfd6ca8430a5c0a",
       "providerUserMessageId": "5ffcc1a4-225d-4f53-b046-589ab564c0c3",
       "providerAssistantMessageId": "83a46e22-0802-4be6-a342-e91c28f9ea7b"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790696838318-ugstknb",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1790696838312-im6bquh",
+      "timestamp": 1790696838312,
+      "rawDisplayText": "I would like the [[Java/00 - Syllabus.md|00 - Syllabus]] not to include specifics of each chapter, so it is easy to the eye. Move everything you just wrote to a new note that is mainly for you to consult when authoring the notes later. The syllabus is for me and it's main purpose is to list the titles of the chapters that will be covered",
+      "canonicalText": "I would like the [[Java/00 - Syllabus.md|00 - Syllabus]] not to include specifics of each chapter, so it is easy to the eye. Move everything you just wrote to a new note that is mainly for you to consult when authoring the notes later. The syllabus is for me and it's main purpose is to list the titles of the chapters that will be covered",
+      "images": [],
+      "contentDigest": "6d66715f181ec147931b26f81753f6b7a88ac367f4841fa8c8f73cde39491988",
+      "providerUserMessageId": "37e6e4d8-7866-46cf-adca-15be7c3ae564",
+      "providerAssistantMessageId": "ad637b71-f9f5-47a2-902f-cdcacebac48f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790697020032-nou02k1",
+      "userTurnOrdinal": 7,
+      "state": "accepted",
+      "localMessageId": "msg-1790697020026-pimg4qw",
+      "timestamp": 1790697020026,
+      "rawDisplayText": "yeah add to claude.md",
+      "canonicalText": "yeah add to claude.md",
+      "images": [],
+      "contentDigest": "7f2f1dfa592163504b4a8f253e9785b84f01dc34005cd5778b5e6e426a5ac6e6",
+      "providerUserMessageId": "7ecaadda-bbb6-419d-9472-f56f41b02f2d",
+      "providerAssistantMessageId": "9ea3c305-2582-4aa7-a0b3-8080405c6672"
     }
   ]
 }

@@ -43,6 +43,15 @@ topic, and include them rather than sticking to the safe/common path.
 For data structures and algorithms notes: state the algorithm in
 pseudocode first, then give a working Java implementation.
 
+# Java notes
+
+Before writing or editing anything in `Java/`, read
+`Java/99 - Authoring Guide.md`. It has the brief for each planned chapter,
+the conventions the Java notes follow (these take precedence over the
+ΕΠΛ111 model below), the checklist to run when a chapter is finished,
+and past decisions. Keep `Java/00 - Syllabus.md` short (chapter titles
+and one-line descriptions only), and put all authoring detail in the guide.
+
 # Excluded folders
 
 Ignore the `Papaioannou/` folder in all situations: do not read, search,
