@@ -2,7 +2,7 @@
 
 <span class="hl-blue">Generics</span> let a class, interface, or method take **types as parameters**. You write the code once, as `Box<T>` or `<T> T max(List<T> list)`, and the caller chooses the type: `Box<String>`, `max(List<Integer>)`. The compiler then checks every use against that type, so the wrong kind of object is caught **at compile time** and no casts are needed when reading. This chapter covers generic classes, interfaces, and methods, the diamond operator, bounded type parameters, why generics are invariant, wildcards and PECS, type erasure and everything it forbids, raw types, and the autoboxing traps that come with collections of wrappers.
 
-Generics build on interfaces and subtyping from [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]] and [[Java/04 - Object-Oriented Programming/05 - Abstraction|Abstraction]], and on autoboxing from [[Java/01 - Foundations/04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]]. Their main users are the collections in [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]], which is why this chapter comes right before it.
+Generics build on interfaces and subtyping from [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]] and [[Java/04 - Object-Oriented Programming/05 - Abstraction|Abstraction]], and on autoboxing from [[Java/01 - Foundations/04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]]. Their main users are [[Java/05 - Working with Data and Errors/03 - Comparable and Comparator|Comparable and Comparator]] and the collections in [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]], which is why this chapter comes before them.
 
 ## Contents
 
@@ -1240,10 +1240,11 @@ static <T super Integer> void f(List<T> l) { }   // (5)
 ## Related
 
 - [[Java/00 - Syllabus|Syllabus]]
-- Previous: [[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]] · Next: [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]]
+- Previous: [[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]] · Next: [[Java/05 - Working with Data and Errors/03 - Comparable and Comparator|Comparable and Comparator]]
 - [[Java/02 - Control Flow/03 - Arrays#11. Array Types, Covariance, and `ArrayStoreException`|Arrays § 11]]: covariant arrays, `ArrayStoreException`, generic array creation
 - [[Java/03 - Program Structure/01 - Methods#7. Method Overloading|Methods § 7]]: overload resolution, which explains `remove(int)` vs. `remove(Object)` and erasure clashes
 - [[Java/01 - Foundations/04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]]: autoboxing, the `Integer` cache
 - [[Java/01 - Foundations/02 - Variables and Data Types#9. Type Inference with `var`|Variables and Data Types § 9]]: `var` and inference
 - [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]] · [[Java/04 - Object-Oriented Programming/05 - Abstraction|Abstraction]]: subtyping and interfaces such as `Comparable`
-- [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]]: `List`, `Set`, `Map` and their generic APIs
+- [[Java/05 - Working with Data and Errors/03 - Comparable and Comparator|Comparable and Comparator]]: `Comparable<T>`, `Comparator<? super T>` in practice
+- [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]]: `List`, `Set`, `Map` and their generic APIs

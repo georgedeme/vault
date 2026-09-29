@@ -42,7 +42,7 @@ Loops over arrays are covered in [[02 - Loops|Loops]]. Arrays as a data structur
 | Access time | `a[i]` is O(1): the address is computed directly from `i` |
 | Default contents | every element starts at its type's default value (`0`, `false`, `null`, …) |
 
-If you need a sequence that grows and shrinks, use `ArrayList` (see [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]]). An array cannot be resized. You can only create a new, bigger one and copy into it ([[#7. Copying Arrays|§ 7]]).
+If you need a sequence that grows and shrinks, use `ArrayList` (see [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]]). An array cannot be resized. You can only create a new, bigger one and copy into it ([[#7. Copying Arrays|§ 7]]).
 
 ---
 
@@ -1188,5 +1188,5 @@ System.out.println(l1.get(0)[0]);
 - [[02 - Variables and Data Types|Variables and Data Types]]: default values, reference types, `final`, `var`
 - [[02 - Strings|Strings]]: `char[]` ↔ `String`, `length()` vs. `length`
 - [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: invariant generics vs. covariant arrays, generic array creation
-- [[Java/05 - Working with Data and Errors/03 - Collections Framework|Collections Framework]]: `ArrayList` as a resizable alternative
+- [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]]: `ArrayList` as a resizable alternative
 - [[DSA/Arrays|DSA: Arrays]] · [[DSA/Binary Search|DSA: Binary Search]] · [[DSA/Sorting Algorithms|DSA: Sorting Algorithms]]

@@ -106,7 +106,7 @@ System.out.println(e.toString());    // Empty@1b6d3586  (class name @ hex hash c
 System.out.println(e.equals(e));     // true
 ```
 
-The inherited versions are rarely what you want ([[#10.3 Printing and Comparing Objects|§ 10.3]]); overriding them is covered in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]].
+The inherited versions are rarely what you want ([[#10.3 Printing and Comparing Objects|§ 10.3]]); overriding them is covered in [[Java/04 - Object-Oriented Programming/06 - Object Methods|Object Methods]].
 
 > [!info]- Records: a shortcut for "data carrier" classes (Java 16+)
 > ```java
@@ -790,7 +790,7 @@ System.out.println(new Point(1, 2));          // (1, 2)
 System.out.println("P = " + new Point(1, 2)); // P = (1, 2) : concatenation calls toString()
 ```
 
-Overriding `equals`/`hashCode` correctly is covered in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]. `==` on references is covered in [[03 - Operators#7.3 `==` on References Compares Identity, Not Content|Operators § 7.3]].
+Overriding `equals`/`hashCode` correctly is covered in [[Java/04 - Object-Oriented Programming/06 - Object Methods|Object Methods]]. `==` on references is covered in [[03 - Operators#7.3 `==` on References Compares Identity, Not Content|Operators § 7.3]].
 
 ### 10.4 Arrays of Objects Start Full of `null`
 
@@ -1190,6 +1190,7 @@ class Player {
 - [[03 - Arrays|Arrays]]: arrays as objects, aliasing
 - [[03 - Operators#7.3 `==` on References Compares Identity, Not Content|Operators § 7.3]]: `==` on references
 - [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]: access modifiers, getters/setters, immutable classes
-- [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]: `extends`, `super`, overriding `toString`/`equals`/`hashCode`
+- [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]: `extends`, `super`, overriding
+- [[Java/04 - Object-Oriented Programming/06 - Object Methods|Object Methods]]: the `equals`/`hashCode`/`toString` contract
 - [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: dynamic dispatch, why static methods are not overridden
 - [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: generic classes, why static members can't use `T`
