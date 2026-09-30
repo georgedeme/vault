@@ -112,7 +112,7 @@ The inherited versions are rarely what you want ([[#10.3 Printing and Comparing 
 > ```java
 > record Point(int x, int y) { }
 > ```
-> declares a final class with two `private final` fields, a constructor `Point(int x, int y)`, accessor methods `x()` and `y()` (not `getX()`), and sensible `equals`, `hashCode`, and `toString` (`Point[x=1, y=2]`). Records are covered with immutable design in [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]. This chapter uses ordinary classes, because records hide exactly the mechanics being explained here.
+> declares a final class with two `private final` fields, a constructor `Point(int x, int y)`, accessor methods `x()` and `y()` (not `getX()`), and sensible `equals`, `hashCode`, and `toString` (`Point[x=1, y=2]`). Records are covered with immutable design in [[Java/04 - Object-Oriented Programming/02 - Encapsulation#8. Records (Java 16+)|Encapsulation § 8]]. This chapter uses ordinary classes, because records hide exactly the mechanics being explained here.
 
 ---
 
@@ -265,7 +265,7 @@ System.out.println(a.get() + " " + b.get() + " " + a.isAbove(b));   // 2 1 true
 
 - The same method code serves every object. The JVM passes the target object in as a hidden parameter, which is what `this` refers to.
 - Calling an instance method needs an object: `reference.method(…)`. Through a `null` reference it throws `NullPointerException`.
-- An instance method of a class may use **another object's** fields of the same class (`other.count`), even `private` ones. Access control is per class, not per object ([[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]).
+- An instance method of a class may use **another object's** fields of the same class (`other.count`), even `private` ones. Access control is per class, not per object ([[Java/04 - Object-Oriented Programming/02 - Encapsulation#4. Access Is per Class, Not per Object|Encapsulation § 4]]).
 - Declaration, parameters, overloading, and pass-by-value work exactly as in [[01 - Methods|Methods]].
 
 > [!tip] Instance or static?
@@ -815,7 +815,7 @@ for (int i = 0; i < pts.length; i++) {
 
 ## 11. Putting It Together — A Complete Class
 
-This class uses every idea from the chapter. It also uses `private`, which is explained in the next chapter ([[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]): for now, read it as "only code inside `BankAccount` may touch this".
+This class uses every idea from the chapter. It also uses `private`, which is explained in the next chapter ([[Java/04 - Object-Oriented Programming/02 - Encapsulation#3. The Four Access Levels|Encapsulation § 3]]): for now, read it as "only code inside `BankAccount` may touch this".
 
 ```java
 public class BankAccount {

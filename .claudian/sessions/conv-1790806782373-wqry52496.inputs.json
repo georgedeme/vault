@@ -15,6 +15,20 @@
       "contentDigest": "e33d43ea4c314a9acf11ec42ae3d9dd44fbefab0e518fca135bf9db2d464695a",
       "providerUserMessageId": "ee1c2d01-17ce-4eef-a583-da6d39c5e043",
       "providerAssistantMessageId": "87e53491-4793-42f9-bd7e-3c37f8c94348"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790808584592-3pqf025",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1790808584582-xjwlfh5",
+      "timestamp": 1790808584582,
+      "rawDisplayText": "Where is the encapsulation note?",
+      "canonicalText": "Where is the encapsulation note?",
+      "images": [],
+      "contentDigest": "d0792f7da676f1be3a7332269abd3592a9f05cd3c8cd58dc918fa3df6d1df02d",
+      "providerUserMessageId": "20c067b4-55f2-4482-8fc4-c7bc34196746",
+      "providerAssistantMessageId": "5907430f-59a5-4180-998c-32b721014ded"
     }
   ]
 }

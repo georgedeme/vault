@@ -13,21 +13,13 @@ When a chapter is written, delete its brief here (or trim it to anything still u
 
 ### Part IV — Object-Oriented Programming
 
-#### Encapsulation
-
-[[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]: access modifiers, getters and setters, why state is hidden.
-
-- **Cover:** the four access levels in a table (`private`, package-private, `protected`, `public`), with what each allows from the same class, the same package, a subclass, and anywhere; top-level classes can only be `public` or package-private; getters/setters and validation in setters; immutable classes (`final` fields, no setters, `final` class, defensive copies); **records** (compact constructors, validation, accessors `x()` not `getX()`, what records can and can't do).
-- **Traps:** access is per **class**, not per object (a method can read another instance's `private` fields); returning an internal array or list lets callers change private state; a `final` field holding a mutable object isn't immutable; `protected` also grants access to the whole package; a record's accessors return the field as-is (shallow).
-- **Promised by:** [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] (access modifiers, per-class access, records "covered with immutable design", `private` in § 11); [[Java/02 - Control Flow/03 - Arrays|Arrays]] § 10 (defensive copies of array fields); [[Java/03 - Program Structure/01 - Methods|Methods]] § 2 (modifiers).
-
 #### Inheritance
 
 [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]: `extends`, method overriding, `super`.
 
 - **Cover:** `extends` and single inheritance; what is and isn't inherited; overriding rules (same signature, `@Override`, covariant return types, access can't be narrowed, can't throw broader checked exceptions); `super.method()`; constructor chaining with `super(…)` and the implicit `super()`; initialization order across a hierarchy; `final` methods and classes; `protected`; field **hiding** vs. method overriding; sealed classes (Java 17+). Overriding `toString` can be shown briefly, but the full `equals`/`hashCode` contract belongs to *Object Methods*.
 - **Traps:** a superclass without a no-arg constructor breaks subclasses that rely on the implicit `super()`; `super(…)`/`this(…)` must be the first statement; calling an overridable method from a constructor sees uninitialized subclass fields; private methods and static methods are not overridden; fields aren't polymorphic; `@Override` catches signature typos.
-- **Promised by:** [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] (constructors not inherited, implicit `super()` and the default constructor, superclass step in initialization order); [[Java/03 - Program Structure/01 - Methods|Methods]] (overriding).
+- **Promised by:** [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] (constructors not inherited, implicit `super()` and the default constructor, superclass step in initialization order); [[Java/03 - Program Structure/01 - Methods|Methods]] (overriding); [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]] (`protected` from the subclass side, overriding can't narrow access, overridable setters called from constructors in § 5.2, why immutable classes are `final` in § 7.3).
 
 #### Polymorphism
 
@@ -174,4 +166,5 @@ Scope notes for the unscheduled chapters in the Syllabus. When one is promoted, 
 - The Syllabus is kept short (titles and one-line descriptions only) at the user's request. All authoring detail lives in this guide.
 - **2026-09-29:** *Reading Input* written. It also covers `BufferedReader` (§ 9), `StringTokenizer`, `System.console()`, and a measured Scanner-vs-BufferedReader timing. It uses `try`/`catch` before *Exception Handling* with a one-line explanation, because a validation chapter without it would be incomplete. It recommends line-based reading (`nextLine` + `parseX`) as the default validation pattern. [[Java/01 - Foundations/04 - Type Casting|Type Casting]] and [[Java/02 - Control Flow/01 - Conditional Statements|Conditional Statements]] have no `Related` section, so their Previous/Next links couldn't be updated. Add them if those notes get a `Related` section.
 - **2026-10-01:** 25 Excalidraw diagrams added to the written chapters (2–3 per chapter, 1 for *Reading Input* and *Loops*), stored in `Java/99 - Drawings/`. The only change to the chapter text is the embed lines. New chapters should get diagrams the same way (see *How to Write a Chapter*).
+- **2026-10-01:** *Encapsulation* written, with two drawings (*Access Levels*, *Leaking Mutable State*). Besides the brief it covers a short packages recap (§ 2), `protected` constructors and the other-package restriction, a public member of a package-private class, `Collections.unmodifiableList` (view) vs. `List.copyOf` (snapshot), `public static final` arrays, private constructors, and the record trap that generated `toString`/`equals` read fields, not overridden accessors. Drawings are generated with ExcalidrawAutomate scripts in `%TEMP%/exdraw` (`lib.js`, `run.js`, `go.sh`; run with `FOLDER="Java/99 - Drawings" bash go.sh 1 <script>`), a temporary folder that may be gone later.
 - **Known issue (not yet fixed):** the Contents links in [[Java/02 - Control Flow/01 - Conditional Statements|Conditional Statements]] and [[Java/02 - Control Flow/02 - Loops|Loops]], and two links to § 5 inside [[Java/01 - Foundations/04 - Type Casting|Type Casting]], leave out backticks that their headings have (e.g. `#1. The if Statement` for "1. The `if` Statement"). Check in Obsidian whether they jump, and fix them if not.

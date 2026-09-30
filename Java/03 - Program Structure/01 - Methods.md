@@ -59,7 +59,7 @@ public static int max(int a, int b) throws IllegalStateException {
 
 | Part | Example | Required? | Meaning |
 |---|---|---|---|
-| Modifiers | `public static` | no | access level ([[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]), `static`, `final`, `abstract`, … |
+| Modifiers | `public static` | no | access level ([[Java/04 - Object-Oriented Programming/02 - Encapsulation#3. The Four Access Levels|Encapsulation § 3]]), `static`, `final`, `abstract`, … |
 | Return type | `int` | **yes** | the type returned, or `void` |
 | Name | `max` | **yes** | by convention a verb in `lowerCamelCase`: `computeTotal`, `isEmpty` |
 | Parameter list | `(int a, int b)` | **yes** (may be empty `()`) | each parameter needs its own type |

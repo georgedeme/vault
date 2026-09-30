@@ -34,7 +34,7 @@ System.out.println(upper);       // HELLO
 > [!warning] Common mistake
 > Calling a `String` method for its "side effect" and ignoring the return value is one of the most common beginner bugs. There is no side effect — `String` has none to have. Always assign the result back to a variable (the same one, or a new one).
 
-Immutability has real benefits beyond avoiding surprises: `String`s are safe to share freely across threads without synchronization, safe to use as `HashMap` keys (their hash code never changes), and safe to cache in the string pool (see [[#2. Creating Strings — Literals vs. `new`|section 2]]).
+Immutability has real benefits beyond avoiding surprises: `String`s are safe to share freely across threads without synchronization, safe to use as `HashMap` keys (their hash code never changes), and safe to cache in the string pool (see [[#2. Creating Strings — Literals vs. `new`|section 2]]). How to write an immutable class of your own: [[Java/04 - Object-Oriented Programming/02 - Encapsulation#7. Immutable Classes|Encapsulation § 7]].
 
 ---
 

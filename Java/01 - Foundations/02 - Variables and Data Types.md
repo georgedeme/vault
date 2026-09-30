@@ -267,7 +267,7 @@ arr[0] = 99;        // OK — the array's contents can change
 arr = new int[5];   // compile error — arr itself cannot be reassigned
 ```
 
-This is a frequent point of confusion: `final` on a reference variable locks the *reference*, not the object's mutable state.
+This is a frequent point of confusion: `final` on a reference variable locks the *reference*, not the object's mutable state. What a class needs to be truly immutable is covered in [[Java/04 - Object-Oriented Programming/02 - Encapsulation#7. Immutable Classes|Encapsulation § 7]].
 
 ---
 

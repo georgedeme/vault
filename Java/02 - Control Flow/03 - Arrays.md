@@ -378,7 +378,7 @@ a[0] = 99;            // OK: the array's contents can change
 a = new int[3];       // compile error: cannot assign a value to final variable a
 ```
 
-There is no way to make a Java array read-only. For a read-only view use `List.of(...)` or `Collections.unmodifiableList(...)`.
+There is no way to make a Java array read-only. For a read-only view use `List.of(...)` or `Collections.unmodifiableList(...)`. This is why a `public static final` array is not a safe constant ([[Java/04 - Object-Oriented Programming/02 - Encapsulation#6.4 `public static final` Arrays|Encapsulation § 6.4]]).
 
 ---
 
@@ -702,7 +702,7 @@ static int[] doubled(int[] arr) {
 
 > [!tip] Returning arrays
 > - Return an empty array (`new int[0]`) rather than `null` for "no results".
-> - If a method returns an internal array field, the caller can modify your object's state through it. Return a copy (`return data.clone();`) when that matters (see [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]).
+> - If a method returns an internal array field, the caller can modify your object's state through it. Return a copy (`return data.clone();`) when that matters (see [[Java/04 - Object-Oriented Programming/02 - Encapsulation#6. Leaking Internal State|Encapsulation § 6]]).
 
 Varargs (`int... values`) are arrays under the hood. See [[01 - Methods#8. Variable-Length Arguments (Varargs)|Methods § 8]].
 
