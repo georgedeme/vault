@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790771435752-f91giimf7",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790771436549-m1gs3rw",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790771435751-df248dv",
+      "timestamp": 1790771435751,
+      "rawDisplayText": "Do you have access to the desmos and excalidraw plugins?",
+      "canonicalText": "Do you have access to the desmos and excalidraw plugins?",
+      "images": [],
+      "contentDigest": "261e89c6f5a0fd75795f3bc64384320f8276d94ebd039cc3a7b11e897cae598f",
+      "providerUserMessageId": "baf59d47-dee9-4c01-b162-5d4ee2fda4b3",
+      "providerAssistantMessageId": "11e3318d-52e6-4684-93b4-e4f510a8c64f"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790771532922-ptj71xo",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1790771532919-wdca6i7",
+      "timestamp": 1790771532919,
+      "rawDisplayText": "Enrich the notes in @DSA/  with excalidraw illustrations",
+      "canonicalText": "Enrich the notes in @DSA/  with excalidraw illustrations",
+      "images": [],
+      "contentDigest": "fd030d6c585db0ea0fab10251abdc56547151c47b6f438c8a893489900bc02bd",
+      "providerUserMessageId": "7d48499e-5f8f-4eec-9dbd-e3587fb6a1f2"
+    }
+  ]
+}
