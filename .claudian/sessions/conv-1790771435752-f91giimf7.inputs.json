@@ -29,6 +29,33 @@
       "contentDigest": "fd030d6c585db0ea0fab10251abdc56547151c47b6f438c8a893489900bc02bd",
       "providerUserMessageId": "7d48499e-5f8f-4eec-9dbd-e3587fb6a1f2",
       "providerAssistantMessageId": "54a28582-e036-4e2a-9e92-603330655e68"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790805888650-obnufki",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1790805888638-0ahi0xy",
+      "timestamp": 1790805888638,
+      "rawDisplayText": "/model",
+      "canonicalText": "/model",
+      "images": [],
+      "contentDigest": "c9fa5cfc9c6bcb8b82fe3e0a7e9474e2c4149f80b740657a840cc2f7e5c74778",
+      "providerUserMessageId": "c009af65-c38b-474c-afe0-ffa4b0b70c52",
+      "providerAssistantMessageId": "0c1f51f8-3c5b-41b9-940a-83a7aba9411a"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790805919151-ylnynoj",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1790805919148-p2s0ty0",
+      "timestamp": 1790805919148,
+      "rawDisplayText": "Continue with @Java/",
+      "canonicalText": "Continue with @Java/",
+      "images": [],
+      "contentDigest": "0eb8805383d6999467d6d8595b99c873f0ce4bb63d7de7f192c7fa0e31046c57",
+      "providerUserMessageId": "f0c02ea9-39a4-43d4-b762-fb2a72dd3aa1"
     }
   ]
 }
