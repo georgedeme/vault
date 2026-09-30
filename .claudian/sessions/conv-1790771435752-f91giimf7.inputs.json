@@ -27,7 +27,8 @@
       "canonicalText": "Enrich the notes in @DSA/  with excalidraw illustrations",
       "images": [],
       "contentDigest": "fd030d6c585db0ea0fab10251abdc56547151c47b6f438c8a893489900bc02bd",
-      "providerUserMessageId": "7d48499e-5f8f-4eec-9dbd-e3587fb6a1f2"
+      "providerUserMessageId": "7d48499e-5f8f-4eec-9dbd-e3587fb6a1f2",
+      "providerAssistantMessageId": "54a28582-e036-4e2a-9e92-603330655e68"
     }
   ]
 }

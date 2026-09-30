@@ -91,6 +91,8 @@ Read as: *`f` grows at least as fast as `g`.*
 
 This is the notation that actually says "this *is* the growth rate."
 
+![[Complexity - Theta Sandwich.excalidraw|800]]
+
 ### 2.4 Little-o and little-ω — strict bounds
 
 - `f(n) = o(g(n))`: `f` grows **strictly slower** — the bound holds for *every* `c > 0`, not merely for some `c`. Equivalently `lim f(n)/g(n) = 0`.
@@ -130,6 +132,8 @@ Ordered from slowest-growing (best) to fastest-growing (worst):
 O(1) < O(α(n)) < O(log log n) < O(log n) < O(√n) < O(n) < O(n log n)
      < O(n√n) < O(n²) < O(n³) < O(n^k) < O(2ⁿ) < O(n!) < O(nⁿ)
 ```
+
+![[Complexity - Growth Rates.excalidraw|800]]
 
 | Class | Name | Typical source |
 |---|---|---|
@@ -302,6 +306,8 @@ T(n) = 2·T(n/2) + n,    T(1) = 1
 
 Depth is `log₂ n` and each level costs `n`, so `T(n) = Θ(n log n)` — merge sort.
 
+![[Complexity - Merge Sort Recursion Tree.excalidraw|800]]
+
 ### 6.2 Substitution (guess and verify by induction)
 
 Guess `T(n) ≤ c·n log n`, substitute into the recurrence, and confirm the inequality holds for suitable `c` and `n₀`. Rigorous, but it requires a correct guess — usually obtained from a recursion tree first.
@@ -342,6 +348,8 @@ compare `f(n)` against the "leaf work" `n^(log_b a)`:
 | 2 | `f(n) = Θ(n^(log_b a) · logᵏ n)`, `k ≥ 0` | `T(n) = Θ(n^(log_b a) · log^(k+1) n)` |
 | 3 | `f(n) = Ω(n^(log_b a + ε))` **and** `a·f(n/b) ≤ c·f(n)` for some `c < 1` | `T(n) = Θ(f(n))` — root dominates |
 
+![[Complexity - Master Theorem Cases.excalidraw|800]]
+
 > [!example]- Worked applications
 > - **Merge sort** — `a=2, b=2, f(n)=n`. `n^(log₂ 2) = n`, and `f(n) = Θ(n)` → Case 2 with `k=0` → `Θ(n log n)`.
 > - **Binary search** — `a=1, b=2, f(n)=1`. `n^(log₂ 1) = n⁰ = 1` → Case 2 with `k=0` → `Θ(log n)`.
@@ -369,6 +377,8 @@ A dynamic array (`ArrayList`, C++ `vector`) doubles its capacity when full. A si
 ```
 
 Total `O(n)` over `n` operations ⇒ **`O(1)` amortized** per `add`, with `O(n)` worst case for any individual one.
+
+![[Complexity - Amortized Doubling.excalidraw|800]]
 
 > [!warning] The growth factor must be multiplicative
 > If the array grew by a *constant* `+c` instead of doubling, the resize work would be `c + 2c + 3c + … ≈ n²/(2c)` → **`O(n)` amortized per operation**, quadratic overall. A growth factor greater than 1 is precisely what makes the series geometric.

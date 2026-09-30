@@ -46,6 +46,8 @@ Java's `byte`, `short`, `int`, and `long` are **signed, two's complement** integ
 > - **`-x == ~x + 1`**: to negate, flip all bits and add one.
 > - **`~x == -x - 1`**: so `~0 == -1`, `~5 == -6`.
 
+![[Bit Manipulation - Two's Complement Wheel.excalidraw|800]]
+
 > [!warning] The range is asymmetric
 > There's one more negative value than positive: `int` goes from −2³¹ to 2³¹−1. So `-Integer.MIN_VALUE == Integer.MIN_VALUE` and `Math.abs(Integer.MIN_VALUE) == Integer.MIN_VALUE` (still negative). Any code that negates an arbitrary `int` has this edge case. Widen to `long` first.
 
@@ -79,6 +81,8 @@ Java's `byte`, `short`, `int`, and `long` are **signed, two's complement** integ
 > - `x << k` = `x · 2ᵏ` (wrapping on overflow, exactly like `*`).
 > - `x >> k` = `⌊x / 2ᵏ⌋`, rounding toward **−∞**.
 > - `x / 2ᵏ` in Java rounds toward **zero**. The two differ for negative odd values: `-7 >> 1 == -4`, but `-7 / 2 == -3`.
+
+![[Bit Manipulation - Shifts.excalidraw|800]]
 
 ### 2.1 Java-specific rules that break naive code
 
@@ -148,6 +152,8 @@ Subtracting 1 from `x` flips its lowest set bit to 0 and every bit below it to 1
 | `x \| (x + 1)` | set the lowest **unset** bit | `0101 1001` |
 | `x & (x + 1)` | clear the trailing ones | (no trailing ones) `0101 1000` |
 | `~x & (x + 1)` | isolate the lowest **unset** bit | `0000 0001` |
+
+![[Bit Manipulation - Lowest Set Bit.excalidraw|800]]
 
 > [!example]- Why `x & (x − 1)` clears the lowest set bit
 > ```
@@ -326,6 +332,8 @@ static int[] twoSingles(int[] a) {
 }
 ```
 
+![[Bit Manipulation - Two Singles Partition.excalidraw|800]]
+
 ### 6.3 Every number appears three times except one
 
 XOR doesn't help, because three copies XOR to the value itself. Count each bit position **mod 3**:
@@ -435,6 +443,8 @@ With a universe `{0, 1, …, n−1}` for `n ≤ 32` (`int`) or `n ≤ 64` (`long
 | `A ⊆ B` | `A ∩ B = A` | `(A & B) == A` |
 | Size of `A` | popcount | `Integer.bitCount(A)` |
 | Smallest element | lowest set bit | `Integer.numberOfTrailingZeros(A)` |
+
+![[Bit Manipulation - Bitmask Sets.excalidraw|800]]
 
 > [!warning] `~A` is not the complement of the set
 > `~A` also sets bits `n…31`, which aren't in the universe, so it isn't a valid set. Use `A ^ full` or `~A & full`.

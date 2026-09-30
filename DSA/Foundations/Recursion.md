@@ -83,6 +83,8 @@ A recursive call is not special: it's an ordinary call that happens to target th
 
 The recursion has two phases: <span class="hl-blue">winding</span> (steps 1–4, pushing frames on the way down) and <span class="hl-blue">unwinding</span> (steps 5–8, returning and combining on the way back up). The multiplications all happen during unwinding. That's why this version is *not* tail-recursive ([[#7. Tail Recursion|§7]]).
 
+![[Recursion - Call Stack.excalidraw|800]]
+
 ### 2.2 Work before vs. after the call decides the order
 
 ```java
@@ -172,6 +174,8 @@ fib(n):
 ```
 
 9 calls for `n = 4`. `fib(2)` is computed twice, `fib(1)` three times: the same subproblems are solved over and over (<span class="hl-blue">overlapping subproblems</span>). The number of calls satisfies `C(n) = C(n−1) + C(n−2) + 1`, which solves to exactly **`C(n) = 2·F(n+1) − 1`**. That's `Θ(φⁿ)` with `φ ≈ 1.618`, and `fib(50)` takes about 4 × 10¹⁰ calls.
+
+![[Recursion - Fibonacci Tree.excalidraw|800]]
 
 | Quantity | Naive Fibonacci |
 |---|---|
@@ -267,6 +271,8 @@ hanoi(n, from, to, via):
     hanoi(n − 1, via, to, from)     -- put them back on top of disk n
 ```
 
+![[Recursion - Towers of Hanoi.excalidraw|800]]
+
 ```java
 static void hanoi(int n, char from, char to, char via, List<String> moves) {
     if (n == 0) return;
@@ -290,6 +296,8 @@ subsets(a, i, current, result):
     subsets(a, i + 1, current, result)          -- include a[i]
     current.pop()                               -- undo: restore state for the caller
 ```
+
+![[Recursion - Subsets Tree.excalidraw|800]]
 
 ```java
 static List<List<Integer>> subsets(int[] a) {
@@ -540,6 +548,8 @@ static long fibMemo(int n) {
 ```
 
 Time drops from `Θ(φⁿ)` to `Θ(n)` (number of distinct states × work per state), stack depth stays `n`. The full treatment (state design, tabulation, space optimisation) is in [[DSA/Dynamic Programming Fundamentals|Dynamic Programming — Fundamentals]].
+
+![[Recursion - Memoized Fibonacci.excalidraw|800]]
 
 > [!warning] Memoization pitfalls
 > - **The sentinel must not be a valid answer.** Using `0` as "not computed" makes every state whose true answer is 0 get recomputed, which can quietly bring back exponential time.

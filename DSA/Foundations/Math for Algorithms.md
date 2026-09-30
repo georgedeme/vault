@@ -60,6 +60,8 @@ Limits worth knowing: `12!` is the largest factorial that fits in `int`, `20!` t
 | `Math.floorMod(-7, 3)` | `2` | always in `[0, m)` for `m > 0` |
 | `Integer.MIN_VALUE / -1` | `Integer.MIN_VALUE` | the one division that overflows (no exception) |
 
+![[Math - Negative Remainders.excalidraw|800]]
+
 > [!important] Ceiling division
 > For `a ≥ 0`, `b > 0`: **`⌈a / b⌉ = (a + b − 1) / b`**. The `a + b − 1` can overflow when `a` is near the maximum; `a / b + (a % b != 0 ? 1 : 0)` can't. For negative operands use `-Math.floorDiv(-a, b)` (Java 18+ has `Math.ceilDiv`).
 
@@ -116,6 +118,8 @@ static long lcm(long a, long b) {
 > Result: `21`. Check: `252 = 12·21`, `105 = 5·21`, and `gcd(12, 5) = 1`.
 
 **Complexity: `O(log min(a, b))`.** After two steps, the larger argument has at least halved. The worst case is two consecutive Fibonacci numbers (Lamé's theorem): the number of steps is at most about 5 × the number of decimal digits of the smaller number.
+
+![[Math - Euclid as Square Tiling.excalidraw|800]]
 
 > [!warning] Negatives and `Math.abs`
 > Java's `%` keeps the dividend's sign, so the plain loop can return a **negative** gcd: `gcd(4, -6)` comes out as `-2`. Take absolute values first, or use `BigInteger.gcd` (always non-negative). `Math.abs(Long.MIN_VALUE)` is still negative, so that single input stays broken.
@@ -233,6 +237,8 @@ The same idea makes divisibility-by-`k` checks on a streaming number `O(1)` per 
 Computing `aᵉ` by repeated multiplication takes `e − 1` steps, which is hopeless for `e = 10¹⁸`. Instead, square the base and follow the **binary digits of `e`**:
 
 `a¹³ = a^(1101₂) = a⁸ · a⁴ · a¹`, and `a¹, a², a⁴, a⁸` come from repeated squaring.
+
+![[Math - Fast Exponentiation Bits.excalidraw|800]]
 
 ```
 modpow(a, e, m):                  -- e ≥ 0
@@ -401,6 +407,8 @@ static boolean[] sieve(int n) {               // isPrime[i] for 0..n
 ```
 
 **Complexity: `O(n log log n)` time, `O(n)` memory.** The inner loop runs `n/p` times for each prime `p ≤ √n`, and the sum of `1/p` over primes grows like `log log n`. In practice it's linear: `n = 10⁷` runs in well under a second. Memory is the real limit: `boolean[10⁸]` is 100 MB.
+
+![[Math - Sieve of Eratosthenes.excalidraw|800]]
 
 > [!info]- Why start the inner loop at `i·i`?
 > Any composite `j = i·k` with `k < i` has a prime factor smaller than `i`, so it was already crossed out when that smaller prime was processed. Starting at `2·i` would still be correct, just slower. This is also why the outer loop can stop at `√n`: every composite `≤ n` has a prime factor `≤ √n`.
@@ -614,6 +622,8 @@ Consequences:
 | Ways to write `n` as an ordered sum of `k` **non-negative** ints | `C(n + k − 1, k − 1)` |
 | … of `k` **positive** ints | `C(n − 1, k − 1)` |
 
+![[Math - Stars and Bars.excalidraw|800]]
+
 > [!important] Binomial identities
 > - `C(n, 0) = C(n, n) = 1`; `C(n, k) = 0` if `k < 0` or `k > n`
 > - Symmetry: `C(n, k) = C(n, n − k)`
@@ -645,6 +655,8 @@ static long[][] pascal(int n, long mod) {     // mod = Long.MAX_VALUE for exact 
 ```
 
 It uses only addition, so it works with **any modulus**, prime or not, and without a modulus it gives exact values up to `n = 66`. `O(n²)` memory limits it to `n ≈ 5000`.
+
+![[Math - Pascal's Triangle.excalidraw|800]]
 
 ### 9.3 Factorials and inverse factorials — O(n) precompute, O(1) per query
 
