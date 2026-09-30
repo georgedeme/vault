@@ -117,6 +117,8 @@ for (int i = 0; i < 5; i++) { }
 // System.out.println(i);   // compile error: i cannot be resolved
 ```
 
+![[Loops - Flowcharts.excalidraw|800]]
+
 ---
 
 ## 4. The Enhanced `for` Loop (for-each)

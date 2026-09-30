@@ -72,6 +72,8 @@ The three acronyms describe **nested** layers of the platform:
 > [!important] Key rule
 > **The bytecode is portable, but the JVM is not.** "Write once, run anywhere" works because each platform has its own JVM that understands the same bytecode.
 
+![[Introduction - JDK JRE JVM.excalidraw|800]]
+
 ---
 
 ## 3. From Source Code to Running Program
@@ -89,6 +91,8 @@ HelloWorld.java ──javac──▶ HelloWorld.class ──java──▶ JVM �
 | 3. Load | JVM class loader | `.class` → in-memory class | `ClassNotFoundException`, `NoClassDefFoundError` |
 | 4. Verify | bytecode verifier | checks the bytecode is safe/well-formed | `VerifyError` (rare with `javac` output) |
 | 5. Execute | interpreter + **JIT** | bytecode → native code at runtime | **runtime exceptions**: `NullPointerException`, `ArithmeticException`, … |
+
+![[Introduction - Compile Once Run Anywhere.excalidraw|800]]
 
 > [!info]- What is the JIT compiler, and why does Java "warm up"?
 > The JVM starts by **interpreting** bytecode instruction by instruction, which is slow. It profiles which methods run often ("hot spots") and compiles those to optimized native machine code with the **Just-In-Time (JIT) compiler**. So Java is *both* compiled (by `javac`, to bytecode) *and* compiled again (by the JIT, to native code at runtime). This is why a Java program often runs faster after a few seconds than at startup, and why naïve micro-benchmarks of Java code are misleading.

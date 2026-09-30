@@ -39,6 +39,8 @@ byte -> short -> int -> long -> float -> double
 
 `char` widens to `int`, `long`, `float`, and `double`, but is a separate branch from `byte`/`short` (see [[#5. char — A Special Case|char — A Special Case]]).
 
+![[Type Casting - Widening Paths.excalidraw|800]]
+
 ### 1.2 Explicit Casting (Narrowing)
 
 Also called **narrowing conversion**. The destination type has a smaller range than the source, so data can be lost. The programmer must write the cast explicitly using `(type)` to acknowledge that risk:
@@ -106,6 +108,8 @@ byte b = (byte) i;   // b == -56
 | `(byte) 300` | `44` | 300 mod 256 = 44 |
 | `(short)(int) 70000` | `4464` | exceeds `short` range (−32,768 to 32,767), wraps |
 | `(int)(long) 3_000_000_000L` | `-1294967296` | exceeds `int` range (−2,147,483,648 to 2,147,483,647), wraps |
+
+![[Type Casting - Narrowing Keeps the Low Bits.excalidraw|800]]
 
 (The inner `(int)` and `(long)` casts are redundant — `70000` is already an `int` literal and `3_000_000_000L` already a `long` — they're only there to make the source type visible.)
 
@@ -386,6 +390,8 @@ Integer i = (Integer) s;   // compile error: incompatible types
 ```
 
 This differs from the `Animal`/`Dog` case above, where the cast compiles (because the types *are* related) but can still fail at runtime.
+
+![[Type Casting - Reference Casts.excalidraw|800]]
 
 > [!warning] Interfaces are the exception
 > A cast from a **non-`final`** class to an interface compiles even if the class doesn't implement it, because some subclass might:

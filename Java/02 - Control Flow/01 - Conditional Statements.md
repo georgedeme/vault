@@ -116,6 +116,8 @@ else
     System.out.println("a is false");   // WRONG belief — this still only runs when a is true and b is false
 ```
 
+![[Conditionals - Dangling Else.excalidraw|800]]
+
 > [!tip] Fix with braces
 > Wrapping the inner `if` in braces removes the ambiguity entirely and makes the binding visually match the binding the compiler actually uses:
 > ```java
@@ -196,6 +198,8 @@ Tuesday
 Wednesday
 Unknown
 ```
+
+![[Conditionals - Switch Fallthrough.excalidraw|800]]
 
 > [!info]- Why does this print three lines?
 > Execution jumps to the matching `case 2:` label and then runs **every statement below it** until it hits a `break` or the end of the `switch` block — it does not re-check any labels. Since none of the cases here have a `break`, control falls straight through `case 3` and into `default`.

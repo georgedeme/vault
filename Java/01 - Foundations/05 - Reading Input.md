@@ -159,6 +159,8 @@ The user typed `25⏎`. `nextInt()` reads `25` and **stops right before the `⏎
 | `nextLine()` | `Maria Papadopoulou⏎` | `""` (the rest of line 1) |
 | another `nextLine()` | *(nothing)* | `"Maria Papadopoulou"` |
 
+![[Reading Input - nextInt then nextLine.excalidraw|800]]
+
 **Fixes:**
 
 1. **Discard the rest of the line** after the number:

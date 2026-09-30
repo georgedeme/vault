@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1790806782373-wqry52496",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790806782409-i8ihhf5",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1790806782371-ltmhi97",
+      "timestamp": 1790806782371,
+      "rawDisplayText": "Continue writing the @Java/  notes",
+      "canonicalText": "Continue writing the @Java/  notes",
+      "images": [],
+      "contentDigest": "e33d43ea4c314a9acf11ec42ae3d9dd44fbefab0e518fca135bf9db2d464695a",
+      "providerUserMessageId": "ee1c2d01-17ce-4eef-a583-da6d39c5e043",
+      "providerAssistantMessageId": "87e53491-4793-42f9-bd7e-3c37f8c94348"
+    }
+  ]
+}

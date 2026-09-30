@@ -54,6 +54,8 @@ System.out.println(a == c);          // false — c is a separate heap object
 System.out.println(a.equals(c));     // true  — same character content
 ```
 
+![[Strings - Pool and Immutability.excalidraw|800]]
+
 > [!warning] Never compare `String` content with `==`
 > `==` compares references (identity), not content. It happens to work for two literals because of pooling, but that's an implementation detail you shouldn't rely on — and it silently breaks the moment either side comes from `new String(...)`, user input, file I/O, or concatenation built at runtime. Always use `.equals()` (or `.equalsIgnoreCase()`) for content comparison.
 
@@ -117,6 +119,8 @@ System.out.println("x" + 1 + 2);   // "x12" — left-to-right: "x"+1 concatenate
 > `+` is evaluated strictly left-to-right. Numeric operands only add numerically if *both* sides at that point in the expression are numeric — as soon as a `String` appears, everything to its right becomes string conversion, one operand at a time. This is a frequent source of confusion, as shown above.
 
 Each `+` between strings compiles (in most cases) into an efficient `StringBuilder` chain under the hood for a single expression — but concatenating inside a **loop** with `+=` builds a new `String` object on every iteration, which is quadratic in cost for large loops. See [[#5. StringBuilder|section 5]] for the fix.
+
+![[Strings - Concatenation vs StringBuilder.excalidraw|800]]
 
 ---
 

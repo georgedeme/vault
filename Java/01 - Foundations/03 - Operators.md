@@ -409,6 +409,8 @@ n.equals(l)       // false : different classes
 
 See [[02 - Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]] and [[04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]].
 
+![[Operators - Identity and the Integer Cache.excalidraw|800]]
+
 > [!info]- When does `==` on strings return `true` unexpectedly?
 > Compile-time constant expressions are computed by the compiler and **pooled**:
 > ```java
@@ -685,6 +687,8 @@ int r = a() + b() * c();   // prints: a b c   (r == 7)
 ```
 
 `*` has higher precedence, so the expression is grouped as `a() + (b() * c())`, but `a()` is still **called first** because it's the left operand of `+`.
+
+![[Operators - Precedence vs Evaluation Order.excalidraw|800]]
 
 ```java
 int i = 2;

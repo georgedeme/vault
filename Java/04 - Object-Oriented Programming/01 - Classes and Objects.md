@@ -496,6 +496,8 @@ class Player (one copy)          objects (one copy each)
 └───────────────────────┘        └─────────────┘   └─────────────┘
 ```
 
+![[Classes - Instance vs Static Fields.excalidraw|800]]
+
 A change to a static field through **any** path is visible through **every** path, because there is only one variable.
 
 ### 8.2 Static Methods
@@ -675,6 +677,8 @@ new Demo("y");
 > | `B`, `Dy` | second object: no static blocks this time; instance block, then constructor body |
 >
 > Note that `B` is printed **once per object**, not once per constructor in the chain.
+
+![[Classes - Initialization Order.excalidraw|800]]
 
 > [!tip] Instance initializer blocks are rarely needed
 > A plain `{ … }` block in a class body runs for every object before the constructor body. It is useful only for setup shared by several constructors that don't chain. Normally `this(…)` chaining is the clearer way. Static blocks are more common, for computing complex static constants.

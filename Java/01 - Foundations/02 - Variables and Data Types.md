@@ -67,6 +67,8 @@ Java has exactly **eight primitive types**. They are not objects, hold their val
 | `char` | 16-bit, **unsigned** | `\u0000` to `￿` (0 to 65,535) | `'\u0000'` | `Character` |
 | `boolean` | not precisely defined | `true` / `false` only | `false` | `Boolean` |
 
+![[Variables - Primitive Type Sizes.excalidraw|800]]
+
 > [!info]- Why doesn't the spec define a bit size for `boolean`?
 > The Java Language Specification deliberately leaves `boolean`'s in-memory size unspecified — it's conceptually one bit, but the JVM is free to implement it however is most efficient (in practice, most JVMs use a full byte or even a 32-bit `int` slot on the stack for a `boolean` local variable). This is different from `byte`/`short`/`int`/etc., whose sizes **are** fixed exactly by the spec. It has no practical effect on your code, but it explains why `boolean` has no defined bit-width in the table above.
 
@@ -204,6 +206,8 @@ class Example {
 > Reading an uninitialized **local** variable is a *compile-time* error, not a runtime `0`/`null`. Reading an uninitialized **field** is perfectly legal and simply returns its default value. Students who test with fields first and locals later (or vice versa) are often surprised the same-looking code behaves differently.
 
 Method **parameters** behave like local variables for this purpose — they must be supplied a value by the caller (there's no such thing as an "uninitialized" parameter, since a value is required at the call site), but they follow local-variable scoping and get no independent default.
+
+![[Variables - Stack Heap and Class Data.excalidraw|800]]
 
 ---
 

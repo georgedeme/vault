@@ -286,6 +286,8 @@ after (2):    s ─────► "hello world"
              sb ─────► "X!!!"        (discarded when modify returns)
 ```
 
+![[Methods - Pass by Value with References.excalidraw|800]]
+
 The same holds for arrays (see [[03 - Arrays#10. Arrays and Methods|Arrays § 10]]).
 
 ### 5.3 The Classic `swap` That Doesn't Work
@@ -427,6 +429,8 @@ Overload resolution happens **at compile time**, using the **compile-time (decla
 | 1 | exact match, **primitive widening** (`int → long → float → double`, `char → int`), reference widening (`String → Object`) | `f(long)` for `f(5)` |
 | 2 | phase 1 **plus boxing/unboxing** (`int ↔ Integer`) | `f(Integer)` for `f(5)` if there is no `f(long)`/`f(double)` |
 | 3 | phase 2 **plus varargs** | `f(int...)` for `f(5)` if nothing else fits |
+
+![[Methods - Overload Resolution Phases.excalidraw|800]]
 
 If a phase finds several applicable methods, the compiler picks the **most specific** one: the one whose parameter types could be passed to all the others. If none is most specific, the call is **ambiguous** and does not compile.
 

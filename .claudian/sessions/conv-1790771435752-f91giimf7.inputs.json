@@ -55,7 +55,8 @@
       "canonicalText": "Continue with @Java/",
       "images": [],
       "contentDigest": "0eb8805383d6999467d6d8595b99c873f0ce4bb63d7de7f192c7fa0e31046c57",
-      "providerUserMessageId": "f0c02ea9-39a4-43d4-b762-fb2a72dd3aa1"
+      "providerUserMessageId": "f0c02ea9-39a4-43d4-b762-fb2a72dd3aa1",
+      "providerAssistantMessageId": "cc8eb9f3-7d34-4eab-88af-bf26b928837c"
     }
   ]
 }

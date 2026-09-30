@@ -446,6 +446,8 @@ g ──► [   •    |    •   ]
 s ──► [   •    |    •   ]
 ```
 
+![[Arrays - Shallow vs Deep Copy.excalidraw|800]]
+
 A **deep copy** of a 2D array copies each row:
 
 ```java
@@ -610,6 +612,8 @@ int[][] x = new int[3][];
 x[0][0] = 1;                     // NullPointerException: x[0] is null
 ```
 
+![[Arrays - 2D and Jagged Arrays.excalidraw|800]]
+
 A rectangular array can become jagged at any time, because a row is just an element that holds a reference:
 
 ```java
@@ -732,6 +736,8 @@ objs[1] = Integer.valueOf(1);    // compiles, throws ArrayStoreException at runt
 ```
 
 <span class="hl-yellow">Exam favourite:</span> the static type of `objs` is `Object[]`, so the compiler allows any `Object`, but the **runtime type** of the array is `String[]`, and that is what is checked.
+
+![[Arrays - Covariance vs Generics.excalidraw|800]]
 
 ### 11.3 Arrays and Generics Don't Mix
 

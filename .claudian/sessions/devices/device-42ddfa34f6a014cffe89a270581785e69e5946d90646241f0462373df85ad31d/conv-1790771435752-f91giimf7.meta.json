@@ -4,7 +4,7 @@
   "title": "Desmos and Excalidraw plugin access",
   "titleGenerationStatus": "success",
   "createdAt": 1790771435756,
-  "lastActivityAt": 1790805919148,
+  "lastActivityAt": 1790806742671,
   "sessionId": "c019bf13-cbf8-43f8-a2f4-af417e607b15",
   "selectedModel": "opus",
   "providerState": {
@@ -12,12 +12,12 @@
   },
   "usage": {
     "model": "opus",
-    "inputTokens": 0,
-    "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 846,
+    "cacheReadInputTokens": 440562,
     "contextWindow": 1000000,
-    "contextTokens": 0,
-    "percentage": 0,
+    "contextTokens": 441410,
+    "percentage": 44,
     "contextWindowIsAuthoritative": true
   }
 }

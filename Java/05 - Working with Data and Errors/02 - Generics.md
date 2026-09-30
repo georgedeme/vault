@@ -494,6 +494,8 @@ Invariance only concerns the **type argument**. Subtyping along the generic **cl
 | `List raw = new ArrayList<String>();` | ✅ | parameterized → raw is always allowed |
 | `List<String> l = new ArrayList();` | ⚠️ | raw → parameterized: compiles with an unchecked warning |
 
+![[Generics - Invariance and Wildcards.excalidraw|800]]
+
 ---
 
 ## 6. Wildcards
@@ -614,6 +616,8 @@ copy(objs, ints);     // OK: Integers into a List<Object>
 copy(ints, nums);     // compile error: Numbers can't go into a List<Integer>
 ```
 
+![[Generics - PECS.excalidraw|800]]
+
 A `Comparator<? super T>` is a consumer: it *takes* `T`s to compare them. That is why a `Comparator<Animal>` can sort a `List<Dog>`, and why `List.sort` is declared as `sort(Comparator<? super E> c)`.
 
 > [!tip] Tip
@@ -711,6 +715,8 @@ List<Integer> b = new ArrayList<>();
 System.out.println(a.getClass() == b.getClass());   // true: both are plain ArrayList
 System.out.println(a.getClass().getName());         // java.util.ArrayList
 ```
+
+![[Generics - Type Erasure.excalidraw|800]]
 
 > [!info]- Bridge methods
 > Erasure can break overriding. `Student implements Comparable<Student>` defines `compareTo(Student)`, but after erasure the interface method is `compareTo(Object)`. They no longer have the same signature. The compiler silently adds a **bridge method** to connect them:
