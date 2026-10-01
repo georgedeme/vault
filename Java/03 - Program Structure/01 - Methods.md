@@ -2,7 +2,7 @@
 
 A <span class="hl-blue">method</span> is a named block of code that belongs to a class, takes zero or more inputs (**parameters**), and may produce one output (the **return value**). Methods let you write a piece of logic once, give it a name, and call it from anywhere. This chapter covers how a method is declared and called, return types and the compiler's `return` rules, how arguments are passed (always by value, including references), local variables and the call stack, overloading and how the compiler picks an overload, variable-length arguments, and recursion.
 
-Instance methods, constructors, and `this` are covered in [[01 - Classes and Objects|Classes and Objects]], and overriding in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]. This chapter uses `static` methods for its examples, because those can be called straight from `main`.
+Instance methods, constructors, and `this` are covered in [[01 - Classes and Objects|Classes and Objects]], and overriding in [[Java/04 - Object-Oriented Programming/03 - Inheritance#3. Method Overriding|Inheritance § 3]]. This chapter uses `static` methods for its examples, because those can be called straight from `main`.
 
 ## Contents
 

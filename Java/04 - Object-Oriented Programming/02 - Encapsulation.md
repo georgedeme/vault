@@ -2,7 +2,7 @@
 
 <span class="hl-blue">Encapsulation</span> means keeping an object's state behind its methods: fields are hidden, and the only way to read or change them is through code the class controls. That lets the class guarantee its own rules (a balance never negative, a range with `lo ≤ hi`), and change its internals later without breaking callers. This chapter covers the four access levels and exactly who each one lets in, access being per class rather than per object, getters and setters with validation, how private state leaks through mutable objects and how defensive copies stop it, immutable classes, and **records**.
 
-It builds on [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] (fields, constructors, `final` fields, `static`). Packages are introduced in [[01 - Introduction to Java#5.4 Packages and the Classpath|Introduction to Java § 5.4]]. `protected` is explained here for access, and again from the subclass's side in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]. Overriding the `equals`/`hashCode`/`toString` that records generate is covered in [[Java/04 - Object-Oriented Programming/06 - Object Methods|Object Methods]].
+It builds on [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] (fields, constructors, `final` fields, `static`). Packages are introduced in [[01 - Introduction to Java#5.4 Packages and the Classpath|Introduction to Java § 5.4]]. `protected` is explained here for access, and again from the subclass's side in [[Java/04 - Object-Oriented Programming/03 - Inheritance#10. `protected` and Inheritance|Inheritance § 10]]. Overriding the `equals`/`hashCode`/`toString` that records generate is covered in [[Java/04 - Object-Oriented Programming/06 - Object Methods|Object Methods]].
 
 ## Contents
 
@@ -292,7 +292,7 @@ public class Temperature {
 > Every way into the field must validate: the constructors as well as the setters. Either call a shared validation method or put the check in both.
 
 > [!info]- Calling an overridable setter from a constructor
-> The `Temperature` constructor above calls the `public` method `setCelsius`. If a subclass overrides `setCelsius`, the constructor runs the **subclass's** version before the subclass's own fields are initialized. To be safe, make such a class `final`, make the setter `final`, or call a `private` validation helper instead. The details are in [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]].
+> The `Temperature` constructor above calls the `public` method `setCelsius`. If a subclass overrides `setCelsius`, the constructor runs the **subclass's** version before the subclass's own fields are initialized. To be safe, make such a class `final`, make the setter `final`, or call a `private` validation helper instead. The details are in [[Java/04 - Object-Oriented Programming/03 - Inheritance#7. Overridable Methods Called from Constructors|Inheritance § 7]].
 
 `getFahrenheit()` shows a second benefit: a getter need not correspond to a field. Callers can't tell stored values from computed ones, so the class can switch between the two later.
 
@@ -490,7 +490,7 @@ class SneakyPoint extends Point {
 }
 ```
 
-Code that receives a `Point` can't know it's really a `SneakyPoint`. `final` on the class (or only `private` constructors) rules this out. `String` and `Integer` are `final` for this reason.
+Code that receives a `Point` can't know it's really a `SneakyPoint`. `final` on the class (or only `private` constructors) rules this out. `String` and `Integer` are `final` for this reason. (`final` classes and methods in general: [[Java/04 - Object-Oriented Programming/03 - Inheritance#9. `final` Methods and Classes|Inheritance § 9]].)
 
 ---
 

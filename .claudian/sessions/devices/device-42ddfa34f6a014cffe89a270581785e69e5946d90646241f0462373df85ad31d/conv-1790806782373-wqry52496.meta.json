@@ -4,7 +4,7 @@
   "title": "Continue Java note authoring",
   "titleGenerationStatus": "success",
   "createdAt": 1790806782377,
-  "lastActivityAt": 1790815403355,
+  "lastActivityAt": 1790816595747,
   "sessionId": "9efde707-c9c4-4a8d-8ab2-e0f9c71ba214",
   "selectedModel": "opus",
   "providerState": {
@@ -13,11 +13,11 @@
   "usage": {
     "model": "opus",
     "inputTokens": 2,
-    "cacheCreationInputTokens": 1757,
-    "cacheReadInputTokens": 141969,
+    "cacheCreationInputTokens": 8170,
+    "cacheReadInputTokens": 206189,
     "contextWindow": 1000000,
-    "contextTokens": 143728,
-    "percentage": 14,
+    "contextTokens": 214361,
+    "percentage": 21,
     "contextWindowIsAuthoritative": true
   }
 }

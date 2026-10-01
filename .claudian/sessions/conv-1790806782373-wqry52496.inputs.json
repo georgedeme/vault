@@ -41,7 +41,22 @@
       "canonicalText": "Continue with Inheritance",
       "images": [],
       "contentDigest": "fbbedf5df0ed0ad1073c1f73f0deeea5334fc08fa6223c364f5bad4eef860ff4",
-      "providerUserMessageId": "b508c553-ac48-48ee-8380-61effbdb3d2c"
+      "providerUserMessageId": "b508c553-ac48-48ee-8380-61effbdb3d2c",
+      "providerAssistantMessageId": "6cfe3de7-1eee-4edf-bbde-92a2a236d7bd"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790816569481-t78r5if",
+      "userTurnOrdinal": 4,
+      "state": "accepted",
+      "localMessageId": "msg-1790816569477-4k6pccv",
+      "timestamp": 1790816569477,
+      "rawDisplayText": "Why do you keep asking for permission to do things?",
+      "canonicalText": "Why do you keep asking for permission to do things?",
+      "images": [],
+      "contentDigest": "b51be2291d286d161ba3847cc828b88288768f2603bf4cb2b5abeda1841ae87a",
+      "providerUserMessageId": "e03b712b-6905-4839-9f5b-40e7680dc4a8",
+      "providerAssistantMessageId": "c491141d-288b-47c7-bf49-db051a23bfaa"
     }
   ]
 }

@@ -298,7 +298,7 @@ Point p = new Point(3, 4);     // arguments are passed to the constructor
 > - There is **no return type**, not even `void`. With a return type it is an ordinary method that `new` never calls (see [[01 - Methods#2.1 Where Methods Can (and Can't) Go|Methods § 2.1]]).
 > - A bare `return;` is allowed (it ends the constructor early). `return value;` is a compile error (*unexpected return value*).
 > - Allowed modifiers: only access modifiers (`public`, `protected`, `private`, or none). `static`, `final`, and `abstract` are compile errors (*modifier static not allowed here*).
-> - Constructors are **not members** and are **not inherited**. A subclass must declare its own ([[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]).
+> - Constructors are **not members** and are **not inherited**. A subclass must declare its own ([[Java/04 - Object-Oriented Programming/03 - Inheritance#5.1 Constructors Are Not Inherited|Inheritance § 5.1]]).
 > - A constructor can be called **only** through `new`, or as the first statement of another constructor (`this(…)` / `super(…)`). It cannot be called like a method: `p.Point(1, 2)` does not compile.
 
 ### 6.2 The Default Constructor
@@ -321,7 +321,7 @@ Box b = new Box();             // OK: uses the compiler-generated Box()
 > Box a = new Box(5);   // OK
 > Box b = new Box();    // compile error: constructor Box in class Box cannot be applied to given types
 > ```
-> The default constructor exists **only** when you write none. As soon as you add `Box(int)`, `new Box()` stops compiling. If you still need it, declare `Box() { }` yourself. This also breaks subclasses whose constructors implicitly call `super()` ([[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]).
+> The default constructor exists **only** when you write none. As soon as you add `Box(int)`, `new Box()` stops compiling. If you still need it, declare `Box() { }` yourself. This also breaks subclasses whose constructors implicitly call `super()` ([[Java/04 - Object-Oriented Programming/03 - Inheritance#5.3 A Superclass Without a No-Arg Constructor|Inheritance § 5.3]]).
 
 ### 6.3 Overloaded Constructors
 
@@ -638,7 +638,7 @@ On **every** `new`:
 
 1. Memory is allocated and **all** instance fields get their default values.
 2. The constructor is called with the arguments. If its first statement is `this(…)`, that other constructor is entered first (and so on).
-3. The superclass constructor runs (`super(…)`, explicit or implicit, see [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]).
+3. The superclass constructor runs (`super(…)`, explicit or implicit, see [[Java/04 - Object-Oriented Programming/03 - Inheritance#6. Initialization Order Across a Hierarchy|Inheritance § 6]] for the full order across a hierarchy).
 4. The **instance field initializers** and **instance initializer blocks `{ … }`** run **top to bottom in source order**.
 5. The rest of the constructor body runs (and then, returning up the chain, the rest of any constructor that called `this(…)`).
 
