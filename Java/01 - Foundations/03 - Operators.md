@@ -604,7 +604,7 @@ null instanceof Object    // false : null is never an instance of anything (no e
 if (o instanceof String s && s.length() > 1) { ... }   // pattern matching (Java 16+)
 ```
 
-In the last line, `s` is in scope on the right of `&&` because that side only runs if the test succeeded. With `||` it would **not** be in scope. More in [[04 - Type Casting#7. Reference (Object) Casting|Type Casting § 7]].
+In the last line, `s` is in scope on the right of `&&` because that side only runs if the test succeeded. With `||` it would **not** be in scope. More in [[04 - Type Casting#7. Reference (Object) Casting|Type Casting § 7]], and the full scope rules in [[Java/04 - Object-Oriented Programming/04 - Polymorphism#7.2 Where the Pattern Variable Is in Scope|Polymorphism § 7.2]].
 
 ---
 

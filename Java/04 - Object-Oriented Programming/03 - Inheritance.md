@@ -126,7 +126,7 @@ a.speak();                 // Woof : the Dog's version runs
 a.fetch();                 // compile error: the variable's type, Animal, has no fetch()
 ```
 
-The declared type decides which methods can be **called**; the runtime type decides which override **runs**. The full mechanism (dynamic dispatch, casts, `instanceof`) is in [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]].
+The declared type decides which methods can be **called**; the runtime type decides which override **runs**. The full mechanism is in [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: declared vs. runtime type ([[Java/04 - Object-Oriented Programming/04 - Polymorphism#2. Declared Type vs. Runtime Type|§ 2]]), dynamic dispatch ([[Java/04 - Object-Oriented Programming/04 - Polymorphism#3. Dynamic Dispatch|§ 3]]), and casts and `instanceof` ([[Java/04 - Object-Oriented Programming/04 - Polymorphism#6. Downcasting and `instanceof`|§ 6]]).
 
 > [!warning] Trick: a method called **inside** an inherited method still dispatches
 > ```java
@@ -598,7 +598,7 @@ class Triangle extends Polygon { }                           // fine
 > - Permitted subclasses must be in the same package (or, in a named module, the same module).
 > - `final sealed` is a compile error: *illegal combination of modifiers*.
 
-Why seal a class: it documents a **closed set** of variants (a `Shape` is a circle, a square, or a polygon), and it lets the compiler check that code handles all of them. With pattern matching for `switch` (Java 21), a `switch` over a sealed type needs no `default` if every permitted subclass is covered ([[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]). Interfaces can be sealed too ([[Java/04 - Object-Oriented Programming/05 - Abstraction|Abstraction]]).
+Why seal a class: it documents a **closed set** of variants (a `Shape` is a circle, a square, or a polygon), and it lets the compiler check that code handles all of them. With pattern matching for `switch` (Java 21), a `switch` over a sealed type needs no `default` if every permitted subclass is covered ([[Java/04 - Object-Oriented Programming/04 - Polymorphism#8. Pattern Matching in `switch` over Sealed Types (Java 21)|Polymorphism § 8]]). Interfaces can be sealed too ([[Java/04 - Object-Oriented Programming/05 - Abstraction|Abstraction]]).
 
 ---
 

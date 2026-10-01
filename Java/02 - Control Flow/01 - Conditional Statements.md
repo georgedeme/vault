@@ -269,7 +269,7 @@ When every possible input is covered (e.g. all `enum` constants, or a `default` 
 
 ## 8. Pattern Matching in `switch` (Java 21+)
 
-`switch` can match on the **type** of the expression, binding a variable to the matched value automatically — no separate `instanceof` check and manual cast needed.
+`switch` can match on the **type** of the expression, binding a variable to the matched value automatically — no separate `instanceof` check and manual cast needed. Exhaustive `switch` over sealed class hierarchies (no `default` needed) and dominance between cases are covered in [[Java/04 - Object-Oriented Programming/04 - Polymorphism#8. Pattern Matching in `switch` over Sealed Types (Java 21)|Polymorphism § 8]].
 
 ```java
 Object obj = 42;

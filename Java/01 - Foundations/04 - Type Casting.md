@@ -380,6 +380,8 @@ if (a instanceof Dog d) {
 }
 ```
 
+Casts in a class hierarchy (what compiles, what throws, array casts, cast precedence) and the scope rules for `d` are covered in [[Java/04 - Object-Oriented Programming/04 - Polymorphism#6. Downcasting and `instanceof`|Polymorphism §§ 6–7]].
+
 ### 7.3 Casting Between Unrelated Types Fails at Compile Time
 
 If two reference types have no inheritance relationship at all, the cast is rejected before the program even runs:

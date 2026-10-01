@@ -1250,6 +1250,7 @@ static <T super Integer> void f(List<T> l) { }   // (5)
 - [[Java/02 - Control Flow/03 - Arrays#11. Array Types, Covariance, and `ArrayStoreException`|Arrays § 11]]: covariant arrays, `ArrayStoreException`, generic array creation
 - [[Java/03 - Program Structure/01 - Methods#7. Method Overloading|Methods § 7]]: overload resolution, which explains `remove(int)` vs. `remove(Object)` and erasure clashes
 - [[Java/01 - Foundations/04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]]: autoboxing, the `Integer` cache
+- [[Java/04 - Object-Oriented Programming/04 - Polymorphism#10. Where Polymorphism Stops|Polymorphism § 10]]: invariance from the polymorphism side, next to the other things that ignore the runtime type
 - [[Java/01 - Foundations/02 - Variables and Data Types#9. Type Inference with `var`|Variables and Data Types § 9]]: `var` and inference
 - [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]] · [[Java/04 - Object-Oriented Programming/05 - Abstraction|Abstraction]]: subtyping and interfaces such as `Comparable`
 - [[Java/05 - Working with Data and Errors/03 - Comparable and Comparator|Comparable and Comparator]]: `Comparable<T>`, `Comparator<? super T>` in practice

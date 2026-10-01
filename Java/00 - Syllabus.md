@@ -28,7 +28,7 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 - [x] [[01 - Classes and Objects|Classes and Objects]] — fields, constructors, `this`, instance vs. static members
 - [x] [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]] — access modifiers, getters and setters, why state is hidden
 - [x] [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]] — `extends`, method overriding, `super`
-- [ ] [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]] — dynamic dispatch, upcasting/downcasting in practice
+- [x] [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]] — dynamic dispatch, upcasting/downcasting in practice
 - [ ] [[Java/04 - Object-Oriented Programming/05 - Abstraction|Abstraction]] — abstract classes and interfaces, when to use each
 - [ ] [[Java/04 - Object-Oriented Programming/06 - Object Methods|Object Methods]] — `equals`, `hashCode`, and `toString`
 - [ ] [[Java/04 - Object-Oriented Programming/07 - Enums|Enums]] — type-safe constants, enums with fields and methods

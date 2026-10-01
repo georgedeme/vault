@@ -482,7 +482,7 @@ o(5);              // OK: boxing to Integer, then widening to Object (phase 2)
 > Object obj = "hello";      // declared Object, runtime String
 > p(obj);                    // Object : the compiler only knows obj is an Object
 > ```
-> This is the key difference from **overriding** (runtime choice, based on the actual object). See [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]].
+> This is the key difference from **overriding** (runtime choice, based on the actual object). How the two combine in a single call is in [[Java/04 - Object-Oriented Programming/04 - Polymorphism#4. Overloading and Overriding in the Same Call|Polymorphism § 4]].
 
 > [!example]- Worked example: an ambiguous call with two parameters
 > ```java
@@ -917,6 +917,6 @@ static void increment(int counter) { counter++; }
 - [[04 - Type Casting|Type Casting]]: the widening and boxing conversions behind overload resolution
 - [[03 - Operators#13. Evaluation Order — Not the Same as Precedence|Operators § 13]]: left-to-right evaluation
 - [[01 - Classes and Objects|Classes and Objects]]: instance methods, constructors, `this`, `static`
-- [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: overriding vs. overloading
+- [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: overriding vs. overloading, and how both combine in one call (§ 4)
 - [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: generic methods, overloads that clash after erasure
 - [[DSA/Foundations/Recursion|DSA: Recursion]]

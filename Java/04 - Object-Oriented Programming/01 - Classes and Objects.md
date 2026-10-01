@@ -567,7 +567,7 @@ System.out.println(b.total);    // 100 : ...but there is only one total
 ```
 
 > [!tip] Always write `ClassName.member` for statics
-> Accessing statics through a reference compiles (most IDEs warn), but it misleads readers into thinking the value belongs to that object. Static methods called through a reference also do **not** use dynamic dispatch: the declared type decides which one runs ([[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]).
+> Accessing statics through a reference compiles (most IDEs warn), but it misleads readers into thinking the value belongs to that object. Static methods called through a reference also do **not** use dynamic dispatch: the declared type decides which one runs ([[Java/04 - Object-Oriented Programming/04 - Polymorphism#3.2 What Dispatches and What Doesn't|Polymorphism § 3.2]]).
 
 ### 8.5 Constants: `static final`
 
