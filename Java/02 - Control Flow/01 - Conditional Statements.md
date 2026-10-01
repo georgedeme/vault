@@ -4,16 +4,16 @@ Conditional statements let a program choose which code runs based on a boolean c
 
 ## Contents
 
-- [[#1. The if Statement|1. The if Statement]]
-- [[#2. if / else|2. if / else]]
-- [[#3. else if Chains|3. else if Chains]]
-- [[#4. Nested Conditionals and the Dangling else|4. Nested Conditionals and the Dangling else]]
-- [[#5. The Traditional switch Statement|5. The Traditional switch Statement]]
-- [[#6. Fallthrough — Why break Matters|6. Fallthrough — Why break Matters]]
-- [[#7. The Modern switch Expression (Java 14+)|7. The Modern switch Expression (Java 14+)]]
-- [[#8. Pattern Matching in switch (Java 21+)|8. Pattern Matching in switch (Java 21+)]]
-- [[#9. What Types Can Drive a switch|9. What Types Can Drive a switch]]
-- [[#10. The Ternary Operator vs. if / else|10. The Ternary Operator vs. if / else]]
+- [[#1. The `if` Statement|1. The `if` Statement]]
+- [[#2. `if` / `else`|2. `if` / `else`]]
+- [[#3. `else if` Chains|3. `else if` Chains]]
+- [[#4. Nested Conditionals and the Dangling `else`|4. Nested Conditionals and the Dangling `else`]]
+- [[#5. The Traditional `switch` Statement|5. The Traditional `switch` Statement]]
+- [[#6. Fallthrough — Why `break` Matters|6. Fallthrough — Why `break` Matters]]
+- [[#7. The Modern `switch` Expression (Java 14+)|7. The Modern `switch` Expression (Java 14+)]]
+- [[#8. Pattern Matching in `switch` (Java 21+)|8. Pattern Matching in `switch` (Java 21+)]]
+- [[#9. What Types Can Drive a `switch`|9. What Types Can Drive a `switch`]]
+- [[#10. The Ternary Operator vs. `if` / `else`|10. The Ternary Operator vs. `if` / `else`]]
 - [[#11. Common Pitfalls|11. Common Pitfalls]]
 - [[#12. Summary|12. Summary]]
 
@@ -219,7 +219,7 @@ switch (day) {
 ```
 
 > [!tip] Intentional fallthrough
-> Fallthrough is occasionally used deliberately (the stacked weekend labels in [[#5. The Traditional switch Statement|section 5]] are one example), so compilers don't warn by default on every missing `break`. Some static analyzers flag fallthrough cases that lack a `// fall through` comment, precisely because it's hard to tell intentional fallthrough from a forgotten `break` just by reading the code.
+> Fallthrough is occasionally used deliberately (the stacked weekend labels in [[#5. The Traditional `switch` Statement|section 5]] are one example), so compilers don't warn by default on every missing `break`. Some static analyzers flag fallthrough cases that lack a `// fall through` comment, precisely because it's hard to tell intentional fallthrough from a forgotten `break` just by reading the code.
 
 ---
 
@@ -368,7 +368,7 @@ boolean isAdult = false;
 if (isAdult == true) { }     // intended comparison (though `if (isAdult)` is the idiomatic form)
 ```
 
-- **Forgetting `break` in a traditional `switch`** — see [[#6. Fallthrough — Why break Matters|section 6]].
+- **Forgetting `break` in a traditional `switch`** — see [[#6. Fallthrough — Why `break` Matters|section 6]].
 - **Comparing objects (including boxed types and `String`) with `==` inside a condition** instead of `.equals()` — this compares references, not contents, and is a frequent source of conditions that are `true`/`false` unpredictably depending on caching or interning. See the autoboxing caching pitfall in [[04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting, section 9]].
 - **Non-exhaustive `switch` expressions.** Unlike a `switch` statement, a `switch` expression must cover every possible input (via `default` or, for an `enum`, every constant) — otherwise it fails to compile.
 

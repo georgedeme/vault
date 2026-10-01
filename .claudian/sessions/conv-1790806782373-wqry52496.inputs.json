@@ -57,6 +57,48 @@
       "contentDigest": "b51be2291d286d161ba3847cc828b88288768f2603bf4cb2b5abeda1841ae87a",
       "providerUserMessageId": "e03b712b-6905-4839-9f5b-40e7680dc4a8",
       "providerAssistantMessageId": "c491141d-288b-47c7-bf49-db051a23bfaa"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790816772437-mfwckdt",
+      "userTurnOrdinal": 5,
+      "state": "accepted",
+      "localMessageId": "msg-1790816772433-izwnn0e",
+      "timestamp": 1790816772433,
+      "rawDisplayText": "No I meant I was asked to authorize claude to execute rm rf or something like that. I think option 1 sounds good",
+      "canonicalText": "No I meant I was asked to authorize claude to execute rm rf or something like that. I think option 1 sounds good",
+      "images": [],
+      "contentDigest": "1a196ba1eb3ddf9f449fc0f63ebc96a495d0946de843bbd5fc1a14c4794a995d",
+      "providerUserMessageId": "5f228c32-6138-4409-8b0f-381fd993e512",
+      "providerAssistantMessageId": "741a27ac-f8c4-409e-b04b-85246a39cbbb"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790816911099-ri268f3",
+      "userTurnOrdinal": 6,
+      "state": "accepted",
+      "localMessageId": "msg-1790816911094-ngvbgeq",
+      "timestamp": 1790816911094,
+      "rawDisplayText": "What broken links?",
+      "canonicalText": "What broken links?",
+      "images": [],
+      "contentDigest": "44fb9444c16fe2811cf28843eed8439134e8b4565a6243f69592f5350239e31b",
+      "providerUserMessageId": "140ae218-ebad-47fb-9dc6-8b6d1d5e9593",
+      "providerAssistantMessageId": "dfac11d4-e5a0-4582-819f-991d1ff64876"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1790816954445-ijzvaka",
+      "userTurnOrdinal": 7,
+      "state": "accepted",
+      "localMessageId": "msg-1790816954440-3ms23uf",
+      "timestamp": 1790816954440,
+      "rawDisplayText": "fix",
+      "canonicalText": "fix",
+      "images": [],
+      "contentDigest": "2b21002c8d514c399917ba79524a2c3a796a5f36f9d90275c4bfa41fdca20fc5",
+      "providerUserMessageId": "080dfd2a-697a-4eba-8a83-4d700eaa7b64",
+      "providerAssistantMessageId": "73a52e8f-8bb5-4ac5-a32f-a6266f96de9e"
     }
   ]
 }

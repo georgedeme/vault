@@ -8,7 +8,7 @@ Type casting is the conversion of a value from one data type to another. Java pe
 - [[#2. Narrowing Between Integer Types — Overflow and Wraparound|2. Narrowing Between Integer Types — Overflow and Wraparound]]
 - [[#3. Narrowing Between Floating-Point and Integer Types|3. Narrowing Between Floating-Point and Integer Types]]
 - [[#4. Widening Between Integer and Floating-Point Types — Precision Loss|4. Widening Between Integer and Floating-Point Types — Precision Loss]]
-- [[#5. char — A Special Case|5. char — A Special Case]]
+- [[#5. `char` — A Special Case|5. `char` — A Special Case]]
 - [[#6. Binary Numeric Promotion — Mixed-Type Arithmetic|6. Binary Numeric Promotion — Mixed-Type Arithmetic]]
 - [[#7. Reference (Object) Casting|7. Reference (Object) Casting]]
 - [[#8. What Casting Cannot Do|8. What Casting Cannot Do]]
@@ -37,7 +37,7 @@ double d = f;    // float -> double, implicit
 byte -> short -> int -> long -> float -> double
 ```
 
-`char` widens to `int`, `long`, `float`, and `double`, but is a separate branch from `byte`/`short` (see [[#5. char — A Special Case|char — A Special Case]]).
+`char` widens to `int`, `long`, `float`, and `double`, but is a separate branch from `byte`/`short` (see [[#5. `char` — A Special Case|`char` — A Special Case]]).
 
 ![[Type Casting - Widening Paths.excalidraw|800]]
 

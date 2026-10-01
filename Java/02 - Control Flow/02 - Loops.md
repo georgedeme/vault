@@ -4,13 +4,13 @@ Loops repeat a block of code while a condition holds, or once per element of a s
 
 ## Contents
 
-- [[#1. The while Loop|1. The while Loop]]
-- [[#2. The do-while Loop|2. The do-while Loop]]
-- [[#3. The for Loop|3. The for Loop]]
-- [[#4. The Enhanced for Loop (for-each)|4. The Enhanced for Loop (for-each)]]
-- [[#5. break|5. break]]
-- [[#6. continue|6. continue]]
-- [[#7. Labeled break and continue|7. Labeled break and continue]]
+- [[#1. The `while` Loop|1. The `while` Loop]]
+- [[#2. The `do-while` Loop|2. The `do-while` Loop]]
+- [[#3. The `for` Loop|3. The `for` Loop]]
+- [[#4. The Enhanced `for` Loop (for-each)|4. The Enhanced `for` Loop (for-each)]]
+- [[#5. `break`|5. `break`]]
+- [[#6. `continue`|6. `continue`]]
+- [[#7. Labeled `break` and `continue`|7. Labeled `break` and `continue`]]
 - [[#8. Nested Loops and Loop Variable Scope|8. Nested Loops and Loop Variable Scope]]
 - [[#9. Infinite Loops — Intentional and Accidental|9. Infinite Loops — Intentional and Accidental]]
 - [[#10. Common Pitfalls|10. Common Pitfalls]]
@@ -296,7 +296,7 @@ for (int i = 0; i < 5; i++); {
 
 - **Off-by-one errors from `<` vs. `<=`.** `for (int i = 0; i <= array.length; i++)` runs one iteration too many and throws `ArrayIndexOutOfBoundsException` on the last pass; the correct bound for a zero-indexed array is `i < array.length`.
 - **Modifying a collection while iterating it with enhanced `for`.** Adding or removing elements from a `List` during a for-each loop over it throws `ConcurrentModificationException` at runtime — use an explicit `Iterator`'s own `remove()` method, or build a separate collection of changes to apply after the loop.
-- **Expecting the for-each variable to mutate the source.** Covered in [[#4. The Enhanced for Loop (for-each)|section 4]] — reassigning the loop variable only changes the local copy, never the underlying array or collection element.
+- **Expecting the for-each variable to mutate the source.** Covered in [[#4. The Enhanced `for` Loop (for-each)|section 4]] — reassigning the loop variable only changes the local copy, never the underlying array or collection element.
 - **Forgetting that `continue` doesn't skip the `for` loop's update clause.** In a `for` loop, `continue` still runs the update expression (e.g. `i++`) before re-checking the condition — it does not restart the header from the initialization.
 
 ---
