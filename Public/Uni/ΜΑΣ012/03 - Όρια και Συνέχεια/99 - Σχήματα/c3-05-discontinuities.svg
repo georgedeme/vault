@@ -1252,62 +1252,18 @@ L 741.457009 111.160021
 " style="fill: none; stroke: #52514e; stroke-width: 0.9; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="matplotlib.axis_7"/>
-   <g id="matplotlib.axis_8">
-    <g id="ytick_4">
-     <g id="line2d_19">
-      <g>
-       <use xlink:href="#mfd0566a3cc" x="658.053504" y="163.751434" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
-      </g>
-     </g>
-     <g id="text_14">
-      <g id="patch_18">
-       <path d="M 639.927645 169.617431 
-L 653.648504 169.617431 
-L 653.648504 159.927431 
-L 639.927645 159.927431 
-z
-" style="fill: #ffffff; opacity: 0.85"/>
-      </g>
-      <!-- −1 -->
-      <g style="fill: #52514e" transform="translate(640.522645 166.980438) scale(0.085 -0.085)">
-       <use xlink:href="#DejaVuSans-c9c"/>
-       <use xlink:href="#DejaVuSans-14" transform="translate(83.796875 0)"/>
-      </g>
-     </g>
-    </g>
-    <g id="ytick_5">
-     <g id="line2d_20">
-      <g>
-       <use xlink:href="#mfd0566a3cc" x="658.053504" y="58.568607" style="fill: #52514e; stroke: #52514e; stroke-width: 0.8"/>
-      </g>
-     </g>
-     <g id="text_15">
-      <g id="patch_19">
-       <path d="M 647.050379 64.434603 
-L 653.648504 64.434603 
-L 653.648504 54.744603 
-L 647.050379 54.744603 
-z
-" style="fill: #ffffff; opacity: 0.85"/>
-      </g>
-      <!-- 1 -->
-      <g style="fill: #52514e" transform="translate(647.645379 61.79761) scale(0.085 -0.085)">
-       <use xlink:href="#DejaVuSans-14"/>
-      </g>
-     </g>
-    </g>
-   </g>
-   <g id="line2d_21">
+   <g id="matplotlib.axis_8"/>
+   <g id="line2d_19">
     <g>
      <use xlink:href="#m4fe79a03d0" x="741.457009" y="111.160021" style="fill: #52514e; stroke: #52514e; stroke-linejoin: miter"/>
     </g>
    </g>
-   <g id="line2d_22">
+   <g id="line2d_20">
     <g>
      <use xlink:href="#m0e7391c8de" x="658.053504" y="37.532041" style="fill: #52514e; stroke: #52514e; stroke-linejoin: miter"/>
     </g>
    </g>
-   <g id="line2d_23">
+   <g id="line2d_21">
     <path d="M 741.457009 58.810109 
 L 738.455244 59.224471 
 L 735.746391 59.817605 
@@ -1420,7 +1376,7 @@ L 660.370268 127.190442
 L 660.370268 127.190442 
 " clip-path="url(#p0551dcb24c)" style="fill: none; stroke: #2a78d6; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
-   <g id="line2d_24">
+   <g id="line2d_22">
     <path d="M 574.65 163.509932 
 L 577.651765 163.09557 
 L 580.360618 162.502436 
@@ -1533,19 +1489,19 @@ L 655.73674 95.129599
 L 655.73674 95.129599 
 " clip-path="url(#p0551dcb24c)" style="fill: none; stroke: #2a78d6; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
-   <g id="text_16">
+   <g id="text_14">
     <!-- $x$ -->
     <g style="fill: #0b0b0b" transform="translate(743.458693 113.757677) scale(0.1 -0.1)">
      <use xlink:href="#Cmmi10-3f" transform="translate(0 0.8125)"/>
     </g>
    </g>
-   <g id="text_17">
+   <g id="text_15">
     <!-- $y$ -->
     <g style="fill: #0b0b0b" transform="translate(664.053504 47.129697) scale(0.1 -0.1)">
      <use xlink:href="#Cmmi10-72" transform="translate(0 0.8125)"/>
     </g>
    </g>
-   <g id="text_18">
+   <g id="text_16">
     <!-- ταλάντωση -->
     <g style="fill: #0b0b0b" transform="translate(630.608895 15.749443) scale(0.095 -0.095)">
      <defs>

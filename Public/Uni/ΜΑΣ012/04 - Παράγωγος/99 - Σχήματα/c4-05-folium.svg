@@ -168,15 +168,15 @@ z
      </g>
      <g id="text_2">
       <g id="patch_6">
-       <path d="M 190.763545 156.44529 
-L 196.033545 156.44529 
-L 196.033545 145.48029 
-L 190.763545 145.48029 
+       <path d="M 186.428545 155.253298 
+L 200.368545 155.253298 
+L 200.368545 145.48029 
+L 186.428545 145.48029 
 z
 " style="fill: #ffffff; opacity: 0.85"/>
       </g>
-      <!-- $\frac{3}{2}$ -->
-      <g style="fill: #52514e" transform="translate(191.358545 153.13029) scale(0.085 -0.085)">
+      <!-- $3/2$ -->
+      <g style="fill: #52514e" transform="translate(187.023545 152.533298) scale(0.085 -0.085)">
        <defs>
         <path id="Cmr10-6e" d="M 609 494 
 Q 759 275 1012 169 
@@ -236,16 +236,24 @@ Q 794 494 641 494
 L 609 494 
 z
 " transform="scale(0.015625)"/>
-       </defs>
-       <use xlink:href="#Cmr10-6e" transform="translate(6.25 36.373438) scale(0.7)"/>
-       <use xlink:href="#Cmr10-31" transform="translate(6.25 -30.545312) scale(0.7)"/>
-       <path d="M 6.25 22.33125 
-L 6.25 28.58125 
-L 41.25 28.58125 
-L 41.25 22.33125 
-L 6.25 22.33125 
+        <path id="Cmmi10-62" d="M 359 -1472 
+Q 359 -1453 366 -1447 
+L 2591 4722 
+Q 2603 4759 2634 4779 
+Q 2666 4800 2706 4800 
+Q 2763 4800 2798 4765 
+Q 2834 4731 2834 4672 
+L 2834 4647 
+L 609 -1522 
+Q 572 -1600 488 -1600 
+Q 434 -1600 396 -1562 
+Q 359 -1525 359 -1472 
 z
-"/>
+" transform="scale(0.015625)"/>
+       </defs>
+       <use xlink:href="#Cmr10-6e"/>
+       <use xlink:href="#Cmmi10-62" transform="translate(50 0)"/>
+       <use xlink:href="#Cmr10-31" transform="translate(100 0)"/>
       </g>
      </g>
     </g>
@@ -307,24 +315,18 @@ z
      </g>
      <g id="text_5">
       <g id="patch_9">
-       <path d="M 122.02419 86.218435 
-L 127.29419 86.218435 
-L 127.29419 75.253435 
-L 122.02419 75.253435 
+       <path d="M 113.35419 85.324939 
+L 127.29419 85.324939 
+L 127.29419 75.551932 
+L 113.35419 75.551932 
 z
 " style="fill: #ffffff; opacity: 0.85"/>
       </g>
-      <!-- $\frac{3}{2}$ -->
-      <g style="fill: #52514e" transform="translate(122.61919 82.903435) scale(0.085 -0.085)">
-       <use xlink:href="#Cmr10-6e" transform="translate(6.25 36.373438) scale(0.7)"/>
-       <use xlink:href="#Cmr10-31" transform="translate(6.25 -30.545312) scale(0.7)"/>
-       <path d="M 6.25 22.33125 
-L 6.25 28.58125 
-L 41.25 28.58125 
-L 41.25 22.33125 
-L 6.25 22.33125 
-z
-"/>
+      <!-- $3/2$ -->
+      <g style="fill: #52514e" transform="translate(113.94919 82.604939) scale(0.085 -0.085)">
+       <use xlink:href="#Cmr10-6e"/>
+       <use xlink:href="#Cmmi10-62" transform="translate(50 0)"/>
+       <use xlink:href="#Cmr10-31" transform="translate(100 0)"/>
       </g>
      </g>
     </g>

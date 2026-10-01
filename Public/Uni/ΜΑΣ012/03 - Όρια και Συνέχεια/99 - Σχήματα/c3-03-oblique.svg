@@ -566,14 +566,14 @@ z
    </g>
    <g id="legend_1">
     <g id="line2d_22">
-     <path d="M 14.85 20.925 
-L 22.5 20.925 
-L 30.15 20.925 
+     <path d="M 142.355 203.498008 
+L 150.005 203.498008 
+L 157.655 203.498008 
 " style="fill: none; stroke-dasharray: 7,3.5; stroke-dashoffset: 0; stroke: #eb6834; stroke-width: 1.4"/>
     </g>
     <g id="text_11">
      <!-- πλάγια ασύμπτωτη $y = x$ -->
-     <g style="fill: #0b0b0b" transform="translate(36.95 23.9) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(164.455 206.473008) scale(0.085 -0.085)">
       <defs>
        <path id="DejaVuSans-354" d="M 231 3500 
 L 3584 3500 
@@ -891,14 +891,14 @@ z
      </g>
     </g>
     <g id="line2d_23">
-     <path d="M 14.85 35.886992 
-L 22.5 35.886992 
-L 30.15 35.886992 
+     <path d="M 142.355 218.46 
+L 150.005 218.46 
+L 157.655 218.46 
 " style="fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linecap: round"/>
     </g>
     <g id="text_12">
      <!-- $\frac{x^2 + 1}{x} = x + \frac{1}{x}$ -->
-     <g style="fill: #0b0b0b" transform="translate(36.95 38.861992) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(164.455 221.435) scale(0.085 -0.085)">
       <defs>
        <path id="Cmr10-31" d="M 319 0 
 L 319 172 

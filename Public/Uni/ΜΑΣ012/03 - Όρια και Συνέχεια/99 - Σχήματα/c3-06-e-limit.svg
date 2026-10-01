@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="381.60544pt" height="212.72pt" viewBox="0 0 381.60544 212.72" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="381.60544pt" height="235.743992pt" viewBox="0 0 381.60544 235.743992" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
@@ -20,8 +20,8 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 212.72 
-L 381.60544 212.72 
+   <path d="M 0 235.743992 
+L 381.60544 235.743992 
 L 381.60544 0 
 L 0 0 
 z
@@ -1037,14 +1037,14 @@ z
    </g>
    <g id="legend_1">
     <g id="line2d_19">
-     <path d="M 109.515 27.1958 
-L 117.165 27.1958 
-L 124.815 27.1958 
+     <path d="M 27.4475 220.127 
+L 35.0975 220.127 
+L 42.7475 220.127 
 " style="fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linecap: round"/>
     </g>
     <g id="text_11">
      <!-- $x \to +\infty$: ανεβαίνει προς το $e$ -->
-     <g style="fill: #0b0b0b" transform="translate(131.615 30.1708) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(49.5475 223.102) scale(0.085 -0.085)">
       <defs>
        <path id="Cmsy10-c" d="M 481 1472 
 Q 428 1472 393 1512 
@@ -1284,14 +1284,14 @@ z
      </g>
     </g>
     <g id="line2d_20">
-     <path d="M 109.515 40.287792 
-L 117.165 40.287792 
-L 124.815 40.287792 
+     <path d="M 191.5825 220.127 
+L 199.2325 220.127 
+L 206.8825 220.127 
 " style="fill: none; stroke-dasharray: 10,5; stroke-dashoffset: 0; stroke: #eb6834; stroke-width: 2"/>
     </g>
     <g id="text_12">
      <!-- $x \to -\infty$: κατεβαίνει προς το $e$ -->
-     <g style="fill: #0b0b0b" transform="translate(131.615 43.262792) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(213.6825 223.102) scale(0.085 -0.085)">
       <defs>
        <path id="Cmsy10-11" d="M 653 1472 
 Q 600 1472 565 1512 

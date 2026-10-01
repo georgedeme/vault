@@ -656,14 +656,14 @@ z
    </g>
    <g id="legend_1">
     <g id="line2d_19">
-     <path d="M 14.85 21.605 
-L 22.5 21.605 
-L 30.15 21.605 
+     <path d="M 183.79 192.359023 
+L 191.44 192.359023 
+L 199.09 192.359023 
 " style="fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linecap: round"/>
     </g>
     <g id="text_10">
      <!-- $y = x^2$ -->
-     <g style="fill: #0b0b0b" transform="translate(36.95 24.58) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(205.89 195.334023) scale(0.085 -0.085)">
       <defs>
        <path id="Cmr10-29" d="M 481 850 
 Q 428 850 393 890 
@@ -739,14 +739,14 @@ z
      </g>
     </g>
     <g id="line2d_20">
-     <path d="M 14.85 34.696992 
-L 22.5 34.696992 
-L 30.15 34.696992 
+     <path d="M 183.79 205.451016 
+L 191.44 205.451016 
+L 199.09 205.451016 
 " style="fill: none; stroke: #a6a59f; stroke-width: 1.3; stroke-linecap: round"/>
     </g>
     <g id="text_11">
      <!-- τέμνουσες $PQ$ καθώς $Q \to P$ -->
-     <g style="fill: #0b0b0b" transform="translate(36.95 37.671992) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(205.89 208.426016) scale(0.085 -0.085)">
       <defs>
        <path id="DejaVuSans-358" d="M 2319 638 
 Q 2431 488 2769 488 
@@ -1122,14 +1122,14 @@ z
      </g>
     </g>
     <g id="line2d_21">
-     <path d="M 14.85 47.788984 
-L 22.5 47.788984 
-L 30.15 47.788984 
+     <path d="M 183.79 218.543008 
+L 191.44 218.543008 
+L 199.09 218.543008 
 " style="fill: none; stroke: #eb6834; stroke-width: 2.2; stroke-linecap: round"/>
     </g>
     <g id="text_12">
      <!-- εφαπτομένη $y = 2x - 1$ -->
-     <g style="fill: #0b0b0b" transform="translate(36.95 50.763984) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(205.89 221.518008) scale(0.085 -0.085)">
       <defs>
        <path id="DejaVuSans-35a" d="M 2591 3034 
 Q 2388 3034 2388 2581 

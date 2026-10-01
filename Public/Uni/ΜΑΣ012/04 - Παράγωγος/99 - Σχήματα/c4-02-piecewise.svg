@@ -1365,14 +1365,14 @@ z
    </g>
    <g id="legend_2">
     <g id="line2d_21">
-     <path d="M 321.45 37.353437 
-L 329.1 37.353437 
-L 336.75 37.353437 
+     <path d="M 504.183345 184.282344 
+L 511.833345 184.282344 
+L 519.483345 184.282344 
 " style="fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linecap: round"/>
     </g>
     <g id="text_15">
      <!-- $x^2 + 2$, $x \leq 1$ -->
-     <g style="fill: #0b0b0b" transform="translate(343.55 40.328437) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(526.283345 187.257344) scale(0.085 -0.085)">
       <defs>
        <path id="Cmr10-4c" d="M 481 1472 
 Q 428 1472 393 1512 
@@ -1414,14 +1414,14 @@ z
      </g>
     </g>
     <g id="line2d_22">
-     <path d="M 321.45 50.104102 
-L 329.1 50.104102 
-L 336.75 50.104102 
+     <path d="M 504.183345 197.033008 
+L 511.833345 197.033008 
+L 519.483345 197.033008 
 " style="fill: none; stroke: #eb6834; stroke-width: 2; stroke-linecap: round"/>
     </g>
     <g id="text_16">
      <!-- $x + 2$, $x &gt; 1$ -->
-     <g style="fill: #0b0b0b" transform="translate(343.55 53.079102) scale(0.085 -0.085)">
+     <g style="fill: #0b0b0b" transform="translate(526.283345 200.008008) scale(0.085 -0.085)">
       <use xlink:href="#Cmmi10-3f" transform="translate(0 0.390625)"/>
       <use xlink:href="#Cmr10-4c" transform="translate(77.080135 0.390625)"/>
       <use xlink:href="#Cmr10-31" transform="translate(174.765739 0.390625)"/>

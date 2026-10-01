@@ -1275,14 +1275,14 @@ z
    </g>
    <g id="legend_1">
     <g id="line2d_15">
-     <path d="M 36.524375 38.27 
-L 44.624375 38.27 
-L 52.724375 38.27 
+     <path d="M 52.098348 38.27 
+L 60.198348 38.27 
+L 68.298348 38.27 
 " style="fill: none; stroke-dasharray: 10,5; stroke-dashoffset: 0; stroke: #eb6834; stroke-width: 2"/>
     </g>
     <g id="text_10">
      <!-- $x^3$ -->
-     <g style="fill: #0b0b0b" transform="translate(59.924375 41.42) scale(0.09 -0.09)">
+     <g style="fill: #0b0b0b" transform="translate(75.498348 41.42) scale(0.09 -0.09)">
       <defs>
        <path id="Cmr10-6e" d="M 609 494 
 Q 759 275 1012 169 
@@ -1348,14 +1348,14 @@ z
      </g>
     </g>
     <g id="line2d_16">
-     <path d="M 36.524375 51.770703 
-L 44.624375 51.770703 
-L 52.724375 51.770703 
+     <path d="M 52.098348 51.770703 
+L 60.198348 51.770703 
+L 68.298348 51.770703 
 " style="fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linecap: round"/>
     </g>
     <g id="text_11">
      <!-- $e^x$ -->
-     <g style="fill: #0b0b0b" transform="translate(59.924375 54.920703) scale(0.09 -0.09)">
+     <g style="fill: #0b0b0b" transform="translate(75.498348 54.920703) scale(0.09 -0.09)">
       <use xlink:href="#Cmmi10-3" transform="translate(0 0.779516)"/>
       <use xlink:href="#Cmmi10-3f" transform="translate(57.744557 42.06875) scale(0.7)"/>
      </g>
@@ -1882,14 +1882,14 @@ z
    </g>
    <g id="legend_2">
     <g id="line2d_34">
-     <path d="M 344.91625 37.73 
-L 353.01625 37.73 
-L 361.11625 37.73 
+     <path d="M 360.490223 37.73 
+L 368.590223 37.73 
+L 376.690223 37.73 
 " style="fill: none; stroke-dasharray: 10,5; stroke-dashoffset: 0; stroke: #eb6834; stroke-width: 2"/>
     </g>
     <g id="text_21">
      <!-- $\sqrt{x}$ -->
-     <g style="fill: #0b0b0b" transform="translate(368.31625 40.88) scale(0.09 -0.09)">
+     <g style="fill: #0b0b0b" transform="translate(383.890223 40.88) scale(0.09 -0.09)">
       <use xlink:href="#Cmex10-30" transform="translate(0 73.453125) scale(0.637938)"/>
       <use xlink:href="#Cmmi10-3f" transform="translate(76.28125 0.5625)"/>
       <path d="M 63.78125 75.75 
@@ -1902,14 +1902,14 @@ z
      </g>
     </g>
     <g id="line2d_35">
-     <path d="M 344.91625 51.230703 
-L 353.01625 51.230703 
-L 361.11625 51.230703 
+     <path d="M 360.490223 51.230703 
+L 368.590223 51.230703 
+L 376.690223 51.230703 
 " style="fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linecap: round"/>
     </g>
     <g id="text_22">
      <!-- $\ln x$ -->
-     <g style="fill: #0b0b0b" transform="translate(368.31625 54.380703) scale(0.09 -0.09)">
+     <g style="fill: #0b0b0b" transform="translate(383.890223 54.380703) scale(0.09 -0.09)">
       <use xlink:href="#Cmr10-6a" transform="translate(0 0.609375)"/>
       <use xlink:href="#Cmr10-74" transform="translate(27.685547 0.609375)"/>
       <use xlink:href="#Cmmi10-3f" transform="translate(99.870173 0.609375)"/>

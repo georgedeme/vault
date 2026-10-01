@@ -952,41 +952,6 @@ z
      <use xlink:href="#Cmr10-44" transform="translate(559.437668 0)"/>
     </g>
    </g>
-   <g id="text_11">
-    <!-- $y = x$ -->
-    <g style="fill: #52514e" transform="translate(214.026667 21.924674) scale(0.085 -0.085)">
-     <defs>
-      <path id="Cmr10-29" d="M 481 850 
-Q 428 850 393 890 
-Q 359 931 359 978 
-Q 359 1031 393 1068 
-Q 428 1106 481 1106 
-L 4500 1106 
-Q 4547 1106 4581 1068 
-Q 4616 1031 4616 978 
-Q 4616 931 4581 890 
-Q 4547 850 4500 850 
-L 481 850 
-z
-M 481 2094 
-Q 428 2094 393 2131 
-Q 359 2169 359 2222 
-Q 359 2269 393 2309 
-Q 428 2350 481 2350 
-L 4500 2350 
-Q 4547 2350 4581 2309 
-Q 4616 2269 4616 2222 
-Q 4616 2169 4581 2131 
-Q 4547 2094 4500 2094 
-L 481 2094 
-z
-" transform="scale(0.015625)"/>
-     </defs>
-     <use xlink:href="#Cmmi10-72" transform="translate(0 0.8125)"/>
-     <use xlink:href="#Cmr10-29" transform="translate(69.023495 0.8125)"/>
-     <use xlink:href="#Cmmi10-3f" transform="translate(166.709099 0.8125)"/>
-    </g>
-   </g>
    <g id="legend_1">
     <g id="line2d_21">
      <path d="M 115.722533 211.2578 
@@ -994,7 +959,7 @@ L 123.372533 211.2578
 L 131.022533 211.2578 
 " style="fill: none; stroke-dasharray: 10,5; stroke-dashoffset: 0; stroke: #eb6834; stroke-width: 2"/>
     </g>
-    <g id="text_12">
+    <g id="text_11">
      <!-- $x^2 + y^2 = 1$: $(\cos t, \sin t)$ -->
      <g style="fill: #0b0b0b" transform="translate(137.822533 214.2328) scale(0.085 -0.085)">
       <defs>
@@ -1066,6 +1031,31 @@ L 2363 1472
 L 481 1472 
 z
 " transform="scale(0.015625)"/>
+       <path id="Cmr10-29" d="M 481 850 
+Q 428 850 393 890 
+Q 359 931 359 978 
+Q 359 1031 393 1068 
+Q 428 1106 481 1106 
+L 4500 1106 
+Q 4547 1106 4581 1068 
+Q 4616 1031 4616 978 
+Q 4616 931 4581 890 
+Q 4547 850 4500 850 
+L 481 850 
+z
+M 481 2094 
+Q 428 2094 393 2131 
+Q 359 2169 359 2222 
+Q 359 2269 393 2309 
+Q 428 2350 481 2350 
+L 4500 2350 
+Q 4547 2350 4581 2309 
+Q 4616 2269 4616 2222 
+Q 4616 2169 4581 2131 
+Q 4547 2094 4500 2094 
+L 481 2094 
+z
+" transform="scale(0.015625)"/>
        <path id="Cmr10-64" d="M 594 0 
 L 594 225 
 Q 1394 225 1394 428 
@@ -1125,7 +1115,7 @@ L 123.372533 225.1128
 L 131.022533 225.1128 
 " style="fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linecap: round"/>
     </g>
-    <g id="text_13">
+    <g id="text_12">
      <!-- $x^2 - y^2 = 1$: $(\cosh t, \sinh t)$ -->
      <g style="fill: #0b0b0b" transform="translate(137.822533 228.0878) scale(0.085 -0.085)">
       <defs>

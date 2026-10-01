@@ -919,14 +919,14 @@ z
    </g>
    <g id="legend_1">
     <g id="line2d_12">
-     <path d="M 66.232545 38.07 
-L 74.332545 38.07 
-L 82.432545 38.07 
+     <path d="M 219.765091 187.823672 
+L 227.865091 187.823672 
+L 235.965091 187.823672 
 " style="fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linecap: round"/>
     </g>
     <g id="text_7">
      <!-- $x^2$ -->
-     <g style="fill: #0b0b0b" transform="translate(89.632545 41.22) scale(0.09 -0.09)">
+     <g style="fill: #0b0b0b" transform="translate(243.165091 190.973672) scale(0.09 -0.09)">
       <defs>
        <path id="Cmr10-31" d="M 319 0 
 L 319 172 
@@ -975,14 +975,14 @@ z
      </g>
     </g>
     <g id="line2d_13">
-     <path d="M 117.532545 38.07 
-L 125.632545 38.07 
-L 133.732545 38.07 
+     <path d="M 219.765091 202.405781 
+L 227.865091 202.405781 
+L 235.965091 202.405781 
 " style="fill: none; stroke-dasharray: 10,5; stroke-dashoffset: 0; stroke: #eb6834; stroke-width: 2"/>
     </g>
     <g id="text_8">
      <!-- $x^4$ -->
-     <g style="fill: #0b0b0b" transform="translate(140.932545 41.22) scale(0.09 -0.09)">
+     <g style="fill: #0b0b0b" transform="translate(243.165091 205.555781) scale(0.09 -0.09)">
       <defs>
        <path id="Cmr10-3b" d="M 178 1056 
 L 178 1281 
@@ -1017,14 +1017,14 @@ z
      </g>
     </g>
     <g id="line2d_14">
-     <path d="M 168.832545 38.07 
-L 176.932545 38.07 
-L 185.032545 38.07 
+     <path d="M 219.765091 216.987891 
+L 227.865091 216.987891 
+L 235.965091 216.987891 
 " style="fill: none; stroke-dasharray: 3,4; stroke-dashoffset: 0; stroke: #1baf7a; stroke-width: 2"/>
     </g>
     <g id="text_9">
      <!-- $x^6$ -->
-     <g style="fill: #0b0b0b" transform="translate(192.232545 41.22) scale(0.09 -0.09)">
+     <g style="fill: #0b0b0b" transform="translate(243.165091 220.137891) scale(0.09 -0.09)">
       <defs>
        <path id="Cmr10-45" d="M 1600 -141 
 Q 1203 -141 937 70 
