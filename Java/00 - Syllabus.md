@@ -21,7 +21,7 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 ## Part III — Program Structure
 
 - [x] [[01 - Methods|Methods]] — declaration, parameters, return types, overloading, varargs, recursion
-- [x] [[02 - Strings|Strings]] — the `String` class, immutability, common `String` methods, `StringBuilder`, formatted output with `printf`/`String.format`
+- [x] [[Java/03 - Program Structure/02 - Strings|Strings]] — the `String` class, immutability, common `String` methods, `StringBuilder`, formatted output with `printf`/`String.format`
 
 ## Part IV — Object-Oriented Programming
 

@@ -454,7 +454,7 @@ class Builder {
 String s = new Builder().add("a").add("b").add("c").sb.toString();   // "abc"
 ```
 
-Returning `this` is what makes **method chaining** (`sb.append(x).append(y)`) possible. `StringBuilder` itself works this way ([[02 - Strings#5. StringBuilder|Strings § 5]]).
+Returning `this` is what makes **method chaining** (`sb.append(x).append(y)`) possible. `StringBuilder` itself works this way ([[Java/03 - Program Structure/02 - Strings#5. StringBuilder|Strings § 5]]).
 
 ### 7.4 What `this` Can't Do
 
@@ -1188,7 +1188,7 @@ class Player {
 ## Related
 
 - [[Java/00 - Syllabus|Syllabus]]
-- Previous: [[02 - Strings|Strings]] · Next: [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]
+- Previous: [[Java/03 - Program Structure/02 - Strings|Strings]] · Next: [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]
 - [[02 - Variables and Data Types|Variables and Data Types]]: instance/static variables, default values, blank finals, shadowing
 - [[01 - Methods|Methods]]: declaring and overloading methods, pass-by-value, `static main`
 - [[03 - Arrays|Arrays]]: arrays as objects, aliasing

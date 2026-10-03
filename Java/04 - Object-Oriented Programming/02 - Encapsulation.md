@@ -470,7 +470,7 @@ m = m.plus(new Money(50));       // reassign the variable to the new object
 System.out.println(m);           // 150c
 ```
 
-It's exactly the same mistake as `s.toUpperCase();` on a `String` ([[02 - Strings#1. The String Class and Immutability|Strings § 1]]). Such methods are often named `withX`, `plus`, or `minus` to signal that they return a new object.
+It's exactly the same mistake as `s.toUpperCase();` on a `String` ([[Java/03 - Program Structure/02 - Strings#1. The String Class and Immutability|Strings § 1]]). Such methods are often named `withX`, `plus`, or `minus` to signal that they return a new object.
 
 ### 7.3 Why the Class Should Be `final`
 
@@ -987,7 +987,7 @@ System.out.println(Config.MODES[1]);
 - [[01 - Introduction to Java#5.4 Packages and the Classpath|Introduction to Java § 5.4]]: packages and how to compile them
 - [[02 - Variables and Data Types#7.2 `final` Doesn't Mean Immutable|Variables and Data Types § 7.2]]: `final` vs. immutable
 - [[03 - Arrays|Arrays]]: aliasing, `clone()`, shallow vs. deep copies
-- [[02 - Strings|Strings]]: `String` as the model immutable class
+- [[Java/03 - Program Structure/02 - Strings|Strings]]: `String` as the model immutable class
 - [[01 - Methods#5.4 Immutable Objects Look Like Primitives|Methods § 5.4]]: why passing an immutable object feels like passing a primitive
 - [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]: `protected` from the subclass side, overriding can't narrow access, overridable methods in constructors
 - [[Java/04 - Object-Oriented Programming/06 - Object Methods|Object Methods]]: writing `equals`/`hashCode`/`toString` by hand, and why mutable keys break hash collections

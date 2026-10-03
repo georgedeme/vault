@@ -407,7 +407,7 @@ n == l            // compile error: incomparable types: Integer and Long
 n.equals(l)       // false : different classes
 ```
 
-See [[02 - Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]] and [[04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]].
+See [[Java/03 - Program Structure/02 - Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]] and [[04 - Type Casting#9. Autoboxing and Unboxing (Related, Not True Casting)|Type Casting § 9]].
 
 ![[Operators - Identity and the Integer Cache.excalidraw|800]]
 
@@ -622,7 +622,7 @@ If **either** operand of `+` is a `String`, it means concatenation. The other op
 "x" + null          // "xnull"
 ```
 
-`-`, `*`, `/` have no string meaning: `"a" - "a"` and `s -= "a"` are compile errors. Performance of `+` in loops and `StringBuilder` are covered in [[02 - Strings#4. String Concatenation|Strings § 4]].
+`-`, `*`, `/` have no string meaning: `"a" - "a"` and `s -= "a"` are compile errors. Performance of `+` in loops and `StringBuilder` are covered in [[Java/03 - Program Structure/02 - Strings#4. String Concatenation|Strings § 4]].
 
 ---
 
@@ -916,4 +916,4 @@ long r = 1L << 35;
 - Previous: [[02 - Variables and Data Types|Variables and Data Types]] · Next: [[04 - Type Casting|Type Casting]]
 - [[01 - Introduction to Java|Introduction to Java]]
 - [[01 - Conditional Statements|Conditional Statements]]: conditions, `switch`, the ternary operator
-- [[02 - Strings|Strings]]: `equals` vs `==`, concatenation performance
+- [[Java/03 - Program Structure/02 - Strings|Strings]]: `equals` vs `==`, concatenation performance

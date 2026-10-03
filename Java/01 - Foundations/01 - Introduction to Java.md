@@ -528,4 +528,4 @@ public class U {
 - [[Java/00 - Syllabus|Syllabus]]
 - Next: [[02 - Variables and Data Types|Variables and Data Types]]
 - [[03 - Operators|Operators]]: runtime arithmetic errors, `char` arithmetic
-- [[02 - Strings|Strings]]: `printf` and formatted output
+- [[Java/03 - Program Structure/02 - Strings|Strings]]: `printf` and formatted output

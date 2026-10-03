@@ -2,7 +2,7 @@
 
 An <span class="hl-blue">array</span> is a **fixed-length**, **zero-indexed** container that holds values of **one type**. In Java an array is an **object**. It lives on the heap, the variable holds a *reference* to it, and it carries its own `length`. That one fact explains most of the surprising behaviour: assignment makes an alias rather than a copy, `==` and `.equals()` compare identity, printing shows `[I@1b6d3586`, and a method can change the caller's array. This chapter covers declaring, creating, accessing, copying, and comparing arrays, multi-dimensional (jagged) arrays, the `java.util.Arrays` utility class, and the places where the rules are easy to get wrong.
 
-Loops over arrays are covered in [[02 - Loops|Loops]]. Arrays as a data structure (dynamic arrays, amortized resizing, rotation) are covered in [[Arrays|DSA: Arrays]]. This chapter is about the Java language feature.
+Loops over arrays are covered in [[02 - Loops|Loops]]. Arrays as a data structure (dynamic arrays, amortized resizing, rotation) are covered in [[DSA/02 - Linear Data Structures/01 - Arrays|DSA: Arrays]]. This chapter is about the Java language feature.
 
 ## Contents
 
@@ -511,7 +511,7 @@ Arrays.sort(boxed, Collections.reverseOrder());   // {9, 5, 2, 1}
 > - Sorting an array of your own class without a comparator requires the class to implement `Comparable`. Otherwise you get a `ClassCastException` at runtime.
 
 > [!info]- Which algorithm does `Arrays.sort` use?
-> For primitive arrays: a dual-pivot quicksort, O(n log n) on average. It is not stable, but stability does not matter for primitives because equal values cannot be told apart. For object arrays: TimSort, a **stable** merge-sort variant, O(n log n) worst case. Stable means equal elements keep their original relative order, which matters when sorting records by one field after another. More in [[DSA/Sorting Algorithms|DSA: Sorting Algorithms]].
+> For primitive arrays: a dual-pivot quicksort, O(n log n) on average. It is not stable, but stability does not matter for primitives because equal values cannot be told apart. For object arrays: TimSort, a **stable** merge-sort variant, O(n log n) worst case. Stable means equal elements keep their original relative order, which matters when sorting records by one field after another. More in [[DSA/03 - Sorting and Searching/01 - Sorting Algorithms|DSA: Sorting Algorithms]].
 
 ### 8.2 `binarySearch`
 
@@ -753,7 +753,7 @@ Generics are checked only at compile time and erased at runtime, while arrays ch
 
 ## 12. Common Array Algorithms
 
-These basic patterns come up constantly. Each is shown as pseudocode first and then in Java. Their complexity is covered in [[01 - Complexity Analysis|Complexity Analysis]], and the full algorithm treatments are in [[Arrays|DSA: Arrays]] and [[DSA/Binary Search|DSA: Binary Search]].
+These basic patterns come up constantly. Each is shown as pseudocode first and then in Java. Their complexity is covered in [[DSA/01 - Foundations/01 - Complexity Analysis|Complexity Analysis]], and the full algorithm treatments are in [[DSA/02 - Linear Data Structures/01 - Arrays|DSA: Arrays]] and [[DSA/03 - Sorting and Searching/02 - Binary Search|DSA: Binary Search]].
 
 ### 12.1 Sum and Average
 
@@ -829,7 +829,7 @@ static int indexOf(int[] a, int key) {
 }
 ```
 
-For `String[]` or other object arrays, compare with `a[i].equals(key)` (or `Objects.equals(a[i], key)` if elements may be `null`), never `==` (see [[02 - Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]]).
+For `String[]` or other object arrays, compare with `a[i].equals(key)` (or `Objects.equals(a[i], key)` if elements may be `null`), never `==` (see [[Java/03 - Program Structure/02 - Strings#2. Creating Strings — Literals vs. `new`|Strings § 2]]).
 
 ### 12.4 Reverse In Place
 
@@ -1193,7 +1193,7 @@ System.out.println(l1.get(0)[0]);
 - Previous: [[02 - Loops|Loops]] · Next: [[01 - Methods|Methods]]
 - [[02 - Variables and Data Types|Variables and Data Types]]: default values, reference types, `final`, `var`
 - [[Java/01 - Foundations/05 - Reading Input|Reading Input]]: `Scanner`, reading an array's length and elements from the keyboard
-- [[02 - Strings|Strings]]: `char[]` ↔ `String`, `length()` vs. `length`
+- [[Java/03 - Program Structure/02 - Strings|Strings]]: `char[]` ↔ `String`, `length()` vs. `length`
 - [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: invariant generics vs. covariant arrays, generic array creation
 - [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]]: `ArrayList` as a resizable alternative
-- [[Arrays|DSA: Arrays]] · [[DSA/Binary Search|DSA: Binary Search]] · [[DSA/Sorting Algorithms|DSA: Sorting Algorithms]]
+- [[DSA/02 - Linear Data Structures/01 - Arrays|DSA: Arrays]] · [[DSA/03 - Sorting and Searching/02 - Binary Search|DSA: Binary Search]] · [[DSA/03 - Sorting and Searching/01 - Sorting Algorithms|DSA: Sorting Algorithms]]

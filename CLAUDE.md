@@ -38,10 +38,31 @@ When writing or expanding a note, deliberately look for the edge
 cases, gotchas, and "looks obvious but isn't" scenarios within its
 topic, and include them rather than sticking to the safe/common path.
 
+# Drawings
+
+Always include Excalidraw drawings in new notes (typically 2–4 per note)
+for the ideas that are easiest to grasp visually: memory/pointer
+pictures, step-by-step state changes, and "looks the same but isn't"
+comparisons. They add to the text and never replace it.
+- Store them in a `99 - Drawings` folder inside the note's topic folder,
+  named `<Chapter> - <Topic>`, and embed them right after the passage they
+  illustrate with `![[<name>.excalidraw|800]]`.
+- Generate them with the scripts in `.claude/scratch/exdraw/` (one
+  script per drawing, helpers in `lib.js`), run with
+  `bash .claude/scratch/exdraw/go.sh "<folder>/99 - Drawings" <script> …`,
+  then check the PNG preview in `.claude/scratch/exdraw/png/` for overlaps
+  and clipped text before embedding.
+- Drawings are exported for dark mode: captions shouldn't name fill colours.
+
 # DSA notes
 
 For data structures and algorithms notes: state the algorithm in
 pseudocode first, then give a working Java implementation.
+Layout: `DSA/00 - Syllabus`, one folder per syllabus part
+(`DSA/NN - Part Name/`) with numbered chapter notes
+(`NN - Chapter.md`) and a `99 - Drawings` folder. Links between DSA
+notes, including links to planned chapters, use full numbered vault paths
+(`[[DSA/03 - Sorting and Searching/02 - Binary Search|Binary Search]]`).
 
 # Java notes
 

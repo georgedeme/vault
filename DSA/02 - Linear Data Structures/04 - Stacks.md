@@ -53,7 +53,7 @@ push 1, push 2, push 3        pop → 3         push 4
 | "Undo", "back", "previous state" | revert the most recent change first |
 | Evaluate or parse an expression | operators wait for their operands |
 | "Next/previous greater/smaller element" | monotonic stack ([[#8. Monotonic Stack|§8]]) |
-| Simulating recursion / iterative DFS | the call stack is a stack ([[DSA/Foundations/Recursion#8. Converting Recursion to Iteration|Recursion § 8]]) |
+| Simulating recursion / iterative DFS | the call stack is a stack ([[DSA/01 - Foundations/02 - Recursion#8. Converting Recursion to Iteration|Recursion § 8]]) |
 | Process in reverse, or cancel adjacent pairs | `"abbaca" → "ca"`, asteroid collisions |
 
 ---
@@ -223,6 +223,8 @@ static boolean isValid(String s) {
 
 Pushing the **expected closing bracket** turns the check into a single comparison.
 
+![[Stacks - Bracket Matching.excalidraw|800]]
+
 > [!warning] Three ways to fail
 > | Input | Failure | Caught by |
 > |---|---|---|
@@ -327,7 +329,7 @@ class MinStack {
 >
 > A third version stores a single `long` per element, encoding `2x − min` whenever `x` becomes the new minimum, for `O(1)` extra space. It needs `long` arithmetic to avoid overflow, and it's mostly an interview curiosity.
 
-The same "store the aggregate alongside each element" idea gives a max-stack, a stack with `O(1)` `getGcd`, and, combined with the two-stack queue, a **queue with `O(1)` min** ([[Queues and Deques|Queues and Deques]]).
+The same "store the aggregate alongside each element" idea gives a max-stack, a stack with `O(1)` `getGcd`, and, combined with the two-stack queue, a **queue with `O(1)` min** ([[DSA/02 - Linear Data Structures/05 - Queues and Deques|Queues and Deques]]).
 
 ---
 
@@ -557,7 +559,7 @@ static String removeDuplicates(String s) {
 }
 ```
 
-The stack handles cascades (`"abba"`: removing `bb` makes the two `a`s adjacent) automatically. Rescanning the string after each removal is `O(n²)`. **Backspace comparison** (`"ab#c"` = `"ac"`) is the same idea: `#` pops. It can also be done in `O(1)` space by scanning both strings from the right, counting pending backspaces ([[DSA/Two Pointers|Two Pointers]]).
+The stack handles cascades (`"abba"`: removing `bb` makes the two `a`s adjacent) automatically. Rescanning the string after each removal is `O(n²)`. **Backspace comparison** (`"ab#c"` = `"ac"`) is the same idea: `#` pops. It can also be done in `O(1)` space by scanning both strings from the right, counting pending backspaces ([[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]]).
 
 ### 7.2 Decode a nested string: `3[a2[c]]` → `accaccacc`
 
@@ -690,6 +692,8 @@ static int[] nextGreater(int[] a) {
 }
 ```
 
+![[Stacks - Monotonic Stack Next Greater.excalidraw|800]]
+
 > [!example]- Trace: `a = [2, 1, 2, 4, 3]`
 > | `i` | `a[i]` | Popped (index → answer) | Stack after (values) |
 > |---|---|---|---|
@@ -702,7 +706,7 @@ static int[] nextGreater(int[] a) {
 > Result: `[4, 2, 4, -1, -1]`. The stack's values are non-increasing from bottom to top at every step.
 
 > [!important] Why it's O(n), not O(n²)
-> Each index is pushed once and popped at most once, so all the `while` iterations together run at most `n` times. This is the aggregate argument from [[01 - Complexity Analysis#8.4 Where amortized bounds appear|Complexity Analysis § 8.4]]: a single step can pop many elements, but the total over the whole scan is linear.
+> Each index is pushed once and popped at most once, so all the `while` iterations together run at most `n` times. This is the aggregate argument from [[DSA/01 - Foundations/01 - Complexity Analysis#8.4 Where amortized bounds appear|Complexity Analysis § 8.4]]: a single step can pop many elements, but the total over the whole scan is linear.
 
 ### 8.2 The four variants from one scan
 
@@ -786,6 +790,8 @@ static long largestRectangleArea(int[] h) {
 }
 ```
 
+![[Stacks - Largest Rectangle in Histogram.excalidraw|800]]
+
 > [!warning] The details that break histogram solutions
 > - **The sentinel.** Without the final height-0 bar, bars still on the stack at the end are never measured; `[1, 2, 3]` returns `0` instead of `4`.
 > - **Empty stack → left boundary is `−1`.** The popped bar was the smallest so far, so it extends all the way to index 0, and the width is `i`, not `i − 1`.
@@ -817,7 +823,7 @@ static int trap(int[] h) {
 }
 ```
 
-The `O(1)`-space version uses two pointers moving inward from both ends ([[DSA/Two Pointers|Two Pointers]]); the prefix-max/suffix-max version computes `min(maxLeft[i], maxRight[i]) − h[i]` per column ([[DSA/Prefix Sums and Difference Arrays|Prefix Sums]]).
+The `O(1)`-space version uses two pointers moving inward from both ends ([[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]]); the prefix-max/suffix-max version computes `min(maxLeft[i], maxRight[i]) − h[i]` per column ([[DSA/03 - Sorting and Searching/05 - Prefix Sums and Difference Arrays|Prefix Sums]]).
 
 ### 9.4 Sum of subarray minimums (contribution technique)
 
@@ -981,11 +987,11 @@ Edge cases this handles: `"12345", k = 2` (already increasing, remove from the e
 
 ## Related
 
-- [[DSA/00 - Syllabus|00 - Syllabus]]
-- Previous: [[Linked Lists|Linked Lists]] · Next: [[Queues and Deques|Queues and Deques]]
-- [[02 - Recursion#8. Converting Recursion to Iteration|Recursion § 8]]: replacing the call stack with an explicit one
-- [[Queues and Deques|Queues and Deques]]: queue from two stacks; the monotonic deque
-- [[DSA/Binary Trees|Binary Trees]]: iterative traversals with a stack
-- [[DSA/Graph Representations and Traversals|Graph Representations and Traversals]]: iterative DFS
-- [[DSA/Two Pointers|Two Pointers]]: `O(1)`-space alternatives for rain water and backspace comparison
-- [[01 - Complexity Analysis#8. Amortized Analysis|Complexity Analysis § 8]]: why the monotonic stack is linear
+- [[DSA/00 - Syllabus|Syllabus]]
+- Previous: [[DSA/02 - Linear Data Structures/03 - Linked Lists|Linked Lists]] · Next: [[DSA/02 - Linear Data Structures/05 - Queues and Deques|Queues and Deques]]
+- [[DSA/01 - Foundations/02 - Recursion#8. Converting Recursion to Iteration|Recursion § 8]]: replacing the call stack with an explicit one
+- [[DSA/02 - Linear Data Structures/05 - Queues and Deques|Queues and Deques]]: queue from two stacks; the monotonic deque
+- [[DSA/04 - Trees and Hierarchical Structures/01 - Binary Trees|Binary Trees]]: iterative traversals with a stack
+- [[DSA/05 - Graphs/01 - Graph Representations and Traversals|Graph Representations and Traversals]]: iterative DFS
+- [[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]]: `O(1)`-space alternatives for rain water and backspace comparison
+- [[DSA/01 - Foundations/01 - Complexity Analysis#8. Amortized Analysis|Complexity Analysis § 8]]: why the monotonic stack is linear

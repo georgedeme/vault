@@ -49,7 +49,7 @@ head
 > [!note] Definitions
 > - The <span class="hl-blue">head</span> is the first node; the list is identified by a reference to it. An **empty list** is `head == null`.
 > - The <span class="hl-blue">tail</span> is the last node; its `next` is `null` (in a non-circular list).
-> - A list is a **recursive** structure: either empty, or a node followed by a list. This is why many list algorithms have a short recursive form ([[02 - Recursion#6.4 Recursion over data structures|Recursion § 6.4]]).
+> - A list is a **recursive** structure: either empty, or a node followed by a list. This is why many list algorithms have a short recursive form ([[DSA/01 - Foundations/02 - Recursion#6.4 Recursion over data structures|Recursion § 6.4]]).
 
 ### 1.1 Arrays vs. linked lists
 
@@ -79,7 +79,7 @@ head
 
 > [!info]- Two variants you'll hear about but rarely write
 > - **XOR linked list.** Each node stores `prev XOR next` in a single field, so a doubly linked list costs one pointer per node. Traversal needs the previous address to recover the next one. It's impossible in Java (you can't XOR references, and the GC moves objects) and rarely worth it elsewhere.
-> - **Skip list.** A sorted linked list with extra "express lane" levels. Each node is promoted to the next level with probability ½, so search, insert, and delete are `O(log n)` **expected**. It's a randomized alternative to balanced trees; Java's `ConcurrentSkipListMap`/`ConcurrentSkipListSet` are built on it. See [[DSA/Balanced Trees|Balanced Trees]] for the deterministic alternatives.
+> - **Skip list.** A sorted linked list with extra "express lane" levels. Each node is promoted to the next level with probability ½, so search, insert, and delete are `O(log n)` **expected**. It's a randomized alternative to balanced trees; Java's `ConcurrentSkipListMap`/`ConcurrentSkipListSet` are built on it. See [[DSA/04 - Trees and Hierarchical Structures/03 - Balanced Trees|Balanced Trees]] for the deterministic alternatives.
 
 ---
 
@@ -254,6 +254,8 @@ class DoublyLinkedList {
 }
 ```
 
+![[Linked Lists - Doubly Linked Insert.excalidraw|800]]
+
 > [!warning] The order of the four pointer writes in `insertAfter`
 > If you write `p.next = x` before `p.next.prev = x`, then `p.next` already **is** `x`, so the second write sets `x.prev = x`, and the old successor still points back to `p`. The rule: set the new node's own two pointers first (they don't disturb anything), then update the neighbour that you reach **through** `p.next` before overwriting `p.next`.
 
@@ -320,7 +322,7 @@ class LRUCache {
 > - **Evict before inserting**, and only when the key is new. Evicting on every `put` at capacity throws out an entry when updating an existing key.
 > - `get` of a missing key must **not** change the recency order.
 
-Java's built-in shortcut is a `LinkedHashMap` in access order with `removeEldestEntry` overridden; see [[Hash Tables|Hash Tables]].
+Java's built-in shortcut is a `LinkedHashMap` in access order with `removeEldestEntry` overridden; see [[DSA/02 - Linear Data Structures/06 - Hash Tables|Hash Tables]].
 
 ---
 
@@ -365,6 +367,8 @@ step 3:  null ← 1 ← 2 ← 3    null
                         prev  cur      → return prev (3)
 ```
 
+![[Linked Lists - Iterative Reversal.excalidraw|800]]
+
 `O(n)` time, `O(1)` space. Empty and single-node lists work without special cases.
 
 ### 6.2 Recursive reversal
@@ -380,7 +384,7 @@ static ListNode reverseRec(ListNode head) {
 ```
 
 > [!warning] Recursive reversal uses O(n) stack
-> One frame per node. A list of 10⁵ nodes can throw `StackOverflowError` in Java ([[02 - Recursion#9. Stack Overflow Limits in Java|Recursion § 9]]). Interviewers sometimes ask for the recursive version specifically; be ready to state its space cost. Forgetting `head.next = null` leaves a two-node cycle between the first two nodes.
+> One frame per node. A list of 10⁵ nodes can throw `StackOverflowError` in Java ([[DSA/01 - Foundations/02 - Recursion#9. Stack Overflow Limits in Java|Recursion § 9]]). Interviewers sometimes ask for the recursive version specifically; be ready to state its space cost. Forgetting `head.next = null` leaves a two-node cycle between the first two nodes.
 
 ### 6.3 Reverse a sublist (positions `left..right`, 1-indexed)
 
@@ -527,6 +531,8 @@ static ListNode detectCycle(ListNode head) {
 }
 ```
 
+![[Linked Lists - Floyd Cycle Detection.excalidraw|800]]
+
 > [!info]- Why the second phase lands on the cycle start
 > Let `a` = distance from the head to the cycle start, `c` = cycle length, and `b` = distance from the cycle start to the meeting point (along the cycle). When they meet, slow has walked `a + b` and fast has walked `2(a + b)`. Fast's extra distance is a whole number of laps: `2(a + b) − (a + b) = kc`, so `a + b = kc` and
 > ```
@@ -622,7 +628,7 @@ static ListNode mergeKLists(ListNode[] lists) {
 
 > [!warning] Two heap pitfalls
 > - **`null` heads:** `PriorityQueue` rejects `null`, and a comparator dereferencing `null.val` throws. Skip empty lists.
-> - **`(x, y) -> x.val - y.val`** overflows for values near `±2³¹` and then orders incorrectly. Use `Comparator.comparingInt` or `Integer.compare`. Heaps are covered in [[DSA/Heaps and Priority Queues|Heaps and Priority Queues]].
+> - **`(x, y) -> x.val - y.val`** overflows for values near `±2³¹` and then orders incorrectly. Use `Comparator.comparingInt` or `Integer.compare`. Heaps are covered in [[DSA/04 - Trees and Hierarchical Structures/04 - Heaps and Priority Queues|Heaps and Priority Queues]].
 
 ### 8.3 Intersection of two lists
 
@@ -638,6 +644,8 @@ static ListNode getIntersectionNode(ListNode a, ListNode b) {
     return p;                            // the shared node, or null
 }
 ```
+
+![[Linked Lists - Intersection by Switching Heads.excalidraw|800]]
 
 > [!warning] Two ways to get this wrong
 > - **Comparing values instead of nodes.** In `A = 4 → 1 → 8 → 4 → 5` and `B = 5 → 6 → 1 → 8 → 4 → 5`, the shared node is the `8`. The two `1`s have the same value but are different nodes. Use `==` on node references.
@@ -663,7 +671,7 @@ static ListNode addTwoNumbers(ListNode a, ListNode b) {
 }
 ```
 
-Converting each list to a `long`, adding, and converting back fails as soon as the numbers have more than 18 digits. If the digits are stored most-significant first, reverse both lists first, or push the digits onto two stacks ([[Stacks|Stacks]]) and pop to add from the least significant end.
+Converting each list to a `long`, adding, and converting back fails as soon as the numbers have more than 18 digits. If the digits are stored most-significant first, reverse both lists first, or push the digits onto two stacks ([[DSA/02 - Linear Data Structures/04 - Stacks|Stacks]]) and pop to add from the least significant end.
 
 ---
 
@@ -796,7 +804,7 @@ static ListNode sortList(ListNode head) {
 }
 ```
 
-`O(n log n)` time, `O(log n)` stack. A bottom-up version (merge runs of size 1, 2, 4, … iteratively) gets `O(1)` extra space. The algorithm itself is covered in [[DSA/Sorting Algorithms|Sorting Algorithms]].
+`O(n log n)` time, `O(log n)` stack. A bottom-up version (merge runs of size 1, 2, 4, … iteratively) gets `O(1)` extra space. The algorithm itself is covered in [[DSA/03 - Sorting and Searching/01 - Sorting Algorithms|Sorting Algorithms]].
 
 ### 9.7 Copy a list with random pointers
 
@@ -923,7 +931,7 @@ static int josephus(int n, int k) {            // 0-indexed position of the surv
 > `get(i)` walks from an end each time. Iterate with for-each or an iterator, and to insert or remove during a walk, use a `ListIterator` (the only way to get the `O(1)` middle insert that linked lists are supposed to offer).
 
 > [!tip] Which class to use
-> - As a **stack, queue, or deque**: `ArrayDeque`. Faster (contiguous, no node allocation) and lower memory. See [[Queues and Deques|Queues and Deques]].
+> - As a **stack, queue, or deque**: `ArrayDeque`. Faster (contiguous, no node allocation) and lower memory. See [[DSA/02 - Linear Data Structures/05 - Queues and Deques|Queues and Deques]].
 > - As a **list**: `ArrayList`.
 > - `LinkedList` is worth it only for frequent insertion/removal **through an iterator** in the middle of a long list, or when you need `null` elements in a queue (`ArrayDeque` rejects `null`). And with `null` elements, `poll()` returning `null` becomes ambiguous.
 > - For interview problems, write your own `ListNode`: the problems are about pointer manipulation, which `LinkedList` hides.
@@ -1043,11 +1051,11 @@ static int josephus(int n, int k) {            // 0-indexed position of the surv
 
 ## Related
 
-- [[DSA/00 - Syllabus|00 - Syllabus]]
-- Previous: [[Strings|Strings]] · Next: [[Stacks|Stacks]]
-- [[02 - Recursion#6.4 Recursion over data structures|Recursion § 6.4]]: recursion on recursive structures, and its depth cost
-- [[Hash Tables|Hash Tables]]: chaining uses linked lists; `LinkedHashMap` as an LRU cache
-- [[Queues and Deques|Queues and Deques]]: linked vs. array-backed queues
-- [[DSA/Heaps and Priority Queues|Heaps and Priority Queues]]: merging `k` sorted lists
-- [[DSA/Sorting Algorithms|Sorting Algorithms]]: merge sort
-- [[DSA/Two Pointers|Two Pointers]]: the array versions of fast/slow and gap pointers
+- [[DSA/00 - Syllabus|Syllabus]]
+- Previous: [[DSA/02 - Linear Data Structures/02 - Strings|Strings]] · Next: [[DSA/02 - Linear Data Structures/04 - Stacks|Stacks]]
+- [[DSA/01 - Foundations/02 - Recursion#6.4 Recursion over data structures|Recursion § 6.4]]: recursion on recursive structures, and its depth cost
+- [[DSA/02 - Linear Data Structures/06 - Hash Tables|Hash Tables]]: chaining uses linked lists; `LinkedHashMap` as an LRU cache
+- [[DSA/02 - Linear Data Structures/05 - Queues and Deques|Queues and Deques]]: linked vs. array-backed queues
+- [[DSA/04 - Trees and Hierarchical Structures/04 - Heaps and Priority Queues|Heaps and Priority Queues]]: merging `k` sorted lists
+- [[DSA/03 - Sorting and Searching/01 - Sorting Algorithms|Sorting Algorithms]]: merge sort
+- [[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]]: the array versions of fast/slow and gap pointers

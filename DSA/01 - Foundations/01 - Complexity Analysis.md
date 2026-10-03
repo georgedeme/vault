@@ -282,7 +282,7 @@ The second version is a textbook time–space trade-off, and a reminder that a c
 This is why randomized quicksort is preferred over "quicksort on data that looks random": its `O(n log n)` expected time cannot be defeated by a crafted input, whereas fixed-pivot quicksort degrades to `Θ(n²)` on already-sorted arrays.
 
 > [!warning] Java-specific consequence
-> `Arrays.sort(int[])` uses dual-pivot quicksort, whose worst case is `O(n²)`, and anti-quicksort tests exploiting it are common on Codeforces. `Arrays.sort(Integer[])` and `Collections.sort` use TimSort, which is `O(n log n)` worst case. The standard defence for primitives is to shuffle first, or to box into `Integer[]`. See [[DSA/Sorting Algorithms|Sorting Algorithms]].
+> `Arrays.sort(int[])` uses dual-pivot quicksort, whose worst case is `O(n²)`, and anti-quicksort tests exploiting it are common on Codeforces. `Arrays.sort(Integer[])` and `Collections.sort` use TimSort, which is `O(n log n)` worst case. The standard defence for primitives is to shuffle first, or to box into `Integer[]`. See [[DSA/03 - Sorting and Searching/01 - Sorting Algorithms|Sorting Algorithms]].
 
 ---
 
@@ -447,7 +447,7 @@ Forgetting the call stack is the most common space-complexity error. **Recursion
 | Recursion on a skewed BST | `O(n)` | height degenerates to `n` |
 
 > [!tip] Java does not eliminate tail calls
-> Even a tail-recursive method consumes one frame per call on the JVM, so deep recursion throws `StackOverflowError` at roughly 10⁴–10⁵ frames. A recursive solution over `n = 10⁶` must be converted to iteration with an explicit stack. See [[02 - Recursion|Recursion]].
+> Even a tail-recursive method consumes one frame per call on the JVM, so deep recursion throws `StackOverflowError` at roughly 10⁴–10⁵ frames. A recursive solution over `n = 10⁶` must be converted to iteration with an explicit stack. See [[DSA/01 - Foundations/02 - Recursion|Recursion]].
 
 ### 9.2 "In-place" is a claim about auxiliary space
 
@@ -478,7 +478,7 @@ A memoized recursion runs in:
 O(number of distinct states × work per state)
 ```
 
-**Not** `O(branching^depth)` — that is the *unmemoized* bound. Fibonacci with memoization is `O(n)` states × `O(1)` work = `O(n)`, down from `O(2ⁿ)`. This single formula is the whole of DP analysis; see [[DSA/Dynamic Programming Fundamentals|Dynamic Programming — Fundamentals]].
+**Not** `O(branching^depth)` — that is the *unmemoized* bound. Fibonacci with memoization is `O(n)` states × `O(1)` work = `O(n)`, down from `O(2ⁿ)`. This single formula is the whole of DP analysis; see [[DSA/06 - Algorithm Design Paradigms/04 - Dynamic Programming Fundamentals|Dynamic Programming — Fundamentals]].
 
 ---
 
@@ -536,7 +536,7 @@ Competitive-programming problems state `n`; the constraint tells you which compl
 <span class="hl-yellow">Reading the constraint first and deriving the target complexity from it is usually faster than inventing an algorithm and hoping it fits.</span>
 
 > [!warning] Constant factors decide real submissions
-> Two `O(n log n)` solutions are not interchangeable. A recursive segment tree with object allocation can be 5–10× slower than a Fenwick tree doing the same job. In Java specifically, `Scanner` is roughly an order of magnitude slower than `BufferedReader`, and boxing costs both time and memory. See [[DSA/Competitive Programming Toolkit|Competitive Programming Toolkit]].
+> Two `O(n log n)` solutions are not interchangeable. A recursive segment tree with object allocation can be 5–10× slower than a Fenwick tree doing the same job. In Java specifically, `Scanner` is roughly an order of magnitude slower than `BufferedReader`, and boxing costs both time and memory. See [[DSA/09 - Practice/02 - Competitive Programming Toolkit|Competitive Programming Toolkit]].
 
 ---
 
@@ -558,7 +558,7 @@ Competitive-programming problems state `n`; the constraint tells you which compl
 > `O(n)`, not `O(n log n)`. Inserting one at a time is `O(n log n)`, but bottom-up `heapify` is `O(n)`, because most nodes sit near the leaves and sift down only a short distance — `Σ (n/2^(h+1))·h` converges to `O(n)`.
 
 > [!question]- Is string concatenation in a loop `O(n)`?
-> No — `O(n²)`. Java's `String` is immutable, so every `s += c` copies the whole accumulated string. `StringBuilder.append` is `O(1)` amortized, making the loop `O(n)`. See [[Strings#2. The Cost Model of String|Strings § 2]].
+> No — `O(n²)`. Java's `String` is immutable, so every `s += c` copies the whole accumulated string. `StringBuilder.append` is `O(1)` amortized, making the loop `O(n)`. See [[DSA/02 - Linear Data Structures/02 - Strings#2. The Cost Model of String|Strings § 2]].
 
 > [!question]- Why isn't trial division up to `√N` a polynomial-time primality test?
 > `O(√N)` is polynomial in the *value* `N` but exponential in the input **size** `log N`: a 64-bit number is 64 bits of input but up to `2³²` divisors to try. This is the pseudo-polynomial distinction from §1.1.

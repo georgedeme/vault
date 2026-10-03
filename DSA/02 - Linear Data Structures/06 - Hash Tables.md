@@ -25,7 +25,7 @@ The `O(1)` comes with conditions: a good hash function, a bounded load factor, k
 
 ## 1. From Direct Addressing to Hashing
 
-If keys are small non-negative integers (`0 ≤ k < U`), store the value for key `k` in `table[k]`. This <span class="hl-blue">direct-address table</span> has worst-case `O(1)` operations and no collisions. It's the frequency array from [[Arrays#8.4 Frequency arrays instead of maps|Arrays § 8.4]]. It stops working when the key universe is huge (all `long`s, all strings) but only `n ≪ U` keys are actually used.
+If keys are small non-negative integers (`0 ≤ k < U`), store the value for key `k` in `table[k]`. This <span class="hl-blue">direct-address table</span> has worst-case `O(1)` operations and no collisions. It's the frequency array from [[DSA/02 - Linear Data Structures/01 - Arrays#8.4 Frequency arrays instead of maps|Arrays § 8.4]]. It stops working when the key universe is huge (all `long`s, all strings) but only `n ≪ U` keys are actually used.
 
 **Hashing** keeps an array of `m ≈ n` slots (<span class="hl-blue">buckets</span>) and maps each key to one with a hash function `h : keys → {0, …, m − 1}`. Since there are more possible keys than buckets, different keys can map to the same bucket: a <span class="hl-blue">collision</span>. Collisions are unavoidable (pigeonhole principle), so every hash table needs a **collision resolution** strategy.
 
@@ -46,7 +46,7 @@ If keys are small non-negative integers (`0 ≤ k < U`), store the value for key
 | Key requirement | `equals` + `hashCode` | `Comparable` or a `Comparator` | comparable | small integer range |
 
 > [!tip] Choosing
-> Need order (smallest key ≥ x, iterate sorted, range counts)? → `TreeMap`. Keys are small integers? → an array. Otherwise → `HashMap`. Balanced trees are covered in [[DSA/Balanced Trees|Balanced Trees]].
+> Need order (smallest key ≥ x, iterate sorted, range counts)? → `TreeMap`. Keys are small integers? → an array. Otherwise → `HashMap`. Balanced trees are covered in [[DSA/04 - Trees and Hierarchical Structures/03 - Balanced Trees|Balanced Trees]].
 
 ---
 
@@ -73,7 +73,7 @@ h = 0
 for c in s: h = h·B + c
 ```
 
-Java uses `B = 31` with `int` overflow as the modulus (`String.hashCode`, `List.hashCode`). Multiplying by 31 is cheap (`(h << 5) − h`), and an odd multiplier loses no information mod 2³². Every character influences the hash, and the order of characters matters (`"ab"` and `"ba"` differ), unlike a plain sum or XOR. For substring comparisons in `O(1)`, prefix hashes with a large prime modulus are used instead ([[DSA/String Hashing|String Hashing]]).
+Java uses `B = 31` with `int` overflow as the modulus (`String.hashCode`, `List.hashCode`). Multiplying by 31 is cheap (`(h << 5) − h`), and an odd multiplier loses no information mod 2³². Every character influences the hash, and the order of characters matters (`"ab"` and `"ba"` differ), unlike a plain sum or XOR. For substring comparisons in `O(1)`, prefix hashes with a large prime modulus are used instead ([[DSA/07 - String Algorithms/02 - String Hashing|String Hashing]]).
 
 ### 2.3 Combining fields
 
@@ -107,6 +107,8 @@ buckets (m = 8)
  6: ─
  7: ─                                  h(k) = k mod 8
 ```
+
+![[Hash Tables - Separate Chaining.excalidraw|800]]
 
 ```
 get(key):
@@ -163,6 +165,8 @@ Performance collapses as `α → 1`. Despite clustering, linear probing is often
 
 Suppose `A`, `B`, `C` all hash to slot 3 and were inserted in that order into slots 3, 4, 5. Deleting `B` by emptying slot 4 breaks lookups for `C`: the probe for `C` starts at 3, finds `A`, moves to 4, finds **empty**, and concludes `C` isn't there.
 
+![[Hash Tables - Linear Probing Deletion.excalidraw|800]]
+
 Two fixes:
 
 1. **Tombstones.** Mark the slot "deleted". Lookups skip over tombstones; inserts may reuse them. Tombstones count toward the load for lookups, so many deletions slow everything down until the next rehash cleans them out.
@@ -179,9 +183,11 @@ Two fixes:
 
 As entries are added, `α = n/m` grows and operations slow down. When `α` passes a threshold, allocate a bigger array (typically `2m`) and **rehash** every entry into it. Each entry's bucket depends on `m`, so entries can't simply be copied over.
 
-- One resize costs `Θ(n)`, but with doubling the total over `n` insertions is `O(n)`, so insertion is `O(1)` **amortized** (the same argument as for dynamic arrays: [[01 - Complexity Analysis#8.1 Aggregate method — dynamic arrays|Complexity Analysis § 8.1]]).
+- One resize costs `Θ(n)`, but with doubling the total over `n` insertions is `O(n)`, so insertion is `O(1)` **amortized** (the same argument as for dynamic arrays: [[DSA/01 - Foundations/01 - Complexity Analysis#8.1 Aggregate method — dynamic arrays|Complexity Analysis § 8.1]]).
 - Typical thresholds: `0.75` for chaining (Java's default), `0.5`–`0.7` for open addressing.
 - Shrinking on deletion is optional; Java's `HashMap` never shrinks.
+
+![[Hash Tables - Resize Split.excalidraw|800]]
 
 > [!info]- Why doubling makes Java's rehash cheap
 > With `m` a power of two and index `= hash & (m − 1)`, doubling `m` adds one more bit to the mask. Each entry either stays at index `i` or moves to `i + m_old`, depending on that one bit of its hash. Java's `resize()` splits each chain into a "low" and a "high" list in one pass, preserving their relative order.
@@ -386,7 +392,7 @@ class LRUCache<K, V> extends LinkedHashMap<K, V> {
 }
 ```
 
-The from-scratch version (hash map + doubly linked list) is in [[Linked Lists#5.1 LRU cache — hash map + doubly linked list|Linked Lists § 5.1]].
+The from-scratch version (hash map + doubly linked list) is in [[DSA/02 - Linear Data Structures/03 - Linked Lists#5.1 LRU cache — hash map + doubly linked list|Linked Lists § 5.1]].
 
 > [!warning] In access-order mode, `get` is a structural modification
 > Calling `get` while iterating an access-ordered `LinkedHashMap` reorders the list and throws `ConcurrentModificationException`.
@@ -458,6 +464,8 @@ set.contains(List.of(1, 2));       // false: right bucket, but equals([1,2,3]) f
 set.size();                        // 1: the entry is still there, unreachable
 ```
 
+![[Hash Tables - Mutable Key.excalidraw|800]]
+
 Use immutable keys: `String`, boxed primitives, records with immutable components, `List.copyOf(...)`.
 
 ### 8.3 Arrays are bad keys; pairs need encoding
@@ -503,7 +511,7 @@ static int[] twoSum(int[] a, int target) {
 }
 ```
 
-`O(n)` expected. Checking **before** inserting prevents pairing an element with itself (`[3, 2, 4]`, target `6`, must not return `[0, 0]`), and handles duplicates (`[3, 3]`, target `6`, returns `[0, 1]`). On a **sorted** array the two-pointer method needs no extra space ([[DSA/Two Pointers|Two Pointers]]).
+`O(n)` expected. Checking **before** inserting prevents pairing an element with itself (`[3, 2, 4]`, target `6`, must not return `[0, 0]`), and handles duplicates (`[3, 3]`, target `6`, returns `[0, 1]`). On a **sorted** array the two-pointer method needs no extra space ([[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]]).
 
 ### 9.2 Longest consecutive sequence in O(n)
 
@@ -547,19 +555,19 @@ static int subarraySum(int[] a, int k) {
 }
 ```
 
-Forgetting `count.put(0, 1)` misses every subarray that starts at index 0. The variants (longest subarray with sum `k`: store the **first** index of each prefix; subarrays divisible by `k`: key on `Math.floorMod(sum, k)`) are in [[DSA/Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]].
+Forgetting `count.put(0, 1)` misses every subarray that starts at index 0. The variants (longest subarray with sum `k`: store the **first** index of each prefix; subarrays divisible by `k`: key on `Math.floorMod(sum, k)`) are in [[DSA/03 - Sorting and Searching/05 - Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]].
 
 ### 9.4 More patterns
 
 | Problem | Hash structure | Key idea |
 |---|---|---|
 | Contains duplicate within distance `k` | set of the last `k` elements | sliding window: add `a[i]`, remove `a[i−k]` |
-| Group anagrams | `Map<String, List<String>>` | canonical key ([[DSA/Linear Data Structures/Strings#6.2 Grouping anagrams|Strings § 6.2]]) |
-| Isomorphic strings / word pattern | two maps | bijection ([[DSA/Linear Data Structures/Strings#6.3 Isomorphic strings and word patterns — the mapping must be a bijection|Strings § 6.3]]) |
+| Group anagrams | `Map<String, List<String>>` | canonical key ([[DSA/02 - Linear Data Structures/02 - Strings#6.2 Grouping anagrams|Strings § 6.2]]) |
+| Isomorphic strings / word pattern | two maps | bijection ([[DSA/02 - Linear Data Structures/02 - Strings#6.3 Isomorphic strings and word patterns — the mapping must be a bijection|Strings § 6.3]]) |
 | 4Sum II (`a[i] + b[j] + c[k] + d[l] = 0`) | map of all `a[i] + b[j]` sums → count | meet in the middle: `O(n²)` instead of `O(n⁴)` |
 | Valid Sudoku | sets per row, column, and box | box index `(r / 3) * 3 + c / 3` |
 | First non-repeating element in a stream | counts + `LinkedHashMap` or queue | order plus counts |
-| Copy a graph / random-pointer list | `Map<Node, Node>` | original → copy ([[DSA/Linear Data Structures/Linked Lists#9.7 Copy a list with random pointers|Linked Lists § 9.7]]) |
+| Copy a graph / random-pointer list | `Map<Node, Node>` | original → copy ([[DSA/02 - Linear Data Structures/03 - Linked Lists#9.7 Copy a list with random pointers|Linked Lists § 9.7]]) |
 | Count pairs with difference `k` | set or count map | for each `x`, look up `x + k`; `k = 0` needs counts ≥ 2 |
 | Detect a cycle in an iterated function | set of seen values | or Floyd for `O(1)` space |
 
@@ -574,7 +582,7 @@ Forgetting `count.put(0, 1)` misses every subarray that starts at index 0. The v
 | If keys are… | Use |
 |---|---|
 | in a small range `[0, U)`, `U ≤ ~10⁷` | `int[]` / `boolean[]` / `BitSet` |
-| arbitrary, but all known in advance | sort + compress to `0..n−1` ([[DSA/Intervals and Sweep Line|coordinate compression]]), then arrays |
+| arbitrary, but all known in advance | sort + compress to `0..n−1` ([[DSA/08 - Specialized Topics/01 - Intervals and Sweep Line|coordinate compression]]), then arrays |
 | arbitrary, online | `HashMap`, or a primitive open-addressing map (§6.2) |
 
 > [!warning] `==` on `Integer` values from a map
@@ -593,7 +601,7 @@ Java's `HashMap` hash is **fixed and public**. For `Integer` keys, `hashCode()` 
 | C++ `unordered_map` | `O(n)` per operation: the classic hacking target |
 | Java `HashMap`, `Comparable` keys | the bucket treeifies: `O(log n)` per operation, plus a large constant |
 | Java `HashMap`, non-comparable colliding keys | can degrade to `O(n)` |
-| Strings in any `31`-polynomial table | `"Aa"`/`"BB"`-style collisions in `2ᵏ` combinations ([[DSA/Linear Data Structures/Strings#10.5 hashCode collisions are easy to construct|Strings § 10.5]]) |
+| Strings in any `31`-polynomial table | `"Aa"`/`"BB"`-style collisions in `2ᵏ` combinations ([[DSA/02 - Linear Data Structures/02 - Strings#10.5 hashCode collisions are easy to construct|Strings § 10.5]]) |
 
 **Defences**, from simplest:
 
@@ -733,12 +741,12 @@ static long splitmix64(long x) {
 
 ## Related
 
-- [[DSA/00 - Syllabus|00 - Syllabus]]
-- Previous: [[Queues and Deques|Queues and Deques]] · Next: [[DSA/Sorting Algorithms|Sorting Algorithms]]
-- [[01 - Complexity Analysis#8. Amortized Analysis|Complexity Analysis § 8]]: amortized resizing; § 11.2 on Java collection costs
-- [[Linked Lists#5.1 LRU cache — hash map + doubly linked list|Linked Lists § 5.1]]: LRU cache from scratch
-- [[Strings|Strings]]: string hashing basics, anagram keys
-- [[DSA/String Hashing|String Hashing]]: polynomial rolling hashes for substrings
-- [[DSA/Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]]: prefix sums with hash maps
-- [[DSA/Balanced Trees|Balanced Trees]]: `TreeMap`/`TreeSet` when order matters
+- [[DSA/00 - Syllabus|Syllabus]]
+- Previous: [[DSA/02 - Linear Data Structures/05 - Queues and Deques|Queues and Deques]] · Next: [[DSA/03 - Sorting and Searching/01 - Sorting Algorithms|Sorting Algorithms]]
+- [[DSA/01 - Foundations/01 - Complexity Analysis#8. Amortized Analysis|Complexity Analysis § 8]]: amortized resizing; § 11.2 on Java collection costs
+- [[DSA/02 - Linear Data Structures/03 - Linked Lists#5.1 LRU cache — hash map + doubly linked list|Linked Lists § 5.1]]: LRU cache from scratch
+- [[DSA/02 - Linear Data Structures/02 - Strings|Strings]]: string hashing basics, anagram keys
+- [[DSA/07 - String Algorithms/02 - String Hashing|String Hashing]]: polynomial rolling hashes for substrings
+- [[DSA/03 - Sorting and Searching/05 - Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]]: prefix sums with hash maps
+- [[DSA/04 - Trees and Hierarchical Structures/03 - Balanced Trees|Balanced Trees]]: `TreeMap`/`TreeSet` when order matters
 - [[Java/05 - Working with Data and Errors/02 - Generics|Java: Generics]]: boxing traps, generic arrays

@@ -209,7 +209,7 @@ static boolean isPowerOfFour(int x) {
 >
 > `31 - Integer.numberOfLeadingZeros(x)` (or `63 - Long.numberOfLeadingZeros(x)`) is exact and a single instruction.
 
-These tricks are the core of [[DSA/Fenwick Trees|Fenwick trees]] (`i & −i`), sparse tables (`⌊log₂⌋` lookups), and iterating over set bits (§7.3).
+These tricks are the core of [[DSA/04 - Trees and Hierarchical Structures/08 - Fenwick Trees|Fenwick trees]] (`i & −i`), sparse tables (`⌊log₂⌋` lookups), and iterating over set bits (§7.3).
 
 ---
 
@@ -392,7 +392,7 @@ static long xorUpTo(long n) {             // XOR of 0..n (0 changes nothing)
 // XOR of l..r = xorUpTo(r) ^ xorUpTo(l - 1)
 ```
 
-The same **prefix-XOR** idea works on arrays: with `px[i] = a[0] ^ … ^ a[i−1]`, the XOR of `a[l..r]` is `px[r+1] ^ px[l]`, just like prefix sums ([[DSA/Prefix Sums and Difference Arrays|Prefix Sums]]).
+The same **prefix-XOR** idea works on arrays: with `px[i] = a[0] ^ … ^ a[i−1]`, the XOR of `a[l..r]` is `px[r+1] ^ px[l]`, just like prefix sums ([[DSA/03 - Sorting and Searching/05 - Prefix Sums and Difference Arrays|Prefix Sums]]).
 
 ### 6.6 Swap without a temporary, and why not to
 
@@ -420,7 +420,7 @@ static int fromGray(int g) {              // inverse: prefix XOR of the bits fro
 For `n = 3`: `000, 001, 011, 010, 110, 111, 101, 100`. The last and first also differ in one bit, so the sequence is cyclic.
 
 > [!info]- Maximum XOR of two numbers
-> "Find the maximum `a[i] ^ a[j]`" is solved greedily bit by bit, from the highest bit down, with a binary trie. That's `O(n · 32)`. See [[DSA/Tries|Tries]].
+> "Find the maximum `a[i] ^ a[j]`" is solved greedily bit by bit, from the highest bit down, with a binary trie. That's `O(n · 32)`. See [[DSA/04 - Trees and Hierarchical Structures/05 - Tries|Tries]].
 
 ---
 
@@ -471,10 +471,10 @@ static List<List<Integer>> allSubsets(int[] a) {
 }
 ```
 
-`Θ(n · 2ⁿ)`, the same as the recursive version in [[02 - Recursion#6.3 Generating all subsets (include / exclude)|Recursion § 6.3]], with no recursion depth. The loop orders subsets by their binary value, which is useful because every proper subset of `mask` is **numerically smaller** than `mask`. Bitmask DP relies on exactly this: iterating masks in increasing order means every subset has already been processed.
+`Θ(n · 2ⁿ)`, the same as the recursive version in [[DSA/01 - Foundations/02 - Recursion#6.3 Generating all subsets (include / exclude)|Recursion § 6.3]], with no recursion depth. The loop orders subsets by their binary value, which is useful because every proper subset of `mask` is **numerically smaller** than `mask`. Bitmask DP relies on exactly this: iterating masks in increasing order means every subset has already been processed.
 
 > [!warning] `n = 31` and `n ≥ 32`
-> `1 << 31` is negative, so `mask < (1 << 31)` is false immediately and the loop runs **zero** times. For `n ≥ 32` the shift wraps. Use `long` and `1L << n` past 30. At `2³¹` subsets the enumeration is too slow anyway; the usual limit is `n ≤ 20–25` (see [[01 - Complexity Analysis#12. From Constraints to Target Complexity|Complexity § 12]]).
+> `1 << 31` is negative, so `mask < (1 << 31)` is false immediately and the loop runs **zero** times. For `n ≥ 32` the shift wraps. Use `long` and `1L << n` past 30. At `2³¹` subsets the enumeration is too slow anyway; the usual limit is `n ≤ 20–25` (see [[DSA/01 - Foundations/01 - Complexity Analysis#12. From Constraints to Target Complexity|Complexity § 12]]).
 
 ### 7.2 Enumerating the submasks of a mask
 
@@ -500,7 +500,7 @@ static void forEachSubmask(int m, java.util.function.IntConsumer process) {
 `s − 1` clears the lowest set bit of `s` and sets everything below it; `& m` keeps only the bits allowed in `m`. The result is the next submask in decreasing order.
 
 > [!important] Submasks of all masks cost 3ⁿ, not 4ⁿ
-> Enumerating the submasks of **every** mask of `n` bits takes `Σ 2^popcount(m) = 3ⁿ` steps in total: each element is independently in `s`, in `m \ s`, or in neither. At `n = 15` that's ~1.4 × 10⁷, which is fine; `4ⁿ` would be ~10⁹. Used in subset-partition DP. See [[DSA/Advanced DP|Advanced DP]].
+> Enumerating the submasks of **every** mask of `n` bits takes `Σ 2^popcount(m) = 3ⁿ` steps in total: each element is independently in `s`, in `m \ s`, or in neither. At `n = 15` that's ~1.4 × 10⁷, which is fine; `4ⁿ` would be ~10⁹. Used in subset-partition DP. See [[DSA/06 - Algorithm Design Paradigms/06 - Advanced DP|Advanced DP]].
 
 > [!warning] The loop condition trap
 > `for (s = m; s > 0; s = (s - 1) & m)` **skips the empty set**. That's fine if you meant non-empty submasks; otherwise it's a silent off-by-one. With `m = 0` the version above processes `0` exactly once.
@@ -534,7 +534,7 @@ Needs `k ≥ 1`.
 ### 7.5 Common mask applications
 
 - **Set of letters in a word**: `mask |= 1 << (c - 'a')`. Two words share no letter ⟺ `(m1 & m2) == 0`.
-- **Visited-set in a state**: a BFS state `(node, mask of keys collected)`, or a TSP DP state `(mask of visited cities, last city)`. See [[DSA/Advanced DP|Advanced DP]].
+- **Visited-set in a state**: a BFS state `(node, mask of keys collected)`, or a TSP DP state `(mask of visited cities, last city)`. See [[DSA/06 - Algorithm Design Paradigms/06 - Advanced DP|Advanced DP]].
 - **Rows of a board** (N-queens): columns and both diagonals as masks, where the free positions are `~(cols | d1 | d2) & full`.
 - **Large boolean arrays**: `java.util.BitSet`, or a `long[]` used as a bitset, packs 64 flags per word. That makes some `O(n²)` algorithms 64× faster. Java's `BitSet` has no shift operation, so subset-sum-by-shifting needs a hand-rolled `long[]`.
 
@@ -723,11 +723,11 @@ All exist on both `Integer` and `Long`, run in `O(1)`, and most compile to a sin
 
 ## Related
 
-- [[DSA/00 - Syllabus|00 - Syllabus]]
-- Previous: [[02 - Recursion|Recursion]] · Next: [[Math for Algorithms|Math for Algorithms]]
+- [[DSA/00 - Syllabus|Syllabus]]
+- Previous: [[DSA/01 - Foundations/02 - Recursion|Recursion]] · Next: [[DSA/01 - Foundations/04 - Math for Algorithms|Math for Algorithms]]
 - [[03 - Operators#9. Bitwise and Shift Operators|Java: Operators § 9]]: operator semantics, masked shifts, precedence
 - [[04 - Type Casting#2. Narrowing Between Integer Types — Overflow and Wraparound|Java: Type Casting § 2]]: wraparound and narrowing
-- [[DSA/Fenwick Trees|Fenwick Trees]]: built on `i & −i`
-- [[DSA/Tries|Tries]]: bitwise trie for maximum XOR
-- [[DSA/Advanced DP|Advanced DP]]: bitmask DP and DP over subsets
-- [[DSA/Backtracking|Backtracking]]: N-queens with masks
+- [[DSA/04 - Trees and Hierarchical Structures/08 - Fenwick Trees|Fenwick Trees]]: built on `i & −i`
+- [[DSA/04 - Trees and Hierarchical Structures/05 - Tries|Tries]]: bitwise trie for maximum XOR
+- [[DSA/06 - Algorithm Design Paradigms/06 - Advanced DP|Advanced DP]]: bitmask DP and DP over subsets
+- [[DSA/06 - Algorithm Design Paradigms/03 - Backtracking|Backtracking]]: N-queens with masks

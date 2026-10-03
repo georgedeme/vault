@@ -40,7 +40,7 @@ Queues model anything processed in arrival order: BFS frontiers, task schedulers
 | Stack | top | top | LIFO |
 | Queue | back | front | FIFO |
 | Deque | either end | either end | caller decides |
-| Priority queue | anywhere | the smallest (or largest) | by priority, **not** arrival ([[DSA/Heaps and Priority Queues|Heaps and Priority Queues]]) |
+| Priority queue | anywhere | the smallest (or largest) | by priority, **not** arrival ([[DSA/04 - Trees and Hierarchical Structures/04 - Heaps and Priority Queues|Heaps and Priority Queues]]) |
 
 ---
 
@@ -114,6 +114,8 @@ index:   0   1   2   3   4   5   6   7
                  ▲               ▲
           next back slot       head        queue order: a b c d
 ```
+
+![[Queues - Circular Buffer.excalidraw|800]]
 
 ### 3.1 Fixed capacity (design circular queue)
 
@@ -217,7 +219,7 @@ class IntDeque {
 > If the contents wrap around (`head` near the end, the back near the start), copying the array as-is into a bigger one leaves a gap in the middle, and the modulo arithmetic with the **new** capacity reads the wrong slots. Copy the elements **in queue order** starting from `head`, then reset `head = 0`.
 
 > [!tip] Power-of-two capacities
-> If the capacity is a power of two, `i % capacity` can be replaced by `i & (capacity − 1)`, which is faster and also works for `i = −1` (`-1 & (cap − 1) = cap − 1`). Older versions of `ArrayDeque` did exactly this ([[03 - Bit Manipulation|Bit Manipulation]]).
+> If the capacity is a power of two, `i % capacity` can be replaced by `i & (capacity − 1)`, which is faster and also works for `i = −1` (`-1 & (cap − 1) = cap − 1`). Older versions of `ArrayDeque` did exactly this ([[DSA/01 - Foundations/03 - Bit Manipulation|Bit Manipulation]]).
 
 ---
 
@@ -291,11 +293,13 @@ class TwoStackQueue<T> {
 
 **Amortized `O(1)`:** each element is pushed onto `in` once, moved to `out` once, and popped from `out` once. That's at most 4 stack operations per element over its whole lifetime, even though a single `poll` that triggers a transfer costs `Θ(n)`.
 
+![[Queues - Queue from Two Stacks.excalidraw|800]]
+
 > [!warning] Transfer only when `out` is empty
 > If you move `in` to `out` while `out` still holds elements, the newer elements land **on top of** older ones, and the next `poll` returns a newer element first. FIFO order is broken.
 
 > [!tip] Why this matters beyond interviews
-> Combine it with the min-stack ([[Stacks#5. Min Stack|Stacks § 5]]): if each stack tracks its own minimum, the queue's minimum is `min(in.min, out.min)`. That gives a **queue with `O(1)` min**, which works for any associative operation (`gcd`, `max`, bitwise AND/OR), even ones with no inverse, where a monotonic deque doesn't apply. This "two-stack trick" is a standard way to maintain an aggregate over a sliding window.
+> Combine it with the min-stack ([[DSA/02 - Linear Data Structures/04 - Stacks#5. Min Stack|Stacks § 5]]): if each stack tracks its own minimum, the queue's minimum is `min(in.min, out.min)`. That gives a **queue with `O(1)` min**, which works for any associative operation (`gcd`, `max`, bitwise AND/OR), even ones with no inverse, where a monotonic deque doesn't apply. This "two-stack trick" is a standard way to maintain an aggregate over a sliding window.
 
 ### 5.2 Stack from queues
 
@@ -323,7 +327,7 @@ Unlike the queue-from-stacks direction, there's no amortized trick here: some op
 
 ### 6.1 BFS and level-by-level processing
 
-BFS visits nodes in order of distance from the start because the queue releases them in the order they were discovered. The full treatment is in [[DSA/Graph Representations and Traversals|Graph Representations and Traversals]]; the queue mechanics that matter:
+BFS visits nodes in order of distance from the start because the queue releases them in the order they were discovered. The full treatment is in [[DSA/05 - Graphs/01 - Graph Representations and Traversals|Graph Representations and Traversals]]; the queue mechanics that matter:
 
 ```java
 Deque<Integer> q = new ArrayDeque<>();
@@ -370,7 +374,7 @@ Amortized `O(1)` per call: each timestamp is added once and removed once. A **mo
 
 ### 6.3 Round-robin simulation
 
-Rotating a queue (`q.offer(q.poll())`) models taking turns: CPU scheduling with time slices, "hot potato", or the [[Linked Lists#10.1 Josephus problem|Josephus problem]] (rotate `k − 1` times, then remove one: `O(n·k)` total). **Task scheduling with cooldowns** combines a max-heap (pick the most frequent remaining task) with a queue (tasks cooling down, each with the time it becomes available again).
+Rotating a queue (`q.offer(q.poll())`) models taking turns: CPU scheduling with time slices, "hot potato", or the [[DSA/02 - Linear Data Structures/03 - Linked Lists#10.1 Josephus problem|Josephus problem]] (rotate `k − 1` times, then remove one: `O(n·k)` total). **Task scheduling with cooldowns** combines a max-heap (pick the most frequent remaining task) with a queue (tasks cooling down, each with the time it becomes available again).
 
 ---
 
@@ -417,6 +421,8 @@ static int[] maxSlidingWindow(int[] a, int k) {
 }
 ```
 
+![[Queues - Sliding Window Maximum.excalidraw|800]]
+
 > [!example]- Trace: `a = [1, 3, -1, -3, 5, 3, 6, 7]`, `k = 3`
 > | `i` | `a[i]` | Expired | Popped from back | Deque (values) | Output |
 > |---|---|---|---|---|---|
@@ -432,7 +438,7 @@ static int[] maxSlidingWindow(int[] a, int k) {
 > Output: `[3, 3, 5, 5, 6, 7]`.
 
 > [!important] Why it's O(n)
-> Each index enters the deque once and leaves at most once (from the front or from the back). All the `while` iterations together are bounded by `n`. The same aggregate argument as the monotonic stack ([[Stacks#8. Monotonic Stack|Stacks § 8]]); in fact, the monotonic deque *is* a monotonic stack with one extra operation: expiring from the bottom.
+> Each index enters the deque once and leaves at most once (from the front or from the back). All the `while` iterations together are bounded by `n`. The same aggregate argument as the monotonic stack ([[DSA/02 - Linear Data Structures/04 - Stacks#8. Monotonic Stack|Stacks § 8]]); in fact, the monotonic deque *is* a monotonic stack with one extra operation: expiring from the bottom.
 
 > [!tip] Variants
 > - **Sliding window minimum:** keep values **increasing**; pop from the back while `a[back] ≥ a[i]`.
@@ -445,7 +451,7 @@ static int[] maxSlidingWindow(int[] a, int k) {
 
 ### 8.1 Longest subarray where max − min ≤ limit
 
-A variable-size [[DSA/Sliding Window|sliding window]] that needs the window's maximum **and** minimum. Keep one decreasing deque (max) and one increasing deque (min); shrink from the left while the window is invalid.
+A variable-size [[DSA/03 - Sorting and Searching/04 - Sliding Window|sliding window]] that needs the window's maximum **and** minimum. Keep one decreasing deque (max) and one increasing deque (min); shrink from the left while the window is invalid.
 
 ```java
 static int longestSubarray(int[] a, int limit) {
@@ -494,7 +500,7 @@ static int shortestSubarray(int[] a, int k) {
 }
 ```
 
-`O(n)`. Prefix sums are covered in [[DSA/Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]].
+`O(n)`. Prefix sums are covered in [[DSA/03 - Sorting and Searching/05 - Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]].
 
 ### 8.3 DP with a sliding-window maximum
 
@@ -524,7 +530,7 @@ static int constrainedSubsetSum(int[] a, int k) {
 }
 ```
 
-"Jump game VI" (`dp[i] = a[i] + max(dp[i−k..i−1])`, must start at 0 and end at `n − 1`) is the same without the `max(0, …)`. More DP speed-ups of this kind are in [[DSA/Advanced DP|Advanced DP]].
+"Jump game VI" (`dp[i] = a[i] + max(dp[i−k..i−1])`, must start at 0 and end at `n − 1`) is the same without the `max(0, …)`. More DP speed-ups of this kind are in [[DSA/06 - Algorithm Design Paradigms/06 - Advanced DP|Advanced DP]].
 
 ### 8.4 A queue with O(1) max
 
@@ -650,12 +656,12 @@ class MaxQueue {
 
 ## Related
 
-- [[DSA/00 - Syllabus|00 - Syllabus]]
-- Previous: [[Stacks|Stacks]] · Next: [[Hash Tables|Hash Tables]]
-- [[Stacks#8. Monotonic Stack|Stacks § 8]]: the monotonic stack
-- [[DSA/Sliding Window|Sliding Window]]: variable-size windows
-- [[DSA/Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]]
-- [[DSA/Graph Representations and Traversals|Graph Representations and Traversals]]: BFS, multi-source BFS
-- [[DSA/Shortest Path Algorithms|Shortest Path Algorithms]]: 0-1 BFS with a deque
-- [[DSA/Heaps and Priority Queues|Heaps and Priority Queues]]: priority-ordered queues
-- [[DSA/Advanced DP|Advanced DP]]: DP optimizations
+- [[DSA/00 - Syllabus|Syllabus]]
+- Previous: [[DSA/02 - Linear Data Structures/04 - Stacks|Stacks]] · Next: [[DSA/02 - Linear Data Structures/06 - Hash Tables|Hash Tables]]
+- [[DSA/02 - Linear Data Structures/04 - Stacks#8. Monotonic Stack|Stacks § 8]]: the monotonic stack
+- [[DSA/03 - Sorting and Searching/04 - Sliding Window|Sliding Window]]: variable-size windows
+- [[DSA/03 - Sorting and Searching/05 - Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]]
+- [[DSA/05 - Graphs/01 - Graph Representations and Traversals|Graph Representations and Traversals]]: BFS, multi-source BFS
+- [[DSA/05 - Graphs/03 - Shortest Path Algorithms|Shortest Path Algorithms]]: 0-1 BFS with a deque
+- [[DSA/04 - Trees and Hierarchical Structures/04 - Heaps and Priority Queues|Heaps and Priority Queues]]: priority-ordered queues
+- [[DSA/06 - Algorithm Design Paradigms/06 - Advanced DP|Advanced DP]]: DP optimizations
