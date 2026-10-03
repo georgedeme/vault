@@ -550,7 +550,7 @@ A method is <span class="hl-blue">recursive</span> when it calls itself. Every c
 1. a **base case**, which is answered directly without a recursive call, and
 2. a **recursive case**, which calls the method on a **smaller** input that moves toward the base case.
 
-Each recursive call gets its own stack frame ([[#6.2 The Call Stack|§ 6.2]]), so each level has its own copy of the parameters. The full topic (recursion trees, tail recursion, converting to iteration) is covered in [[DSA/Foundations/Recursion|DSA: Recursion]].
+Each recursive call gets its own stack frame ([[#6.2 The Call Stack|§ 6.2]]), so each level has its own copy of the parameters. The full topic (recursion trees, tail recursion, converting to iteration) is covered in [[02 - Recursion|DSA: Recursion]].
 
 ### 9.1 Factorial
 
@@ -911,7 +911,7 @@ static void increment(int counter) { counter++; }
 
 ## Related
 
-- [[00 - Syllabus|Syllabus]]
+- [[Java/00 - Syllabus|Syllabus]]
 - Previous: [[03 - Arrays|Arrays]] · Next: [[02 - Strings|Strings]]
 - [[01 - Introduction to Java#7. The `main` Method|Introduction to Java § 7]]: the `main` method and its overloads
 - [[04 - Type Casting|Type Casting]]: the widening and boxing conversions behind overload resolution
@@ -919,4 +919,4 @@ static void increment(int counter) { counter++; }
 - [[01 - Classes and Objects|Classes and Objects]]: instance methods, constructors, `this`, `static`
 - [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]: overriding vs. overloading, and how both combine in one call (§ 4)
 - [[Java/05 - Working with Data and Errors/02 - Generics|Generics]]: generic methods, overloads that clash after erasure
-- [[DSA/Foundations/Recursion|DSA: Recursion]]
+- [[02 - Recursion|DSA: Recursion]]

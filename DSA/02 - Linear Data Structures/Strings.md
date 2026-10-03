@@ -71,7 +71,7 @@ A Java `String` wraps a private array of characters (since Java 9, a `byte[]` ho
 
 ### 3.1 StringBuilder costs
 
-`StringBuilder` is a dynamic array of characters ([[DSA/Linear Data Structures/Arrays#3. Dynamic Arrays and Amortized Resizing|Arrays § 3]]): initial capacity 16, growth to `2 × old + 2`.
+`StringBuilder` is a dynamic array of characters ([[Arrays#3. Dynamic Arrays and Amortized Resizing|Arrays § 3]]): initial capacity 16, growth to `2 × old + 2`.
 
 | Operation | Cost |
 |---|---|
@@ -90,7 +90,7 @@ A Java `String` wraps a private array of characters (since Java 9, a `byte[]` ho
 > `sb1.equals(sb2)` is reference equality, so two builders with the same content are "not equal", and `StringBuilder` is useless as a `HashMap` key or `HashSet` element (its hash is identity-based and its content is mutable anyway). Compare with `sb1.toString().equals(sb2.toString())`, `sb1.compareTo(sb2) == 0` (Java 11+), or `str.contentEquals(sb)`.
 
 > [!tip] `StringBuilder` as a backtracking buffer
-> Append before recursing and `setLength(len)` after, to undo. `setLength` only moves the size, so it's `O(1)`. The same "choose, recurse, un-choose" pattern as in [[DSA/Foundations/Recursion#6.3 Generating all subsets (include / exclude)|Recursion § 6.3]].
+> Append before recursing and `setLength(len)` after, to undo. `setLength` only moves the size, so it's `O(1)`. The same "choose, recurse, un-choose" pattern as in [[02 - Recursion#6.3 Generating all subsets (include / exclude)|Recursion § 6.3]].
 > ```java
 > int len = sb.length();
 > sb.append(c);
@@ -145,7 +145,7 @@ Upper and lower case differ by exactly **32**, which is a single bit (bit 5). Up
 | to uppercase (ASCII letter) | `(char) (c & ~32)` | |
 | toggle case (ASCII letter) | `(char) (c ^ 32)` | |
 
-The bit forms are explained in [[DSA/Foundations/Bit Manipulation|Bit Manipulation]]; they only make sense for letters (`'1' ^ 32` is `'\u0011'`).
+The bit forms are explained in [[03 - Bit Manipulation|Bit Manipulation]]; they only make sense for letters (`'1' ^ 32` is `'\u0011'`).
 
 > [!warning] `char` arithmetic surprises
 > ```java
@@ -278,7 +278,7 @@ static String countKey(String w) {
 ```
 
 > [!warning] Signatures need separators
-> Concatenating the counts without a separator makes different multisets collide: counts `(1, 11)` and `(11, 1)` both become `"111"`. With `'#'` they are `"1#11#"` and `"11#1#"`. Using an `int[]` as the key doesn't work at all: arrays use identity `equals`/`hashCode`. `Arrays.toString(cnt)` or `List<Integer>` keys work ([[DSA/Linear Data Structures/Hash Tables|Hash Tables]]).
+> Concatenating the counts without a separator makes different multisets collide: counts `(1, 11)` and `(11, 1)` both become `"111"`. With `'#'` they are `"1#11#"` and `"11#1#"`. Using an `int[]` as the key doesn't work at all: arrays use identity `equals`/`hashCode`. `Arrays.toString(cnt)` or `List<Integer>` keys work ([[Hash Tables|Hash Tables]]).
 
 ### 6.3 Isomorphic strings and word patterns — the mapping must be a bijection
 
@@ -305,7 +305,7 @@ static boolean isIsomorphic(String s, String t) {      // ASCII input
 > Checking only `s → t` consistency accepts `"badc"/"baba"`: `b→b, a→a, d→b, c→a` is a consistent function but not one-to-one. You need the map in **both** directions (or a map plus a "used" set for the targets). "Word pattern" (`"abba"` vs. `"dog cat cat dog"`) is the same problem with words instead of characters.
 
 > [!info]- Why store `char + 1`
-> The arrays start full of zeros, and `'\0'` is a legitimate character, so `0` can't mean both "unmapped" and "maps to `'\0'`". Shifting by one reserves `0` as the sentinel. The same issue appears in memoization ([[DSA/Foundations/Recursion#10. From Recursion to Memoization|Recursion § 10]]). Alternatively, fill the arrays with `-1`.
+> The arrays start full of zeros, and `'\0'` is a legitimate character, so `0` can't mean both "unmapped" and "maps to `'\0'`". Shifting by one reserves `0` as the sentinel. The same issue appears in memoization ([[02 - Recursion#10. From Recursion to Memoization|Recursion § 10]]). Alternatively, fill the arrays with `-1`.
 
 ---
 
@@ -375,7 +375,7 @@ static boolean isPalRange(String s, int lo, int hi) {
 | Longest palindrome buildable from these letters? | `Σ (cnt / 2) × 2`, plus 1 if any count is odd |
 | Minimum characters to add so a rearrangement is a palindrome | `max(0, #odd − 1)` |
 
-The odd-count test is a parity question, so it can also be done with a bitmask: flip bit `c − 'a'` per character, then the answer is "mask has at most one bit set", `(mask & (mask − 1)) == 0` ([[DSA/Foundations/Bit Manipulation#4.1 Power-of-two tests|Bit Manipulation § 4.1]]). Prefix parity masks extend this to "count substrings that can be rearranged into a palindrome".
+The odd-count test is a parity question, so it can also be done with a bitmask: flip bit `c − 'a'` per character, then the answer is "mask has at most one bit set", `(mask & (mask − 1)) == 0` ([[03 - Bit Manipulation#4.1 Power-of-two tests|Bit Manipulation § 4.1]]). Prefix parity masks extend this to "count substrings that can be rearranged into a palindrome".
 
 Longest palindromic substring (expand around center, Manacher) and palindromic DP are covered in [[DSA/Palindromes|Palindromes]].
 
@@ -395,7 +395,7 @@ static String reverse(String s) {
 }
 ```
 
-Or `new StringBuilder(s).reverse().toString()`, which also keeps surrogate pairs (emoji) intact ([[#10.4 Unicode — length() is not the number of characters|§10.4]]). Recursion with `substring` is `Θ(n²)` ([[DSA/Foundations/Recursion#5.1 Helper functions with extra parameters|Recursion § 5.1]]).
+Or `new StringBuilder(s).reverse().toString()`, which also keeps surrogate pairs (emoji) intact ([[#10.4 Unicode — length() is not the number of characters|§10.4]]). Recursion with `substring` is `Θ(n²)` ([[02 - Recursion#5.1 Helper functions with extra parameters|Recursion § 5.1]]).
 
 ### 8.2 Reverse the words
 
@@ -414,7 +414,7 @@ static String reverseWords(String s) {
 ```
 
 > [!info]- In place on a `char[]` (O(1) extra space)
-> Reverse the whole array, then reverse each word. Then compact the spaces with a write pointer ([[DSA/Linear Data Structures/Arrays#5.3 Remove elements in place (write pointer)|Arrays § 5.3]]): copy a word, then write one space only if another word follows. This is the same double-reversal idea as array rotation ([[DSA/Linear Data Structures/Arrays#6.1 Three reversals|Arrays § 6.1]]).
+> Reverse the whole array, then reverse each word. Then compact the spaces with a write pointer ([[Arrays#5.3 Remove elements in place (write pointer)|Arrays § 5.3]]): copy a word, then write one space only if another word follows. This is the same double-reversal idea as array rotation ([[Arrays#6.1 Three reversals|Arrays § 6.1]]).
 
 ### 8.3 Run-length encoding: the group loop
 
@@ -448,7 +448,7 @@ static String runLengthEncode(String s) {
 > The "compare with the previous character" version must flush the last run **after** the loop, and forgetting that is the most common bug. The group loop has no special last case. It also gives the run boundaries `[i, j)` directly, which many problems need (count binary substrings, longest run, decode a compressed string).
 
 > [!warning] Decoding with multi-digit counts
-> `"a12b3"` means 12 `a`s, not `a`, `1`, `2`. When decoding, read **all** consecutive digits into a number (`num = num * 10 + (c − '0')`). If the original text can contain digits itself, run-length encoding is ambiguous unless counts are delimited. Nested encodings like `"3[a2[c]]"` need a stack ([[DSA/Linear Data Structures/Stacks|Stacks]]).
+> `"a12b3"` means 12 `a`s, not `a`, `1`, `2`. When decoding, read **all** consecutive digits into a number (`num = num * 10 + (c − '0')`). If the original text can contain digits itself, run-length encoding is ambiguous unless counts are delimited. Nested encodings like `"3[a2[c]]"` need a stack ([[Stacks|Stacks]]).
 
 ### 8.4 Longest common prefix
 
@@ -565,7 +565,7 @@ int n = 9071, sum = 0;
 while (n > 0) { sum += n % 10; n /= 10; }       // digits from least significant
 ```
 
-Fails for `n = 0` if you need "one digit, 0" (the loop doesn't run), and for negative `n` (`%` keeps the sign). `String.valueOf(n)` and iterating characters is simpler when performance doesn't matter. Base conversion and digit sums are in [[DSA/Foundations/Math for Algorithms#11.3 Digits and bases|Math for Algorithms § 11.3]].
+Fails for `n = 0` if you need "one digit, 0" (the loop doesn't run), and for negative `n` (`%` keeps the sign). `String.valueOf(n)` and iterating characters is simpler when performance doesn't matter. Base conversion and digit sums are in [[Math for Algorithms#11.3 Digits and bases|Math for Algorithms § 11.3]].
 
 ---
 
@@ -638,9 +638,9 @@ s.charAt(1);                      // '\uD83D', half of the emoji
 > [!warning] Case conversion depends on the locale
 > `"TITLE".toLowerCase()` on a JVM running in a Turkish locale gives `"tıtle"` (dotless ı), which breaks equality checks against `"title"`. Use `toLowerCase(Locale.ROOT)` for anything that isn't displayed to a user. Case conversion can also change the length: `"ß".toUpperCase()` is `"SS"`.
 
-### 10.5 `hashCode` collisions are easy to construct
+### 10.5 hashCode collisions are easy to construct
 
-`String.hashCode()` is `s[0]·31ⁿ⁻¹ + s[1]·31ⁿ⁻² + … + s[n−1]` in `int` arithmetic. `"Aa"` and `"BB"` both hash to `2112`, and since a concatenation of colliding blocks also collides, `"AaAa"`, `"AaBB"`, `"BBAa"`, `"BBBB"` all share one hash. That's `2ᵏ` colliding strings of length `2k`, the basis of hash-flooding attacks ([[DSA/Linear Data Structures/Hash Tables|Hash Tables]]). Equal hashes never mean equal strings.
+`String.hashCode()` is `s[0]·31ⁿ⁻¹ + s[1]·31ⁿ⁻² + … + s[n−1]` in `int` arithmetic. `"Aa"` and `"BB"` both hash to `2112`, and since a concatenation of colliding blocks also collides, `"AaAa"`, `"AaBB"`, `"BBAa"`, `"BBBB"` all share one hash. That's `2ᵏ` colliding strings of length `2k`, the basis of hash-flooding attacks ([[Hash Tables|Hash Tables]]). Equal hashes never mean equal strings.
 
 ---
 
@@ -770,11 +770,11 @@ s.charAt(1);                      // '\uD83D', half of the emoji
 
 ## Related
 
-- [[DSA/Syllabus|Syllabus]]
-- Previous: [[DSA/Linear Data Structures/Arrays|Arrays]] · Next: [[DSA/Linear Data Structures/Linked Lists|Linked Lists]]
+- [[DSA/00 - Syllabus|00 - Syllabus]]
+- Previous: [[Arrays|Arrays]] · Next: [[Linked Lists|Linked Lists]]
 - [[Java/03 - Program Structure/02 - Strings|Java: Strings]]: the `String` class, the pool, `StringBuilder`, formatting
 - [[DSA/Sliding Window|Sliding Window]]: anagram windows, longest substring without repeats, minimum window
 - [[DSA/Two Pointers|Two Pointers]]: palindrome checks and in-place rewrites
 - [[DSA/String Matching|String Matching]] · [[DSA/String Hashing|String Hashing]] · [[DSA/Palindromes|Palindromes]]: the Part VII algorithms
 - [[DSA/Tries|Tries]]: prefix queries over many strings
-- [[DSA/Linear Data Structures/Hash Tables|Hash Tables]]: strings as keys, hash collisions
+- [[Hash Tables|Hash Tables]]: strings as keys, hash collisions

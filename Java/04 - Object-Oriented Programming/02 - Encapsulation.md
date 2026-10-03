@@ -981,7 +981,7 @@ System.out.println(Config.MODES[1]);
 
 ## Related
 
-- [[00 - Syllabus|Syllabus]]
+- [[Java/00 - Syllabus|Syllabus]]
 - Previous: [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]] · Next: [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]
 - [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]]: fields, constructors, `this`, `final` fields, static factories
 - [[01 - Introduction to Java#5.4 Packages and the Classpath|Introduction to Java § 5.4]]: packages and how to compile them

@@ -49,7 +49,7 @@ head
 > [!note] Definitions
 > - The <span class="hl-blue">head</span> is the first node; the list is identified by a reference to it. An **empty list** is `head == null`.
 > - The <span class="hl-blue">tail</span> is the last node; its `next` is `null` (in a non-circular list).
-> - A list is a **recursive** structure: either empty, or a node followed by a list. This is why many list algorithms have a short recursive form ([[DSA/Foundations/Recursion#6.4 Recursion over data structures|Recursion § 6.4]]).
+> - A list is a **recursive** structure: either empty, or a node followed by a list. This is why many list algorithms have a short recursive form ([[02 - Recursion#6.4 Recursion over data structures|Recursion § 6.4]]).
 
 ### 1.1 Arrays vs. linked lists
 
@@ -257,7 +257,7 @@ class DoublyLinkedList {
 > [!warning] The order of the four pointer writes in `insertAfter`
 > If you write `p.next = x` before `p.next.prev = x`, then `p.next` already **is** `x`, so the second write sets `x.prev = x`, and the old successor still points back to `p`. The rule: set the new node's own two pointers first (they don't disturb anything), then update the neighbour that you reach **through** `p.next` before overwriting `p.next`.
 
-### 5.1 LRU cache: hash map + doubly linked list
+### 5.1 LRU cache — hash map + doubly linked list
 
 A <span class="hl-blue">least-recently-used (LRU) cache</span> of capacity `c` supports `get(key)` and `put(key, value)` in `O(1)`. When it's full, `put` evicts the key that was used least recently.
 
@@ -320,7 +320,7 @@ class LRUCache {
 > - **Evict before inserting**, and only when the key is new. Evicting on every `put` at capacity throws out an entry when updating an existing key.
 > - `get` of a missing key must **not** change the recency order.
 
-Java's built-in shortcut is a `LinkedHashMap` in access order with `removeEldestEntry` overridden; see [[DSA/Linear Data Structures/Hash Tables|Hash Tables]].
+Java's built-in shortcut is a `LinkedHashMap` in access order with `removeEldestEntry` overridden; see [[Hash Tables|Hash Tables]].
 
 ---
 
@@ -380,7 +380,7 @@ static ListNode reverseRec(ListNode head) {
 ```
 
 > [!warning] Recursive reversal uses O(n) stack
-> One frame per node. A list of 10⁵ nodes can throw `StackOverflowError` in Java ([[DSA/Foundations/Recursion#9. Stack Overflow Limits in Java|Recursion § 9]]). Interviewers sometimes ask for the recursive version specifically; be ready to state its space cost. Forgetting `head.next = null` leaves a two-node cycle between the first two nodes.
+> One frame per node. A list of 10⁵ nodes can throw `StackOverflowError` in Java ([[02 - Recursion#9. Stack Overflow Limits in Java|Recursion § 9]]). Interviewers sometimes ask for the recursive version specifically; be ready to state its space cost. Forgetting `head.next = null` leaves a two-node cycle between the first two nodes.
 
 ### 6.3 Reverse a sublist (positions `left..right`, 1-indexed)
 
@@ -663,7 +663,7 @@ static ListNode addTwoNumbers(ListNode a, ListNode b) {
 }
 ```
 
-Converting each list to a `long`, adding, and converting back fails as soon as the numbers have more than 18 digits. If the digits are stored most-significant first, reverse both lists first, or push the digits onto two stacks ([[DSA/Linear Data Structures/Stacks|Stacks]]) and pop to add from the least significant end.
+Converting each list to a `long`, adding, and converting back fails as soon as the numbers have more than 18 digits. If the digits are stored most-significant first, reverse both lists first, or push the digits onto two stacks ([[Stacks|Stacks]]) and pop to add from the least significant end.
 
 ---
 
@@ -923,7 +923,7 @@ static int josephus(int n, int k) {            // 0-indexed position of the surv
 > `get(i)` walks from an end each time. Iterate with for-each or an iterator, and to insert or remove during a walk, use a `ListIterator` (the only way to get the `O(1)` middle insert that linked lists are supposed to offer).
 
 > [!tip] Which class to use
-> - As a **stack, queue, or deque**: `ArrayDeque`. Faster (contiguous, no node allocation) and lower memory. See [[DSA/Linear Data Structures/Queues and Deques|Queues and Deques]].
+> - As a **stack, queue, or deque**: `ArrayDeque`. Faster (contiguous, no node allocation) and lower memory. See [[Queues and Deques|Queues and Deques]].
 > - As a **list**: `ArrayList`.
 > - `LinkedList` is worth it only for frequent insertion/removal **through an iterator** in the middle of a long list, or when you need `null` elements in a queue (`ArrayDeque` rejects `null`). And with `null` elements, `poll()` returning `null` becomes ambiguous.
 > - For interview problems, write your own `ListNode`: the problems are about pointer manipulation, which `LinkedList` hides.
@@ -1043,11 +1043,11 @@ static int josephus(int n, int k) {            // 0-indexed position of the surv
 
 ## Related
 
-- [[DSA/Syllabus|Syllabus]]
-- Previous: [[DSA/Linear Data Structures/Strings|Strings]] · Next: [[DSA/Linear Data Structures/Stacks|Stacks]]
-- [[DSA/Foundations/Recursion#6.4 Recursion over data structures|Recursion § 6.4]]: recursion on recursive structures, and its depth cost
-- [[DSA/Linear Data Structures/Hash Tables|Hash Tables]]: chaining uses linked lists; `LinkedHashMap` as an LRU cache
-- [[DSA/Linear Data Structures/Queues and Deques|Queues and Deques]]: linked vs. array-backed queues
+- [[DSA/00 - Syllabus|00 - Syllabus]]
+- Previous: [[Strings|Strings]] · Next: [[Stacks|Stacks]]
+- [[02 - Recursion#6.4 Recursion over data structures|Recursion § 6.4]]: recursion on recursive structures, and its depth cost
+- [[Hash Tables|Hash Tables]]: chaining uses linked lists; `LinkedHashMap` as an LRU cache
+- [[Queues and Deques|Queues and Deques]]: linked vs. array-backed queues
 - [[DSA/Heaps and Priority Queues|Heaps and Priority Queues]]: merging `k` sorted lists
 - [[DSA/Sorting Algorithms|Sorting Algorithms]]: merge sort
 - [[DSA/Two Pointers|Two Pointers]]: the array versions of fast/slow and gap pointers

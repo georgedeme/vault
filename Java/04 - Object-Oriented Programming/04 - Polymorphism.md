@@ -1120,7 +1120,7 @@ System.out.println("stored a Cat");
 
 ## Related
 
-- [[00 - Syllabus|Syllabus]]
+- [[Java/00 - Syllabus|Syllabus]]
 - Previous: [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]] · Next: [[Java/04 - Object-Oriented Programming/05 - Abstraction|Abstraction]]
 - [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]: overriding rules, `super`, hiding of fields and static methods, sealed classes
 - [[01 - Methods#7.2 How the Compiler Chooses an Overload|Methods § 7.2]]: how the compiler chooses an overload (step 1 of every call)

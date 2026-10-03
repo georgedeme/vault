@@ -106,7 +106,7 @@ remove(i):                                         -- remove at index i
 
 ### 3.1 Why appends are O(1) amortized
 
-Doubling from capacity 1, the copies over `n` appends cost `1 + 2 + 4 + … + n < 2n`. Total work is `O(n)` for `n` appends, so `O(1)` **amortized** per append, even though a single append can cost `Θ(n)`. The derivation, and the accounting and potential methods, are in [[DSA/Foundations/Complexity Analysis#8.1 Aggregate method — dynamic arrays|Complexity Analysis § 8.1]].
+Doubling from capacity 1, the copies over `n` appends cost `1 + 2 + 4 + … + n < 2n`. Total work is `O(n)` for `n` appends, so `O(1)` **amortized** per append, even though a single append can cost `Θ(n)`. The derivation, and the accounting and potential methods, are in [[01 - Complexity Analysis#8.1 Aggregate method — dynamic arrays|Complexity Analysis § 8.1]].
 
 > [!important] The two rules that make it work
 > 1. **Grow by a factor, not by a constant.** Growing by `+c` slots each time gives `c + 2c + 3c + … = Θ(n²/c)` total copying, which is `Θ(n)` per append.
@@ -215,7 +215,7 @@ public class DynamicArray<T> {
 
 ## 5. Basic In-Place Operations
 
-These are the building blocks for everything else in this note. <span class="hl-blue">In-place</span> means `O(1)` auxiliary space ([[DSA/Foundations/Complexity Analysis#9.2 "In-place" is a claim about auxiliary space|Complexity Analysis § 9.2]]).
+These are the building blocks for everything else in this note. <span class="hl-blue">In-place</span> means `O(1)` auxiliary space ([[01 - Complexity Analysis#9.2 "In-place" is a claim about auxiliary space|Complexity Analysis § 9.2]]).
 
 ### 5.1 Insert and delete by shifting
 
@@ -379,11 +379,11 @@ static int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 ```
 
 > [!info]- Why there are gcd(n, k) cycles
-> Starting from `s`, the cycle visits `s, s+k, s+2k, … (mod n)`. It returns to `s` after `t` steps where `t·k ≡ 0 (mod n)`; the smallest such `t` is `n / gcd(n, k)`. So each cycle has `n/g` elements and there are `g = gcd(n, k)` cycles. Starting points `0, 1, …, g−1` are in different cycles because every element of the cycle through `s` is `≡ s (mod g)`. A common bug is to assume a single cycle (true only when `gcd(n, k) = 1`): with `n = 6, k = 2`, starting from 0 visits `0, 2, 4` and stops, leaving half the array unrotated. See [[DSA/Foundations/Math for Algorithms#2. GCD, LCM, and Euclid's Algorithm|Math for Algorithms § 2]].
+> Starting from `s`, the cycle visits `s, s+k, s+2k, … (mod n)`. It returns to `s` after `t` steps where `t·k ≡ 0 (mod n)`; the smallest such `t` is `n / gcd(n, k)`. So each cycle has `n/g` elements and there are `g = gcd(n, k)` cycles. Starting points `0, 1, …, g−1` are in different cycles because every element of the cycle through `s` is `≡ s (mod g)`. A common bug is to assume a single cycle (true only when `gcd(n, k) = 1`): with `n = 6, k = 2`, starting from 0 visits `0, 2, 4` and stops, leaving half the array unrotated. See [[Math for Algorithms#2. GCD, LCM, and Euclid's Algorithm|Math for Algorithms § 2]].
 
 > [!tip] Library and "virtual" rotation
 > - `Collections.rotate(list, k)` rotates a `List` **right** by `k` (negative `k` rotates left), in place.
-> - If you only need to **read** the rotated array, don't move anything: the element at rotated position `i` is `a[(i − k) mod n]` for a right rotation. This "offset" view is also how a circular buffer works ([[DSA/Queues and Deques|Queues and Deques]]) and how binary search on a rotated sorted array reasons ([[DSA/Binary Search|Binary Search]]).
+> - If you only need to **read** the rotated array, don't move anything: the element at rotated position `i` is `a[(i − k) mod n]` for a right rotation. This "offset" view is also how a circular buffer works ([[Queues and Deques|Queues and Deques]]) and how binary search on a rotated sorted array reasons ([[DSA/Binary Search|Binary Search]]).
 
 ---
 
@@ -580,7 +580,7 @@ static int[] productExceptSelf(int[] a) {
 
 ### 8.4 Frequency arrays instead of maps
 
-When values lie in a small known range (`0 ≤ v < 10⁶`, lowercase letters, digits), count with `int[] cnt = new int[RANGE]` rather than a `HashMap<Integer,Integer>`. It's the same `O(1)` per operation but with no hashing, no boxing, and much better cache behaviour. When values are large but there are few of them, compress them first ([[DSA/Intervals and Sweep Line|coordinate compression]]) or use a map ([[DSA/Linear Data Structures/Hash Tables|Hash Tables]]).
+When values lie in a small known range (`0 ≤ v < 10⁶`, lowercase letters, digits), count with `int[] cnt = new int[RANGE]` rather than a `HashMap<Integer,Integer>`. It's the same `O(1)` per operation but with no hashing, no boxing, and much better cache behaviour. When values are large but there are few of them, compress them first ([[DSA/Intervals and Sweep Line|coordinate compression]]) or use a map ([[Hash Tables|Hash Tables]]).
 
 ---
 
@@ -735,7 +735,7 @@ static void gameOfLife(int[][] b) {
 }
 ```
 
-Bit tricks are in [[DSA/Foundations/Bit Manipulation|Bit Manipulation]].
+Bit tricks are in [[03 - Bit Manipulation|Bit Manipulation]].
 
 ### 10.3 Set matrix zeroes in O(1) extra space
 
@@ -803,7 +803,7 @@ If any cell is `0`, zero its whole row and column. Recording "row `r` must be ze
 > At `i = 1`, `a[1] = 1 ≠ 2`, so it tries to send `1` to index 0. Index 0 already holds `1`, the swap exchanges two equal values, nothing changes, and the loop repeats forever. The guard must ask whether the **destination** already holds the right value: `a[a[i] − 1] != a[i]`.
 
 > [!question]- Is the nested-while cyclic sort O(n²)?
-> No, it's `O(n)`. The `while` doesn't run `n` times for each `i`: every swap fixes one value permanently in its home slot, so there are at most `n` swaps across the whole run. This is an aggregate (amortized) argument, like the two-pointer case in [[DSA/Foundations/Complexity Analysis#4.6 Two pointers — a nested loop that isn't quadratic|Complexity Analysis § 4.6]].
+> No, it's `O(n)`. The `while` doesn't run `n` times for each `i`: every swap fixes one value permanently in its home slot, so there are at most `n` swaps across the whole run. This is an aggregate (amortized) argument, like the two-pointer case in [[01 - Complexity Analysis#4.6 Two pointers — a nested loop that isn't quadratic|Complexity Analysis § 4.6]].
 
 > [!question]- Merge two sorted arrays where the first has enough trailing space for both. How, in place?
 > Fill from the **back**. Compare the largest remaining elements of each, write the larger at the end of the first array, and move left. Filling from the front would overwrite elements of the first array that haven't been read yet. When the second array runs out, stop: the rest of the first array is already in place. See [[DSA/Two Pointers|Two Pointers]].
@@ -865,12 +865,12 @@ If any cell is `0`, zero its whole row and column. Recording "row `r` must be ze
 
 ## Related
 
-- [[DSA/Syllabus|Syllabus]]
-- Previous: [[DSA/Foundations/Math for Algorithms|Math for Algorithms]] · Next: [[DSA/Linear Data Structures/Strings|Strings]]
+- [[DSA/00 - Syllabus|00 - Syllabus]]
+- Previous: [[Math for Algorithms|Math for Algorithms]] · Next: [[Strings|Strings]]
 - [[Java/02 - Control Flow/03 - Arrays|Java: Arrays]]: syntax, `java.util.Arrays`, copying, multidimensional arrays
-- [[DSA/Foundations/Complexity Analysis#8. Amortized Analysis|Complexity Analysis § 8]]: amortized analysis of dynamic arrays
+- [[01 - Complexity Analysis#8. Amortized Analysis|Complexity Analysis § 8]]: amortized analysis of dynamic arrays
 - [[DSA/Two Pointers|Two Pointers]]: read/write pointers, merging, partitioning
 - [[DSA/Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]]: range queries on arrays
 - [[DSA/Binary Search|Binary Search]]: searching sorted and rotated arrays
-- [[DSA/Linear Data Structures/Hash Tables|Hash Tables]]: when a frequency array isn't enough
+- [[Hash Tables|Hash Tables]]: when a frequency array isn't enough
 - [[DSA/Graph Representations and Traversals|Graph Representations and Traversals]]: grids as graphs

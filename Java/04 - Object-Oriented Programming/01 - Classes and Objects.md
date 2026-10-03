@@ -1187,7 +1187,7 @@ class Player {
 
 ## Related
 
-- [[00 - Syllabus|Syllabus]]
+- [[Java/00 - Syllabus|Syllabus]]
 - Previous: [[02 - Strings|Strings]] · Next: [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]
 - [[02 - Variables and Data Types|Variables and Data Types]]: instance/static variables, default values, blank finals, shadowing
 - [[01 - Methods|Methods]]: declaring and overloading methods, pass-by-value, `static main`

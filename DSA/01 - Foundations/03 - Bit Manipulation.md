@@ -471,10 +471,10 @@ static List<List<Integer>> allSubsets(int[] a) {
 }
 ```
 
-`Θ(n · 2ⁿ)`, the same as the recursive version in [[DSA/Foundations/Recursion#6.3 Generating all subsets (include / exclude)|Recursion § 6.3]], with no recursion depth. The loop orders subsets by their binary value, which is useful because every proper subset of `mask` is **numerically smaller** than `mask`. Bitmask DP relies on exactly this: iterating masks in increasing order means every subset has already been processed.
+`Θ(n · 2ⁿ)`, the same as the recursive version in [[02 - Recursion#6.3 Generating all subsets (include / exclude)|Recursion § 6.3]], with no recursion depth. The loop orders subsets by their binary value, which is useful because every proper subset of `mask` is **numerically smaller** than `mask`. Bitmask DP relies on exactly this: iterating masks in increasing order means every subset has already been processed.
 
 > [!warning] `n = 31` and `n ≥ 32`
-> `1 << 31` is negative, so `mask < (1 << 31)` is false immediately and the loop runs **zero** times. For `n ≥ 32` the shift wraps. Use `long` and `1L << n` past 30. At `2³¹` subsets the enumeration is too slow anyway; the usual limit is `n ≤ 20–25` (see [[DSA/Foundations/Complexity Analysis#12. From Constraints to Target Complexity|Complexity § 12]]).
+> `1 << 31` is negative, so `mask < (1 << 31)` is false immediately and the loop runs **zero** times. For `n ≥ 32` the shift wraps. Use `long` and `1L << n` past 30. At `2³¹` subsets the enumeration is too slow anyway; the usual limit is `n ≤ 20–25` (see [[01 - Complexity Analysis#12. From Constraints to Target Complexity|Complexity § 12]]).
 
 ### 7.2 Enumerating the submasks of a mask
 
@@ -723,8 +723,8 @@ All exist on both `Integer` and `Long`, run in `O(1)`, and most compile to a sin
 
 ## Related
 
-- [[DSA/Syllabus|Syllabus]]
-- Previous: [[DSA/Foundations/Recursion|Recursion]] · Next: [[DSA/Foundations/Math for Algorithms|Math for Algorithms]]
+- [[DSA/00 - Syllabus|00 - Syllabus]]
+- Previous: [[02 - Recursion|Recursion]] · Next: [[Math for Algorithms|Math for Algorithms]]
 - [[03 - Operators#9. Bitwise and Shift Operators|Java: Operators § 9]]: operator semantics, masked shifts, precedence
 - [[04 - Type Casting#2. Narrowing Between Integer Types — Overflow and Wraparound|Java: Type Casting § 2]]: wraparound and narrowing
 - [[DSA/Fenwick Trees|Fenwick Trees]]: built on `i & −i`

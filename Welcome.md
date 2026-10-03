@@ -6,8 +6,8 @@ This vault is a reference collection of computer science notes, compiled from un
 
 Each subject below has its own folder containing a syllabus note, which indexes that subject's chapters in the intended study order. This page only links out to those subjects — details live in the syllabus notes themselves.
 
-- [[00 - Syllabus|Java]]
-- [[DSA/Syllabus|Data Structures and Algorithms]]
+- [[Java/00 - Syllabus|Java]]
+- [[DSA/00 - Syllabus|Data Structures and Algorithms]]
 
 More subjects will be added here as they are started.
 

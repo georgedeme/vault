@@ -2,7 +2,7 @@
 
 This note covers the number theory and combinatorics that algorithm problems keep coming back to: **GCD/LCM**, **modular arithmetic**, **fast exponentiation**, **modular inverses**, **primes and factorization**, **Euler's totient**, **binomial coefficients**, and the **Chinese Remainder Theorem**. Every one of them has a Java-specific failure mode, usually overflow or the sign of `%`, so those get as much attention as the math.
 
-The companion topics are [[DSA/Foundations/Bit Manipulation|Bit Manipulation]] (fast exponentiation walks the bits of the exponent) and [[DSA/Matrix Exponentiation|Matrix Exponentiation]] (the same algorithm on matrices).
+The companion topics are [[03 - Bit Manipulation|Bit Manipulation]] (fast exponentiation walks the bits of the exponent) and [[DSA/Matrix Exponentiation|Matrix Exponentiation]] (the same algorithm on matrices).
 
 ## Contents
 
@@ -265,7 +265,7 @@ static long modPow(long a, long e, long m) {   // m ≤ ~3.03e9 so products fit 
 }
 ```
 
-`O(log e)` multiplications: about 60 for `e ≈ 10¹⁸`. The recursive form (`half = pow(a, e/2)`, then square) is in [[DSA/Foundations/Recursion#6.1 Fast power (halving)|Recursion § 6.1]].
+`O(log e)` multiplications: about 60 for `e ≈ 10¹⁸`. The recursive form (`half = pow(a, e/2)`, then square) is in [[02 - Recursion#6.1 Fast power (halving)|Recursion § 6.1]].
 
 > [!example]- Trace: `3¹³ mod 1000`
 > | `e` (binary) | odd? | `result` | `a` (after squaring) |
@@ -539,7 +539,7 @@ static List<Long> divisors(long n) {          // n ≥ 1, unsorted
 ```
 
 > [!tip] Divisors of every number up to n — harmonic sieve
-> `for d in 1..n: for multiple m = d, 2d, 3d, … ≤ n: add d to divisors[m]` costs `Σ n/d = O(n log n)` (see [[DSA/Foundations/Complexity Analysis#4.5 Harmonic sums — the sieve pattern|Complexity § 4.5]]). Much better than `n` separate `O(√n)` loops.
+> `for d in 1..n: for multiple m = d, 2d, 3d, … ≤ n: add d to divisors[m]` costs `Σ n/d = O(n log n)` (see [[01 - Complexity Analysis#4.5 Harmonic sums — the sieve pattern|Complexity § 4.5]]). Much better than `n` separate `O(√n)` loops.
 
 ---
 
@@ -724,7 +724,7 @@ After step `i`, `r = C(n − k + i, i)`, an integer, so the division is always e
 
 > [!note] Inclusion–exclusion
 > `|A ∪ B ∪ C| = |A| + |B| + |C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|`. In general, add intersections of odd size and subtract those of even size.
-> **Example**: integers in `[1, n]` divisible by 2, 3, or 5 = `n/2 + n/3 + n/5 − n/6 − n/10 − n/15 + n/30` (integer division). With `k` conditions there are `2ᵏ` terms, enumerated with a bitmask ([[DSA/Foundations/Bit Manipulation#7.1 Enumerating all subsets|Bit Manipulation § 7.1]]). Note that the intersections use the **lcm** of the divisors, not the product, when they aren't coprime.
+> **Example**: integers in `[1, n]` divisible by 2, 3, or 5 = `n/2 + n/3 + n/5 − n/6 − n/10 − n/15 + n/30` (integer division). With `k` conditions there are `2ᵏ` terms, enumerated with a bitmask ([[03 - Bit Manipulation#7.1 Enumerating all subsets|Bit Manipulation § 7.1]]). Note that the intersections use the **lcm** of the divisors, not the product, when they aren't coprime.
 
 > [!note] Pigeonhole principle
 > Putting `n + 1` items into `n` boxes forces some box to hold two. It's a proof tool that often turns into an algorithm: among any `n + 1` integers, two have the same remainder mod `n`. Among `n` prefix sums (mod `n`), plus the empty prefix, two are equal, so some non-empty subarray has a sum divisible by `n`.
@@ -861,7 +861,7 @@ static boolean isPerfectSquare(long n) { if (n < 0) return false; long r = isqrt
 > `O(n log log n)`. The inner loop only runs for **primes** `p`, and `Σ 1/p` over primes up to `n` is `~ln ln n`. Running it for every `i` (not just primes) would give the harmonic sum `O(n log n)`.
 
 > [!question]- Is trial division up to √n polynomial-time?
-> No. It's `O(√N)` in the **value** `N`, which is exponential in the input size (`log N` bits). See [[DSA/Foundations/Complexity Analysis#1.1 What counts as "input size"?|Complexity § 1.1]]. It's still perfectly practical up to ~10¹⁴.
+> No. It's `O(√N)` in the **value** `N`, which is exponential in the input size (`log N` bits). See [[01 - Complexity Analysis#1.1 What counts as "input size"?|Complexity § 1.1]]. It's still perfectly practical up to ~10¹⁴.
 
 > [!question]- `x ≡ 1 (mod 4)` and `x ≡ 2 (mod 6)` — is there a solution?
 > No. `gcd(4, 6) = 2`, and `1 ≢ 2 (mod 2)`: the first makes `x` odd, the second makes it even. CRT's uniqueness and existence need coprime moduli, or the compatibility check.
@@ -931,10 +931,10 @@ static boolean isPerfectSquare(long n) { if (n < 0) return false; long r = isqrt
 
 ## Related
 
-- [[DSA/Syllabus|Syllabus]]
-- Previous: [[DSA/Foundations/Bit Manipulation|Bit Manipulation]] · Next: [[DSA/Arrays|Arrays]] (Part II)
-- [[DSA/Foundations/Complexity Analysis#1.1 What counts as "input size"?|Complexity Analysis § 1.1]]: pseudo-polynomial complexity of number algorithms
-- [[DSA/Foundations/Recursion#6.1 Fast power (halving)|Recursion § 6.1]]: recursive fast power
+- [[DSA/00 - Syllabus|00 - Syllabus]]
+- Previous: [[03 - Bit Manipulation|Bit Manipulation]] · Next: [[Arrays|Arrays]] (Part II)
+- [[01 - Complexity Analysis#1.1 What counts as "input size"?|Complexity Analysis § 1.1]]: pseudo-polynomial complexity of number algorithms
+- [[02 - Recursion#6.1 Fast power (halving)|Recursion § 6.1]]: recursive fast power
 - [[03 - Operators#3. Division and Remainder — The Special Cases|Java: Operators § 3–4]]: `/`, `%`, and overflow
 - [[DSA/Matrix Exponentiation|Matrix Exponentiation]]: fast exponentiation on matrices
 - [[DSA/String Hashing|String Hashing]]: polynomial hashing mod a prime

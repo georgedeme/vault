@@ -994,7 +994,7 @@ final class Bus extends Vehicle { }            // (5)
 
 ## Related
 
-- [[00 - Syllabus|Syllabus]]
+- [[Java/00 - Syllabus|Syllabus]]
 - Previous: [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]] · Next: [[Java/04 - Object-Oriented Programming/04 - Polymorphism|Polymorphism]]
 - [[Java/04 - Object-Oriented Programming/01 - Classes and Objects|Classes and Objects]]: constructors, the default constructor, `this(…)`, single-class initialization order
 - [[Java/04 - Object-Oriented Programming/02 - Encapsulation|Encapsulation]]: access levels and `protected`, immutable classes and why they're `final`

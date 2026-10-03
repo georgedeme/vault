@@ -193,7 +193,7 @@ fib(n):
 | `b = 2`, input halves (`T(n/2)` twice) | `2^(log₂ n) = n` |
 | `b = 1`, input halves (binary search) | `log₂ n` |
 
-The general tool for recurrences like `T(n) = a·T(n/b) + f(n)` is the Master Theorem. See [[DSA/Foundations/Complexity Analysis#6. Recurrence Relations|Complexity Analysis § 6–7]].
+The general tool for recurrences like `T(n) = a·T(n/b) + f(n)` is the Master Theorem. See [[01 - Complexity Analysis#6. Recurrence Relations|Complexity Analysis § 6–7]].
 
 ---
 
@@ -253,7 +253,7 @@ private static double pow(double x, long n) {
 }
 ```
 
-`T(n) = T(n/2) + O(1)` → `Θ(log n)` time and `Θ(log n)` stack. The modular version used in number theory is in [[DSA/Foundations/Math for Algorithms#4. Fast (Binary) Exponentiation|Math for Algorithms § 4]].
+`T(n) = T(n/2) + O(1)` → `Θ(log n)` time and `Θ(log n)` stack. The modular version used in number theory is in [[Math for Algorithms#4. Fast (Binary) Exponentiation|Math for Algorithms § 4]].
 
 > [!warning] Two classic bugs in this one function
 > - `return pow(x, n/2) * pow(x, n/2);` makes **two** calls: `T(n) = 2T(n/2) + O(1) = Θ(n)`. All the benefit of halving is gone. Store the result in `half`.
@@ -318,7 +318,7 @@ private static void build(int[] a, int i, List<Integer> current, List<List<Integ
 }
 ```
 
-`2ⁿ` leaves, each copying up to `n` elements → `Θ(n · 2ⁿ)` time, depth `n`. This "choose, recurse, un-choose" shape is the core of [[DSA/Backtracking|Backtracking]]. The same subsets can be generated without recursion using bitmasks, see [[DSA/Foundations/Bit Manipulation#7. Bitmasks as Sets|Bit Manipulation § 7]].
+`2ⁿ` leaves, each copying up to `n` elements → `Θ(n · 2ⁿ)` time, depth `n`. This "choose, recurse, un-choose" shape is the core of [[DSA/Backtracking|Backtracking]]. The same subsets can be generated without recursion using bitmasks, see [[03 - Bit Manipulation#7. Bitmasks as Sets|Bit Manipulation § 7]].
 
 > [!warning] `result.add(current)` without copying
 > This adds a **reference** to the one shared list. When the recursion finishes, the undo steps have emptied it, so `result` holds `2ⁿ` references to the same empty list. Always add `new ArrayList<>(current)`.
@@ -335,7 +335,7 @@ static int height(TreeNode node) {
 }
 ```
 
-Depth equals the tree's height: `O(log n)` if balanced, but **`O(n)` for a degenerate (path-shaped) tree**. That's often enough to overflow the stack at `n = 10⁵`. See [[DSA/Binary Trees|Binary Trees]] and [[DSA/Linked Lists|Linked Lists]].
+Depth equals the tree's height: `O(log n)` if balanced, but **`O(n)` for a degenerate (path-shaped) tree**. That's often enough to overflow the stack at `n = 10⁵`. See [[DSA/Binary Trees|Binary Trees]] and [[Linked Lists|Linked Lists]].
 
 ---
 
@@ -673,9 +673,9 @@ Time drops from `Θ(φⁿ)` to `Θ(n)` (number of distinct states × work per st
 
 ## Related
 
-- [[DSA/Syllabus|Syllabus]]
-- Previous: [[DSA/Foundations/Complexity Analysis|Complexity Analysis]] · Next: [[DSA/Foundations/Bit Manipulation|Bit Manipulation]]
-- [[DSA/Foundations/Complexity Analysis#6. Recurrence Relations|Complexity Analysis § 6–7]]: solving recurrences, the Master Theorem
+- [[DSA/00 - Syllabus|00 - Syllabus]]
+- Previous: [[01 - Complexity Analysis|Complexity Analysis]] · Next: [[03 - Bit Manipulation|Bit Manipulation]]
+- [[01 - Complexity Analysis#6. Recurrence Relations|Complexity Analysis § 6–7]]: solving recurrences, the Master Theorem
 - [[01 - Methods#9. Recursion|Java: Methods § 9]]: recursion from the language side; [[01 - Methods#6.2 The Call Stack|§ 6.2]] on the call stack
 - [[DSA/Backtracking|Backtracking]]: choose, recurse, un-choose
 - [[DSA/Divide and Conquer|Divide and Conquer]]: merge sort, quickselect

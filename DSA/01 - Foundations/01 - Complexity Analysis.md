@@ -447,7 +447,7 @@ Forgetting the call stack is the most common space-complexity error. **Recursion
 | Recursion on a skewed BST | `O(n)` | height degenerates to `n` |
 
 > [!tip] Java does not eliminate tail calls
-> Even a tail-recursive method consumes one frame per call on the JVM, so deep recursion throws `StackOverflowError` at roughly 10⁴–10⁵ frames. A recursive solution over `n = 10⁶` must be converted to iteration with an explicit stack. See [[DSA/Foundations/Recursion|Recursion]].
+> Even a tail-recursive method consumes one frame per call on the JVM, so deep recursion throws `StackOverflowError` at roughly 10⁴–10⁵ frames. A recursive solution over `n = 10⁶` must be converted to iteration with an explicit stack. See [[02 - Recursion|Recursion]].
 
 ### 9.2 "In-place" is a claim about auxiliary space
 
@@ -558,7 +558,7 @@ Competitive-programming problems state `n`; the constraint tells you which compl
 > `O(n)`, not `O(n log n)`. Inserting one at a time is `O(n log n)`, but bottom-up `heapify` is `O(n)`, because most nodes sit near the leaves and sift down only a short distance — `Σ (n/2^(h+1))·h` converges to `O(n)`.
 
 > [!question]- Is string concatenation in a loop `O(n)`?
-> No — `O(n²)`. Java's `String` is immutable, so every `s += c` copies the whole accumulated string. `StringBuilder.append` is `O(1)` amortized, making the loop `O(n)`. See [[DSA/Strings|Strings]].
+> No — `O(n²)`. Java's `String` is immutable, so every `s += c` copies the whole accumulated string. `StringBuilder.append` is `O(1)` amortized, making the loop `O(n)`. See [[Strings#2. The Cost Model of String|Strings § 2]].
 
 > [!question]- Why isn't trial division up to `√N` a polynomial-time primality test?
 > `O(√N)` is polynomial in the *value* `N` but exponential in the input **size** `log N`: a 64-bit number is 64 bits of input but up to `2³²` divisors to try. This is the pseudo-polynomial distinction from §1.1.

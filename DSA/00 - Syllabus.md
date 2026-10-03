@@ -12,21 +12,21 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 
 ## Part I — Foundations
 
-- [x] [[DSA/Foundations/Complexity Analysis|Complexity Analysis]] — Big-O, Big-Θ, Big-Ω, amortized analysis, space complexity, recurrence relations, complexity of common operations
-- [x] [[DSA/Foundations/Recursion|Recursion]] — base cases, the call stack, recursion trees, tail recursion, converting recursion to iteration, stack overflow limits
-- [x] [[DSA/Foundations/Bit Manipulation|Bit Manipulation]] — bitwise operators, common tricks (clear/set/toggle, lowest set bit, power-of-two checks), bitmasks, `popcount`, XOR properties
-- [x] [[DSA/Foundations/Math for Algorithms|Math for Algorithms]] — GCD/LCM and Euclid's algorithm, modular arithmetic, fast (binary) exponentiation, modular inverse, Sieve of Eratosthenes, prime factorization, combinatorics (nCr, Pascal's triangle), Euler's totient, CRT *(advanced)*
+- [x] [[01 - Complexity Analysis|Complexity Analysis]] — Big-O, Big-Θ, Big-Ω, amortized analysis, space complexity, recurrence relations, complexity of common operations
+- [x] [[02 - Recursion|Recursion]] — base cases, the call stack, recursion trees, tail recursion, converting recursion to iteration, stack overflow limits
+- [x] [[03 - Bit Manipulation|Bit Manipulation]] — bitwise operators, common tricks (clear/set/toggle, lowest set bit, power-of-two checks), bitmasks, `popcount`, XOR properties
+- [x] [[Math for Algorithms|Math for Algorithms]] — GCD/LCM and Euclid's algorithm, modular arithmetic, fast (binary) exponentiation, modular inverse, Sieve of Eratosthenes, prime factorization, combinatorics (nCr, Pascal's triangle), Euler's totient, CRT *(advanced)*
 
 ---
 
 ## Part II — Linear Data Structures
 
-- [ ] [[DSA/Arrays|Arrays]] — static vs. dynamic arrays, amortized resizing, in-place operations, rotation, 2D arrays
-- [ ] [[DSA/Strings|Strings]] — immutability, `StringBuilder`, character frequency counting, anagram/palindrome basics, common string manipulation patterns
-- [ ] [[DSA/Linked Lists|Linked Lists]] — singly, doubly, and circular lists; reversal; fast/slow pointers (cycle detection, middle node); merging
-- [ ] [[DSA/Stacks|Stacks]] — LIFO operations, expression evaluation, parentheses matching, monotonic stack (next greater/smaller element, largest rectangle in histogram)
-- [ ] [[DSA/Queues and Deques|Queues and Deques]] — FIFO operations, circular buffers, monotonic deque (sliding window maximum)
-- [ ] [[DSA/Hash Tables|Hash Tables]] — hash functions, collision resolution (chaining, open addressing), load factor, `HashMap`/`HashSet` in Java, hashing custom objects, anti-hash tests *(advanced)*
+- [x] [[Arrays|Arrays]] — static vs. dynamic arrays, amortized resizing, in-place operations, rotation, 2D arrays
+- [x] [[Strings|Strings]] — immutability, `StringBuilder`, character frequency counting, anagram/palindrome basics, common string manipulation patterns
+- [x] [[Linked Lists|Linked Lists]] — singly, doubly, and circular lists; reversal; fast/slow pointers (cycle detection, middle node); merging
+- [x] [[Stacks|Stacks]] — LIFO operations, expression evaluation, parentheses matching, monotonic stack (next greater/smaller element, largest rectangle in histogram)
+- [x] [[Queues and Deques|Queues and Deques]] — FIFO operations, circular buffers, monotonic deque (sliding window maximum)
+- [x] [[Hash Tables|Hash Tables]] — hash functions, collision resolution (chaining, open addressing), load factor, `HashMap`/`HashSet` in Java, hashing custom objects, anti-hash tests *(advanced)*
 
 ---
 

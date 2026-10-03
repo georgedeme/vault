@@ -327,7 +327,7 @@ class MinStack {
 >
 > A third version stores a single `long` per element, encoding `2x − min` whenever `x` becomes the new minimum, for `O(1)` extra space. It needs `long` arithmetic to avoid overflow, and it's mostly an interview curiosity.
 
-The same "store the aggregate alongside each element" idea gives a max-stack, a stack with `O(1)` `getGcd`, and, combined with the two-stack queue, a **queue with `O(1)` min** ([[DSA/Linear Data Structures/Queues and Deques|Queues and Deques]]).
+The same "store the aggregate alongside each element" idea gives a max-stack, a stack with `O(1)` `getGcd`, and, combined with the two-stack queue, a **queue with `O(1)` min** ([[Queues and Deques|Queues and Deques]]).
 
 ---
 
@@ -702,7 +702,7 @@ static int[] nextGreater(int[] a) {
 > Result: `[4, 2, 4, -1, -1]`. The stack's values are non-increasing from bottom to top at every step.
 
 > [!important] Why it's O(n), not O(n²)
-> Each index is pushed once and popped at most once, so all the `while` iterations together run at most `n` times. This is the aggregate argument from [[DSA/Foundations/Complexity Analysis#8.4 Where amortized bounds appear|Complexity Analysis § 8.4]]: a single step can pop many elements, but the total over the whole scan is linear.
+> Each index is pushed once and popped at most once, so all the `while` iterations together run at most `n` times. This is the aggregate argument from [[01 - Complexity Analysis#8.4 Where amortized bounds appear|Complexity Analysis § 8.4]]: a single step can pop many elements, but the total over the whole scan is linear.
 
 ### 8.2 The four variants from one scan
 
@@ -981,11 +981,11 @@ Edge cases this handles: `"12345", k = 2` (already increasing, remove from the e
 
 ## Related
 
-- [[DSA/Syllabus|Syllabus]]
-- Previous: [[DSA/Linear Data Structures/Linked Lists|Linked Lists]] · Next: [[DSA/Linear Data Structures/Queues and Deques|Queues and Deques]]
-- [[DSA/Foundations/Recursion#8. Converting Recursion to Iteration|Recursion § 8]]: replacing the call stack with an explicit one
-- [[DSA/Linear Data Structures/Queues and Deques|Queues and Deques]]: queue from two stacks; the monotonic deque
+- [[DSA/00 - Syllabus|00 - Syllabus]]
+- Previous: [[Linked Lists|Linked Lists]] · Next: [[Queues and Deques|Queues and Deques]]
+- [[02 - Recursion#8. Converting Recursion to Iteration|Recursion § 8]]: replacing the call stack with an explicit one
+- [[Queues and Deques|Queues and Deques]]: queue from two stacks; the monotonic deque
 - [[DSA/Binary Trees|Binary Trees]]: iterative traversals with a stack
 - [[DSA/Graph Representations and Traversals|Graph Representations and Traversals]]: iterative DFS
 - [[DSA/Two Pointers|Two Pointers]]: `O(1)`-space alternatives for rain water and backspace comparison
-- [[DSA/Foundations/Complexity Analysis#8. Amortized Analysis|Complexity Analysis § 8]]: why the monotonic stack is linear
+- [[01 - Complexity Analysis#8. Amortized Analysis|Complexity Analysis § 8]]: why the monotonic stack is linear

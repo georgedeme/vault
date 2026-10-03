@@ -912,7 +912,7 @@ long r = 1L << 35;
 
 ## Related
 
-- [[00 - Syllabus|Syllabus]]
+- [[Java/00 - Syllabus|Syllabus]]
 - Previous: [[02 - Variables and Data Types|Variables and Data Types]] · Next: [[04 - Type Casting|Type Casting]]
 - [[01 - Introduction to Java|Introduction to Java]]
 - [[01 - Conditional Statements|Conditional Statements]]: conditions, `switch`, the ternary operator
