@@ -274,7 +274,7 @@ When a problem asks for the **minimum** value that makes something possible (or 
 
 The template has three decisions: the **range** `[lo, hi]` (must contain the answer), the **check** (and its direction), and **first true vs. last true**.
 
-### 6.1 Minimum eating speed (minimise: first true)
+### 6.1 Minimum eating speed (minimise, first true)
 
 Piles of bananas, `h` hours, eat at most `k` per hour from one pile per hour. Find the smallest `k` that finishes in time. A larger `k` never takes longer: monotone.
 

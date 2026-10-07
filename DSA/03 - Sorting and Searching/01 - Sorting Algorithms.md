@@ -353,7 +353,7 @@ static void quickSort(int[] a, int lo, int hi) {
 > [!important] Recurse on the smaller side, loop on the larger
 > Plain recursion has depth `n` in the worst case, which overflows the Java stack around `10⁴`–`10⁵` levels. Recursing only into the smaller part (at most half the range) and turning the other call into a loop bounds the depth by `log₂ n`, whatever the pivots. It doesn't change the time.
 
-### 4.4 Equal keys: three-way partitioning
+### 4.4 Equal keys and three-way partitioning
 
 With many duplicates, Lomuto degrades badly: if **all elements are equal**, `a[j] < pivot` is never true, the pivot lands at `lo`, and every partition removes just one element. That's `O(n²)` **even with a random pivot**. The fix is to partition into three regions, `< pivot`, `= pivot`, `> pivot`, and recurse only on the outer two (Dijkstra's **Dutch national flag** partition, also in [[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]]).
 
