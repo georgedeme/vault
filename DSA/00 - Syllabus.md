@@ -32,11 +32,11 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 
 ## Part III — Sorting and Searching
 
-- [ ] [[DSA/03 - Sorting and Searching/01 - Sorting Algorithms|Sorting Algorithms]] — bubble, selection, insertion, merge, quick, heap sort; counting, radix, bucket sort; stability; Java's `Arrays.sort`/`Collections.sort` and custom comparators
-- [ ] [[DSA/03 - Sorting and Searching/02 - Binary Search|Binary Search]] — classic search, lower/upper bound, boundary variants, binary search on the answer, search in rotated/2D arrays, ternary search *(advanced)*
-- [ ] [[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]] — opposite-end and same-direction pointers, pair/triplet sums, partitioning, in-place deduplication
-- [ ] [[DSA/03 - Sorting and Searching/04 - Sliding Window|Sliding Window]] — fixed and variable-size windows, longest/shortest subarray patterns, window with constraints
-- [ ] [[DSA/03 - Sorting and Searching/05 - Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]] — 1D/2D prefix sums, range sum queries, difference arrays for range updates, subarray-sum-equals-k with hashing
+- [x] [[DSA/03 - Sorting and Searching/01 - Sorting Algorithms|Sorting Algorithms]] — bubble, selection, insertion, merge, quick, heap sort; counting, radix, bucket sort; stability; Java's `Arrays.sort`/`Collections.sort` and custom comparators
+- [x] [[DSA/03 - Sorting and Searching/02 - Binary Search|Binary Search]] — classic search, lower/upper bound, boundary variants, binary search on the answer, search in rotated/2D arrays, ternary search *(advanced)*
+- [x] [[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]] — opposite-end and same-direction pointers, pair/triplet sums, partitioning, in-place deduplication
+- [x] [[DSA/03 - Sorting and Searching/04 - Sliding Window|Sliding Window]] — fixed and variable-size windows, longest/shortest subarray patterns, window with constraints
+- [x] [[DSA/03 - Sorting and Searching/05 - Prefix Sums and Difference Arrays|Prefix Sums and Difference Arrays]] — 1D/2D prefix sums, range sum queries, difference arrays for range updates, subarray-sum-equals-k with hashing
 
 ---
 
