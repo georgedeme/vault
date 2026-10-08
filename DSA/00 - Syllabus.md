@@ -42,15 +42,15 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 
 ## Part IV — Trees and Hierarchical Structures
 
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/01 - Binary Trees|Binary Trees]] — terminology, recursive and iterative traversals (preorder, inorder, postorder, level-order), depth/height, diameter, tree construction from traversals, serialization
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/02 - Binary Search Trees|Binary Search Trees]] — insert/search/delete, validation, successor/predecessor, k-th smallest, BST to sorted structures
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/03 - Balanced Trees|Balanced Trees]] — rotations, AVL trees, red-black trees, treaps; Java's `TreeMap`/`TreeSet` as the practical substitute *(advanced)*
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/04 - Heaps and Priority Queues|Heaps and Priority Queues]] — binary heap structure, heapify, insert/extract, `PriorityQueue` in Java, top-k problems, two-heap median, heap sort connection
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/05 - Tries|Tries]] — prefix tree insert/search, prefix matching, autocomplete, bitwise trie for maximum XOR
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/06 - Union-Find|Union-Find (Disjoint Set Union)]] — union by rank/size, path compression, connected components, cycle detection, DSU on edges; rollback/persistent DSU *(advanced)*
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/07 - Segment Trees|Segment Trees]] — range queries and point updates, lazy propagation for range updates, iterative implementation, merge-sort tree *(advanced)*
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/08 - Fenwick Trees|Fenwick Trees (Binary Indexed Trees)]] — point update/prefix query, range update variants, 2D BIT, counting inversions *(advanced)*
-- [ ] [[DSA/04 - Trees and Hierarchical Structures/09 - Sqrt Decomposition|Sqrt Decomposition and Mo's Algorithm]] — block decomposition for range queries, offline query reordering *(advanced)*
+- [x] [[DSA/04 - Trees and Hierarchical Structures/01 - Binary Trees|Binary Trees]] — terminology, recursive and iterative traversals (preorder, inorder, postorder, level-order), depth/height, diameter, tree construction from traversals, serialization
+- [x] [[DSA/04 - Trees and Hierarchical Structures/02 - Binary Search Trees|Binary Search Trees]] — insert/search/delete, validation, successor/predecessor, k-th smallest, BST to sorted structures
+- [x] [[DSA/04 - Trees and Hierarchical Structures/03 - Balanced Trees|Balanced Trees]] — rotations, AVL trees, red-black trees, treaps; Java's `TreeMap`/`TreeSet` as the practical substitute *(advanced)*
+- [x] [[DSA/04 - Trees and Hierarchical Structures/04 - Heaps and Priority Queues|Heaps and Priority Queues]] — binary heap structure, heapify, insert/extract, `PriorityQueue` in Java, top-k problems, two-heap median, heap sort connection
+- [x] [[DSA/04 - Trees and Hierarchical Structures/05 - Tries|Tries]] — prefix tree insert/search, prefix matching, autocomplete, bitwise trie for maximum XOR
+- [x] [[DSA/04 - Trees and Hierarchical Structures/06 - Union-Find|Union-Find (Disjoint Set Union)]] — union by rank/size, path compression, connected components, cycle detection, DSU on edges; rollback/persistent DSU *(advanced)*
+- [x] [[DSA/04 - Trees and Hierarchical Structures/07 - Segment Trees|Segment Trees]] — range queries and point updates, lazy propagation for range updates, iterative implementation, merge-sort tree *(advanced)*
+- [x] [[DSA/04 - Trees and Hierarchical Structures/08 - Fenwick Trees|Fenwick Trees (Binary Indexed Trees)]] — point update/prefix query, range update variants, 2D BIT, counting inversions *(advanced)*
+- [x] [[DSA/04 - Trees and Hierarchical Structures/09 - Sqrt Decomposition|Sqrt Decomposition and Mo's Algorithm]] — block decomposition for range queries, offline query reordering *(advanced)*
 
 ---
 
