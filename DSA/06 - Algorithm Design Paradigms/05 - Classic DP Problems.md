@@ -808,7 +808,7 @@ static int maxProduct(int[] a) {
 > `4`, with `tails = [0, 1, 2, 3]`. Here `tails` happens to be a valid LIS; on `[3, 4, 5, 1]` it's `[1, 4, 5]`, which isn't.
 
 > [!question]- Longest non-decreasing subsequence of `[1, 3, 3, 2, 3]`?
-> `4` (`1, 3, 3, 3`) with the upper bound. The strict LIS is `2`... no: `1, 2, 3` gives `3`. Strict `3`, non-decreasing `4`.
+> `4` (`1, 3, 3, 3`), using the upper bound. The strictly increasing LIS is `3` (`1, 2, 3`): equal values can't both be used.
 
 > [!question]- `maxEnvelopes([[1, 1], [1, 1], [1, 1]])`?
 > `1`. Identical envelopes don't nest (strictly smaller in both dimensions is required).
