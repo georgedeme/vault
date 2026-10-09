@@ -72,7 +72,7 @@
           ]
         },
         {
-          "value": "claude-fable-5-1",
+          "value": "fable",
           "label": "Fable 5.1",
           "description": "For your toughest challenges",
           "resolvedModel": "claude-fable-5-1",
@@ -87,11 +87,17 @@
         },
         {
           "value": "haiku",
-          "label": "Haiku 4.5",
+          "label": "Haiku 5.5",
           "description": "Fastest for quick answers",
-          "resolvedModel": "claude-haiku-4-5-20251001",
+          "resolvedModel": "claude-haiku-5-5",
           "reasoningMetadataResolved": true,
-          "supportedEffortLevels": []
+          "supportedEffortLevels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         }
       ]
     },
