@@ -559,7 +559,7 @@ What depends on the locale and what doesn't:
 |---|---|
 | `sc.nextDouble()`, `sc.nextInt()`, `sc.hasNextDouble()` | **yes** |
 | `Double.parseDouble(s)`, `Integer.parseInt(s)` | no: always `.`, no grouping |
-| `System.out.printf("%.2f", 3.5)`, `String.format` | **yes**: prints `3,50` in Greek. Use `printf(Locale.US, …)` (see [[Java/03 - Program Structure/02 - Strings#6. Formatted Output — `printf` and `String.format`|Strings § 6]]) |
+| `System.out.printf("%.2f", 3.5)`, `String.format` | **yes**: prints `3,50` in Greek. Use `printf(Locale.US, …)` (see [[Java/03 - Program Structure/02 - Strings#6.5 Locale and the Decimal Separator|Strings § 6.5]]) |
 | `System.out.println(3.5)`, `"" + 3.5`, `String.valueOf(3.5)` | no: always `3.5` |
 
 > [!tip] Line-based reading sidesteps the locale

@@ -275,6 +275,46 @@ System.out.printf("%2$s before %1$s%n", "second", "first");
 > - **Too many arguments** — extra arguments beyond what the specifiers consume are silently ignored; this is legal, not an error.
 > - **Forgetting `%n`/newline entirely** — `printf` (unlike `println`) never adds a trailing newline on its own; consecutive calls run together on one line unless you include `%n` yourself.
 
+### 6.5 Locale and the Decimal Separator
+
+<span class="hl-yellow">`printf` and `String.format` format numbers using the computer's regional settings (its **locale**).</span> In Greek, as in many European languages, the decimal separator is `,` and the thousands separator is `.`, so the same line prints differently on a Greek computer:
+
+| Call | English locale (`en_US`) | Greek locale (`el_GR`) |
+|---|---|---|
+| `printf("%.2f", 3.5)` | `3.50` | `3,50` |
+| `printf("%f", 3.5)` | `3.500000` | `3,500000` |
+| `printf("%e", 1234.5)` | `1.234500e+03` | `1,234500e+03` |
+| `printf("%,d", 1234567)` (`,` flag = grouping) | `1,234,567` | `1.234.567` |
+| `printf("%,.2f", 1234567.891)` | `1,234,567.89` | `1.234.567,89` |
+| `printf("%d", 1234567)` | `1234567` | `1234567` |
+| `printf("%s", 3.5)` | `3.5` | `3.5` |
+
+**Fix:** pass a `Locale` as the first argument. Both methods have an overload for it:
+
+```java
+import java.util.Locale;
+
+System.out.printf(Locale.US, "%.2f%n", 3.5);         // 3.50 on every computer
+String s = String.format(Locale.US, "%,d", 1234567); // "1,234,567"
+```
+
+`Locale.ROOT` also gives `.` for decimals. To try a program under the Greek locale on any computer, run it with `java -Duser.language=el -Duser.country=GR App`.
+
+> [!warning] Trick: `%s` and `%.2f` disagree on the same computer
+> On a Greek computer, `printf("%s", 3.5)` prints `3.5` but `printf("%.2f", 3.5)` prints `3,50`. `%s` calls `Double.toString`, which **never** uses the locale, just like `println(3.5)` and `"" + 3.5`. Only the numeric conversions (`%f`, `%e`, `%g`, and the `,` flag) follow the locale. `%d` without the `,` flag, `%x`, and `%b` print the same in English and Greek.
+
+> [!warning] Common mistake: formatting a number and reading it back
+> ```java
+> String s = String.format("%.2f", 3.5);   // "3,50" on a Greek computer
+> double d = Double.parseDouble(s);        // NumberFormatException: For input string: "3,50"
+> ```
+> `parseDouble` always expects `.` (see [[Java/01 - Foundations/05 - Reading Input#8. Locale and Decimal Numbers|Reading Input § 8]]), but `format` wrote `,`. The program works on the author's English computer and crashes on a Greek one. Anything written to be read by a program (files, CSV, JSON) should be formatted with `Locale.US` or `Locale.ROOT`.
+
+> [!info]- More locale edge cases
+> - **`"…".formatted(args)`** (Java 15+) is shorthand for `String.format("…", args)` and has **no** `Locale` overload, so it always uses the computer's locale. Use `String.format(Locale.US, …)` when that matters.
+> - **`%S`** (capital S) upper-cases the argument using the locale. In Turkish, `printf("%S", "title")` prints `TİTLE` (dotted capital İ), and `"title".toUpperCase()` does the same. `printf(Locale.ROOT, "%S", "title")` prints `TITLE`.
+> - The same locale also affects *reading* numbers with `Scanner.nextDouble()`. That side is covered in [[Java/01 - Foundations/05 - Reading Input#8. Locale and Decimal Numbers|Reading Input § 8]].
+
 ---
 
 ## 7. Common Pitfalls
@@ -283,6 +323,7 @@ System.out.printf("%2$s before %1$s%n", "second", "first");
 - **Comparing content with `==`** instead of `.equals()` — covered in [[#2. Creating Strings — Literals vs. `new`|section 2]]. Works by accident for pooled literals, breaks for everything else.
 - **Building large strings with `+=` in a loop** instead of `StringBuilder` — quietly quadratic, not a compile error or an obvious runtime failure, just slow at scale.
 - **Passing the wrong type to a format specifier** (`%d` with a `double`, `%s` with `null` — the latter actually prints `"null"` safely, but mismatched numeric types throw at runtime).
+- **Assuming `%.2f` always prints a `.`**: it uses the computer's locale, so it prints `3,50` on a Greek computer. Pass `Locale.US` when the output must be the same everywhere or will be parsed again (see [[#6.5 Locale and the Decimal Separator|section 6.5]]).
 - **`substring(int, int)` off-by-one confusion** — the end index is exclusive, so `s.substring(0, s.length())` is the whole string, and `s.substring(i, i)` is always `""`.
 
 ---
@@ -299,6 +340,10 @@ System.out.printf("%2$s before %1$s%n", "second", "first");
 | `String.format("%d", 3.0)` | throws `IllegalFormatConversionException` | `%d` requires an integer type, not `double` |
 | `String.format("%.2f", 3.14159)` | `"3.14"` | precision truncates/rounds decimal digits |
 | `printf("%n")` vs `printf("\n")` | both print a newline, but `%n` is platform-correct | `%n` is a format specifier, `\n` a literal escape |
+| `printf("%.2f", 3.5)` (Greek locale) | `3,50` | `%f` uses the locale's decimal separator |
+| `printf("%s", 3.5)` (Greek locale) | `3.5` | `%s` calls `Double.toString`, which ignores the locale |
+| `Double.parseDouble(String.format("%.2f", 3.5))` (Greek locale) | throws `NumberFormatException` | `format` wrote `3,50`, `parseDouble` expects `.` |
+| `printf(Locale.US, "%.2f", 3.5)` | `3.50` everywhere | an explicit `Locale` overrides the computer's |
 | `"hello".substring(0, 5)` | `"hello"` | end index is exclusive, equals `length()` for "to the end" |
 
 ---
@@ -310,3 +355,4 @@ System.out.printf("%2$s before %1$s%n", "second", "first");
 - The core method set (`substring`, `indexOf`, `replace`, `split`, `trim`/`strip`, case conversion) covers most day-to-day text handling.
 - `+` concatenation is fine for one-off expressions but is quadratic across loop iterations — use `StringBuilder` for building text incrementally.
 - `printf` (writes to a stream) and `String.format` (returns a `String`) share the same format-specifier syntax (`%s`, `%d`, `%f`, width, precision, `%n`); mismatched conversion types and missing arguments fail at *runtime*, not compile time, since format strings are ordinary `String`s to the compiler.
+- `%f`, `%e` and the `,` flag follow the computer's locale (`3,50` in Greek); pass `Locale.US` as the first argument for fixed output.
