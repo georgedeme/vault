@@ -70,13 +70,13 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 
 ## Part VI — Algorithm Design Paradigms
 
-- [ ] [[DSA/06 - Algorithm Design Paradigms/01 - Greedy Algorithms|Greedy Algorithms]] — greedy-choice property, exchange arguments, interval scheduling, activity selection, Huffman coding, when greedy fails
-- [ ] [[DSA/06 - Algorithm Design Paradigms/02 - Divide and Conquer|Divide and Conquer]] — the master theorem, merge-sort-style recursion, quickselect, closest pair of points, counting inversions
-- [ ] [[DSA/06 - Algorithm Design Paradigms/03 - Backtracking|Backtracking]] — permutations, combinations, subsets, N-queens, sudoku solver, word search, pruning strategies, constraint propagation
-- [ ] [[DSA/06 - Algorithm Design Paradigms/04 - Dynamic Programming Fundamentals|Dynamic Programming — Fundamentals]] — optimal substructure and overlapping subproblems, memoization vs. tabulation, state design, transition derivation, space optimization
-- [ ] [[DSA/06 - Algorithm Design Paradigms/05 - Classic DP Problems|Classic DP Problems]] — 0/1 and unbounded knapsack, coin change, longest increasing subsequence (O(n log n) variant included), longest common subsequence, edit distance, matrix chain multiplication, partition problems, grid path DP
-- [ ] [[DSA/06 - Algorithm Design Paradigms/06 - Advanced DP|Advanced DP]] — bitmask DP, tree DP, interval DP, digit DP, DP on subsets, convex hull trick and divide-and-conquer DP optimizations *(advanced)*
-- [ ] [[DSA/06 - Algorithm Design Paradigms/07 - Meet in the Middle|Meet in the Middle]] — splitting exponential search spaces, subset-sum applications *(advanced)*
+- [x] [[DSA/06 - Algorithm Design Paradigms/01 - Greedy Algorithms|Greedy Algorithms]] — greedy-choice property, exchange arguments, interval scheduling, activity selection, Huffman coding, when greedy fails
+- [x] [[DSA/06 - Algorithm Design Paradigms/02 - Divide and Conquer|Divide and Conquer]] — the master theorem, merge-sort-style recursion, quickselect, closest pair of points, counting inversions
+- [x] [[DSA/06 - Algorithm Design Paradigms/03 - Backtracking|Backtracking]] — permutations, combinations, subsets, N-queens, sudoku solver, word search, pruning strategies, constraint propagation
+- [x] [[DSA/06 - Algorithm Design Paradigms/04 - Dynamic Programming Fundamentals|Dynamic Programming — Fundamentals]] — optimal substructure and overlapping subproblems, memoization vs. tabulation, state design, transition derivation, space optimization
+- [x] [[DSA/06 - Algorithm Design Paradigms/05 - Classic DP Problems|Classic DP Problems]] — 0/1 and unbounded knapsack, coin change, longest increasing subsequence (O(n log n) variant included), longest common subsequence, edit distance, matrix chain multiplication, partition problems, grid path DP
+- [x] [[DSA/06 - Algorithm Design Paradigms/06 - Advanced DP|Advanced DP]] — bitmask DP, tree DP, interval DP, digit DP, DP on subsets, convex hull trick and divide-and-conquer DP optimizations *(advanced)*
+- [x] [[DSA/06 - Algorithm Design Paradigms/07 - Meet in the Middle|Meet in the Middle]] — splitting exponential search spaces, subset-sum applications *(advanced)*
 
 ---
 
