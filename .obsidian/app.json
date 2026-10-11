@@ -1,5 +1,6 @@
 {
   "vimMode": false,
   "alwaysUpdateLinks": true,
-  "defaultViewMode": "preview"
+  "defaultViewMode": "preview",
+  "readableLineLength": true
 }
