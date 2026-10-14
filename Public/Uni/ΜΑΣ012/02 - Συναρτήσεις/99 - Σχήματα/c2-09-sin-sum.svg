@@ -929,18 +929,18 @@ z
     </g>
    </g>
    <g id="patch_16">
-    <path d="M 229.045056 46.258019 
-Q 244.567341 58.192611 259.291924 69.513875 
+    <path d="M 294.666066 49.72079 
+Q 281.299501 60.724249 268.7098 71.088188 
 " style="fill: none; stroke: #8a8984; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 257.730331 66.294958 
-L 259.291924 69.513875 
-L 255.779835 68.831799 
+    <path d="M 272.197261 70.289682 
+L 268.7098 71.088188 
+L 270.163472 67.819115 
 z
 " style="fill: #8a8984; stroke: #8a8984; stroke-width: 0.9; stroke-linecap: round"/>
    </g>
    <g id="text_14">
     <!-- $f(\frac{\pi}{2}) = 1$ -->
-    <g style="fill: #52514e" transform="translate(204.141545 40.318389) scale(0.085 -0.085)">
+    <g style="fill: #52514e" transform="translate(289.466233 43.730081) scale(0.085 -0.085)">
      <defs>
       <path id="Cmmi10-57" d="M 622 -1056 
 Q 741 -1147 909 -1147 

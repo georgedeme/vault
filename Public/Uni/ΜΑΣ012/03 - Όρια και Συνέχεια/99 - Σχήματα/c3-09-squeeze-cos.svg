@@ -3773,18 +3773,18 @@ z
     </g>
    </g>
    <g id="patch_9">
-    <path d="M 250.056082 56.776305 
-Q 214.535526 45.179994 179.971517 33.895965 
+    <path d="M 120.166565 25.31637 
+Q 142.254459 28.540085 163.346671 31.618481 
 " style="fill: none; stroke: #8a8984; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 182.516955 36.410074 
-L 179.971517 33.895965 
-L 183.510067 33.36808 
+    <path d="M 160.411289 29.573113 
+L 163.346671 31.618481 
+L 159.949147 32.739566 
 z
 " style="fill: #8a8984; stroke: #8a8984; stroke-width: 0.9; stroke-linecap: round"/>
    </g>
    <g id="text_7">
     <!-- και τα δύο φράγματα $\to 1$ -->
-    <g style="fill: #52514e" transform="translate(216.669773 66.195972) scale(0.085 -0.085)">
+    <g style="fill: #52514e" transform="translate(19.240403 20.985546) scale(0.085 -0.085)">
      <defs>
       <path id="DejaVuSans-34e" d="M 597 3500 
 L 1191 3500 

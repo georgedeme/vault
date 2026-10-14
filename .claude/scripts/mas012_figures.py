@@ -1573,7 +1573,7 @@ def _():
         dot(ax, z, 0, False, C2, ms=4.5)
     dot(ax, PI / 2, 1, False, C3, ms=5.5)
     dot(ax, 3 * PI / 2, -1, False, C3, ms=5.5)
-    note(ax, (PI / 2, 1.05), r"$f(\frac{\pi}{2}) = 1$", (-0.3, 2.05), fs=8.5)
+    note(ax, (PI / 2 + 0.05, 1.0), r"$f(\frac{\pi}{2}) = 1$", (2.4, 1.95), fs=8.5)
     note(ax, (3 * PI / 2, -1.05), r"$f(\frac{\pi}{2} + \pi) = -1$", (3.2, -2.05), fs=8.5)
     ax.annotate("", xy=(2 * PI, 2.6), xytext=(0, 2.6),
                 arrowprops=dict(arrowstyle="<->", color=INK2, lw=0.9, mutation_scale=8))
@@ -1642,7 +1642,7 @@ def _():
     curve(ax, x, lo, C3, lw=1.5, ls=(0, (1.5, 2)), label=r"$1 - x^2$")
     curve(ax, x, lo + (hi - lo) * (0.5 + 0.5 * np.sin(14 * x)), C1, lw=1.3, label="μια πιθανή $f$")
     dot(ax, 0, 1, False, INK2, ms=5)
-    note(ax, (0.03, 1.0), r"και τα δύο φράγματα $\to 1$", (0.45, 0.45), fs=8.5)
+    note(ax, (-0.04, 1.0), r"και τα δύο φράγματα $\to 1$", (-1.55, 1.24), fs=8.5)
     legend_below(ax, ncol=3, y=-0.1)
     save(fig, "c3-09-squeeze-cos")
 
