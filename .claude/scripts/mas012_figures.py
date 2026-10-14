@@ -1529,6 +1529,125 @@ def _():
 
 
 # =======================================================================
+# Ασκήσεις Φυλλαδίων (09) — Κεφάλαια 2 και 3
+# =======================================================================
+@figure("c2-09-abs-graphs")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(7.8, 3.3))
+    ax = axs[0]
+    maxes(ax, (-3, 2.2), (-6, 9.5), xticks=[-1, 1], yticks=[1, 5])
+    x = X(-3, 2.1)
+    curve(ax, x, np.abs(x) + 3 * x + 1, C1)
+    dot(ax, 0, 1, False, C1, ms=5)
+    dot(ax, -0.5, 0, False, C2, ms=5)
+    label(ax, -2.9, 7.9, "$x < 0$: $2x + 1$\n$x \\geq 0$: $4x + 1$", fs=8.5, va="center")
+    note(ax, (0.02, 1.05), "γωνία στο $(0, 1)$", (0.35, -2.3), fs=8.5)
+    note(ax, (-0.52, 0.1), r"ρίζα $-\frac{1}{2}$", (-2.6, 2.6), fs=8.5)
+    ax.set_title(r"(α) $f(x) = |x| + 3x + 1$", fontsize=10)
+    ax = axs[1]
+    maxes(ax, (-3, 6.2), (-4.5, 13.5), xticks=[-1, 2, 5], yticks=[-3, 9])
+    x = X(-3, 6.1)
+    curve(ax, x, 3 * np.abs(x - 2) - np.abs(x + 1), C1)
+    dot(ax, -1, 9, False, C1, ms=5)
+    dot(ax, 2, -3, False, C1, ms=5)
+    for r in (1.25, 3.5):
+        dot(ax, r, 0, False, C2, ms=5)
+    label(ax, -0.7, 9.6, "$(-1, 9)$", fs=8.5, va="bottom")
+    label(ax, 2.25, -3.3, "ελάχιστο $(2, -3)$", fs=8.5, va="top")
+    label(ax, -2.8, 7.2, "$7 - 2x$", fs=8.5)
+    label(ax, 0.95, 3.2, "$5 - 4x$", fs=8.5)
+    label(ax, 4.3, -2.0, "$2x - 7$", fs=8.5)
+    ax.set_title(r"(β) $g(x) = 3|x - 2| - |x + 1|$", fontsize=10)
+    fig.tight_layout(w_pad=3)
+    save(fig, "c2-09-abs-graphs")
+
+
+@figure("c2-09-sin-sum")
+def _():
+    fig, ax = plt.subplots(figsize=(7.4, 3.2))
+    xt, xl = pi_ticks(-2 * PI, 2 * PI, 0.5)
+    maxes(ax, (-2 * PI - 0.2, 2 * PI + 0.3), (-2.3, 2.9), xticks=xt, xtl=xl, yticks=[-1, 1])
+    x = X(-2 * PI - 0.2, 2 * PI + 0.2, 2000)
+    curve(ax, x, np.sin(x) + np.sin(2 * x), C1, label=r"$f(x) = \sin x + \sin 2x$")
+    for z in (0, 2 * PI / 3, PI, 4 * PI / 3, 2 * PI):
+        dot(ax, z, 0, False, C2, ms=4.5)
+    dot(ax, PI / 2, 1, False, C3, ms=5.5)
+    dot(ax, 3 * PI / 2, -1, False, C3, ms=5.5)
+    note(ax, (PI / 2, 1.05), r"$f(\frac{\pi}{2}) = 1$", (-0.3, 2.05), fs=8.5)
+    note(ax, (3 * PI / 2, -1.05), r"$f(\frac{\pi}{2} + \pi) = -1$", (3.2, -2.05), fs=8.5)
+    ax.annotate("", xy=(2 * PI, 2.6), xytext=(0, 2.6),
+                arrowprops=dict(arrowstyle="<->", color=INK2, lw=0.9, mutation_scale=8))
+    label(ax, 1.25 * PI, 2.65, r"$T = 2\pi$", ha="center", va="bottom", fs=9, color=INK2)
+    legend_below(ax, ncol=1, y=-0.09)
+    save(fig, "c2-09-sin-sum")
+
+
+@figure("c3-09-rational")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(7.8, 3.3))
+    ax = axs[0]
+    maxes(ax, (-5, 5), (-4, 4), xticks=[-2, 2], yticks=[-2, 2])
+    vline(ax, -2)
+    vline(ax, 2)
+    for a, b in [(-5, -2.03), (-1.97, 1.97), (2.03, 5)]:
+        x = X(a, b)
+        curve(ax, x, x / (x**2 - 4), C1)
+    label(ax, 2.2, 3.4, r"$2^+$: $+\infty$", fs=8.5)
+    label(ax, 1.8, -3.4, r"$2^-$: $-\infty$", fs=8.5, ha="right")
+    ax.set_title(r"$\frac{x}{x^2 - 4}$: ασύμπτωτες $x = \pm 2$", fontsize=10)
+    ax = axs[1]
+    maxes(ax, (-9, 10), (-1.2, 1.2), xticks=[-6, 6], yticks=[-1, 1], xlabel="$y$", ylabel="")
+    vline(ax, 6)
+    for a, b in [(-9, 5.2), (6.8, 10)]:
+        x = X(a, b)
+        curve(ax, x, 1 / (x - 6), C1)
+    dot(ax, -6, -1 / 12, True, C1)
+    note(ax, (-6, -0.06), r"τρύπα $(-6, -\frac{1}{12})$", (-8.6, 0.65), fs=8.5)
+    ax.set_title(r"$\frac{y + 6}{y^2 - 36} = \frac{1}{y - 6}$ ($y \neq -6$)", fontsize=10)
+    fig.tight_layout(w_pad=3)
+    save(fig, "c3-09-rational")
+
+
+@figure("c3-09-piecewise")
+def _():
+    fig, ax = plt.subplots(figsize=(6.4, 3.4))
+    maxes(ax, (-3.5, 4.3), (-0.6, 5.2), xticks=[-1, 2], yticks=[1, 2])
+    vline(ax, 2)
+    ax.plot([-3.5, -1], [2, 2], color=C1)
+    dot(ax, -1, 2, False, C1)
+    ax.plot([-1, 0], [1, 0], color=C1)
+    dot(ax, -1, 1, True, C1)
+    x = X(0, 1.62)
+    curve(ax, x, x / (2 - x), C1)
+    dot(ax, 0, 0, True, C1)
+    ax.plot([2, 4.3], [1, 1], color=C1)
+    dot(ax, 2, 1, False, C1)
+    note(ax, (-1, 1.95), r"$x \to -1^-$: $2$", (-3.3, 3.4), fs=8.5)
+    note(ax, (-1, 1.0), r"$x \to -1^+$: $1$", (-3.3, 0.6), fs=8.5)
+    note(ax, (0.03, 0.06), "όριο $0$, αλλά\n$f(0)$ δεν ορίζεται", (0.55, 2.4), fs=8.5)
+    label(ax, 2.25, 4.6, r"$x \to 2^-$: $+\infty$", fs=8.5)
+    label(ax, 2.25, 1.35, r"$x \to 2^+$: $1$", fs=8.5)
+    save(fig, "c3-09-piecewise")
+
+
+@figure("c3-09-squeeze-cos")
+def _():
+    fig, ax = plt.subplots(figsize=(6.0, 3.2))
+    xt, xl = pi_ticks(-PI / 2, PI / 2, 0.5)
+    maxes(ax, (-PI / 2 - 0.1, PI / 2 + 0.15), (-1.7, 1.4), xticks=xt, xtl=xl, yticks=[1])
+    x = X(-PI / 2 + 0.001, PI / 2 - 0.001, 1500)
+    lo, hi = 1 - x**2, np.cos(x)
+    ax.fill_between(x, lo, hi, color=C1, alpha=0.12, lw=0)
+    curve(ax, x, hi, C2, lw=1.5, ls=(0, (5, 2.5)), label=r"$\cos x$")
+    curve(ax, x, lo, C3, lw=1.5, ls=(0, (1.5, 2)), label=r"$1 - x^2$")
+    curve(ax, x, lo + (hi - lo) * (0.5 + 0.5 * np.sin(14 * x)), C1, lw=1.3, label="μια πιθανή $f$")
+    dot(ax, 0, 1, False, INK2, ms=5)
+    note(ax, (0.03, 1.0), r"και τα δύο φράγματα $\to 1$", (0.45, 0.45), fs=8.5)
+    legend_below(ax, ncol=3, y=-0.1)
+    save(fig, "c3-09-squeeze-cos")
+
+
+# =======================================================================
 if __name__ == "__main__":
     prefix = sys.argv[1] if len(sys.argv) > 1 else ""
     for name, fn in REGISTRY:
