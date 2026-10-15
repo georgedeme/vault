@@ -179,7 +179,7 @@ b = null;                // object #2 is still reachable through a
 ```
 
 > [!warning] Common mistake: expecting cleanup code to run
-> `Object.finalize()` is deprecated (Java 9) and was never guaranteed to run. `System.gc()` is only a hint. Resources such as files must be closed explicitly, normally with `try`-with-resources ([[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]]), never by relying on the garbage collector.
+> `Object.finalize()` is deprecated (Java 9) and was never guaranteed to run. `System.gc()` is only a hint. Resources such as files must be closed explicitly, normally with `try`-with-resources ([[Java/05 - Working with Data and Errors/01 - Exception Handling#7. Try-with-Resources|Exception Handling § 7]]), never by relying on the garbage collector.
 
 ---
 

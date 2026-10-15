@@ -154,7 +154,7 @@ Dog pup2 = d.reproduce();    // OK: through a Dog reference the return type is D
 d.load();                    // OK: Dog's load() declares no exception
 ```
 
-At runtime `a.reproduce()` really does run `Dog.reproduce()` and really does return a `Dog`, but the compiler only knows "some `Animal`'s `reproduce()`", whose return type is `Animal` and which may throw `IOException`. The covariant-return and exception rules are in [[Java/04 - Object-Oriented Programming/03 - Inheritance#3.3 The Rules for a Valid Override|Inheritance § 3.3]].
+At runtime `a.reproduce()` really does run `Dog.reproduce()` and really does return a `Dog`, but the compiler only knows "some `Animal`'s `reproduce()`", whose return type is `Animal` and which may throw `IOException`. The covariant-return and exception rules are in [[Java/04 - Object-Oriented Programming/03 - Inheritance#3.3 The Rules for a Valid Override|Inheritance § 3.3]], and the catch-or-declare rule itself in [[Java/05 - Working with Data and Errors/01 - Exception Handling#3.2 The Catch-or-Declare Rule|Exception Handling § 3.2]].
 
 ### 2.4 `var` and the Ternary Operator
 

@@ -36,10 +36,10 @@ Checkboxes track progress: checked means the note exists and is written; uncheck
 
 ## Part V — Working with Data and Errors
 
-- [ ] [[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]] — `try` / `catch` / `finally`, checked vs. unchecked exceptions, custom exceptions
+- [x] [[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]] — `try` / `catch` / `finally`, checked vs. unchecked exceptions, custom exceptions
 - [x] [[Java/05 - Working with Data and Errors/02 - Generics|Generics]] — generic classes and methods, bounded types, wildcards, type erasure
-- [ ] [[Java/05 - Working with Data and Errors/03 - Comparable and Comparator|Comparable and Comparator]] — natural and custom orderings, sorting objects
-- [ ] [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]] — `List`, `Set`, `Map`, and choosing between implementations
+- [x] [[Java/05 - Working with Data and Errors/03 - Comparable and Comparator|Comparable and Comparator]] — natural and custom orderings, sorting objects
+- [x] [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]] — `List`, `Set`, `Map`, and choosing between implementations
 
 ## Part VI — Functional Programming
 

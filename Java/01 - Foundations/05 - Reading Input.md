@@ -357,7 +357,7 @@ while (true) {
 
 ### 5.3 Retrying with `try` and `catch`
 
-A `try` block runs code that might throw an exception. If it throws, control jumps to a matching `catch` block instead of crashing the program. The full rules are in [[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]].
+A `try` block runs code that might throw an exception. If it throws, control jumps to a matching `catch` block instead of crashing the program. The full rules are in [[Java/05 - Working with Data and Errors/01 - Exception Handling#5. Catching Exceptions with `try` and `catch`|Exception Handling § 5]].
 
 <span class="hl-red">This loop never ends</span> when the user types something that isn't a number:
 
@@ -592,7 +592,7 @@ public class Sum {
 
 - **The layers**: `System.in` delivers bytes, `InputStreamReader` decodes them into characters, and `BufferedReader` groups the characters into lines.
 - `readLine()` returns the line **without** its separator, or **`null` at end of input**. It doesn't throw at EOF. Calling it again after EOF keeps returning `null`.
-- `readLine()` declares **`IOException`**, which is a *checked* exception. The compiler forces you to deal with it, either with `throws IOException` on the method (as above) or with `try`/`catch`. Without either:
+- `readLine()` declares **`IOException`**, which is a *checked* exception ([[Java/05 - Working with Data and Errors/01 - Exception Handling#3. Checked vs. Unchecked Exceptions|Exception Handling § 3]]). The compiler forces you to deal with it, either with `throws IOException` on the method (as above) or with `try`/`catch`. Without either:
   ```
   error: unreported exception IOException; must be caught or declared to be thrown
   ```

@@ -42,7 +42,7 @@ Loops over arrays are covered in [[02 - Loops|Loops]]. Arrays as a data structur
 | Access time | `a[i]` is O(1): the address is computed directly from `i` |
 | Default contents | every element starts at its type's default value (`0`, `false`, `null`, …) |
 
-If you need a sequence that grows and shrinks, use `ArrayList` (see [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]]). An array cannot be resized. You can only create a new, bigger one and copy into it ([[#7. Copying Arrays|§ 7]]).
+If you need a sequence that grows and shrinks, use `ArrayList` (see [[Java/05 - Working with Data and Errors/04 - Collections Framework#3. Lists|Collections Framework § 3]]). An array cannot be resized. You can only create a new, bigger one and copy into it ([[#7. Copying Arrays|§ 7]]).
 
 ---
 

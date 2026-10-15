@@ -615,7 +615,7 @@ Use inheritance only when the subclass **is** a kind of the superclass, everywhe
 | "uses some code of" | a `Stack` that wants `ArrayList`'s storage | a field, **not** `extends` |
 
 > [!warning] Common mistake: inheriting to reuse code
-> `java.util.Stack extends Vector` is the textbook example. Because a `Stack` *is* a `Vector`, it inherits `add(index, e)`, `remove(index)`, and `get(index)`, so any caller can insert into the middle of a "stack" and break its last-in-first-out behavior. A stack **has** storage; it isn't a list. (Use `ArrayDeque` instead, see [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]].)
+> `java.util.Stack extends Vector` is the textbook example. Because a `Stack` *is* a `Vector`, it inherits `add(index, e)`, `remove(index)`, and `get(index)`, so any caller can insert into the middle of a "stack" and break its last-in-first-out behavior. A stack **has** storage; it isn't a list. (Use `ArrayDeque` instead, see [[Java/05 - Working with Data and Errors/04 - Collections Framework#7.4 Legacy `Stack` and `Vector`|Collections Framework § 7.4]].)
 
 ### 12.2 The Fragile Base Class Problem
 

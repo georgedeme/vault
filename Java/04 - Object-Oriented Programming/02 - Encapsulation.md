@@ -991,4 +991,4 @@ System.out.println(Config.MODES[1]);
 - [[01 - Methods#5.4 Immutable Objects Look Like Primitives|Methods § 5.4]]: why passing an immutable object feels like passing a primitive
 - [[Java/04 - Object-Oriented Programming/03 - Inheritance|Inheritance]]: `protected` from the subclass side, overriding can't narrow access, overridable methods in constructors
 - [[Java/04 - Object-Oriented Programming/06 - Object Methods|Object Methods]]: writing `equals`/`hashCode`/`toString` by hand, and why mutable keys break hash collections
-- [[Java/05 - Working with Data and Errors/04 - Collections Framework|Collections Framework]]: unmodifiable collections, `List.of`/`List.copyOf`
+- [[Java/05 - Working with Data and Errors/04 - Collections Framework#8. Unmodifiable Collections|Collections Framework § 8]]: unmodifiable collections, `List.of`/`List.copyOf`

@@ -740,7 +740,7 @@ Since `T` doesn't exist at runtime, nothing that needs the type argument **at ru
 | `obj instanceof List<String>` (with `obj` an `Object`) | the `String` part can't be checked | `obj instanceof List<?>` |
 | `T.class`, `List<String>.class` | there is only one `Class` object | `List.class` |
 | `static T field;` | [[#2.6 Type Parameters and `static`|§ 2.6]] | a static generic method |
-| `class MyEx<T> extends Exception` | a generic class may not extend `Throwable` | store the extra data in a field of type `Object` |
+| `class MyEx<T> extends Exception` | a generic class may not extend `Throwable` | store the extra data in a field of type `Object` ([[Java/05 - Working with Data and Errors/01 - Exception Handling#8.3 What Custom Exceptions Can't Do|Exception Handling § 8.3]]) |
 | `catch (T e)` | `catch` needs a runtime type | `throws T` **is** allowed: `<T extends Exception> void f() throws T` |
 | `List<int>` | [[#2.2 Type Arguments Must Be Reference Types|§ 2.2]] | `List<Integer>` |
 

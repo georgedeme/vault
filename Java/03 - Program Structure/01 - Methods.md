@@ -63,7 +63,7 @@ public static int max(int a, int b) throws IllegalStateException {
 | Return type | `int` | **yes** | the type returned, or `void` |
 | Name | `max` | **yes** | by convention a verb in `lowerCamelCase`: `computeTotal`, `isEmpty` |
 | Parameter list | `(int a, int b)` | **yes** (may be empty `()`) | each parameter needs its own type |
-| `throws` clause | `throws IllegalStateException` | no | exceptions the method may throw ([[Java/05 - Working with Data and Errors/01 - Exception Handling|Exception Handling]]) |
+| `throws` clause | `throws IllegalStateException` | no | exceptions the method may throw ([[Java/05 - Working with Data and Errors/01 - Exception Handling#4.2 The `throws` Clause|Exception Handling § 4.2]]); required for checked exceptions, optional for unchecked ones like this one ([[Java/05 - Working with Data and Errors/01 - Exception Handling#3.2 The Catch-or-Declare Rule|§ 3.2]]) |
 | Body | `{ … }` | yes (except `abstract`/interface methods) | the statements to run |
 
 A method can also declare its own **type parameters**, written right before the return type: `static <T> T last(List<T> list)` works for a list of any type. These *generic methods* are covered in [[Java/05 - Working with Data and Errors/02 - Generics#3. Generic Methods|Generics § 3]].
