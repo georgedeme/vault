@@ -543,7 +543,7 @@ A sort is <span class="hl-blue">stable</span> if elements that compare as tied k
 ```java
 record S(String name, int grade) { }
 
-list = [Ada2, Bob1, Cleo2, Dan1];
+list = [Cleo2, Dan1, Ada2, Bob1];
 list.sort(Comparator.comparing(S::name));        // [Ada2, Bob1, Cleo2, Dan1]   (by name)
 list.sort(Comparator.comparingInt(S::grade));    // [Bob1, Dan1, Ada2, Cleo2]   (by grade; names stay in order)
 ```
