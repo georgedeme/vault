@@ -147,8 +147,10 @@ When I ask to publish, run:
   `Public/`, via a sparse clone in `~/.cache/quartz-media-sync`.
   `--dry-run` previews.
 - Known site bug: `![[x.svg]]` embeds show blank (Quartz renders them as
-  `<object>` with an unfixed path). This affects the ΜΑΣ012 matplotlib
-  figures. Prefer PNG for images in `Public/`.
+  `<object>` with an unfixed path). Use PNG for images in `Public/`. The
+  ΜΑΣ012 figures (`.claude/scripts/mas012_figures.py`) are 200-dpi PNGs
+  embedded as `![[name.png|W]]`, where W = pixel width / 200 × 96 keeps
+  their natural display size.
 - Don't use arbitrary file publishing (`publish action=arbitrary`) or the
   plugin's `media clean`: the first copies files to the repo root by their
   full vault path (`Public/…`), outside `content/`, so Quartz never serves

@@ -1,9 +1,12 @@
-"""Generate the SVG figures for Public/Uni/ΜΑΣ012.
+"""Generate the PNG figures for Public/Uni/ΜΑΣ012.
 
 Run:  python mas012_figures.py            (all figures)
       python mas012_figures.py c2-04      (only names starting with the prefix)
 
-Output: <chapter>/99 - Σχήματα/<name>.svg, embedded in the notes as ![[<name>.svg]].
+Output: <chapter>/99 - Σχήματα/<name>.png (200 dpi), embedded in the notes as
+![[<name>.png|W]], where W (CSS px) is the figure's natural size, i.e.
+pixel width / 200 * 96. PNG, not SVG: the published Quartz site renders
+.svg embeds as <object> with a broken path, so they show blank.
 Palette: slots 1-4 of the validated dataviz reference palette (light mode),
 on a white surface so the figures read the same in light and dark site themes.
 """
@@ -12,7 +15,7 @@ import sys
 
 import matplotlib as mpl
 
-mpl.use("svg")
+mpl.use("agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
@@ -24,6 +27,7 @@ CHAPTERS = {
     "c4": "04 - Παράγωγος",
 }
 FIG_DIR = "99 - Σχήματα"
+DPI = 200
 
 # palette ---------------------------------------------------------------
 C1, C2, C3, C4 = "#2a78d6", "#eb6834", "#1baf7a", "#4a3aa7"
@@ -69,12 +73,8 @@ def figure(name):
 def save(fig, name):
     folder = os.path.join(BASE, CHAPTERS[name[:2]], FIG_DIR)
     os.makedirs(folder, exist_ok=True)
-    fig.savefig(os.path.join(folder, name + ".svg"), format="svg",
-                bbox_inches="tight", pad_inches=0.1, metadata={"Date": None})
-    preview = os.environ.get("MAS012_PREVIEW")
-    if preview:  # PNG copies for visual review only
-        os.makedirs(preview, exist_ok=True)
-        fig.savefig(os.path.join(preview, name + ".png"), dpi=110, bbox_inches="tight", pad_inches=0.1)
+    fig.savefig(os.path.join(folder, name + ".png"), format="png", dpi=DPI,
+                bbox_inches="tight", pad_inches=0.1, metadata={"Software": None})
     plt.close(fig)
 
 
