@@ -120,8 +120,15 @@ Always name new folders and notes with a zero-padded numeric prefix
 
 When I ask to publish, run:
 
-    obsidian.com quartz-syncer:mark path="Public/**" state=publish && obsidian.com quartz-syncer:publish
+    obsidian.com quartz-syncer:mark path="Public/**" state=publish && obsidian.com quartz-syncer:sync force
 
+- Use `sync force`, not `publish`: `publish` never deletes, so renamed or
+  moved notes leave their old copies on the site. `sync force` also
+  removes notes that no longer exist in the vault, so the site mirrors
+  `Public/` exactly.
+- Don't use arbitrary file publishing (`publish action=arbitrary`) for
+  PDFs/media: it copies files to the repo root by their full vault path
+  (`Public/…`), outside `content/`, so Quartz never serves them.
 - Use `Public/**`, not `Public/**/*.md` — the latter misses notes directly
   in `Public/` (e.g. `Public/index.md`, the site homepage).
 - `state=publish` only sets the flag; never use `toggle`, `unpublish` or `unset`.

@@ -13,7 +13,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "obsidian.com quartz-syncer:mark path=\"Public/**\" state=publish && obsidian.com quartz-syncer:publish"
+            "command": "obsidian.com quartz-syncer:mark path=\"Public/**\" state=publish && obsidian.com quartz-syncer:sync force"
           }
         ]
       }
