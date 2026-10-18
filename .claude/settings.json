@@ -5,8 +5,8 @@
       "Bash(python .claude/scratch/jcheck.py:*)",
       "Bash(python .claude/scratch/linkcheck.py:*)",
       "Bash(bash .claude/scratch/exdraw/go.sh:*)",
-      "Bash(bash .claude/scripts/sync-pdfs.sh:*)",
-      "Bash(bash .claude/scripts/export-drawing-svgs.sh:*)"
+      "Bash(bash .claude/scripts/sync-media.sh:*)",
+      "Bash(bash .claude/scripts/export-drawings.sh:*)"
     ]
   },
   "hooks": {
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/scripts/export-drawing-svgs.sh\"; obsidian.com quartz-syncer:mark path=\"Public/**\" state=publish && obsidian.com quartz-syncer:sync force; bash \"$CLAUDE_PROJECT_DIR/.claude/scripts/sync-pdfs.sh\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/scripts/export-drawings.sh\"; obsidian.com quartz-syncer:mark path=\"Public/**\" state=publish && obsidian.com quartz-syncer:sync force; bash \"$CLAUDE_PROJECT_DIR/.claude/scripts/sync-media.sh\""
           }
         ]
       }

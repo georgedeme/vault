@@ -53,13 +53,15 @@ comparisons. They add to the text and never replace it.
   then check the PNG preview in `.claude/scratch/exdraw/png/` for overlaps
   and clipped text before embedding.
 - Drawings are exported for dark mode: captions shouldn't name fill colours.
-- Notes under `Public/` (published to the site) embed the drawing's SVG
-  export instead: `![[<name>.svg|800]]`. The site can't render embedded
-  `.excalidraw` files. After generating drawings there, run
-  `bash .claude/scripts/export-drawing-svgs.sh` to write `<name>.svg`
-  next to each `<name>.excalidraw.md`. It only re-exports drawings newer
-  than their SVG; `--force` re-exports all. The `.excalidraw.md` stays
-  the editable source, and the publish hook re-exports edited drawings.
+- Notes under `Public/` (published to the site) embed the drawing's PNG
+  export instead: `![[<name>.png|800]]`. After generating drawings there,
+  run `bash .claude/scripts/export-drawings.sh` to write `<name>.png` next
+  to each `<name>.excalidraw.md`. It only re-exports drawings newer than
+  their PNG; `--force` re-exports all. The `.excalidraw.md` stays the
+  editable source, and the publish hook re-exports edited drawings.
+  Why PNG: the site can't render embedded `.excalidraw` files, and Quartz
+  embeds `.svg` wikilinks as `<object>` with a broken path (they show
+  blank). PNG embeds become `<img>`, whose paths Quartz fixes.
 
 # DSA notes
 
@@ -127,22 +129,26 @@ Always name new folders and notes with a zero-padded numeric prefix
 
 When I ask to publish, run:
 
-    bash .claude/scripts/export-drawing-svgs.sh; obsidian.com quartz-syncer:mark path="Public/**" state=publish && obsidian.com quartz-syncer:sync force; bash .claude/scripts/sync-pdfs.sh
+    bash .claude/scripts/export-drawings.sh; obsidian.com quartz-syncer:mark path="Public/**" state=publish && obsidian.com quartz-syncer:sync force; bash .claude/scripts/sync-media.sh
 
 - Use `sync force`, not `publish`: `publish` never deletes, so renamed or
   moved notes leave their old copies on the site. `sync force` also
   removes notes that no longer exist in the vault, so the site mirrors
   `Public/` exactly.
-- Drawings reach the site as SVG exports (see Drawings), which the plugin
+- Drawings reach the site as PNG exports (see Drawings), which the plugin
   publishes like any embedded image. Keep the plugin's `useExcalidraw` off.
   It would publish the raw `.excalidraw.md` files, and the site shows those
   as text dumps: Quartz's Excalidraw plugin isn't installed in the site
   build, and it couldn't render embeds inside notes anyway.
-- PDFs are handled by `.claude/scripts/sync-pdfs.sh`, not the plugin: the
-  plugin doesn't publish them, and its media cleanup sees every PDF as
-  unused. The script mirrors every PDF under `Public/` into `content/`
-  (adds/updates/removes) via a sparse clone in `~/.cache/quartz-pdf-sync`.
+- Non-note files (PDFs, images, SVGs, …) are mirrored by
+  `.claude/scripts/sync-media.sh`. The plugin doesn't publish PDFs, never
+  removes old media, and its media cleanup sees every PDF as unused. The
+  script adds, updates and removes files under `content/` so they match
+  `Public/`, via a sparse clone in `~/.cache/quartz-media-sync`.
   `--dry-run` previews.
+- Known site bug: `![[x.svg]]` embeds show blank (Quartz renders them as
+  `<object>` with an unfixed path). This affects the ΜΑΣ012 matplotlib
+  figures. Prefer PNG for images in `Public/`.
 - Don't use arbitrary file publishing (`publish action=arbitrary`) or the
   plugin's `media clean`: the first copies files to the repo root by their
   full vault path (`Public/…`), outside `content/`, so Quartz never serves
