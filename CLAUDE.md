@@ -53,6 +53,13 @@ comparisons. They add to the text and never replace it.
   then check the PNG preview in `.claude/scratch/exdraw/png/` for overlaps
   and clipped text before embedding.
 - Drawings are exported for dark mode: captions shouldn't name fill colours.
+- Notes under `Public/` (published to the site) embed the drawing's SVG
+  export instead: `![[<name>.svg|800]]`. The site can't render embedded
+  `.excalidraw` files. After generating drawings there, run
+  `bash .claude/scripts/export-drawing-svgs.sh` to write `<name>.svg`
+  next to each `<name>.excalidraw.md`. It only re-exports drawings newer
+  than their SVG; `--force` re-exports all. The `.excalidraw.md` stays
+  the editable source, and the publish hook re-exports edited drawings.
 
 # DSA notes
 
@@ -120,15 +127,26 @@ Always name new folders and notes with a zero-padded numeric prefix
 
 When I ask to publish, run:
 
-    obsidian.com quartz-syncer:mark path="Public/**" state=publish && obsidian.com quartz-syncer:sync force
+    bash .claude/scripts/export-drawing-svgs.sh; obsidian.com quartz-syncer:mark path="Public/**" state=publish && obsidian.com quartz-syncer:sync force; bash .claude/scripts/sync-pdfs.sh
 
 - Use `sync force`, not `publish`: `publish` never deletes, so renamed or
   moved notes leave their old copies on the site. `sync force` also
   removes notes that no longer exist in the vault, so the site mirrors
   `Public/` exactly.
-- Don't use arbitrary file publishing (`publish action=arbitrary`) for
-  PDFs/media: it copies files to the repo root by their full vault path
-  (`Public/…`), outside `content/`, so Quartz never serves them.
+- Drawings reach the site as SVG exports (see Drawings), which the plugin
+  publishes like any embedded image. Keep the plugin's `useExcalidraw` off.
+  It would publish the raw `.excalidraw.md` files, and the site shows those
+  as text dumps: Quartz's Excalidraw plugin isn't installed in the site
+  build, and it couldn't render embeds inside notes anyway.
+- PDFs are handled by `.claude/scripts/sync-pdfs.sh`, not the plugin: the
+  plugin doesn't publish them, and its media cleanup sees every PDF as
+  unused. The script mirrors every PDF under `Public/` into `content/`
+  (adds/updates/removes) via a sparse clone in `~/.cache/quartz-pdf-sync`.
+  `--dry-run` previews.
+- Don't use arbitrary file publishing (`publish action=arbitrary`) or the
+  plugin's `media clean`: the first copies files to the repo root by their
+  full vault path (`Public/…`), outside `content/`, so Quartz never serves
+  them; the second would delete every PDF.
 - Use `Public/**`, not `Public/**/*.md` — the latter misses notes directly
   in `Public/` (e.g. `Public/index.md`, the site homepage).
 - `state=publish` only sets the flag; never use `toggle`, `unpublish` or `unset`.
