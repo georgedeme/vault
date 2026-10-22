@@ -1769,6 +1769,113 @@ def _():
     save(fig, "c3-mt-jump-hole")
 
 
+# -- 08 - Ασκήσεις, Μέρος Λ: σύνολο τιμών σε περιορισμένο πεδίο --------
+def vbar(ax, x, a, b, a_open, b_open, color, lw=4.5, a_inf=False, b_inf=False,
+         ls="-"):
+    """Vertical interval [a, b] drawn at abscissa x (a range on the y-axis)."""
+    ax.plot([x, x], [a, b], color=color, lw=lw, ls=ls, solid_capstyle="butt",
+            zorder=3, clip_on=False)
+    for v, op, inf, mk in ((a, a_open, a_inf, "v"), (b, b_open, b_inf, "^")):
+        if inf:
+            ax.plot([x], [v], mk, color=color, ms=7, zorder=3, clip_on=False)
+        else:
+            dot(ax, x, v, op, color)
+
+
+@figure("c2-08-pole-range")
+def _():
+    fig, ax = plt.subplots(figsize=(6.0, 4.2))
+    maxes(ax, (-2.2, 5.0), (-6.5, 7.5), xticks=[2, 4], yticks=[-0.5, 1, 2.5],
+          ytl=["", "$1$", r"$\frac{5}{2}$"])
+    vline(ax, 2)
+    hline(ax, 1)
+    xa = X(-2.2, 5.0)
+    g = lambda x: (x + 1) / (x - 2)
+    x = X(4, 5.0)
+    curve(ax, x, g(x), MUTED, lw=1.2, ls=(0, (4, 2.5)))
+    for a, b in [(0, 1.985), (2.015, 4)]:
+        x = X(a, b)
+        curve(ax, x, g(x), C1)
+    dot(ax, 0, -0.5, False, C1)
+    dot(ax, 4, 2.5, False, C1)
+    vbar(ax, -0.75, -6.5, -0.5, False, False, C2, a_inf=True)
+    vbar(ax, -0.75, 2.5, 7.5, False, False, C2, b_inf=True)
+    vbar(ax, -1.6, -0.5, 2.5, False, False, MUTED, lw=2.2)
+    label(ax, -1.6, 3.2, "$[g(0), g(4)]$\nλάθος", ha="center", va="bottom", fs=8.5,
+          color=INK2)
+    label(ax, -0.62, 5.6, "$R$", fs=10, color=C2)
+    label(ax, 2.12, -6.0, "$x = 2$", fs=8.5, color=INK2)
+    label(ax, 4.95, 1.35, "$y = 1$", ha="right", fs=8.5, color=INK2)
+    label(ax, 4.1, 2.5, r"$(4, \frac{5}{2})$", fs=8.5, va="bottom")
+    label(ax, 0.12, -0.75, r"$(0, -\frac{1}{2})$", fs=8.5, va="top")
+    ax.set_title(r"$g(x) = \frac{x + 1}{x - 2}$ στο $[0, 4]$, $x \neq 2$", fontsize=10)
+    save(fig, "c2-08-pole-range")
+
+
+@figure("c2-08-sin-range")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(8.4, 3.4))
+    cases = [
+        (PI / 6, 3 * PI / 4, False, False, (0.5, 1, False, False),
+         r"(α) $\sin x$ στο $[\frac{\pi}{6}, \frac{3\pi}{4}]$",
+         [0.5, np.sqrt(2) / 2, 1], [r"$\frac{1}{2}$", r"$\frac{\sqrt{2}}{2}$", "$1$"]),
+        (PI / 3, 7 * PI / 6, True, True, (-0.5, 1, True, False),
+         r"(β) $\sin x$ στο $(\frac{\pi}{3}, \frac{7\pi}{6})$",
+         [-0.5, np.sqrt(3) / 2, 1], [r"$-\frac{1}{2}$", "", "$1$"]),
+    ]
+    for ax, (a, b, ao, bo, rng, title, yt, ytl) in zip(axs, cases):
+        xt, xl = [a, PI / 2, b], None
+        names = {PI / 6: r"$\frac{\pi}{6}$", 3 * PI / 4: r"$\frac{3\pi}{4}$",
+                 PI / 3: r"$\frac{\pi}{3}$", 7 * PI / 6: r"$\frac{7\pi}{6}$",
+                 PI / 2: r"$\frac{\pi}{2}$"}
+        xl = [names[v] for v in xt]
+        maxes(ax, (-0.75, 4.3), (-1.3, 1.45), xticks=xt, xtl=xl, yticks=yt, ytl=ytl)
+        x = X(-0.3, 4.2)
+        curve(ax, x, np.sin(x), MUTED, lw=1.2, ls=(0, (4, 2.5)))
+        x = X(a, b)
+        curve(ax, x, np.sin(x), C1)
+        dot(ax, a, np.sin(a), ao, C1)
+        dot(ax, b, np.sin(b), bo, C1)
+        dot(ax, PI / 2, 1, False, C3, ms=5.5)
+        lo, hi, lo_o, hi_o = rng
+        vbar(ax, -0.4, lo, hi, lo_o, hi_o, C2)
+        label(ax, -0.62, (lo + hi) / 2, "$R$", ha="right", fs=10, color=C2)
+        ax.set_title(title, fontsize=10)
+    note(axs[0], (PI / 2, 1.0), "μέγιστο μέσα\nστο διάστημα", (2.35, 1.25), fs=8.5)
+    note(axs[1], (7 * PI / 6, -0.5), r"$-\frac{1}{2}$ δεν πιάνεται", (2.35, -1.1), fs=8.5)
+    fig.tight_layout(w_pad=3)
+    save(fig, "c2-08-sin-range")
+
+
+@figure("c2-08-piecewise-range")
+def _():
+    fig, ax = plt.subplots(figsize=(5.6, 3.9))
+    maxes(ax, (-2.9, 2.5), (-0.6, 4.6), xticks=[-2, -1, 1, 2], yticks=[1, 2, 3, 4])
+    x = X(-2, -1)
+    curve(ax, x, -x, C1)
+    x = X(-1, 1)
+    curve(ax, x, x**2, C1)
+    x = X(1, 2)
+    curve(ax, x, x + 2, C1)
+    dot(ax, -2, 2, False, C1)
+    dot(ax, -1, 1, False, C1)
+    dot(ax, 1, 1, False, C1)
+    dot(ax, 1, 3, True, C1)
+    dot(ax, 2, 4, True, C1)
+    for yv in (2, 3, 4):
+        hline(ax, yv, lw=0.9)
+    vbar(ax, -2.55, 0, 2, False, False, C2)
+    vbar(ax, -2.55, 3, 4, True, True, C2)
+    label(ax, -2.4, 2.55, "$R$", fs=10, color=C2)
+    label(ax, -2.4, 0.9, "$[0, 2]$", fs=8.5, color=INK2)
+    label(ax, -2.4, 3.5, "$(3, 4)$", fs=8.5, color=INK2)
+    note(ax, (1.0, 3.0), "το $3$ δεν πιάνεται", (1.25, 2.3), fs=8.5)
+    label(ax, -1.45, 1.8, "$-x$", fs=9)
+    label(ax, 0.05, 0.45, "$x^2$", fs=9)
+    label(ax, 1.62, 3.15, "$x + 2$", fs=9)
+    save(fig, "c2-08-piecewise-range")
+
+
 # =======================================================================
 if __name__ == "__main__":
     prefix = sys.argv[1] if len(sys.argv) > 1 else ""
