@@ -1647,6 +1647,58 @@ def _():
     save(fig, "c3-09-squeeze-cos")
 
 
+@figure("c3-09-c4-jump")
+def _():
+    fig, ax = plt.subplots(figsize=(5.6, 3.4))
+    maxes(ax, (-2.3, 2.3), (-3.2, 3.2), xticks=[-1, 1], yticks=[])
+    hline(ax, 1, color=GRID, ls="-", lw=0.7)
+    hline(ax, -1, color=GRID, ls="-", lw=0.7)
+    x = X(0.0, 2.3)
+    curve(ax, x[1:], x[1:]**2 - 1, C1)
+    x = X(-2.3, 0.0)
+    curve(ax, x[:-1], 1 - x[:-1]**2, C1)
+    dot(ax, 0, -1, True, C1)
+    dot(ax, 0, 1, True, C1)
+    dot(ax, 1, 0, False, C1, ms=4.5)
+    dot(ax, -1, 0, False, C1, ms=4.5)
+    note(ax, (0.06, 1.0), r"$x \to 0^-$: $1$", (0.45, 2.2), fs=8.5)
+    note(ax, (0.06, -1.0), r"$x \to 0^+$: $-1$", (0.55, -2.3), fs=8.5)
+    label(ax, 1.3, -1.4, r"$x^2 - 1$ ($x > 0$)", fs=9, color=C1)
+    label(ax, -0.9, 2.2, r"$1 - x^2$ ($x < 0$)", fs=9, color=C1, ha="right")
+    save(fig, "c3-09-c4-jump")
+
+
+@figure("c3-09-c4-types")
+def _():
+    fig, axs = plt.subplots(1, 3, figsize=(9.6, 3.0))
+    ax = axs[0]
+    maxes(ax, (-0.5, 4.5), (-4, 4.5), xticks=[2], yticks=[3])
+    vline(ax, 2)
+    for a, b in [(-0.5, 1.75), (2.25, 4.5)]:
+        x = X(a, b)
+        curve(ax, x, 1 / (x - 2), C1)
+    dot(ax, 2, 3, False, C1)
+    ax.set_title(r"(i) $g$: άπειρη (δευτέρου είδους)", fontsize=9.5)
+    ax = axs[1]
+    maxes(ax, (-1.2, 3.4), (-0.5, 5), xticks=[1], yticks=[2, 4])
+    ax.plot([-1.2, 1], [1.8, 4], color=C1)
+    ax.plot([1, 3.4], [2, -0.4], color=C1)
+    dot(ax, 1, 4, False, C1)
+    dot(ax, 1, 2, True, C1)
+    seg(ax, (1, 2.15), (1, 3.85))
+    label(ax, 1.15, 3.0, "πήδημα $2$", fs=8.5, color=INK2)
+    ax.set_title(r"(ii) $h$: πεπερασμένο πήδημα", fontsize=9.5)
+    ax = axs[2]
+    maxes(ax, (-0.5, 6), (-0.5, 3.6), xticks=[3], yticks=[2])
+    x = X(-0.5, 6)
+    curve(ax, x, np.abs(x - 3), C1)
+    dot(ax, 3, 0, True, C1)
+    dot(ax, 3, 2, False, C1)
+    ax.set_title(r"(iii) $F$: διορθώσιμη", fontsize=9.5)
+    fig.tight_layout(w_pad=2.5)
+    save(fig, "c3-09-c4-types")
+
+
 # =======================================================================
 if __name__ == "__main__":
     prefix = sys.argv[1] if len(sys.argv) > 1 else ""
