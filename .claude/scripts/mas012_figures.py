@@ -1700,6 +1700,76 @@ def _():
 
 
 # =======================================================================
+# Mock midterm (Δοκιμαστική Ενδιάμεση Εξέταση) — names c?-mt-*
+# =======================================================================
+@figure("c1-mt-circle")
+def _():
+    fig, ax = plt.subplots(figsize=(4.8, 4.6))
+    maxes(ax, (-2.2, 5.3), (-4.2, 3.3), xticks=[2, 4], yticks=[-2, 2], equal=True)
+    t = X(0, 2 * PI, 300)
+    r = np.sqrt(5)
+    ax.plot(2 + r * np.cos(t), -1 + r * np.sin(t), color=C1,
+            label=r"$(x - 2)^2 + (y + 1)^2 = 5$")
+    x = X(-1.6, 1.6, 10)
+    ax.plot(x, 2 * x, color=C2, label=r"εφαπτομένη $y = 2x$")
+    ax.plot([0, 2], [0, -1], color=INK2, lw=1.4, label=r"ακτίνα, κλίση $-\frac{1}{2}$")
+    right_angle(ax, (0, 0), (2, -1), (1, 2), 0.32)
+    dot(ax, 2, -1, False, INK, ms=5)
+    label(ax, 2.15, -1.3, r"$K(2, -1)$", fs=9)
+    dot(ax, 0, 0, False, INK, ms=5)
+    ax.legend(loc="upper right", fontsize=8.5)
+    save(fig, "c1-mt-circle")
+
+
+@figure("c3-mt-xsin")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(8.6, 3.3))
+    ax = axs[0]
+    maxes(ax, (-0.42, 0.42), (-0.45, 0.45), xticks=[-0.2, 0.2], yticks=[-0.3, 0.3])
+    x = X(-0.42, 0.42, 6000)
+    x = x[np.abs(x) > 1e-4]
+    curve(ax, x, np.abs(x), C2, lw=1.3, ls=(0, (5, 2.5)), label=r"$\pm|x|$")
+    curve(ax, x, -np.abs(x), C2, lw=1.3, ls=(0, (5, 2.5)))
+    curve(ax, x, x * np.sin(1 / x), C1, lw=1.2, label=r"$x\sin\frac{1}{x}$")
+    ax.set_title(r"$x \to 0$: παρεμβολή, όριο $0$", fontsize=10)
+    legend_below(ax, ncol=2, y=-0.08)
+    ax = axs[1]
+    maxes(ax, (0, 20.5), (0, 1.25), xticks=[5, 10, 15, 20], yticks=[0.5, 1])
+    hline(ax, 1)
+    x = X(0.16, 20.5, 4000)
+    curve(ax, x, x * np.sin(1 / x), C1, label=r"$x\sin\frac{1}{x} = \frac{\sin(1/x)}{1/x}$")
+    ax.set_title(r"$x \to +\infty$: $\frac{\sin t}{t}$ με $t = \frac{1}{x} \to 0$, όριο $1$", fontsize=10)
+    legend_below(ax, ncol=1, y=-0.08)
+    fig.tight_layout(w_pad=3)
+    save(fig, "c3-mt-xsin")
+
+
+@figure("c3-mt-jump-hole")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(8.6, 3.2))
+    ax = axs[0]
+    maxes(ax, (-3.3, 3.3), (-1.5, 1.5), xticks=[], yticks=[-1, 1])
+    x = X(0.0, 3.3)[1:]
+    curve(ax, x, np.cos(x), C1)
+    x = X(-3.3, 0.0)[:-1]
+    curve(ax, x, -np.cos(x), C1)
+    dot(ax, 0, 1, True, C1)
+    dot(ax, 0, -1, True, C1)
+    note(ax, (0.06, 1.0), r"$x \to 0^+$: $1$", (0.7, 1.32), fs=8.5)
+    note(ax, (0.06, -1.0), r"$x \to 0^-$: $-1$", (0.7, -1.3), fs=8.5)
+    ax.set_title(r"$h_1 = \frac{|x|}{x}\cos x$: πήδημα μήκους $2$", fontsize=10)
+    ax = axs[1]
+    maxes(ax, (-3.3, 3.3), (-0.4, 1.9), xticks=[], yticks=[1])
+    x = X(-3.3, 3.3)
+    curve(ax, x, np.sin(np.abs(x)), C1)
+    dot(ax, 0, 0, True, C1)
+    note(ax, (0.05, 0.03), "τρύπα: όριο $0$ και\nαπό τις δύο πλευρές", (0.45, 1.6), fs=8.5)
+    ax.set_title(r"$h_2 = \frac{|x|}{x}\sin x = \sin|x|$: διορθώσιμη", fontsize=10)
+    fig.tight_layout(w_pad=3)
+    save(fig, "c3-mt-jump-hole")
+
+
+# =======================================================================
 if __name__ == "__main__":
     prefix = sys.argv[1] if len(sys.argv) > 1 else ""
     for name, fn in REGISTRY:
