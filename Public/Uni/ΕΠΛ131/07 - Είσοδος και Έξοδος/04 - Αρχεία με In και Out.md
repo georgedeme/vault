@@ -55,7 +55,7 @@ publish: true
 > [!warning] ➕ Οι `In`/`Out` δεν είναι μέρος της Java
 > Όπως οι `StdIn`/`StdOut` και η `StdDraw`, είναι από το booksite του βιβλίου (`In.java`, `Out.java` ή `stdlib.jar` στον φάκελο/classpath). Η «σκέτη» Java έχει `Scanner(new File(name))` και `PrintWriter(name)`, που θέλουν διαχείριση εξαιρέσεων (`FileNotFoundException`).
 
-## 3. Μέτρηση χαρακτήρων και η παγίδα της `isEmpty` (VII-56)
+## 3. Μέτρηση χαρακτήρων και η παγίδα της isEmpty (VII-56)
 
 Η VII-56 δείχνει το ίδιο πρόγραμμα με `In`/`Out` και με `StdIn`/`System.out`:
 
