@@ -107,7 +107,8 @@
         "Concise",
         "Explanatory",
         "Learning"
-      ]
+      ],
+      "sessionEnvironmentHash": ""
     },
     "codex": {
       "enabled": false,
@@ -124,7 +125,8 @@
       "installationMethodsByHost": {},
       "wslDistroOverridesByHost": {},
       "selectedModels": [],
-      "responseVerbosity": "default"
+      "responseVerbosity": "default",
+      "sessionEnvironmentHash": ""
     },
     "grok": {
       "cliPath": "",
@@ -157,7 +159,21 @@
       "environmentVariables": "",
       "modelAliases": {},
       "preferredThinkingByModel": {},
+      "sessionEnvironmentHash": "",
       "visibleModels": [],
+      "selectedModels": []
+    },
+    "deepseek": {
+      "enabled": false,
+      "codeMode": false,
+      "presetPlugins": "",
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "environmentVariables": "",
+      "environmentHash": "",
+      "visibleModels": [],
+      "modelAliases": {},
+      "preferredReasoningByModel": {},
       "selectedModels": []
     }
   },
@@ -166,6 +182,7 @@
     "providerId": "claude",
     "model": "opus"
   },
+  "inlineEditModel": null,
   "savedProviderModel": {
     "claude": "opus"
   },
@@ -180,6 +197,7 @@
   "enableAutoScroll": true,
   "showMessageTimestamps": false,
   "deferMathRenderingDuringStreaming": true,
+  "pluginRenderedFenceLanguages": [],
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
   "enableZenMode": true,
@@ -190,6 +208,7 @@
   "skillsSynced": false,
   "sessionManagerOrganization": "list",
   "sessionManagerSort": "last-updated",
+  "projectSort": "last-updated",
   "sessionAutoArchiveAfter": "off",
   "pinnedLinkedContentPaths": [],
   "hiddenCommands": [],
