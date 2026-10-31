@@ -1,10 +1,9 @@
 ---
-
 excalidraw-export-dark: true
 excalidraw-export-transparent: true
 excalidraw-export-padding: 12
 excalidraw-plugin: parsed
-
+publish: true
 ---
 # Excalidraw Data
 
