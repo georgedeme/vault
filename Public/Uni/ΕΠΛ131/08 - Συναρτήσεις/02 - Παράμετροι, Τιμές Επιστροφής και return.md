@@ -33,7 +33,7 @@ public static int myRandom (int a, int b){
 > - `myRandom(5, 5)` → πάντα `5` (σωστό: διάστημα ενός στοιχείου).
 > - `myRandom(7, 3)` (ανάποδα) **δεν** δίνει `[3,7]`: `b-a+1 = -3`, άρα το γινόμενο είναι στο `(-3, 0]`, η αποκοπή δίνει `-2, -1, 0` και το αποτέλεσμα είναι `5, 6, 7`. Η συνάρτηση **υποθέτει** `a ≤ b` χωρίς να το ελέγχει.
 
-## 2. Συναρτήσεις που επιστρέφουν τιμές και `void` (VIII-10)
+## 2. Συναρτήσεις που επιστρέφουν τιμές και void (VIII-10)
 
 > [!note] Δύο κατηγορίες
 > - **Επιστρέφουν τιμή**: δίνουν πίσω στο σημείο κλήσης μια απάντηση. Η απάντηση αναμένεται να **αξιοποιηθεί**: να ανατεθεί σε μεταβλητή ή να δοθεί ως όρισμα σε άλλη κλήση.
@@ -112,7 +112,7 @@ displayMin(T); // standalone function call
 > - `double x = displayMin(T);` → `error: incompatible types: void cannot be converted to double`
 > - `System.out.println(displayMin(T));` → `error: 'void' type not allowed here`
 
-## 5. Παράδειγμα όπου η τιμή εξόδου μπορεί να αγνοηθεί: `swap` (VIII-13)
+## 5. Παράδειγμα όπου η τιμή εξόδου μπορεί να αγνοηθεί: swap (VIII-13)
 
 ```java
 // Function swap gets a two-element table xs
@@ -159,7 +159,7 @@ public static boolean swap (int[] xs){
 >
 > Ο κανόνας: **κάθε** δρόμος εκτέλεσης που φτάνει στο τέλος της συνάρτησης πρέπει να περνά από `return τιμή`, και ο μεταγλωττιστής το ελέγχει **συντακτικά** (δεν αποτιμά συνθήκες).
 
-## 7. `return` χωρίς τιμή: `drawSquare` (VIII-17)
+## 7. return χωρίς τιμή: drawSquare (VIII-17)
 
 ```java
 // Displays a square - returns if size < 1

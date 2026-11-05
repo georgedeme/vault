@@ -17,7 +17,7 @@ publish: true
 | `void plot(double[] ys)` | plots one graph |
 | `void plot(double[] ys1, double[] ys2)` | plots two graphs – `ys1` and `ys2` are parallel arrays |
 
-## 2. Βοηθητικές `private` συναρτήσεις (VIII-38)
+## 2. Βοηθητικές private συναρτήσεις (VIII-38)
 
 ```java
 import java.awt.Color; // Uses colors - Color is an object
@@ -47,7 +47,7 @@ public class DrawGraph {
 > [!important] Γιατί `private`
 > Οι `max` και `min` είναι **βοηθητικές**: τις χρειάζεται η `plot` για να βρει την κλίμακα του άξονα `y`. Δεν ανήκουν στη διεπαφή της βιβλιοθήκης (δεν εμφανίζονται στο API), άρα κρύβονται. Ο χρήστης βλέπει μόνο τις δύο `plot` – [[03 - Σχεδιασμός Μονάδων|απόκρυψη υλοποίησης]]. Αν αύριο αλλάξουν, κανένας client δεν επηρεάζεται.
 
-## 3. Οι δύο εκδοχές της `plot` (VIII-40 … VIII-43)
+## 3. Οι δύο εκδοχές της plot (VIII-40 … VIII-43)
 
 ```java
   public static void plot (double[] ys){
@@ -116,7 +116,7 @@ public class DrawGraph {
 > - **Δεύτερη** εκδοχή, `ys2` **μεγαλύτερος** από `ys1`: δεν σκάει, αλλά ο άξονας `x` έχει οριστεί με `setXscale(0, ys1.length-1)`, άρα το επιπλέον κομμάτι του `ys2` σχεδιάζεται **έξω** από το παράθυρο (δεν φαίνεται). Η «παράλληλη» ερμηνεία της απάντησης ισχύει πλήρως μόνο όταν ο `ys1` είναι ο μεγαλύτερος.
 > - Αν όλες οι τιμές είναι **ίσες** (`MIN == MAX`) ή ο πίνακας έχει **ένα** στοιχείο (`setXscale(0, 0)`), η κλίμακα είναι μηδενικού πλάτους· η σημερινή έκδοση της `StdDraw` πετά `IllegalArgumentException` («the min and max are the same»).
 
-## 4. Η `main` για δοκιμή (VIII-44 … VIII-47)
+## 4. Η main για δοκιμή (VIII-44 … VIII-47)
 
 ```java
   // The class definition is completed with function main
