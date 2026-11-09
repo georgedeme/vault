@@ -1,5 +1,8 @@
 ---
-tags: [LAN100, presentation]
+tags:
+  - LAN100
+  - presentation
+publish: true
 ---
 # Presentation Script: My Future Goals
 
@@ -12,20 +15,20 @@ A model script for the LAN 100 oral presentation, built from your own slide poin
 
 ## Timing at a Glance
 
-At a normal pace (~130 words per minute), the script runs about **4½ minutes**, inside the 4–5 minute window.
+At a normal pace (~130 words per minute), the script runs about **4:50**, inside the 4–5 minute window. Nerves usually make people speak faster, so in class it will probably come out closer to 4:30.
 
 | Part | Slides | Words | Time |
 |---|---|---|---|
 | Introduction | 1–2 | ~65 | ~30 s |
 | Academic goal | 3 | ~125 | ~55 s |
-| Career goal | 4 | ~130 | ~60 s |
-| Web app goal | 5 | ~125 | ~55 s |
-| Free Choice: China | 6 | ~110 | ~50 s |
+| Career goal | 4 | ~150 | ~70 s |
+| Web app goal | 5 | ~120 | ~55 s |
+| Free Choice: China | 6 | ~115 | ~55 s |
 | Conclusion | 7 | ~50 | ~25 s |
-| **Total** | | **~605** | **~4:35** |
+| **Total** | | **~630** | **~4:50** |
 
 > [!tip] Running long or short?
-> - **Over 5:00:** cut the second sentence of each "why" explanation. Never cut the researched fact.
+> - **Over 5:00:** cut the second sentence of each "why" explanation (the Career goal is the longest, so start there). Never cut the researched fact.
 > - **Under 4:00:** you're probably rushing. Pause after each goal, and add the optional example sentences marked *(optional)*.
 
 ---
@@ -42,25 +45,25 @@ Let's start with my academic goal. I want to graduate with a GPA of 8.5 or highe
 
 Why does this matter to me? First, a high GPA could open doors to a master's degree later on. Second, aiming high pushes me to really understand my subjects instead of just passing them, so it deepens my knowledge of my field.
 
-So how am I going to achieve it? Through consistent studying and early planning. Instead of leaving everything until the week before the exams, I want to study a little every week and start my assignments early.
+To achieve it, I'm going to study consistently and plan early: a little every week, instead of everything in the week before the exams.
 
-While I was researching this, I found something interesting on the University of Edinburgh's website. For master's programmes that require a first-class degree, they ask students from Cyprus for about 8.5 out of 10. So 8.5 isn't a random number: it's the level that keeps the best options open.
+According to the University of Edinburgh's website, master's programmes that require a first-class degree ask students from Cyprus for about 8.5 out of 10. So 8.5 isn't a random number: it keeps the best options open.
 
 ### Goal 2: Career (slide 4)
 
 Moving on to my career goal. After I graduate, I'd like to work as a software engineer at a tech company here in Cyprus.
 
-The main reason is that I genuinely enjoy dealing with complex problems. When something doesn't work, I want to find out why, and solving it is the most satisfying part of programming for me. The second reason is simple: I don't plan to leave Cyprus in the near future, so I want to build my career here.
+The main reason is that I genuinely enjoy dealing with complex problems: finding out why something doesn't work is the most satisfying part of programming for me. The second reason is simple: I don't plan to leave Cyprus in the near future, so I want to build my career here.
 
 To reach this goal, I'm going to try to get an internship before I graduate, so that I already have some real work experience. I also want to build a decent portfolio of projects to show employers what I can do.
 
-And the good news is that the industry here is growing. According to Eurostat, the number of ICT specialists in Cyprus grew by almost 10% a year between 2015 and 2025. That was the second-fastest growth in the whole EU, so I'm optimistic that there will be opportunities for me.
+The good news is that the industry here is growing. According to Eurostat, the number of ICT specialists in Cyprus grew by almost 10% a year between 2015 and 2025, the second-fastest growth in the EU.
 
 ### Goal 3: Hobby / Interest, Web App (slide 5)
 
 My third goal is connected to the previous one. In my free time, I want to build a web application that solves a real problem. *(optional: For example, a simple tool that helps students keep track of their deadlines.)*
 
-This matters to me for two reasons. First, it would be a real project to show employers, which says much more than a list of courses on a CV. Second, I'll learn a lot while I'm building it, because a real project always teaches you things that a course doesn't.
+First, it would be a real project to show employers, which says much more than a list of courses. Second, building it will teach me things that a course doesn't.
 
 My plan is to learn the necessary tools first, and then start small and expand later. I'd rather finish a simple version that works than plan something huge and never finish it.
 
@@ -70,7 +73,7 @@ One of those tools will definitely be JavaScript. According to the 2025 Stack Ov
 
 Finally, my free choice goal is a personal one: I'd love to travel to China, probably after I graduate.
 
-I'm interested in China because its culture is so different from ours, and because it has thousands of years of history that I'd like to see with my own eyes, not just on a screen.
+I'm interested in China because its culture is so different from ours, and because it has thousands of years of history that I'd like to see with my own eyes.
 
 To make it happen, I'm going to save a small amount of money every month, and I'd like to learn a few basic phrases in Mandarin before I go.
 
@@ -104,12 +107,12 @@ What's on each slide (from your PowerPoint) and what you add out loud:
 | *Graduate with a GPA of 8.5 or higher* | "out of 10" |
 | *It can potentially open doors to a master's degree* | "later on" |
 | *Further deepens my knowledge in the field* | *why*: aiming high = understanding, not just passing |
-| *Consistent studying and early planning* | a concrete example: study every week, start assignments early |
+| *Consistent studying and early planning* | what it means: a little every week, not everything the week before exams |
 | *I love having to deal with complex problems* | what that feels like: finding out *why* something doesn't work |
 | *I don't plan to leave Cyprus in the near future* | so: build my career **here** |
 | *Try to get an internship before I graduate* | *why*: real work experience |
 | *Build a decent portfolio* | *why*: to show employers what I can do |
-| *A real project to show employers* | compared with: a list of courses on a CV |
+| *A real project to show employers* | compared with: just a list of courses |
 | *Learn as I attempt to create it* | a real project teaches what a course doesn't |
 | *Learn the necessary tools · Start small, expand later* | "finish a simple version rather than never finish a huge one" |
 | Research box | **paraphrase + name the source**: "According to …" |
@@ -131,7 +134,7 @@ The script deliberately mixes structures, which helps the *Spoken Language* mark
 | **would rather … than** | "I'**d rather** finish a simple version **than** plan something huge" |
 | **could** (possibility) | "a high GPA **could** open doors" |
 | **so that** (purpose) | "**so that** I already have some real work experience" |
-| **Present perfect / past** for research | "**I found** something interesting", "66% **had used** it" |
+| **Past perfect** for survey results | "66% of developers said they **had used** it" |
 | **Reporting a source** | "**According to** Eurostat…", "they **ask** students from Cyprus for…" |
 | **Signposting** | "Let's start with…", "Moving on to…", "My third goal is connected to…", "Finally,…", "To sum up,…" |
 
@@ -150,7 +153,6 @@ The script deliberately mixes structures, which helps the *Spoken Language* mark
 | **Mandarin** | *MAN-duh-rin* | — |
 | **kilometres** | *KIL-uh-mee-terz* or *ki-LOM-i-terz* (both fine) | — |
 | **century** | *SEN-chuh-ree* | "sen-TU-ree" |
-| **optimistic** | *op-tuh-MIS-tik* | stressing the first syllable |
 
 ---
 
