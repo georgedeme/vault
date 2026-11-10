@@ -39,7 +39,7 @@
         "haiku",
         "sonnet",
         "opus",
-        "claude-fable-5-1"
+        "claude-fable-5-2"
       ],
       "selectedModels": [
         {
@@ -71,10 +71,10 @@
           ]
         },
         {
-          "value": "fable",
-          "label": "Fable 5.1",
+          "value": "claude-fable-5-2",
+          "label": "Fable 5.2",
           "description": "For your toughest challenges",
-          "resolvedModel": "claude-fable-5-1",
+          "resolvedModel": "claude-fable-5-2",
           "reasoningMetadataResolved": true,
           "supportedEffortLevels": [
             "low",
@@ -180,7 +180,7 @@
   "settingsProvider": "claude",
   "lastSelectedChatModel": {
     "providerId": "claude",
-    "model": "opus"
+    "model": "claude-code/claude-fable-5-2"
   },
   "inlineEditModel": null,
   "savedProviderModel": {
