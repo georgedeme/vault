@@ -4,5 +4,6 @@
   "enabledCssSnippets": [
     "colors"
   ],
-  "cssTheme": "Claude Warm"
+  "cssTheme": "Claude Warm",
+  "showRibbon": true
 }
