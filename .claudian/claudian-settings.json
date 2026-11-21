@@ -32,20 +32,20 @@
       "lastModel": "haiku",
       "modelEnvironmentType": "",
       "titleModelEnvironmentType": "",
-      "environmentVariables": "",
+      "environmentVariables": "ANTHROPIC_API_KEY= \nANTHROPIC_AUTH_TOKEN=",
       "environmentHash": "",
       "modelAliases": {},
       "visibleModels": [
         "haiku",
         "sonnet",
         "opus",
-        "claude-fable-5-2"
+        "claude-fable-5-1[1m]"
       ],
       "selectedModels": [
         {
           "value": "opus",
-          "label": "Opus 5.5",
-          "description": "For complex work and everyday tasks",
+          "label": "Opus",
+          "description": "Opus 5.5 · Best for everyday, complex tasks · $4/$20 per Mtok",
           "resolvedModel": "claude-opus-5-5",
           "reasoningMetadataResolved": true,
           "supportedEffortLevels": [
@@ -57,9 +57,23 @@
           ]
         },
         {
+          "value": "claude-fable-5-1[1m]",
+          "label": "Fable",
+          "description": "Fable 5.1 · Most capable for your hardest and longest-running tasks",
+          "resolvedModel": "claude-fable-5-1",
+          "reasoningMetadataResolved": true,
+          "supportedEffortLevels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
           "value": "sonnet",
-          "label": "Sonnet 5.5",
-          "description": "Most efficient for simpler tasks",
+          "label": "Sonnet",
+          "description": "Sonnet 5.5 · Efficient for routine tasks · $2/$10 per Mtok",
           "resolvedModel": "claude-sonnet-5-5",
           "reasoningMetadataResolved": true,
           "supportedEffortLevels": [
@@ -71,23 +85,9 @@
           ]
         },
         {
-          "value": "claude-fable-5-2",
-          "label": "Fable 5.2",
-          "description": "For your toughest challenges",
-          "resolvedModel": "claude-fable-5-2",
-          "reasoningMetadataResolved": true,
-          "supportedEffortLevels": [
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
-          ]
-        },
-        {
           "value": "haiku",
-          "label": "Haiku 5.5",
-          "description": "Fastest for quick answers",
+          "label": "Haiku",
+          "description": "Haiku 5.5 · Fastest for quick answers · $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100k)",
           "resolvedModel": "claude-haiku-5-5",
           "reasoningMetadataResolved": true,
           "supportedEffortLevels": [
