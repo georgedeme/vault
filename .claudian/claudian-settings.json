@@ -7,12 +7,13 @@
   "enableAutoTitleGeneration": true,
   "titleGenerationLocale": "",
   "titleGenerationModel": "",
+  "showTabTitlesByDefault": true,
+  "chatFontScale": 100,
   "excludedTags": [],
   "mediaFolder": "",
   "systemPrompt": "",
   "sharedEnvironmentVariables": "",
   "envSnippets": [],
-  "customContextLimits": {},
   "keyboardNavigation": {
     "scrollUpKey": "w",
     "scrollDownKey": "s",
@@ -33,7 +34,7 @@
       "modelEnvironmentType": "",
       "titleModelEnvironmentType": "",
       "environmentVariables": "ANTHROPIC_API_KEY= \nANTHROPIC_AUTH_TOKEN=",
-      "environmentHash": "",
+      "environmentHash": "runtime-input:v1:254995d94eeefc1552fe717bc61b468e92ebb748e5b05dc9bd65dce2a1f1ed79",
       "modelAliases": {},
       "visibleModels": [
         "haiku",
@@ -94,7 +95,8 @@
         "Explanatory",
         "Learning"
       ],
-      "sessionEnvironmentHash": ""
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {}
     },
     "codex": {
       "enabled": false,
@@ -115,6 +117,8 @@
       "sessionEnvironmentHash": ""
     },
     "grok": {
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {},
       "cliPath": "",
       "cliPathsByHost": {},
       "enabled": false,
@@ -129,15 +133,19 @@
       "cliPath": "",
       "cliPathsByHost": {},
       "enabled": false,
-      "environmentHash": "",
+      "environmentHash": "runtime-input:v1:65be9fd755fceb24e0d4a97b388b455fc79245d593888ed6c3a02adef11d106a",
       "environmentVariables": "OPENCODE_ENABLE_EXA=1",
       "modelAliases": {},
       "preferredThinkingByModel": {},
       "thinkingOptionsByModel": {},
       "visibleModels": [],
-      "selectedModels": []
+      "selectedModels": [],
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {}
     },
     "pi": {
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {},
       "cliPath": "",
       "cliPathsByHost": {},
       "enabled": false,
@@ -145,7 +153,6 @@
       "environmentVariables": "",
       "modelAliases": {},
       "preferredThinkingByModel": {},
-      "sessionEnvironmentHash": "",
       "visibleModels": [],
       "selectedModels": []
     },
@@ -160,7 +167,22 @@
       "visibleModels": [],
       "modelAliases": {},
       "preferredReasoningByModel": {},
-      "selectedModels": []
+      "selectedModels": [],
+      "installationMethodsByHost": {},
+      "wslDistroOverridesByHost": {}
+    },
+    "antigravity": {
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "enabled": false,
+      "environmentHash": "",
+      "environmentVariables": "",
+      "installationMethodsByHost": {},
+      "modelAliases": {},
+      "preferredReasoningByModel": {},
+      "visibleModels": [],
+      "wslDistroOverridesByHost": {},
+      "selectedModelsByHost": {}
     }
   },
   "settingsProvider": "claude",
@@ -177,11 +199,10 @@
   },
   "savedProviderServiceTier": {},
   "savedProviderPermissionMode": {
-    "claude": "yolo"
+    "claude": "yolo",
+    "opencode": "normal"
   },
-  "pendingProviderSessionInvalidations": {},
   "enableAutoScroll": true,
-  "showMessageTimestamps": false,
   "deferMathRenderingDuringStreaming": true,
   "pluginRenderedFenceLanguages": [],
   "expandFileEditsByDefault": false,
@@ -194,7 +215,6 @@
   "skillsSynced": false,
   "sessionManagerOrganization": "list",
   "sessionManagerSort": "last-updated",
-  "projectSort": "last-updated",
   "sessionAutoArchiveAfter": "off",
   "pinnedLinkedContentPaths": [],
   "hiddenCommands": [],
