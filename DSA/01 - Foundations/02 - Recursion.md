@@ -43,11 +43,17 @@ When writing the recursive case, **do not trace the recursion in your head**. As
 
 ### 1.2 Example: factorial
 
-```
-factorial(n):
-    if n ≤ 1:                      -- base case
-        return 1
-    return n × factorial(n − 1)    -- recursive case: smaller input, then combine
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{factorial}{n}
+  \If{n ≤ 1} \Comment{base case}
+    \Return 1
+  \EndIf
+  \Return n × \textsc{factorial}(n − 1) \Comment{recursive case: smaller input, then combine}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -139,10 +145,17 @@ static boolean isOdd(int n)  { return n != 0 && isEven(n - 1); }
 ```
 
 > [!info]- Nested recursion — the McCarthy 91 function
-> ```
-> M(n):
->     if n > 100: return n − 10
->     return M(M(n + 11))
+> ```pseudo
+> \begin{algorithm}
+> \begin{algorithmic}
+> \Procedure{M}{n}
+>   \If{n > 100}
+>     \Return n − 10
+>   \EndIf
+>   \Return \textsc{M}(\textsc{M}(n + 11))
+> \EndProcedure
+> \end{algorithmic}
+> \end{algorithm}
 > ```
 > It returns `91` for **every** `n ≤ 101`, and `n − 10` above that. Nothing about the definition suggests that, which is the point. Nested recursion is hard to reason about, and termination is not obvious. The Ackermann function `A(m, n)` is nested too. It always terminates, but `A(4, 2)` already has 19,729 decimal digits, and it can't be written with bounded `for` loops alone (it is not *primitive recursive*).
 
@@ -157,10 +170,17 @@ A <span class="hl-blue">recursion tree</span> draws each call as a node, with it
 
 ### 4.1 Naive Fibonacci
 
-```
-fib(n):
-    if n ≤ 1: return n
-    return fib(n − 1) + fib(n − 2)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{fib}{n}
+  \If{n ≤ 1}
+    \Return n
+  \EndIf
+  \Return \textsc{fib}(n − 1) + \textsc{fib}(n − 2)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```
@@ -231,12 +251,22 @@ private static boolean isPal(String s, int lo, int hi) {
 
 ### 6.1 Fast power (halving)
 
-```
-power(x, n):                 -- n ≥ 0
-    if n == 0: return 1
-    half = power(x, n / 2)   -- compute ONCE
-    if n is even: return half × half
-    else:         return half × half × x
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{power}{x, n} \Comment{n ≥ 0}
+  \If{n = 0}
+    \Return 1
+  \EndIf
+  \State half ← \textsc{power}(x, n / 2) \Comment{compute ONCE}
+  \If{n is even}
+    \Return half × half
+  \Else
+    \Return half × half × x
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -263,12 +293,19 @@ private static double pow(double x, long n) {
 
 Move `n` disks from peg `from` to peg `to` using `via`, never placing a larger disk on a smaller one.
 
-```
-hanoi(n, from, to, via):
-    if n == 0: return
-    hanoi(n − 1, from, via, to)     -- clear the n−1 smaller disks out of the way
-    move disk n: from → to
-    hanoi(n − 1, via, to, from)     -- put them back on top of disk n
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{hanoi}{n, from, to, via}
+  \If{n = 0}
+    \Return
+  \EndIf
+  \State \textsc{hanoi}(n − 1, from, via, to) \Comment{clear the n−1 smaller disks out of the way}
+  \State move disk n: from → to
+  \State \textsc{hanoi}(n − 1, via, to, from) \Comment{put them back on top of disk n}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Recursion - Towers of Hanoi.excalidraw|800]]
@@ -286,15 +323,21 @@ static void hanoi(int n, char from, char to, char via, List<String> moves) {
 
 ### 6.3 Generating all subsets (include / exclude)
 
-```
-subsets(a, i, current, result):
-    if i == len(a):
-        result.add(copy of current)
-        return
-    subsets(a, i + 1, current, result)          -- exclude a[i]
-    current.push(a[i])
-    subsets(a, i + 1, current, result)          -- include a[i]
-    current.pop()                               -- undo: restore state for the caller
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{subsets}{a, i, current, result}
+  \If{i = len(a)}
+    \State result.add(copy of current)
+    \Return
+  \EndIf
+  \State \textsc{subsets}(a, i + 1, current, result) \Comment{exclude a[i]}
+  \State current.push(a[i])
+  \State \textsc{subsets}(a, i + 1, current, result) \Comment{include a[i]}
+  \State current.pop() \Comment{undo: restore state for the caller}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Recursion - Subsets Tree.excalidraw|800]]
@@ -376,11 +419,23 @@ When a call is in tail position, the caller's frame is no longer needed. A compi
 
 The recursive call "restarts the function with new arguments", so reassign the parameters and loop.
 
-```
-gcd(a, b):                         gcd(a, b):
-    if b == 0: return a      ⇒         while b ≠ 0:
-    return gcd(b, a mod b)                 (a, b) = (b, a mod b)
-                                       return a
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{gcd}{a, b} \Comment{recursive: the recursive call is the last thing it does}
+  \If{b = 0}
+    \Return a
+  \EndIf
+  \Return \textsc{gcd}(b, a mod b)
+\EndProcedure
+\Procedure{gcd}{a, b} \Comment{⇒ iterative: the tail call becomes a loop}
+  \While{b ≠ 0}
+    \State (a, b) ← (b, a mod b)
+  \EndWhile
+  \Return a
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -403,15 +458,25 @@ A frame is *(parameters, locals, where to resume)*. Put that state in an object,
 
 **Hanoi with an explicit stack.** Each frame is either "solve `hanoi(n, from, to, via)`" or "perform this one move":
 
-```
-push Solve(n, from, to, via)
-while stack not empty:
-    f = pop
-    if f is Move: output the move; continue
-    if f.n == 0: continue
-    push Solve(f.n − 1, f.via, f.to, f.from)   -- runs third
-    push Move(f.n, f.from, f.to)               -- runs second
-    push Solve(f.n − 1, f.from, f.via, f.to)   -- runs first
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State push Solve(n, from, to, via)
+\While{stack \Not empty}
+  \State f ← pop
+  \If{f is Move}
+    \State output the move
+    \Continue
+  \EndIf
+  \If{f.n = 0}
+    \Continue
+  \EndIf
+  \State push Solve(f.n − 1, f.via, f.to, f.from) \Comment{runs third}
+  \State push Move(f.n, f.from, f.to) \Comment{runs second}
+  \State push Solve(f.n − 1, f.from, f.via, f.to) \Comment{runs first}
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -441,16 +506,27 @@ A very common case: a recursive DFS on a tree computes something **after** visit
 1. Do an iterative DFS and record the **order** in which nodes are first visited, plus each node's parent.
 2. Process the nodes in **reverse** of that order. Every node's children appear after it in the visiting order, so they're processed before it.
 
-```
-order = []; parent[root] = −1
-push root
-while stack not empty:
-    u = pop; order.append(u)
-    for v in adj[u]:
-        if v ≠ parent[u]: parent[v] = u; push v
-for u in reverse(order):
-    size[u] += 1                              -- u itself; children already added theirs
-    if parent[u] ≠ −1: size[parent[u]] += size[u]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State order ← []; parent[root] ← −1
+\State push root
+\While{stack \Not empty}
+  \State u ← pop; order.append(u)
+  \ForAll{v ∈ adj[u]}
+    \If{v ≠ parent[u]}
+      \State parent[v] ← u; push v
+    \EndIf
+  \EndFor
+\EndWhile
+\ForAll{u ∈ reverse(order)}
+  \State size[u] += 1 \Comment{u itself; children already added theirs}
+  \If{parent[u] ≠ −1}
+    \State size[parent[u]] += size[u]
+  \EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -527,13 +603,22 @@ The stack-size argument is only a *hint* (the Javadoc allows a JVM to ignore it)
 
 When the recursion tree has **repeated subproblems** (§4.1), cache each answer the first time you compute it. This is <span class="hl-blue">memoization</span>, and it's top-down dynamic programming.
 
-```
-memo = table initialised to "unknown"
-fib(n):
-    if n ≤ 1: return n
-    if memo[n] known: return memo[n]
-    memo[n] = fib(n − 1) + fib(n − 2)
-    return memo[n]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State memo ← table initialised to "unknown"
+\Procedure{fib}{n}
+  \If{n ≤ 1}
+    \Return n
+  \EndIf
+  \If{memo[n] known}
+    \Return memo[n]
+  \EndIf
+  \State memo[n] ← \textsc{fib}(n − 1) + \textsc{fib}(n − 2)
+  \Return memo[n]
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

@@ -68,11 +68,17 @@ LeetCode's "validate BST" uses the strict definition: `[2, 2, 2]` is **not** a v
 
 ## 2. Search, Minimum, Maximum
 
-```
-search(n, key):
-    while n ≠ null and n.key ≠ key:
-        n = (key < n.key) ? n.left : n.right
-    return n                            -- null if absent
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{search}{n, key}
+  \While{n ≠ null \And n.key ≠ key}
+    \State n ← (key < n.key) ? n.left : n.right
+  \EndWhile
+  \Return n \Comment{null if absent}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -103,13 +109,23 @@ The minimum is the **leftmost** node, which isn't necessarily a leaf: it can hav
 
 A new key always becomes a new **leaf**: search for it, and attach it where the search fell off the tree.
 
-```
-insert(n, key):                         -- returns the root of the updated subtree
-    if n = null: return new node(key)
-    if key < n.key: n.left = insert(n.left, key)
-    elif key > n.key: n.right = insert(n.right, key)
-    -- equal: already present
-    return n
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{insert}{n, key} \Comment{returns the root of the updated subtree}
+  \If{n = null}
+    \Return new node(key)
+  \EndIf
+  \If{key < n.key}
+    \State n.left ← \textsc{insert}(n.left, key)
+  \ElsIf{key > n.key}
+    \State n.right ← \textsc{insert}(n.right, key)
+  \EndIf
+  \Comment{equal: already present}
+  \Return n
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -162,18 +178,32 @@ Find the node, then:
 
 ![[BST - Delete Three Cases.excalidraw|800]]
 
-```
-delete(n, key):                         -- returns the root of the updated subtree
-    if n = null: return null            -- key not found
-    if key < n.key: n.left = delete(n.left, key)
-    elif key > n.key: n.right = delete(n.right, key)
-    else:
-        if n.left = null: return n.right            -- cases 1 and 2
-        if n.right = null: return n.left
-        s = min(n.right)                            -- case 3
-        n.key = s.key
-        n.right = delete(n.right, s.key)
-    return n
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{delete}{n, key} \Comment{returns the root of the updated subtree}
+  \If{n = null}
+    \Return null \Comment{key not found}
+  \EndIf
+  \If{key < n.key}
+    \State n.left ← \textsc{delete}(n.left, key)
+  \ElsIf{key > n.key}
+    \State n.right ← \textsc{delete}(n.right, key)
+  \Else
+    \If{n.left = null}
+      \Return n.right \Comment{cases 1 and 2}
+    \EndIf
+    \If{n.right = null}
+      \Return n.left
+    \EndIf
+    \State s ← min(n.right) \Comment{case 3}
+    \State n.key ← s.key
+    \State n.right ← \textsc{delete}(n.right, s.key)
+  \EndIf
+  \Return n
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -234,11 +264,20 @@ Why the successor: it's the smallest key larger than `n`, so after it moves into
 
 **Bounds method.** Pass down the open interval the subtree's keys must lie in. Going left tightens the upper bound to the current key; going right tightens the lower bound.
 
-```
-valid(n, lo, hi):                       -- every key in n's subtree must be in (lo, hi)
-    if n = null: return true
-    if n.key ≤ lo or n.key ≥ hi: return false
-    return valid(n.left, lo, n.key) and valid(n.right, n.key, hi)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{valid}{n, lo, hi} \Comment{every key in n's subtree must be in (lo, hi)}
+  \If{n = null}
+    \Return true
+  \EndIf
+  \If{n.key ≤ lo \Or n.key ≥ hi}
+    \Return false
+  \EndIf
+  \Return \textsc{valid}(n.left, lo, n.key) \And \textsc{valid}(n.right, n.key, hi)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -286,12 +325,20 @@ The **successor** of a key is the next larger key in the tree (the next element 
 
 With **parent pointers**, from a node `x`:
 
-```
-successor(x):
-    if x.right ≠ null: return min(x.right)           -- case 1: leftmost node of the right subtree
-    while x.parent ≠ null and x = x.parent.right:    -- case 2: climb while coming up from the right
-        x = x.parent
-    return x.parent                                  -- first ancestor reached from its LEFT side (or null)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{successor}{x}
+  \If{x.right ≠ null}
+    \Return min(x.right) \Comment{case 1: leftmost node of the right subtree}
+  \EndIf
+  \While{x.parent ≠ null \And x = x.parent.right} \Comment{case 2: climb while coming up from the right}
+    \State x ← x.parent
+  \EndWhile
+  \Return x.parent \Comment{first ancestor reached from its LEFT side (or null)}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 In the example, the successor of `6` is `7` (case 1) and the successor of `7` is `8` (case 2: climb from `7` to `6` to `3`, all from the right, then `3` is the left child of `8`). The maximum, `14`, has no successor.
@@ -396,20 +443,34 @@ static int kthSmallest(TreeNode root, int k) {     // 1-based k, 1 ≤ k ≤ n
 
 When `k`-th queries interleave with insertions and deletions, store each subtree's **size** in its root. Then the rank of a node is known at each step, and select runs in `O(h)` without visiting `k` nodes:
 
-```
-select(n, k):                           -- k-th smallest, 1-based
-    while n ≠ null:
-        ls = size(n.left)
-        if k ≤ ls: n = n.left
-        elif k = ls + 1: return n.key
-        else: k = k − ls − 1; n = n.right
-
-rank(n, key):                           -- number of keys < key
-    r = 0
-    while n ≠ null:
-        if key ≤ n.key: n = n.left
-        else: r = r + 1 + size(n.left); n = n.right
-    return r
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{select}{n, k} \Comment{k-th smallest, 1-based}
+  \While{n ≠ null}
+    \State ls ← size(n.left)
+    \If{k ≤ ls}
+      \State n ← n.left
+    \ElsIf{k = ls + 1}
+      \Return n.key
+    \Else
+      \State k ← k − ls − 1; n ← n.right
+    \EndIf
+  \EndWhile
+\EndProcedure
+\Procedure{rank}{n, key} \Comment{number of keys < key}
+  \State r ← 0
+  \While{n ≠ null}
+    \If{key ≤ n.key}
+      \State n ← n.left
+    \Else
+      \State r ← r + 1 + size(n.left); n ← n.right
+    \EndIf
+  \EndWhile
+  \Return r
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -496,14 +557,21 @@ When `n` is too small, its **right** subtree may still contain keys in range, so
 
 Use the middle element as the root, and build the halves recursively:
 
-```
-build(a, lo, hi):
-    if lo > hi: return null
-    mid = (lo + hi) / 2
-    node = new node(a[mid])
-    node.left = build(a, lo, mid − 1)
-    node.right = build(a, mid + 1, hi)
-    return node
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{build}{a, lo, hi}
+  \If{lo > hi}
+    \Return null
+  \EndIf
+  \State mid ← (lo + hi) / 2
+  \State node ← new node(a[mid])
+  \State node.left ← \textsc{build}(a, lo, mid − 1)
+  \State node.right ← \textsc{build}(a, mid + 1, hi)
+  \Return node
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

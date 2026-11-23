@@ -484,11 +484,18 @@ static boolean predictTheWinner(int[] a) {
 
 ![[Advanced DP - Digit DP Tight.excalidraw|800]]
 
-```
-count(pos, state, tight):
-    if pos = number of digits: return 1 if state satisfies P else 0
-    limit = tight ? N[pos] : 9
-    total = Σ over d = 0..limit of count(pos + 1, update(state, d), tight and d = limit)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{count}{pos, state, tight}
+  \If{pos = number of digits}
+    \Return 1 if state satisfies P, else 0
+  \EndIf
+  \State limit ← tight ? N[pos] : 9
+  \State total ← Σ over d = 0..limit of \textsc{count}(pos + 1, update(state, d), tight \And d = limit)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 Only states with `tight = false` are memoized: there's exactly one tight path, so caching it gains nothing, and storing it in the same slot as the non-tight state would be wrong.

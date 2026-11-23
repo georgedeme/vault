@@ -87,13 +87,19 @@ head
 
 ### 3.1 Traverse, length, search
 
-```
-length(head):
-    count = 0; cur = head
-    while cur ≠ null:
-        count += 1
-        cur = cur.next
-    return count
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{length}{head}
+  \State count ← 0; cur ← head
+  \While{cur ≠ null}
+    \State count += 1
+    \State cur ← cur.next
+  \EndWhile
+  \Return count
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -131,16 +137,27 @@ To append in `O(1)`, keep a `tail` reference alongside `head` and update it on e
 
 A singly linked node can't unlink itself: you need the node **before** it.
 
-```
-deleteValue(head, target):              -- delete the first node with val = target
-    if head == null: return null
-    if head.val == target: return head.next      -- the head is a special case...
-    prev = head
-    while prev.next ≠ null and prev.next.val ≠ target:
-        prev = prev.next
-    if prev.next ≠ null:
-        prev.next = prev.next.next
-    return head
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{deleteValue}{head, target} \Comment{delete the first node with val = target}
+  \If{head = null}
+    \Return null
+  \EndIf
+  \If{head.val = target}
+    \Return head.next \Comment{the head is a special case...}
+  \EndIf
+  \State prev ← head
+  \While{prev.next ≠ null \And prev.next.val ≠ target}
+    \State prev ← prev.next
+  \EndWhile
+  \If{prev.next ≠ null}
+    \State prev.next ← prev.next.next
+  \EndIf
+  \Return head
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 The head special case disappears with a dummy node ([[#4. The Dummy (Sentinel) Node|§4]]).
@@ -161,16 +178,23 @@ The head special case disappears with a dummy node ([[#4. The Dummy (Sentinel) N
 
 Most linked-list bugs are special cases at the head: deleting the head, inserting before it, or building a result list that starts empty. A <span class="hl-blue">dummy node</span> placed in front of the real head turns all of them into the general case, because every real node now has a predecessor.
 
-```
-deleteAll(head, target):                -- delete every node with val = target
-    dummy = new node; dummy.next = head
-    prev = dummy
-    while prev.next ≠ null:
-        if prev.next.val == target:
-            prev.next = prev.next.next   -- don't advance: the new prev.next needs checking too
-        else:
-            prev = prev.next
-    return dummy.next                    -- the head may have changed
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{deleteAll}{head, target} \Comment{delete every node with val = target}
+  \State dummy ← new node; dummy.next ← head
+  \State prev ← dummy
+  \While{prev.next ≠ null}
+    \If{prev.next.val = target}
+      \State prev.next ← prev.next.next \Comment{don't advance: the new prev.next needs checking too}
+    \Else
+      \State prev ← prev.next
+    \EndIf
+  \EndWhile
+  \Return dummy.next \Comment{the head may have changed}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -201,12 +225,21 @@ With a `prev` pointer, a node can unlink itself in `O(1)`. Two sentinels, one at
 head ⇄ [A] ⇄ [B] ⇄ [C] ⇄ tail          (head and tail are sentinels; empty list: head ⇄ tail)
 ```
 
-```
-insertAfter(p, x):              remove(x):
-    x.prev = p                      x.prev.next = x.next
-    x.next = p.next                 x.next.prev = x.prev
-    p.next.prev = x
-    p.next = x
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{insertAfter}{p, x}
+  \State x.prev ← p
+  \State x.next ← p.next
+  \State p.next.prev ← x
+  \State p.next ← x
+\EndProcedure
+\Procedure{remove}{x}
+  \State x.prev.next ← x.next
+  \State x.next.prev ← x.prev
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -266,18 +299,29 @@ A <span class="hl-blue">least-recently-used (LRU) cache</span> of capacity `c` s
 - A **hash map** finds a key's node in `O(1)`.
 - A **doubly linked list** keeps nodes in recency order: most recent at the front, least recent at the back. Moving a node to the front is `remove` + `addFirst`, both `O(1)` because the node knows its neighbours.
 
-```
-get(key):
-    if key not in map: return −1
-    node = map[key]; move node to front
-    return node.val
-
-put(key, value):
-    if key in map:
-        update map[key].val; move it to front; return
-    if size == capacity:
-        lru = remove last node; delete lru.key from map     -- the node must store its key
-    node = new node(key, value); add to front; map[key] = node
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{get}{key}
+  \If{key \Not in map}
+    \Return −1
+  \EndIf
+  \State node ← map[key]; move node to front
+  \Return node.val
+\EndProcedure
+\Procedure{put}{key, value}
+  \If{key in map}
+    \State update map[key].val
+    \State move it to front
+    \Return
+  \EndIf
+  \If{size = capacity}
+    \State lru ← remove last node; delete lru.key from map \Comment{the node must store its key}
+  \EndIf
+  \State node ← new node(key, value); add to front; map[key] ← node
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -332,15 +376,21 @@ Java's built-in shortcut is a `LinkedHashMap` in access order with `removeEldest
 
 Walk the list and turn each `next` pointer around. Three references: `prev` (already reversed part), `cur` (being processed), and `next` (saved before `cur.next` is overwritten).
 
-```
-reverse(head):
-    prev = null; cur = head
-    while cur ≠ null:
-        next = cur.next        -- save, or the rest of the list is lost
-        cur.next = prev        -- turn the pointer around
-        prev = cur
-        cur = next
-    return prev                -- the old tail is the new head
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{reverse}{head}
+  \State prev ← null; cur ← head
+  \While{cur ≠ null}
+    \State next ← cur.next \Comment{save, or the rest of the list is lost}
+    \State cur.next ← prev \Comment{turn the pointer around}
+    \State prev ← cur
+    \State cur ← next
+  \EndWhile
+  \Return prev \Comment{the old tail is the new head}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -484,14 +534,22 @@ static ListNode middleFirst(ListNode head) {       // head != null
 
 If there's a cycle, the fast pointer enters it and eventually laps the slow one: once both are inside, the gap between them shrinks by exactly 1 each step, so it must hit 0. If there's no cycle, `fast` reaches `null`.
 
-```
-hasCycle(head):
-    slow = fast = head
-    while fast ≠ null and fast.next ≠ null:
-        slow = slow.next
-        fast = fast.next.next
-        if slow == fast: return true        -- compare AFTER moving
-    return false
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{hasCycle}{head}
+  \State slow ← fast ← head
+  \While{fast ≠ null \And fast.next ≠ null}
+    \State slow ← slow.next
+    \State fast ← fast.next.next
+    \If{slow = fast}
+      \Return true \Comment{compare AFTER moving}
+    \EndIf
+  \EndWhile
+  \Return false
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -810,14 +868,22 @@ static ListNode sortList(ListNode head) {
 
 Each node has a `next` and a `random` pointer (to any node or `null`). Make a deep copy.
 
-```
-copy(head):
-    map = {}                                   -- original node → its copy
-    for each node x: map[x] = new node(x.val)
-    for each node x:
-        map[x].next   = map[x.next]            -- map[null] = null
-        map[x].random = map[x.random]
-    return map[head]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{copy}{head}
+  \State map ← \{\} \Comment{original node → its copy}
+  \For{each node x}
+    \State map[x] ← new node(x.val)
+  \EndFor
+  \For{each node x}
+    \State map[x].next ← map[x.next] \Comment{map[null] = null}
+    \State map[x].random ← map[x.random]
+  \EndFor
+  \Return map[head]
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

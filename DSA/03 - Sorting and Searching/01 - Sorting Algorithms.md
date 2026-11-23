@@ -60,13 +60,24 @@ These three are `O(n²)` and are rarely the right choice on their own. But inser
 
 Repeatedly swap adjacent elements that are out of order. After pass `p`, the largest `p + 1` elements are in their final positions at the end. If a pass makes no swaps, the array is sorted.
 
-```
-bubbleSort(a):
-    for pass = 0 to n − 2:
-        swapped = false
-        for j = 0 to n − 2 − pass:          -- the last `pass` elements are already final
-            if a[j] > a[j + 1]: swap(a[j], a[j + 1]); swapped = true
-        if not swapped: return               -- early exit makes the best case O(n)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{bubbleSort}{a}
+  \For{pass ← 0 \To n − 2}
+    \State swapped ← false
+    \For{j ← 0 \To n − 2 − pass} \Comment{the last \texttt{pass} elements are already final}
+      \If{a[j] > a[j + 1]}
+        \State swap(a[j], a[j + 1]); swapped ← true
+      \EndIf
+    \EndFor
+    \If{\Not swapped}
+      \Return \Comment{early exit makes the best case O(n)}
+    \EndIf
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -93,11 +104,17 @@ Each swap fixes exactly one inversion, so bubble sort makes exactly `inversions`
 
 Find the minimum of the unsorted part and swap it to the front.
 
-```
-selectionSort(a):
-    for i = 0 to n − 2:
-        min = index of the smallest element in a[i..n−1]
-        swap(a[i], a[min])
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{selectionSort}{a}
+  \For{i ← 0 \To n − 2}
+    \State min ← index of the smallest element in a[i..n−1]
+    \State swap(a[i], a[min])
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -119,13 +136,20 @@ static void selectionSort(int[] a) {
 
 Grow a sorted prefix. Take the next element and shift larger elements right until its slot appears, like sorting a hand of cards.
 
-```
-insertionSort(a):
-    for i = 1 to n − 1:
-        x = a[i]; j = i − 1
-        while j ≥ 0 and a[j] > x:            -- strict: equal elements are not passed, so stable
-            a[j + 1] = a[j]; j −= 1
-        a[j + 1] = x
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{insertionSort}{a}
+  \For{i ← 1 \To n − 1}
+    \State x ← a[i]; j ← i − 1
+    \While{j ≥ 0 \And a[j] > x} \Comment{strict: equal elements are not passed, so stable}
+      \State a[j + 1] ← a[j]; j −= 1
+    \EndWhile
+    \State a[j + 1] ← x
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -159,20 +183,31 @@ static void insertionSort(int[] a) {
 
 Split the array in half, sort each half recursively, and **merge** the two sorted halves with two pointers.
 
-```
-mergeSort(a, lo, hi):                        -- sorts a[lo..hi), half-open
-    if hi − lo < 2: return
-    mid = (lo + hi) / 2
-    mergeSort(a, lo, mid)
-    mergeSort(a, mid, hi)
-    merge(a, lo, mid, hi)
-
-merge(a, lo, mid, hi):
-    copy a[lo..hi) to tmp
-    i = lo; j = mid
-    for k = lo to hi − 1:
-        if j == hi or (i < mid and tmp[i] ≤ tmp[j]): a[k] = tmp[i]; i += 1    -- ≤ keeps it stable
-        else: a[k] = tmp[j]; j += 1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{mergeSort}{a, lo, hi} \Comment{sorts a[lo..hi), half-open}
+  \If{hi − lo < 2}
+    \Return
+  \EndIf
+  \State mid ← (lo + hi) / 2
+  \State \textsc{mergeSort}(a, lo, mid)
+  \State \textsc{mergeSort}(a, mid, hi)
+  \State \textsc{merge}(a, lo, mid, hi)
+\EndProcedure
+\Procedure{merge}{a, lo, mid, hi}
+  \State copy a[lo..hi) to tmp
+  \State i ← lo; j ← mid
+  \For{k ← lo \To hi − 1}
+    \If{j = hi \Or (i < mid \And tmp[i] ≤ tmp[j])}
+      \State a[k] ← tmp[i]; i += 1 \Comment{≤ keeps it stable}
+    \Else
+      \State a[k] ← tmp[j]; j += 1
+    \EndIf
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -253,25 +288,40 @@ static long countInversions(int[] a, int[] tmp, int lo, int hi) {
 
 Pick a **pivot**, **partition** the array so smaller elements come before it and larger after, then sort the two sides recursively. All the work happens in the partition; there is no merge step.
 
-```
-quickSort(a, lo, hi):                        -- inclusive bounds
-    if lo ≥ hi: return
-    p = partition(a, lo, hi)                 -- pivot ends at index p, in its final position
-    quickSort(a, lo, p − 1)
-    quickSort(a, p + 1, hi)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{quickSort}{a, lo, hi} \Comment{inclusive bounds}
+  \If{lo ≥ hi}
+    \Return
+  \EndIf
+  \State p ← partition(a, lo, hi) \Comment{pivot ends at index p, in its final position}
+  \State \textsc{quickSort}(a, lo, p − 1)
+  \State \textsc{quickSort}(a, p + 1, hi)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ### 4.1 Lomuto partition
 
 Use `a[hi]` as the pivot. `i` marks the end of the "less than pivot" region; scan with `j` and swap smaller elements into it.
 
-```
-lomuto(a, lo, hi):
-    pivot = a[hi]; i = lo
-    for j = lo to hi − 1:                    -- invariant: a[lo..i) < pivot ≤ a[i..j)
-        if a[j] < pivot: swap(a[i], a[j]); i += 1
-    swap(a[i], a[hi])                        -- pivot into its final place
-    return i
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{lomuto}{a, lo, hi}
+  \State pivot ← a[hi]; i ← lo
+  \For{j ← lo \To hi − 1} \Comment{invariant: a[lo..i) < pivot ≤ a[i..j)}
+    \If{a[j] < pivot}
+      \State swap(a[i], a[j]); i += 1
+    \EndIf
+  \EndFor
+  \State swap(a[i], a[hi]) \Comment{pivot into its final place}
+  \Return i
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -290,15 +340,23 @@ static int lomuto(int[] a, int lo, int hi) {
 
 Two indices move toward each other, stopping at elements on the wrong side, and swap them. It does about three times fewer swaps than Lomuto and splits runs of equal elements evenly. But the pivot does **not** end at the returned index, so the recursion is different.
 
-```
-hoare(a, lo, hi):
-    pivot = a[(lo + hi) / 2]                 -- middle, rounded DOWN
-    i = lo − 1; j = hi + 1
-    loop:
-        do i += 1 while a[i] < pivot
-        do j −= 1 while a[j] > pivot
-        if i ≥ j: return j                   -- a[lo..j] ≤ pivot ≤ a[j+1..hi]
-        swap(a[i], a[j])
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{hoare}{a, lo, hi}
+  \State pivot ← a[(lo + hi) / 2] \Comment{middle, rounded DOWN}
+  \State i ← lo − 1; j ← hi + 1
+  \While{\True}
+    \State do i += 1 while a[i] < pivot
+    \State do j −= 1 while a[j] > pivot
+    \If{i ≥ j}
+      \Return j \Comment{a[lo..j] ≤ pivot ≤ a[j+1..hi]}
+    \EndIf
+    \State swap(a[i], a[j])
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -357,17 +415,29 @@ static void quickSort(int[] a, int lo, int hi) {
 
 With many duplicates, Lomuto degrades badly: if **all elements are equal**, `a[j] < pivot` is never true, the pivot lands at `lo`, and every partition removes just one element. That's `O(n²)` **even with a random pivot**. The fix is to partition into three regions, `< pivot`, `= pivot`, `> pivot`, and recurse only on the outer two (Dijkstra's **Dutch national flag** partition, also in [[DSA/03 - Sorting and Searching/03 - Two Pointers|Two Pointers]]).
 
-```
-quickSort3(a, lo, hi):
-    if lo ≥ hi: return
-    p = a[random index in lo..hi]
-    lt = lo; i = lo; gt = hi                 -- a[lo..lt) < p, a[lt..i) = p, a(gt..hi] > p
-    while i ≤ gt:
-        if a[i] < p: swap(a[lt], a[i]); lt += 1; i += 1
-        elif a[i] > p: swap(a[i], a[gt]); gt −= 1          -- don't advance i: a[i] is new
-        else: i += 1
-    quickSort3(a, lo, lt − 1)
-    quickSort3(a, gt + 1, hi)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{quickSort3}{a, lo, hi}
+  \If{lo ≥ hi}
+    \Return
+  \EndIf
+  \State p ← a[random index in lo..hi]
+  \State lt ← lo; i ← lo; gt ← hi \Comment{a[lo..lt) < p, a[lt..i) = p, a(gt..hi] > p}
+  \While{i ≤ gt}
+    \If{a[i] < p}
+      \State swap(a[lt], a[i]); lt += 1; i += 1
+    \ElsIf{a[i] > p}
+      \State swap(a[i], a[gt]); gt −= 1 \Comment{don't advance i: a[i] is new}
+    \Else
+      \State i += 1
+    \EndIf
+  \EndWhile
+  \State \textsc{quickSort3}(a, lo, lt − 1)
+  \State \textsc{quickSort3}(a, gt + 1, hi)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -401,18 +471,29 @@ With only `k` distinct values, three-way quicksort runs in `O(n log k)`; with al
 
 Turn the array into a **max-heap** (the largest element at index 0, every parent `≥` its children), then repeatedly swap the maximum to the end and restore the heap on the shrunken prefix. Heaps themselves are covered in [[DSA/04 - Trees and Hierarchical Structures/04 - Heaps and Priority Queues|Heaps and Priority Queues]].
 
-```
-heapSort(a):
-    for i = n/2 − 1 down to 0: siftDown(a, i, n)        -- build the heap bottom-up: O(n)
-    for end = n − 1 down to 1:
-        swap(a[0], a[end])                              -- the max goes to its final place
-        siftDown(a, 0, end)                             -- heap is now a[0..end)
-
-siftDown(a, i, n):                                       -- children of i are 2i+1 and 2i+2
-    while i has a child in a[0..n):
-        c = the larger child
-        if a[c] ≤ a[i]: return
-        swap(a[i], a[c]); i = c
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{heapSort}{a}
+  \For{i ← n/2 − 1 \DownTo 0}
+    \State \textsc{siftDown}(a, i, n) \Comment{build the heap bottom-up: O(n)}
+  \EndFor
+  \For{end ← n − 1 \DownTo 1}
+    \State swap(a[0], a[end]) \Comment{the max goes to its final place}
+    \State \textsc{siftDown}(a, 0, end) \Comment{heap is now a[0..end)}
+  \EndFor
+\EndProcedure
+\Procedure{siftDown}{a, i, n} \Comment{children of i are 2i+1 and 2i+2}
+  \While{i has a child in a[0..n)}
+    \State c ← the larger child
+    \If{a[c] ≤ a[i]}
+      \Return
+    \EndIf
+    \State swap(a[i], a[c]); i ← c
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -467,14 +548,24 @@ Related lower bounds by the same argument: **merging** two sorted lists of lengt
 
 For integer keys in a small range `0..k−1`: count how often each value occurs, turn the counts into **starting positions** with a prefix sum, and place each element at its value's next free position.
 
-```
-countingSort(a, k):                          -- keys in 0..k−1
-    start = array of k + 1 zeros
-    for x in a: start[x + 1] += 1            -- start[v + 1] counts v
-    for v = 0 to k − 1: start[v + 1] += start[v]      -- now start[v] = first index for value v
-    for x in a (left to right):              -- left to right: equal keys keep their order
-        out[start[x]] = x; start[x] += 1
-    return out
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{countingSort}{a, k} \Comment{keys in 0..k−1}
+  \State start ← array of k + 1 zeros
+  \ForAll{x ∈ a}
+    \State start[x + 1] += 1 \Comment{start[v + 1] counts v}
+  \EndFor
+  \For{v ← 0 \To k − 1}
+    \State start[v + 1] += start[v] \Comment{now start[v] = first index for value v}
+  \EndFor
+  \ForAll{x ∈ a (left to right)} \Comment{left to right: equal keys keep their order}
+    \State out[start[x]] ← x; start[x] += 1
+  \EndFor
+  \Return out
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -512,10 +603,16 @@ static void countingSortRange(int[] a) {
 
 Sort by the **least significant digit** first, then the next digit, and so on, using a **stable** sort (counting sort) for each digit. After the pass on digit `d`, the numbers are sorted by their last `d + 1` digits, because stability preserves the order from the earlier passes among numbers that tie on the current digit.
 
-```
-radixSort(a):                                -- base 256: four passes over a 32-bit int
-    for shift in 0, 8, 16, 24:
-        stable counting sort of a by digit (a[i] >> shift) & 255
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{radixSort}{a} \Comment{base 256: four passes over a 32-bit int}
+  \ForAll{shift ∈ 0, 8, 16, 24}
+    \State stable counting sort of a by digit (a[i] >> shift) \& 255
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

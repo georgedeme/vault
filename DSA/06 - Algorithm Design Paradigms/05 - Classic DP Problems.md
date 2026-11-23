@@ -308,11 +308,18 @@ static int lengthOfLISQuadratic(int[] a) {
 
 Keep `tails[k]` = the **smallest** possible last element of an increasing subsequence of length `k + 1` seen so far. `tails` is always strictly increasing, so each new `x` can be placed by binary search: it replaces the first tail `≥ x` (a length-`k + 1` subsequence can now end lower), or extends the longest one if `x` is larger than all tails.
 
-```
-for x in a:
-    i = first index with tails[i] ≥ x          -- lower bound
-    tails[i] = x                                -- replace, or append if i = len
-    if i = len: len = len + 1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\ForAll{x ∈ a}
+  \State i ← first index with tails[i] ≥ x \Comment{lower bound}
+  \State tails[i] ← x \Comment{replace, or append if i = len}
+  \If{i = len}
+    \State len ← len + 1
+  \EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

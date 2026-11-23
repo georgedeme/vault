@@ -54,13 +54,20 @@ Together they answer "many range queries, no updates" and "many range updates, t
 
 ### 2.1 Build and query
 
-```
-build(a):
-    P = array of n + 1 zeros
-    for i = 0 to n − 1: P[i + 1] = P[i] + a[i]
-
-sum(l, r):                          -- inclusive
-    return P[r + 1] − P[l]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{build}{a}
+  \State P ← array of n + 1 zeros
+  \For{i ← 0 \To n − 1}
+    \State P[i + 1] ← P[i] + a[i]
+  \EndFor
+\EndProcedure
+\Procedure{sum}{l, r} \Comment{inclusive}
+  \Return P[r + 1] − P[l]
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -458,14 +465,21 @@ Other uses: "how many elements (from the start) can be bought with budget `B`?" 
 
 The difference array `D[i] = a[i] − a[i−1]` (with `a[−1] = 0`) is the inverse of prefix summing: the prefix sums of `D` give back `a`. Adding `v` to every element of `a[l..r]` changes only two differences: `a[l]` rises relative to `a[l−1]`, and `a[r+1]` falls back relative to `a[r]`.
 
-```
-rangeAdd(D, l, r, v):
-    D[l] += v
-    D[r + 1] −= v                 -- D has length n + 1, so r + 1 = n is safe
-
-rebuild(D):
-    run = 0
-    for i = 0 to n − 1: run += D[i]; a[i] = run
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{rangeAdd}{D, l, r, v}
+  \State D[l] += v
+  \State D[r + 1] −= v \Comment{D has length n + 1, so r + 1 = n is safe}
+\EndProcedure
+\Procedure{rebuild}{D}
+  \State run ← 0
+  \For{i ← 0 \To n − 1}
+    \State run += D[i]; a[i] ← run
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

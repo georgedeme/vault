@@ -64,10 +64,31 @@ push 1, push 2, push 3        pop → 3         push 4
 
 The top is the end of a dynamic array: push appends, pop removes the last element. No shifting ever happens.
 
-```
-push(x):  if size == capacity: grow;  data[size] = x;  size += 1
-pop():    if size == 0: error;  size −= 1;  return data[size]
-peek():   if size == 0: error;  return data[size − 1]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{push}{x}
+  \If{size = capacity}
+    \State grow
+  \EndIf
+  \State data[size] ← x
+  \State size += 1
+\EndProcedure
+\Procedure{pop}{}
+  \If{size = 0}
+    \State error
+  \EndIf
+  \State size −= 1
+  \Return data[size]
+\EndProcedure
+\Procedure{peek}{}
+  \If{size = 0}
+    \State error
+  \EndIf
+  \Return data[size − 1]
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -197,13 +218,22 @@ static boolean isBalanced(String s) {
 
 `"([)]"` has balanced counts for each type but is invalid: `)` arrives while `[` is the most recent open bracket. The stack remembers *which* bracket is open most recently.
 
-```
-isValid(s):
-    stack = empty
-    for c in s:
-        if c is an opening bracket: push the matching closing bracket
-        else if stack is empty or pop() ≠ c: return false
-    return stack is empty                       -- leftover openers are unmatched
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{isValid}{s}
+  \State stack ← empty
+  \ForAll{c ∈ s}
+    \If{c is an opening bracket}
+      \State push the matching closing bracket
+    \ElsIf{stack is empty \Or pop() ≠ c}
+      \Return false
+    \EndIf
+  \EndFor
+  \Return stack is empty \Comment{leftover openers are unmatched}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -347,15 +377,23 @@ Postfix and prefix are unambiguous without parentheses or precedence rules, whic
 
 ### 6.2 Evaluating postfix
 
-```
-evalRPN(tokens):
-    stack = empty
-    for t in tokens:
-        if t is a number: push t
-        else:
-            b = pop(); a = pop()         -- b was pushed LAST: it's the RIGHT operand
-            push(a t b)
-    return pop()
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{evalRPN}{tokens}
+  \State stack ← empty
+  \ForAll{t ∈ tokens}
+    \If{t is a number}
+      \State push t
+    \Else
+      \State b ← pop(); a ← pop() \Comment{b was pushed LAST: it's the RIGHT operand}
+      \State push(a t b)
+    \EndIf
+  \EndFor
+  \Return pop()
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -386,23 +424,35 @@ static int evalRPN(String[] tokens) {
 
 Numbers go straight to the output. Operators wait on a stack until an operator of lower precedence (or a closing parenthesis) shows they're complete.
 
-```
-toPostfix(tokens):
-    output = []; ops = empty stack
-    for t in tokens:
-        if t is a number:  output.append(t)
-        elif t == '(':     ops.push(t)
-        elif t == ')':
-            while ops.peek() ≠ '(':  output.append(ops.pop())
-            ops.pop()                                       -- discard '('
-        else:                                               -- operator
-            while ops not empty and ops.peek() ≠ '(' and
-                  (prec(ops.peek()) > prec(t) or
-                   (prec(ops.peek()) == prec(t) and t is left-associative)):
-                output.append(ops.pop())
-            ops.push(t)
-    while ops not empty: output.append(ops.pop())
-    return output
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{toPostfix}{tokens}
+  \State output ← []; ops ← empty stack
+  \ForAll{t ∈ tokens}
+    \If{t is a number}
+      \State output.append(t)
+    \ElsIf{t = ‘(’}
+      \State ops.push(t)
+    \ElsIf{t = ‘)’}
+      \While{ops.peek() ≠ ‘(’}
+        \State output.append(ops.pop())
+      \EndWhile
+      \State ops.pop() \Comment{discard ‘(’}
+    \Else \Comment{operator}
+      \While{ops \Not empty \And ops.peek() ≠ ‘(’ \And (prec(ops.peek()) > prec(t) \Or (prec(ops.peek()) = prec(t) \And t is left-associative))}
+        \State output.append(ops.pop())
+      \EndWhile
+      \State ops.push(t)
+    \EndIf
+  \EndFor
+  \While{ops \Not empty}
+    \State output.append(ops.pop())
+  \EndWhile
+  \Return output
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -666,15 +716,22 @@ A <span class="hl-blue">monotonic stack</span> keeps its elements in sorted orde
 
 For each `a[i]`, find the first element to its right that is **strictly greater** (or `−1`).
 
-```
-nextGreater(a):
-    res = array of −1
-    stack = empty                              -- indices whose answer is still unknown
-    for i = 0 to n − 1:
-        while stack not empty and a[stack.top] < a[i]:
-            res[stack.pop()] = a[i]            -- a[i] is the first greater element for it
-        stack.push(i)
-    return res
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{nextGreater}{a}
+  \State res ← array of −1
+  \State stack ← empty \Comment{indices whose answer is still unknown}
+  \For{i ← 0 \To n − 1}
+    \While{stack \Not empty \And a[stack.top] < a[i]}
+      \State res[stack.pop()] ← a[i] \Comment{a[i] is the first greater element for it}
+    \EndWhile
+    \State stack.push(i)
+  \EndFor
+  \Return res
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -758,17 +815,24 @@ The maximum element (and any element equal to it) correctly gets `−1`: nothing
 
 The largest rectangle that uses bar `i` at full height extends left to just after the **previous smaller** bar and right to just before the **next smaller** bar. One increasing stack finds both: when bar `j` is popped by bar `i`, `i` is its next smaller, and the new top is its previous smaller.
 
-```
-largestRectangle(h):
-    stack = empty; best = 0
-    for i = 0 to n:                          -- i = n is a sentinel bar of height 0
-        cur = (i == n) ? 0 : h[i]
-        while stack not empty and h[stack.top] ≥ cur:
-            height = h[stack.pop()]
-            left = stack empty ? −1 : stack.top
-            best = max(best, height × (i − left − 1))
-        stack.push(i)
-    return best
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{largestRectangle}{h}
+  \State stack ← empty; best ← 0
+  \For{i ← 0 \To n} \Comment{i = n is a sentinel bar of height 0}
+    \State cur ← (i = n) ? 0 : h[i]
+    \While{stack \Not empty \And h[stack.top] ≥ cur}
+      \State height ← h[stack.pop()]
+      \State left ← stack empty ? −1 : stack.top
+      \State best ← max(best, height × (i − left − 1))
+    \EndWhile
+    \State stack.push(i)
+  \EndFor
+  \Return best
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

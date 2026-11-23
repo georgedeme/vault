@@ -54,13 +54,19 @@ There are two kinds: **fixed-size** windows (every subarray of length `k`) and *
 
 ### 2.1 Maximum sum of a window of size `k`
 
-```
-maxSumK(a, k):
-    sum = a[0] + … + a[k − 1]; best = sum
-    for i = k to n − 1:
-        sum += a[i] − a[i − k]               -- a[i] enters, a[i − k] leaves
-        best = max(best, sum)
-    return best
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{maxSumK}{a, k}
+  \State sum ← a[0] + … + a[k − 1]; best ← sum
+  \For{i ← k \To n − 1}
+    \State sum += a[i] − a[i − k] \Comment{a[i] enters, a[i − k] leaves}
+    \State best ← max(best, sum)
+  \EndFor
+  \Return best
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -180,15 +186,22 @@ static long maxSumDistinctK(int[] a, int k) {
 
 ## 3. Variable Windows — Longest Valid
 
-```
-longestValid(a):
-    left = 0; best = 0
-    for right = 0 to n − 1:
-        add a[right] to the window
-        while the window is invalid:           -- shrink until valid again
-            remove a[left]; left += 1
-        best = max(best, right − left + 1)      -- the window is valid here
-    return best
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{longestValid}{a}
+  \State left ← 0; best ← 0
+  \For{right ← 0 \To n − 1}
+    \State add a[right] to the window
+    \While{the window is invalid} \Comment{shrink until valid again}
+      \State remove a[left]; left += 1
+    \EndWhile
+    \State best ← max(best, right − left + 1) \Comment{the window is valid here}
+  \EndFor
+  \Return best
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 The answer is recorded **after** shrinking, when the window is guaranteed valid.
@@ -297,15 +310,22 @@ static int characterReplacement(String s, int k) {
 
 ## 4. Variable Windows — Shortest Valid
 
-```
-shortestValid(a):
-    left = 0; best = ∞
-    for right = 0 to n − 1:
-        add a[right]
-        while the window is valid:              -- shrink while it stays valid
-            best = min(best, right − left + 1)  -- record BEFORE removing
-            remove a[left]; left += 1
-    return best (or "none" if still ∞)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{shortestValid}{a}
+  \State left ← 0; best ← ∞
+  \For{right ← 0 \To n − 1}
+    \State add a[right]
+    \While{the window is valid} \Comment{shrink while it stays valid}
+      \State best ← min(best, right − left + 1) \Comment{record BEFORE removing}
+      \State remove a[left]; left += 1
+    \EndWhile
+  \EndFor
+  \Return best (\Or "none" if still ∞)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ### 4.1 Minimum-size subarray with sum ≥ target (positive numbers)
@@ -331,19 +351,30 @@ static int minSubArrayLen(int target, int[] a) {
 
 The shortest substring of `s` containing every character of `t` (with multiplicity). Track `need[c]` (how many more `c`s the window needs; negative means surplus) and `missing` (the total still needed).
 
-```
-minWindow(s, t):
-    need[c] = count of c in t; missing = |t|
-    left = 0
-    for right = 0 to |s| − 1:
-        c = s[right]
-        if need[c] > 0: missing −= 1           -- c was actually needed
-        need[c] −= 1                           -- surplus goes negative
-        while missing == 0:                    -- window contains all of t
-            record [left, right] if shorter
-            d = s[left]; need[d] += 1
-            if need[d] > 0: missing += 1       -- removed a needed copy, not a surplus one
-            left += 1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{minWindow}{s, t}
+  \State need[c] ← count of c in t; missing ← |t|
+  \State left ← 0
+  \For{right ← 0 \To |s| − 1}
+    \State c ← s[right]
+    \If{need[c] > 0}
+      \State missing −= 1 \Comment{c was actually needed}
+    \EndIf
+    \State need[c] −= 1 \Comment{surplus goes negative}
+    \While{missing = 0} \Comment{window contains all of t}
+      \State record [left, right] if shorter
+      \State d ← s[left]; need[d] += 1
+      \If{need[d] > 0}
+        \State missing += 1 \Comment{removed a needed copy, not a surplus one}
+      \EndIf
+      \State left += 1
+    \EndWhile
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

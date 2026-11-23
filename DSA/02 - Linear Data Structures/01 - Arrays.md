@@ -88,20 +88,27 @@ Declaration, initialization, `Arrays.toString`/`equals`/`fill`/`copyOf`, and sha
 
 A <span class="hl-blue">dynamic array</span> keeps a backing array of some **capacity** and a separate **size** (how many slots are in use). When an append finds `size == capacity`, it allocates a bigger array, copies everything over, and continues.
 
-```
-add(x):
-    if size == capacity:
-        newData = allocate(capacity × GROWTH)      -- GROWTH > 1, e.g. 2 or 1.5
-        copy data[0 .. size−1] into newData
-        data = newData
-    data[size] = x
-    size = size + 1
-
-remove(i):                                         -- remove at index i
-    shift data[i+1 .. size−1] one slot left
-    size = size − 1
-    if size > 0 and size == capacity / 4:          -- shrink at 1/4, not 1/2
-        resize to capacity / 2
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{add}{x}
+  \If{size = capacity}
+    \State newData ← allocate(capacity × GROWTH) \Comment{GROWTH > 1, e.g. 2 or 1.5}
+    \State copy data[0 .. size−1] into newData
+    \State data ← newData
+  \EndIf
+  \State data[size] ← x
+  \State size ← size + 1
+\EndProcedure
+\Procedure{remove}{i} \Comment{remove at index i}
+  \State shift data[i+1 .. size−1] one slot left
+  \State size ← size − 1
+  \If{size > 0 \And size = capacity / 4} \Comment{shrink at 1/4, not 1/2}
+    \State resize to capacity / 2
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ### 3.1 Why appends are O(1) amortized
@@ -221,17 +228,24 @@ These are the building blocks for everything else in this note. <span class="hl-
 
 ### 5.1 Insert and delete by shifting
 
-```
-insertAt(a, size, i, x):              -- requires size < len(a)
-    for j = size down to i + 1:       -- go RIGHT TO LEFT
-        a[j] = a[j − 1]
-    a[i] = x
-    return size + 1
-
-deleteAt(a, size, i):
-    for j = i up to size − 2:         -- go LEFT TO RIGHT
-        a[j] = a[j + 1]
-    return size − 1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{insertAt}{a, size, i, x} \Comment{requires size < len(a)}
+  \For{j ← size \DownTo i + 1} \Comment{go RIGHT TO LEFT}
+    \State a[j] ← a[j − 1]
+  \EndFor
+  \State a[i] ← x
+  \Return size + 1
+\EndProcedure
+\Procedure{deleteAt}{a, size, i}
+  \For{j ← i \To size − 2} \Comment{go LEFT TO RIGHT}
+    \State a[j] ← a[j + 1]
+  \EndFor
+  \Return size − 1
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -252,11 +266,17 @@ static int deleteAt(int[] a, int size, int i) {
 
 ### 5.2 Reverse a range
 
-```
-reverse(a, lo, hi):
-    while lo < hi:
-        swap a[lo], a[hi]
-        lo = lo + 1; hi = hi − 1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{reverse}{a, lo, hi}
+  \While{lo < hi}
+    \State swap a[lo], a[hi]
+    \State lo ← lo + 1; hi ← hi − 1
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -275,13 +295,20 @@ static void reverse(int[] a, int lo, int hi) {   // inclusive bounds
 
 Keep a **write index** `w`: everything before `w` is the kept part. Scan with a read index; copy kept elements to `a[w++]`.
 
-```
-removeValue(a, val):
-    w = 0
-    for r = 0 to len(a) − 1:
-        if a[r] ≠ val:
-            a[w] = a[r]; w = w + 1
-    return w                         -- new logical length; a[w..] is garbage
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{removeValue}{a, val}
+  \State w ← 0
+  \For{r ← 0 \To len(a) − 1}
+    \If{a[r] ≠ val}
+      \State a[w] ← a[r]; w ← w + 1
+    \EndIf
+  \EndFor
+  \Return w \Comment{new logical length; a[w..] is garbage}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -326,13 +353,21 @@ Java passes primitives by value, so a method `swap(int x, int y)` swaps its own 
 
 Rotating right by `k` = reverse everything, then reverse the first `k`, then reverse the rest.
 
-```
-rotateRight(a, k):
-    n = len(a); if n == 0: return
-    k = k mod n                       -- floor mod: result in [0, n)
-    reverse(a, 0, n − 1)
-    reverse(a, 0, k − 1)
-    reverse(a, k, n − 1)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{rotateRight}{a, k}
+  \State n ← len(a)
+  \If{n = 0}
+    \Return
+  \EndIf
+  \State k ← k mod n \Comment{floor mod: result in [0, n)}
+  \State reverse(a, 0, n − 1)
+  \State reverse(a, 0, k − 1)
+  \State reverse(a, k, n − 1)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```
@@ -399,15 +434,25 @@ When the values are themselves valid indices (typically a permutation of `0..n�
 
 **First missing positive**: the smallest positive integer not in the array. The answer is in `1..n+1`, so only values in `1..n` matter. Put value `v` at index `v − 1`; then the first index `i` with `a[i] ≠ i + 1` gives the answer.
 
-```
-firstMissingPositive(a):
-    n = len(a)
-    for i = 0 to n − 1:
-        while 1 ≤ a[i] ≤ n and a[a[i] − 1] ≠ a[i]:
-            swap a[i] with a[a[i] − 1]           -- send a[i] home
-    for i = 0 to n − 1:
-        if a[i] ≠ i + 1: return i + 1
-    return n + 1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{firstMissingPositive}{a}
+  \State n ← len(a)
+  \For{i ← 0 \To n − 1}
+    \While{1 ≤ a[i] ≤ n \And a[a[i] − 1] ≠ a[i]}
+      \State swap a[i] with a[a[i] − 1] \Comment{send a[i] home}
+    \EndWhile
+  \EndFor
+  \For{i ← 0 \To n − 1}
+    \If{a[i] ≠ i + 1}
+      \Return i + 1
+    \EndIf
+  \EndFor
+  \Return n + 1
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -455,17 +500,28 @@ The same idea, with "add `n` to `a[v−1]`" instead of negating, works when valu
 
 The lexicographically next arrangement of the array, in place. `[1,2,3] → [1,3,2] → [2,1,3] → … → [3,2,1] → [1,2,3]` (wraps around).
 
-```
-nextPermutation(a):
-    i = n − 2
-    while i ≥ 0 and a[i] ≥ a[i+1]: i = i − 1        -- find the rightmost "ascent"
-    if i < 0:
-        reverse(a, 0, n − 1); return false           -- was the last permutation
-    j = n − 1
-    while a[j] ≤ a[i]: j = j − 1                     -- rightmost element larger than a[i]
-    swap a[i], a[j]
-    reverse(a, i + 1, n − 1)                         -- suffix was descending; make it ascending
-    return true
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{nextPermutation}{a}
+  \State i ← n − 2
+  \While{i ≥ 0 \And a[i] ≥ a[i+1]}
+    \State i ← i − 1 \Comment{find the rightmost "ascent"}
+  \EndWhile
+  \If{i < 0}
+    \State reverse(a, 0, n − 1)
+    \Return false \Comment{was the last permutation}
+  \EndIf
+  \State j ← n − 1
+  \While{a[j] ≤ a[i]}
+    \State j ← j − 1 \Comment{rightmost element larger than a[i]}
+  \EndWhile
+  \State swap a[i], a[j]
+  \State reverse(a, i + 1, n − 1) \Comment{suffix was descending; make it ascending}
+  \Return true
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -499,13 +555,19 @@ The suffix after `i` is non-increasing (that's why `i` is the rightmost ascent).
 
 Find the contiguous, **non-empty** subarray with the largest sum. Let `cur` be the best sum of a subarray **ending at** `i`. It either extends the best one ending at `i − 1`, or starts fresh at `i`.
 
-```
-kadane(a):                            -- a non-empty
-    cur = best = a[0]
-    for i = 1 to n − 1:
-        cur  = max(a[i], cur + a[i])
-        best = max(best, cur)
-    return best
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{kadane}{a} \Comment{a non-empty}
+  \State cur ← best ← a[0]
+  \For{i ← 1 \To n − 1}
+    \State cur ← max(a[i], cur + a[i])
+    \State best ← max(best, cur)
+  \EndFor
+  \Return best
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -533,13 +595,25 @@ static long maxSubarraySum(int[] a) {
 
 Find the element that appears **more than `n/2`** times, in `O(n)` time and `O(1)` space.
 
-```
-majority(a):
-    candidate = none; count = 0
-    for x in a:
-        if count == 0: candidate = x
-        if x == candidate: count += 1 else count −= 1
-    return candidate             -- verify with a second pass unless a majority is guaranteed
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{majority}{a}
+  \State candidate ← none; count ← 0
+  \ForAll{x ∈ a}
+    \If{count = 0}
+      \State candidate ← x
+    \EndIf
+    \If{x = candidate}
+      \State count += 1
+    \Else
+      \State count −= 1
+    \EndIf
+  \EndFor
+  \Return candidate \Comment{verify with a second pass unless a majority is guaranteed}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

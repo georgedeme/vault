@@ -25,15 +25,21 @@ This note covers the general shape and its cost, generating sorted subset sums o
 
 ## 1. The Idea
 
-```
-meetInTheMiddle(items):
-    split items into halves A and B
-    LA = all partial results from A            -- 2^|A| of them
-    LB = all partial results from B            -- 2^|B| of them
-    sort LB (or put it in a hash map)
-    for each x in LA:
-        find the best / matching partners y in LB      -- binary search, two pointers, or hash lookup
-    combine
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{meetInTheMiddle}{items}
+  \State split items into halves A \And B
+  \State LA ← all partial results from A \Comment{2^|A| of them}
+  \State LB ← all partial results from B \Comment{2^|B| of them}
+  \State sort LB (\Or put it in a hash map)
+  \ForAll{x ∈ LA}
+    \State find the best / matching partners y in LB \Comment{binary search, two pointers, or hash lookup}
+  \EndFor
+  \State combine
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Meet in the Middle - Splitting the Search.excalidraw|800]]

@@ -49,15 +49,26 @@ Each step halves the range, so after `k` steps `n / 2ᵏ` candidates remain: `�
 
 Find the index of `target` in a sorted array, or `−1`.
 
-```
-binarySearch(a, target):
-    lo = 0; hi = n − 1                       -- invariant: if target is present, it's in a[lo..hi]
-    while lo ≤ hi:                           -- the range is non-empty
-        mid = lo + (hi − lo) / 2
-        if a[mid] == target: return mid
-        if a[mid] < target: lo = mid + 1     -- target is right of mid
-        else: hi = mid − 1                   -- target is left of mid
-    return −1                                -- empty range: not present
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{binarySearch}{a, target}
+  \State lo ← 0; hi ← n − 1 \Comment{invariant: if target is present, it's in a[lo..hi]}
+  \While{lo ≤ hi} \Comment{the range is non-empty}
+    \State mid ← lo + (hi − lo) / 2
+    \If{a[mid] = target}
+      \Return mid
+    \EndIf
+    \If{a[mid] < target}
+      \State lo ← mid + 1 \Comment{target is right of mid}
+    \Else
+      \State hi ← mid − 1 \Comment{target is left of mid}
+    \EndIf
+  \EndWhile
+  \Return −1 \Comment{empty range: not present}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -92,14 +103,23 @@ With duplicates, this returns **some** index of `target`, not necessarily the fi
 >
 > The equal elements occupy exactly `a[lowerBound(x) .. upperBound(x))`.
 
-```
-lowerBound(a, x):
-    lo = 0; hi = n                           -- half-open: the answer is in [lo, hi]; hi = n means "none"
-    while lo < hi:
-        mid = (lo + hi) / 2                  -- lo ≤ mid < hi, so a[mid] is always valid
-        if a[mid] < x: lo = mid + 1          -- mid and everything left of it are too small
-        else: hi = mid                       -- mid might be the answer: keep it
-    return lo                                -- lo == hi
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{lowerBound}{a, x}
+  \State lo ← 0; hi ← n \Comment{half-open: the answer is in [lo, hi]; hi = n means "none"}
+  \While{lo < hi}
+    \State mid ← (lo + hi) / 2 \Comment{lo ≤ mid < hi, so a[mid] is always valid}
+    \If{a[mid] < x}
+      \State lo ← mid + 1 \Comment{mid and everything left of it are too small}
+    \Else
+      \State hi ← mid \Comment{mid might be the answer: keep it}
+    \EndIf
+  \EndWhile
+  \Return lo \Comment{lo = hi}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -159,20 +179,33 @@ Everything else is built from these two:
 
 Lower bound is a special case of a universal pattern: given a monotone predicate `ok`, find the **first** `x` where it's true.
 
-```
-firstTrue(lo, hi, ok):                       -- ok is false…false true…true on [lo, hi]; ok(hi) is true
-    while lo < hi:
-        mid = lo + (hi − lo) / 2             -- lower middle
-        if ok(mid): hi = mid                 -- mid could be the first true: keep it
-        else: lo = mid + 1                   -- mid is false: the first true is after it
-    return lo
-
-lastTrue(lo, hi, ok):                        -- ok is true…true false…false on [lo, hi]; ok(lo) is true
-    while lo < hi:
-        mid = lo + (hi − lo + 1) / 2         -- UPPER middle
-        if ok(mid): lo = mid
-        else: hi = mid − 1
-    return lo
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{firstTrue}{lo, hi, ok} \Comment{ok is false…false true…true on [lo, hi]; ok(hi) is true}
+  \While{lo < hi}
+    \State mid ← lo + (hi − lo) / 2 \Comment{lower middle}
+    \If{ok(mid)}
+      \State hi ← mid \Comment{mid could be the first true: keep it}
+    \Else
+      \State lo ← mid + 1 \Comment{mid is false: the first true is after it}
+    \EndIf
+  \EndWhile
+  \Return lo
+\EndProcedure
+\Procedure{lastTrue}{lo, hi, ok} \Comment{ok is true…true false…false on [lo, hi]; ok(lo) is true}
+  \While{lo < hi}
+    \State mid ← lo + (hi − lo + 1) / 2 \Comment{UPPER middle}
+    \If{ok(mid)}
+      \State lo ← mid
+    \Else
+      \State hi ← mid − 1
+    \EndIf
+  \EndWhile
+  \Return lo
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -278,14 +311,23 @@ The template has three decisions: the **range** `[lo, hi]` (must contain the ans
 
 Piles of bananas, `h` hours, eat at most `k` per hour from one pile per hour. Find the smallest `k` that finishes in time. A larger `k` never takes longer: monotone.
 
-```
-minEatingSpeed(piles, h):
-    lo = 1; hi = max(piles)                  -- k = max(piles) finishes in n ≤ h hours
-    while lo < hi:
-        mid = (lo + hi) / 2
-        if hours(mid) ≤ h: hi = mid          -- fast enough: try slower
-        else: lo = mid + 1
-    return lo
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{minEatingSpeed}{piles, h}
+  \State lo ← 1; hi ← max(piles) \Comment{k = max(piles) finishes in n ≤ h hours}
+  \While{lo < hi}
+    \State mid ← (lo + hi) / 2
+    \If{hours(mid) ≤ h}
+      \State hi ← mid \Comment{fast enough: try slower}
+    \Else
+      \State lo ← mid + 1
+    \EndIf
+  \EndWhile
+  \Return lo
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -463,19 +505,34 @@ A sorted array rotated at an unknown pivot, like `[4, 5, 6, 7, 0, 1, 2]`. It's n
 
 At every `mid`, at least one of the halves `[lo, mid]` and `[mid, hi]` is sorted. Check whether the target lies in the sorted half's value range; if it does, search there, otherwise search the other half.
 
-```
-searchRotated(a, target):
-    lo = 0; hi = n − 1
-    while lo ≤ hi:
-        mid = (lo + hi) / 2
-        if a[mid] == target: return mid
-        if a[lo] ≤ a[mid]:                               -- left half a[lo..mid] is sorted
-            if a[lo] ≤ target < a[mid]: hi = mid − 1
-            else: lo = mid + 1
-        else:                                            -- right half a[mid..hi] is sorted
-            if a[mid] < target ≤ a[hi]: lo = mid + 1
-            else: hi = mid − 1
-    return −1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{searchRotated}{a, target}
+  \State lo ← 0; hi ← n − 1
+  \While{lo ≤ hi}
+    \State mid ← (lo + hi) / 2
+    \If{a[mid] = target}
+      \Return mid
+    \EndIf
+    \If{a[lo] ≤ a[mid]} \Comment{left half a[lo..mid] is sorted}
+      \If{a[lo] ≤ target < a[mid]}
+        \State hi ← mid − 1
+      \Else
+        \State lo ← mid + 1
+      \EndIf
+    \Else \Comment{right half a[mid..hi] is sorted}
+      \If{a[mid] < target ≤ a[hi]}
+        \State lo ← mid + 1
+      \Else
+        \State hi ← mid − 1
+      \EndIf
+    \EndIf
+  \EndWhile
+  \Return −1
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -586,14 +643,25 @@ static boolean searchMatrix(int[][] m, int target) {
 
 Each row sorted left to right, each column sorted top to bottom, but rows can overlap in value. Binary search alone doesn't work. Start at the **top-right** corner: everything to its left is smaller, everything below is larger. So one comparison eliminates a whole row or a whole column.
 
-```
-staircase(m, target):
-    r = 0; c = cols − 1
-    while r < rows and c ≥ 0:
-        if m[r][c] == target: return true
-        if m[r][c] > target: c −= 1          -- the whole column below is even larger
-        else: r += 1                         -- the whole row to the left is even smaller
-    return false
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{staircase}{m, target}
+  \State r ← 0; c ← cols − 1
+  \While{r < rows \And c ≥ 0}
+    \If{m[r][c] = target}
+      \Return true
+    \EndIf
+    \If{m[r][c] > target}
+      \State c −= 1 \Comment{the whole column below is even larger}
+    \Else
+      \State r += 1 \Comment{the whole row to the left is even smaller}
+    \EndIf
+  \EndWhile
+  \Return false
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

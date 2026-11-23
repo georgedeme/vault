@@ -42,23 +42,33 @@ The flag is essential, because the set of nodes alone doesn't say which prefixes
 
 ## 2. Insert, Search, StartsWith
 
-```
-insert(word):
-    cur = root
-    for c in word:
-        if cur has no child c: create it
-        cur = cur.child[c]
-    cur.end = true
-
-walk(s):                                -- the node for s, or null
-    cur = root
-    for c in s:
-        if cur has no child c: return null
-        cur = cur.child[c]
-    return cur
-
-search(word)     = walk(word) ≠ null and walk(word).end
-startsWith(pre)  = walk(pre) ≠ null
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{insert}{word}
+  \State cur ← root
+  \ForAll{c ∈ word}
+    \If{cur has no child c}
+      \State create it
+    \EndIf
+    \State cur ← cur.child[c]
+  \EndFor
+  \State cur.end ← true
+\EndProcedure
+\Procedure{walk}{s} \Comment{the node for s, or null}
+  \State cur ← root
+  \ForAll{c ∈ s}
+    \If{cur has no child c}
+      \Return null
+    \EndIf
+    \State cur ← cur.child[c]
+  \EndFor
+  \Return cur
+\EndProcedure
+\State search(word) = \textsc{walk}(word) ≠ null \And \textsc{walk}(word).end
+\State startsWith(pre) = \textsc{walk}(pre) ≠ null
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -360,11 +370,16 @@ Treat each integer as a 31-bit string (for non-negative `int`s), from the highes
 
 ### 5.1 Maximum XOR of two numbers
 
-```
-for each x in a:
-    insert x
-    walk: at bit b (from 30 down to 0), prefer the child with bit (x_b XOR 1); if it exists, set bit b of the result
-    best = max(best, result)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\ForAll{x ∈ a}
+  \State insert x
+  \State walk: at bit b (from 30 down to 0), prefer the child with bit (x\_b XOR 1); if it exists, set bit b of the result
+  \State best ← max(best, result)
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

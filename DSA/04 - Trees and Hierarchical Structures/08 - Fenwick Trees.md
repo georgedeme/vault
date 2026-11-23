@@ -55,14 +55,23 @@ Odd indices hold a single element, multiples of 2 hold 2 elements or more, power
 
 **Add `δ` to `a[i]`**: every `tree[j]` whose range contains `i` must change. Those are `i`, then `i + lowbit(i)`, then that plus its lowbit, and so on: adding the lowest set bit carries into the next range that covers `i`.
 
-```
-prefix(i):                              -- a[1] + … + a[i]
-    s = 0
-    while i > 0: s += tree[i]; i −= i & −i
-    return s
-
-add(i, δ):                              -- a[i] += δ
-    while i ≤ n: tree[i] += δ; i += i & −i
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{prefix}{i} \Comment{a[1] + … + a[i]}
+  \State s ← 0
+  \While{i > 0}
+    \State s += tree[i]; i −= i \& −i
+  \EndWhile
+  \Return s
+\EndProcedure
+\Procedure{add}{i, δ} \Comment{a[i] += δ}
+  \While{i ≤ n}
+    \State tree[i] += δ; i += i \& −i
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Fenwick - Query and Update Paths.excalidraw|800]]
@@ -183,13 +192,20 @@ static class RangeAddRangeSum {
 
 With **non-negative** elements, prefix sums are non-decreasing, so "the smallest `i` with `prefix(i) ≥ k`" can be binary searched. Binary searching with `prefix` costs `O(log² n)`; walking the tree's own structure costs `O(log n)`. Start at position 0 and try steps of `2ʲ` from the largest power of two `≤ n` down to 1: `tree[pos + 2ʲ]` is exactly the sum of the next `2ʲ` elements (because `pos` is a multiple of `2ʲ⁺¹` at that point), so take the step if that sum is still `< k`.
 
-```
-lowerBound(k):
-    pos = 0
-    for step = highest power of two ≤ n down to 1:
-        if pos + step ≤ n and tree[pos + step] < k:
-            pos += step; k −= tree[pos]
-    return pos + 1                      -- 1-based; 0-based this is pos
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{lowerBound}{k}
+  \State pos ← 0
+  \For{step ← highest power of two ≤ n \DownTo 1}
+    \If{pos + step ≤ n \And tree[pos + step] < k}
+      \State pos += step; k −= tree[pos]
+    \EndIf
+  \EndFor
+  \Return pos + 1 \Comment{1-based; 0-based this is pos}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 That's the `lowerBound` method of the class above. Its main use is the **`k`-th smallest element of a dynamic multiset**: keep a count per value (compressed); `lowerBound(k)` is the value rank of the `k`-th smallest.

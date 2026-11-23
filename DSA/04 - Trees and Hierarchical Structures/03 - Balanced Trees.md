@@ -59,12 +59,17 @@ Inorder before and after: `A x B y C`. Every key in `B` is between `x` and `y`, 
 
 ![[Balanced Trees - Rotations.excalidraw|800]]
 
-```
-rotateRight(y):                         -- returns the new subtree root
-    x = y.left
-    y.left = x.right                    -- B moves from x to y
-    x.right = y
-    return x
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{rotateRight}{y} \Comment{returns the new subtree root}
+  \State x ← y.left
+  \State y.left ← x.right \Comment{B moves from x to y}
+  \State x.right ← y
+  \Return x
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -119,16 +124,27 @@ After inserting or deleting below a node, its balance factor can reach `±2`. Na
 
 In the LR case, a single right rotation of `z` would move the middle subtree across and leave the tree right-heavy by 2. The first rotation turns the zig-zag into a straight line (an LL case), which the second fixes.
 
-```
-rebalance(n):
-    update n.height
-    if balance(n) > 1:                              -- left side too tall
-        if balance(n.left) < 0: n.left = rotateLeft(n.left)      -- LR → LL
-        return rotateRight(n)
-    if balance(n) < −1:                             -- right side too tall
-        if balance(n.right) > 0: n.right = rotateRight(n.right)  -- RL → RR
-        return rotateLeft(n)
-    return n
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{rebalance}{n}
+  \State update n.height
+  \If{balance(n) > 1} \Comment{left side too tall}
+    \If{balance(n.left) < 0}
+      \State n.left ← rotateLeft(n.left) \Comment{LR → LL}
+    \EndIf
+    \Return rotateRight(n)
+  \EndIf
+  \If{balance(n) < −1} \Comment{right side too tall}
+    \If{balance(n.right) > 0}
+      \State n.right ← rotateRight(n.right) \Comment{RL → RR}
+    \EndIf
+    \Return rotateLeft(n)
+  \EndIf
+  \Return n
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ### 3.3 Implementation
@@ -234,20 +250,28 @@ The balance is looser than AVL's (height up to `2 log₂ n` instead of `1.44 log
 
 Insert as in a plain BST and colour the new node **red** (that keeps property 5). The only property that can break is 4, when the new node's parent is also red. The fix-up looks at the **uncle** (the parent's sibling):
 
-```
-insertFixup(z):                         -- z is red
-    while z.parent is red:
-        p = z.parent; g = p.parent; u = the other child of g
-        if u is red:                    -- case 1: recolour, move the problem up two levels
-            p.colour = black; u.colour = black; g.colour = red
-            z = g
-        else:                           -- uncle black
-            if z, p, g form a zig-zag:  -- case 2: rotate at p to make a straight line
-                z = p; rotate z away from z's side (left if z is p's right child)
-                p = z.parent
-            p.colour = black; g.colour = red                 -- case 3: straight line
-            rotate g toward the other side (right if p is g's left child)
-    root.colour = black
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{insertFixup}{z} \Comment{z is red}
+  \While{z.parent is red}
+    \State p ← z.parent; g ← p.parent; u ← the other child of g
+    \If{u is red} \Comment{case 1: recolour, move the problem up two levels}
+      \State p.colour ← black; u.colour ← black; g.colour ← red
+      \State z ← g
+    \Else \Comment{uncle black}
+      \If{z, p, g form a zig-zag} \Comment{case 2: rotate at p to make a straight line}
+        \State z ← p; rotate z away from z's side (left if z is p's right child)
+        \State p ← z.parent
+      \EndIf
+      \State p.colour ← black; g.colour ← red \Comment{case 3: straight line}
+      \State rotate g toward the other side (right if p is g's left child)
+    \EndIf
+  \EndWhile
+  \State root.colour ← black
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Balanced Trees - Red-Black Insert Cases.excalidraw|800]]
@@ -341,23 +365,40 @@ Treaps are popular in competitive programming because everything is built from t
 - **split(t, k)**: divide `t` into two treaps, keys `< k` and keys `≥ k`.
 - **merge(a, b)**: join two treaps where every key of `a` is smaller than every key of `b`. The root is whichever of the two roots has the higher priority.
 
-```
-split(t, k):                            -- returns (L, R): keys < k, keys ≥ k
-    if t = null: return (null, null)
-    if t.key < k:
-        (l, r) = split(t.right, k)      -- t and its left subtree belong to L
-        t.right = l
-        return (t, r)
-    else:
-        (l, r) = split(t.left, k)
-        t.left = r
-        return (l, t)
-
-merge(a, b):                            -- all keys of a < all keys of b
-    if a = null: return b
-    if b = null: return a
-    if a.prio > b.prio: a.right = merge(a.right, b); return a
-    else:               b.left = merge(a, b.left);  return b
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{split}{t, k} \Comment{returns (L, R): keys < k, keys ≥ k}
+  \If{t = null}
+    \Return (null, null)
+  \EndIf
+  \If{t.key < k}
+    \State (l, r) ← \textsc{split}(t.right, k) \Comment{t and its left subtree belong to L}
+    \State t.right ← l
+    \Return (t, r)
+  \Else
+    \State (l, r) ← \textsc{split}(t.left, k)
+    \State t.left ← r
+    \Return (l, t)
+  \EndIf
+\EndProcedure
+\Procedure{merge}{a, b} \Comment{all keys of a < all keys of b}
+  \If{a = null}
+    \Return b
+  \EndIf
+  \If{b = null}
+    \Return a
+  \EndIf
+  \If{a.prio > b.prio}
+    \State a.right ← \textsc{merge}(a.right, b)
+    \Return a
+  \Else
+    \State b.left ← \textsc{merge}(a, b.left)
+    \Return b
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Balanced Trees - Treap Split and Merge.excalidraw|800]]

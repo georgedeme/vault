@@ -45,15 +45,26 @@ The technique works when a comparison at the current positions proves that a who
 
 Find two elements of a sorted array that add up to `target`.
 
-```
-twoSumSorted(a, target):
-    i = 0; j = n − 1
-    while i < j:
-        s = a[i] + a[j]
-        if s == target: return (i, j)
-        if s < target: i += 1        -- a[i] + (anything ≤ a[j]) < target: a[i] is useless
-        else: j −= 1                 -- a[j] + (anything ≥ a[i]) > target: a[j] is useless
-    return none
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{twoSumSorted}{a, target}
+  \State i ← 0; j ← n − 1
+  \While{i < j}
+    \State s ← a[i] + a[j]
+    \If{s = target}
+      \Return (i, j)
+    \EndIf
+    \If{s < target}
+      \State i += 1 \Comment{a[i] + (anything ≤ a[j]) < target: a[i] is useless}
+    \Else
+      \State j −= 1 \Comment{a[j] + (anything ≥ a[i]) > target: a[j] is useless}
+    \EndIf
+  \EndWhile
+  \Return none
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -221,20 +232,32 @@ The variants (skip non-alphanumerics, ignore case, allow one deletion) are in [[
 
 Find all **unique** triples with sum `0`. Sort, fix the first element `a[k]`, then run two-sum on `a[k+1..n)` for `−a[k]`.
 
-```
-threeSum(a):
-    sort a
-    for k = 0 to n − 3:
-        if k > 0 and a[k] == a[k − 1]: continue          -- same first element: same triples
-        i = k + 1; j = n − 1
-        while i < j:
-            s = a[k] + a[i] + a[j]
-            if s < 0: i += 1
-            elif s > 0: j −= 1
-            else:
-                record (a[k], a[i], a[j])
-                i += 1; j −= 1
-                skip i past equal values; skip j past equal values
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{threeSum}{a}
+  \State sort a
+  \For{k ← 0 \To n − 3}
+    \If{k > 0 \And a[k] = a[k − 1]}
+      \Continue \Comment{same first element: same triples}
+    \EndIf
+    \State i ← k + 1; j ← n − 1
+    \While{i < j}
+      \State s ← a[k] + a[i] + a[j]
+      \If{s < 0}
+        \State i += 1
+      \ElsIf{s > 0}
+        \State j −= 1
+      \Else
+        \State record (a[k], a[i], a[j])
+        \State i += 1; j −= 1
+        \State skip i past equal values; skip j past equal values
+      \EndIf
+    \EndWhile
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -341,13 +364,20 @@ static List<List<Integer>> fourSum(int[] nums, int target) {
 
 ### 4.1 Remove duplicates from a sorted array, keeping at most `k` copies
 
-```
-removeDuplicates(a, k):
-    w = 0
-    for x in a:
-        if w < k or a[w − k] ≠ x:            -- fewer than k copies of x in the output so far
-            a[w] = x; w += 1
-    return w                                 -- new length; a[0..w) is the result
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{removeDuplicates}{a, k}
+  \State w ← 0
+  \ForAll{x ∈ a}
+    \If{w < k \Or a[w − k] ≠ x} \Comment{fewer than k copies of x in the output so far}
+      \State a[w] ← x; w += 1
+    \EndIf
+  \EndFor
+  \Return w \Comment{new length; a[0..w) is the result}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -570,13 +600,23 @@ a[mid..hi]  = unknown
 a(hi..n)    = 2
 ```
 
-```
-sortColors(a):
-    lo = 0; mid = 0; hi = n − 1
-    while mid ≤ hi:
-        if a[mid] == 0: swap(a[lo], a[mid]); lo += 1; mid += 1
-        elif a[mid] == 2: swap(a[mid], a[hi]); hi −= 1       -- don't advance mid
-        else: mid += 1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{sortColors}{a}
+  \State lo ← 0; mid ← 0; hi ← n − 1
+  \While{mid ≤ hi}
+    \If{a[mid] = 0}
+      \State swap(a[lo], a[mid]); lo += 1; mid += 1
+    \ElsIf{a[mid] = 2}
+      \State swap(a[mid], a[hi]); hi −= 1 \Comment{don't advance mid}
+    \Else
+      \State mid += 1
+    \EndIf
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

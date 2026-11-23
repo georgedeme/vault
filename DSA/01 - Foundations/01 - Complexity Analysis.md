@@ -174,31 +174,48 @@ The method: **state the loop structure in pseudocode → count how many times th
 
 ### 4.1 Independent nested loops multiply
 
-```
-for i = 0 to n-1:
-    for j = 0 to m-1:
-        constant work
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\For{i ← 0 \To n-1}
+  \For{j ← 0 \To m-1}
+    \State constant work
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 `Θ(n·m)` — which is `Θ(n²)` only when `m = n`. Writing `O(n²)` for an `r × c` grid scan is wrong unless `r ≈ c`.
 
 ### 4.2 Dependent bounds — still quadratic
 
-```
-for i = 0 to n-1:
-    for j = i+1 to n-1:
-        constant work
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\For{i ← 0 \To n-1}
+  \For{j ← i+1 \To n-1}
+    \State constant work
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 The body runs `(n−1) + (n−2) + … + 1 = n(n−1)/2` times. Halving is a constant factor, so this is still `Θ(n²)`.
 
 ### 4.3 Multiplicative progress gives a logarithm
 
-```
-i = 1
-while i < n:
-    constant work
-    i = i * 2
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State i ← 1
+\While{i < n}
+  \State constant work
+  \State i ← i * 2
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
 ```
 
 `i` takes the values `1, 2, 4, 8, …`, so the loop runs `⌊log₂ n⌋ + 1` times → `Θ(log n)`.
@@ -207,30 +224,47 @@ while i < n:
 
 ### 4.4 A logarithm inside a linear loop
 
-```
-for i = 0 to n-1:
-    binary_search(array, i)      # O(log n)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\For{i ← 0 \To n-1}
+  \State binary\_search(array, i) \Comment{O(log n)}
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 `Θ(n log n)`.
 
 ### 4.5 Harmonic sums — the sieve pattern
 
-```
-for i = 1 to n:
-    for j = i to n step i:
-        constant work
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\For{i ← 1 \To n}
+  \For{j ← i \To n \textbf{step} i}
+    \State constant work
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 The inner loop runs `n/i` times, so the total is `n/1 + n/2 + n/3 + … + n/n = n·Hₙ ≈ n ln n` → **`Θ(n log n)`**, not `Θ(n²)`. This is the same analysis behind the Sieve of Eratosthenes, which is `O(n log log n)` because it only iterates over primes.
 
 ### 4.6 Two pointers — a nested loop that isn't quadratic
 
-```
-left = 0
-for right = 0 to n-1:
-    while condition_violated:
-        left = left + 1
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State left ← 0
+\For{right ← 0 \To n-1}
+  \While{condition\_violated}
+    \State left ← left + 1
+  \EndWhile
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 The `while` *looks* nested, but `left` only ever increases and never exceeds `n`. The **total** inner work across the entire run is `O(n)`, so the whole thing is `Θ(n)`.

@@ -1,0 +1,6 @@
+/* Pseudocode plugin: fit blocks to the note width (the plugin sets a fixed 99em width inline,
+   which pushes right-aligned comments out of view). */
+.pseudocode-block {
+  width: 100% !important;
+  max-width: 100%;
+}

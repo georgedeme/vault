@@ -110,18 +110,32 @@ buckets (m = 8)
 
 ![[Hash Tables - Separate Chaining.excalidraw|800]]
 
-```
-get(key):
-    for entry in bucket[h(key)]:
-        if entry.key equals key: return entry.value
-    return not found
-
-put(key, value):
-    for entry in bucket[h(key)]:
-        if entry.key equals key: entry.value = value; return    -- update, don't duplicate
-    add (key, value) to bucket[h(key)]
-    n += 1
-    if n / m > maxLoad: resize                                  -- §5
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{get}{key}
+  \ForAll{entry ∈ bucket[h(key)]}
+    \If{entry.key equals key}
+      \Return entry.value
+    \EndIf
+  \EndFor
+  \Return not found
+\EndProcedure
+\Procedure{put}{key, value}
+  \ForAll{entry ∈ bucket[h(key)]}
+    \If{entry.key equals key}
+      \State entry.value ← value
+      \Return \Comment{update, don't duplicate}
+    \EndIf
+  \EndFor
+  \State add (key, value) to bucket[h(key)]
+  \State n += 1
+  \If{n / m > maxLoad}
+    \State resize \Comment{§5}
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 **Cost:** computing `h` plus scanning one chain. Under the assumption that keys hash uniformly and independently ("simple uniform hashing"), the expected chain length is `α`, so
@@ -282,13 +296,28 @@ class ChainedHashMap<K, V> {
 
 When keys are `int`/`long` and performance matters, a linear-probing table on primitive arrays avoids all boxing. This version has a fixed capacity (at least twice the maximum number of entries) and no deletion, which covers most competitive-programming needs.
 
-```
-put(k, v):                                   get(k):
-    i = slot(k)                                  i = slot(k)
-    while used[i] and keys[i] ≠ k:               while used[i]:
-        i = (i + 1) mod capacity                     if keys[i] == k: return vals[i]
-    used[i] = true; keys[i] = k; vals[i] = v         i = (i + 1) mod capacity
-                                                 return not found
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{put}{k, v}
+  \State i ← slot(k)
+  \While{used[i] \And keys[i] ≠ k}
+    \State i ← (i + 1) mod capacity
+  \EndWhile
+  \State used[i] ← true; keys[i] ← k; vals[i] ← v
+\EndProcedure
+\Procedure{get}{k}
+  \State i ← slot(k)
+  \While{used[i]}
+    \If{keys[i] = k}
+      \Return vals[i]
+    \EndIf
+    \State i ← (i + 1) mod capacity
+  \EndWhile
+  \Return not found
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -491,12 +520,20 @@ Arrays inherit `equals` and `hashCode` from `Object` (identity), so `set.contain
 
 ### 9.1 Two sum (unsorted, return indices)
 
-```
-twoSum(a, target):
-    seen = empty map                        -- value → index
-    for i = 0 to n − 1:
-        if (target − a[i]) in seen: return (seen[target − a[i]], i)
-        seen[a[i]] = i                      -- insert AFTER checking
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{twoSum}{a, target}
+  \State seen ← empty map \Comment{value → index}
+  \For{i ← 0 \To n − 1}
+    \If{(target − a[i]) in seen}
+      \Return (seen[target − a[i]], i)
+    \EndIf
+    \State seen[a[i]] ← i \Comment{insert AFTER checking}
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

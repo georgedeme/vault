@@ -32,14 +32,21 @@ Dynamic programming needs optimal substructure too. The difference is the first 
 
 Most greedy algorithms have this shape:
 
-```
-greedy(candidates):
-    sort candidates by some key            -- the whole art is choosing this key
-    solution = empty
-    for c in candidates:
-        if solution + c is still feasible:
-            solution = solution + c
-    return solution
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{greedy}{candidates}
+  \State sort candidates by some key \Comment{the whole art is choosing this key}
+  \State solution ← empty
+  \ForAll{c ∈ candidates}
+    \If{solution + c is still feasible}
+      \State solution ← solution + c
+    \EndIf
+  \EndFor
+  \Return solution
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 | | Greedy | Dynamic programming |
@@ -85,15 +92,22 @@ Throughout this section intervals are `[start, end]`. Whether two intervals that
 
 Choose as many pairwise non-overlapping intervals as possible.
 
-```
-activitySelection(intervals):
-    sort intervals by end time
-    count = 0; lastEnd = −∞
-    for [s, e] in intervals:
-        if s ≥ lastEnd:                  -- touching allowed; use s > lastEnd if it isn't
-            count = count + 1
-            lastEnd = e
-    return count
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{activitySelection}{intervals}
+  \State sort intervals by end time
+  \State count ← 0; lastEnd ← −∞
+  \ForAll{[s, e] ∈ intervals}
+    \If{s ≥ lastEnd} \Comment{touching allowed; use s > lastEnd if it isn't}
+      \State count ← count + 1
+      \State lastEnd ← e
+    \EndIf
+  \EndFor
+  \Return count
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -196,14 +210,22 @@ The depth is a lower bound for any assignment (those intervals need different ro
 
 **Video stitching**: choose the fewest clips `[s, e]` that together cover `[0, time]`. Among the clips that start at or before the current covered end, take the one that reaches furthest. This is [[#8.1 Jump game I and II|jump game II]] in disguise.
 
-```
-cover(clips, time):
-    covered = 0; count = 0
-    while covered < time:
-        best = max end among clips with start ≤ covered
-        if best ≤ covered: return −1          -- a gap nobody covers
-        covered = best; count = count + 1
-    return count
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{cover}{clips, time}
+  \State covered ← 0; count ← 0
+  \While{covered < time}
+    \State best ← max end among clips with start ≤ covered
+    \If{best ≤ covered}
+      \Return −1 \Comment{a gap nobody covers}
+    \EndIf
+    \State covered ← best; count ← count + 1
+  \EndWhile
+  \Return count
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -342,13 +364,19 @@ Values `[60, 100, 120]`, weights `[10, 20, 30]`, capacity `50` → `240.0` (the 
 
 A <span class="hl-blue">prefix code</span> gives each symbol a bit string so that no code is a prefix of another, so a bit stream decodes unambiguously without separators. Prefix codes correspond to binary trees: symbols are leaves, `0` means left and `1` means right, and a symbol's code length is its depth. The cost of encoding a text is `Σ freq(s) · depth(s)`. <span class="hl-blue">Huffman coding</span> finds the tree with minimum cost.
 
-```
-huffman(freq):
-    put one leaf per symbol into a min-heap keyed by frequency
-    while the heap has more than one tree:
-        x = extractMin(); y = extractMin()
-        insert a new node with children x, y and frequency freq(x) + freq(y)
-    return the remaining tree
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{huffman}{freq}
+  \State put one leaf per symbol into a min-heap keyed by frequency
+  \While{the heap has more than one tree}
+    \State x ← extractMin(); y ← extractMin()
+    \State insert a new node with children x, y \And frequency freq(x) + freq(y)
+  \EndWhile
+  \Return the remaining tree
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Greedy - Huffman Tree.excalidraw|800]]
@@ -458,15 +486,22 @@ static boolean canJump(int[] a) {
 
 **II**: the fewest jumps (the last index is guaranteed reachable). Think of it as BFS where level `k` is the range of indices reachable in exactly `k` jumps; the next level ends at the furthest index any position in the current level can jump to.
 
-```
-jump(a):
-    jumps = 0; levelEnd = 0; farthest = 0
-    for i = 0 .. n−2:
-        farthest = max(farthest, i + a[i])
-        if i = levelEnd:                     -- leaving the current level
-            jumps = jumps + 1
-            levelEnd = farthest
-    return jumps
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{jump}{a}
+  \State jumps ← 0; levelEnd ← 0; farthest ← 0
+  \For{i ← 0 .. n−2}
+    \State farthest ← max(farthest, i + a[i])
+    \If{i = levelEnd} \Comment{leaving the current level}
+      \State jumps ← jumps + 1
+      \State levelEnd ← farthest
+    \EndIf
+  \EndFor
+  \Return jumps
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

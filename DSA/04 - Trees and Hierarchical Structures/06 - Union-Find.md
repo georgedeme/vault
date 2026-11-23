@@ -50,13 +50,20 @@ Each group is stored as a tree: every element points to a **parent**, and the ro
 
 **Quick-union** links one root under the other:
 
-```
-find(x):
-    while parent[x] ≠ x: x = parent[x]
-    return x
-
-union(a, b):
-    parent[find(a)] = find(b)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{find}{x}
+  \While{parent[x] ≠ x}
+    \State x ← parent[x]
+  \EndWhile
+  \Return x
+\EndProcedure
+\Procedure{union}{a, b}
+  \State parent[\textsc{find}(a)] ← \textsc{find}(b)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 `union` is now cheap, but nothing controls the trees' height. Uniting `0–1`, then `0–2`, `0–3`, … (always putting the old tree under the new single element) builds a chain, and `find` costs `O(n)`.
@@ -70,14 +77,23 @@ union(a, b):
 
 When merging, attach the root of the **smaller** tree under the root of the larger one.
 
-```
-union(a, b):
-    ra = find(a); rb = find(b)
-    if ra = rb: return false
-    if size[ra] < size[rb]: swap(ra, rb)       -- ra is the larger
-    parent[rb] = ra
-    size[ra] = size[ra] + size[rb]
-    return true
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{union}{a, b}
+  \State ra ← find(a); rb ← find(b)
+  \If{ra = rb}
+    \Return false
+  \EndIf
+  \If{size[ra] < size[rb]}
+    \State swap(ra, rb) \Comment{ra is the larger}
+  \EndIf
+  \State parent[rb] ← ra
+  \State size[ra] ← size[ra] + size[rb]
+  \Return true
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Union-Find - Union by Size.excalidraw|800]]
@@ -92,10 +108,17 @@ union(a, b):
 
 During `find(x)`, every node on the path from `x` to the root is pointed **directly at the root**. Later finds from any of those nodes, or from their descendants, take one step.
 
-```
-find(x):                                -- recursive form
-    if parent[x] ≠ x: parent[x] = find(parent[x])
-    return parent[x]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{find}{x} \Comment{recursive form}
+  \If{parent[x] ≠ x}
+    \State parent[x] ← \textsc{find}(parent[x])
+  \EndIf
+  \Return parent[x]
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Union-Find - Path Compression.excalidraw|800]]
@@ -177,10 +200,15 @@ Returning a `boolean` from `union` is the most useful design choice: `false` mea
 
 Any value that combines associatively over a merge (size, sum, minimum, maximum, a count of special elements) can be stored at the root and combined in `union`:
 
-```
-union(a, b):
-    … after parent[rb] = ra:
-    sum[ra] += sum[rb]; min[ra] = min(min[ra], min[rb]); …
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{union}{a, b}
+  \State … \Comment{after parent[rb] ← ra:}
+  \State sum[ra] += sum[rb]; min[ra] ← min(min[ra], min[rb]); …
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 The values at non-root elements become stale and must never be read directly: always go through `find`. Data that would have to be **split** (a list of members that's later partitioned) doesn't fit; data that just merges does. For merging actual member lists, append the smaller list to the larger ("small to large"), which keeps the total work `O(n log n)`.

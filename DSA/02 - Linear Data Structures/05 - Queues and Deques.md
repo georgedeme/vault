@@ -266,10 +266,22 @@ So a `Deque` used with `offer`/`poll` is a queue (back in, front out), and with 
 
 Push incoming elements onto `in`. To dequeue, pop from `out`; if `out` is empty, first move **everything** from `in` to `out`, which reverses their order so the oldest element ends up on top.
 
-```
-offer(x):  in.push(x)
-poll():    if out is empty: while in not empty: out.push(in.pop())
-           return out.pop()
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{offer}{x}
+  \State in.push(x)
+\EndProcedure
+\Procedure{poll}{}
+  \If{out is empty}
+    \While{in \Not empty}
+      \State out.push(in.pop())
+    \EndWhile
+  \EndIf
+  \Return out.pop()
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -396,14 +408,26 @@ Keep a deque of **indices** whose values are **decreasing** from front to back. 
 - When `a[i]` arrives, any element at the back that is `≤ a[i]` can **never** be a window maximum again: `a[i]` is at least as big and will stay in the window longer. Pop those from the back.
 - When the front index falls out of the window (`≤ i − k`), pop it from the front.
 
-```
-maxSlidingWindow(a, k):
-    dq = empty deque of indices              -- a[dq] decreasing from front to back
-    for i = 0 to n − 1:
-        if dq.front == i − k: dq.popFront()                  -- expired
-        while dq not empty and a[dq.back] ≤ a[i]: dq.popBack()   -- dominated
-        dq.pushBack(i)
-        if i ≥ k − 1: output a[dq.front]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{maxSlidingWindow}{a, k}
+  \State dq ← empty deque of indices \Comment{a[dq] decreasing from front to back}
+  \For{i ← 0 \To n − 1}
+    \If{dq.front = i − k}
+      \State dq.popFront() \Comment{expired}
+    \EndIf
+    \While{dq \Not empty \And a[dq.back] ≤ a[i]}
+      \State dq.popBack() \Comment{dominated}
+    \EndWhile
+    \State dq.pushBack(i)
+    \If{i ≥ k − 1}
+      \State output a[dq.front]
+    \EndIf
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

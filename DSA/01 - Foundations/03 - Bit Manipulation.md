@@ -173,9 +173,14 @@ Subtracting 1 from `x` flips its lowest set bit to 0 and every bit below it to 1
 
 A power of two has **exactly one** set bit, so clearing its lowest set bit leaves 0:
 
-```
-isPowerOfTwo(x):
-    return x > 0 AND (x AND (x − 1)) == 0
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{isPowerOfTwo}{x}
+  \Return x > 0 AND (x AND (x − 1)) = 0
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -221,13 +226,19 @@ The <span class="hl-blue">population count</span> (popcount) of `x` is its numbe
 
 Clear the lowest set bit until nothing is left. The loop runs once **per set bit**, not once per bit position.
 
-```
-popcount(x):
-    count = 0
-    while x ≠ 0:
-        x = x AND (x − 1)
-        count = count + 1
-    return count
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{popcount}{x}
+  \State count ← 0
+  \While{x ≠ 0}
+    \State x ← x AND (x − 1)
+    \State count ← count + 1
+  \EndWhile
+  \Return count
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -253,10 +264,15 @@ In practice, use **`Integer.bitCount(x)`** / **`Long.bitCount(x)`**. The JIT com
 
 `i >> 1` is smaller than `i` and has the same bits except the last one:
 
-```
-bits[0] = 0
-for i = 1 to n:
-    bits[i] = bits[i >> 1] + (i AND 1)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State bits[0] ← 0
+\For{i ← 1 \To n}
+  \State bits[i] ← bits[i >> 1] + (i AND 1)
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -291,11 +307,18 @@ static int[] countBits(int n) {
 
 ### 6.1 Single number: everything appears twice except one
 
-```
-single(a):
-    x = 0
-    for v in a: x = x XOR v
-    return x                         -- pairs cancel, the loner survives
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{single}{a}
+  \State x ← 0
+  \ForAll{v ∈ a}
+    \State x ← x XOR v
+  \EndFor
+  \Return x \Comment{pairs cancel, the loner survives}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -312,13 +335,22 @@ static int singleNumber(int[] a) {
 
 XOR everything to get `d = p ^ q`. Since `p ≠ q`, `d ≠ 0`, so it has some set bit, and `p` and `q` differ in it. Split all values by that bit: each group contains exactly one of `p`, `q`, and the pairs stay together.
 
-```
-twoSingles(a):
-    d = XOR of all a
-    bit = d AND (−d)                 -- any set bit works; the lowest is easy
-    p = 0
-    for v in a: if v AND bit ≠ 0: p = p XOR v
-    return (p, d XOR p)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{twoSingles}{a}
+  \State d ← XOR of all a
+  \State bit ← d AND (−d) \Comment{any set bit works; the lowest is easy}
+  \State p ← 0
+  \ForAll{v ∈ a}
+    \If{v AND bit ≠ 0}
+      \State p ← p XOR v
+    \EndIf
+  \EndFor
+  \Return (p, d XOR p)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -338,10 +370,17 @@ static int[] twoSingles(int[] a) {
 
 XOR doesn't help, because three copies XOR to the value itself. Count each bit position **mod 3**:
 
-```
-for each bit b in 0..31:
-    cnt = number of values with bit b set
-    if cnt mod 3 ≠ 0: set bit b in the answer
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\For{each bit b in 0..31}
+  \State cnt ← number of values with bit b set
+  \If{cnt mod 3 ≠ 0}
+    \State set bit b in the answer
+  \EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -451,10 +490,18 @@ With a universe `{0, 1, …, n−1}` for `n ≤ 32` (`int`) or `n ≤ 64` (`long
 
 ### 7.1 Enumerating all subsets
 
-```
-for mask = 0 to 2ⁿ − 1:
-    for i = 0 to n − 1:
-        if bit i of mask is set: element i is in this subset
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\For{mask ← 0 \To 2ⁿ − 1}
+  \For{i ← 0 \To n − 1}
+    \If{bit i of mask is set}
+      \State element i is in this subset
+    \EndIf
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -480,12 +527,19 @@ static List<List<Integer>> allSubsets(int[] a) {
 
 To visit every subset `s ⊆ m`, including `m` and `∅`:
 
-```
-s = m
-loop:
-    process(s)
-    if s == 0: break
-    s = (s − 1) AND m          -- next smaller submask
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State s ← m
+\While{\True}
+  \State process(s)
+  \If{s = 0}
+    \Break
+  \EndIf
+  \State s ← (s − 1) AND m \Comment{next smaller submask}
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -558,13 +612,19 @@ Needs `k ≥ 1`.
 
 ### 8.1 Reversing bits
 
-```
-reverse(x):                          -- 32-bit
-    r = 0
-    repeat 32 times:
-        r = (r << 1) OR (x AND 1)    -- append x's lowest bit to r
-        x = x >>> 1
-    return r
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{reverse}{x} \Comment{32-bit}
+  \State r ← 0
+  \For{i ← 1 \To 32}
+    \State r ← (r << 1) OR (x AND 1) \Comment{append x's lowest bit to r}
+    \State x ← x >>> 1
+  \EndFor
+  \Return r
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

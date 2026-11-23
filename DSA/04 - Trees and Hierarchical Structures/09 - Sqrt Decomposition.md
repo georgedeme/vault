@@ -24,17 +24,24 @@ The same "balance two costs at `√n`" idea appears in other forms: splitting va
 
 Choose a block size `B` (about `√n`). Element `i` belongs to block `i / B`; block `b` covers indices `[b·B, min(n, (b + 1)·B) − 1]`, so the **last block may be shorter**. Store one summary per block (here, its sum).
 
-```
-query(l, r):                            -- inclusive
-    bl = l / B; br = r / B
-    if bl = br: return a[l] + … + a[r]                 -- inside one block: just scan
-    s = a[l .. end of block bl]                         -- partial left block
-      + block[bl + 1] + … + block[br − 1]               -- whole blocks
-      + a[start of block br .. r]                       -- partial right block
-    return s
-
-set(i, v):
-    block[i / B] += v − a[i]; a[i] = v
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{query}{l, r} \Comment{inclusive}
+  \State bl ← l / B; br ← r / B
+  \If{bl = br}
+    \Return a[l] + … + a[r] \Comment{inside one block: just scan}
+  \EndIf
+  \State s ← a[l .. end of block bl] \Comment{partial left block}
+  \State s += block[bl + 1] + … + block[br − 1] \Comment{whole blocks}
+  \State s += a[start of block br .. r] \Comment{partial right block}
+  \Return s
+\EndProcedure
+\Procedure{set}{i, v}
+  \State block[i / B] += v − a[i]; a[i] ← v
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Sqrt - Block Decomposition.excalidraw|800]]
@@ -265,16 +272,30 @@ The same split appears as **heavy/light** elements: in a graph, vertices with de
 
 Mo's algorithm answers `q` **offline** range queries `[l, r]` when you can maintain the answer for a sliding window `[curL, curR]` and **add or remove one element in `O(1)`** (or `O(log n)`). Moving the window from one query to the next costs `|Δl| + |Δr|` steps, so the order of the queries determines the total cost. Sorting by `(block of l, r)` keeps it at `O((n + q)√n)`.
 
-```
-mo(queries):
-    sort queries by (l / B, then r)
-    curL = 0; curR = −1                 -- empty window
-    for each query (l, r) in that order:
-        while curR < r: add(++curR)     -- extend first,
-        while curL > l: add(--curL)
-        while curR > r: remove(curR--)  -- then shrink
-        while curL < l: remove(curL++)
-        answer[query] = current answer
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{mo}{queries}
+  \State sort queries by (l / B, then r)
+  \State curL ← 0; curR ← −1 \Comment{empty window}
+  \For{each query (l, r) in that order}
+    \While{curR < r}
+      \State add(++curR) \Comment{extend first,}
+    \EndWhile
+    \While{curL > l}
+      \State add(--curL)
+    \EndWhile
+    \While{curR > r}
+      \State remove(curR--) \Comment{then shrink}
+    \EndWhile
+    \While{curL < l}
+      \State remove(curL++)
+    \EndWhile
+    \State answer[query] ← current answer
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Sqrt - Mo's Ordering.excalidraw|800]]

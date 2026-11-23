@@ -62,24 +62,43 @@ Nodes are stored in an array like a heap ([[DSA/04 - Trees and Hierarchical Stru
 
 ## 3. Build, Query, Update
 
-```
-build(node, l, r):
-    if l = r: t[node] = a[l]; return
-    m = (l + r) / 2
-    build(2·node, l, m); build(2·node + 1, m + 1, r)
-    t[node] = op(t[2·node], t[2·node + 1])
-
-query(node, l, r, ql, qr):              -- op over a[ql..qr] ∩ [l, r]
-    if qr < l or r < ql: return IDENTITY            -- disjoint
-    if ql ≤ l and r ≤ qr: return t[node]            -- fully inside
-    m = (l + r) / 2
-    return op(query(2·node, l, m, ql, qr), query(2·node + 1, m + 1, r, ql, qr))
-
-update(node, l, r, i, v):               -- a[i] = v
-    if l = r: t[node] = v; return
-    m = (l + r) / 2
-    if i ≤ m: update(2·node, l, m, i, v) else update(2·node + 1, m + 1, r, i, v)
-    t[node] = op(t[2·node], t[2·node + 1])
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{build}{node, l, r}
+  \If{l = r}
+    \State t[node] ← a[l]
+    \Return
+  \EndIf
+  \State m ← (l + r) / 2
+  \State \textsc{build}(2·node, l, m); \textsc{build}(2·node + 1, m + 1, r)
+  \State t[node] ← op(t[2·node], t[2·node + 1])
+\EndProcedure
+\Procedure{query}{node, l, r, ql, qr} \Comment{op over a[ql..qr] ∩ [l, r]}
+  \If{qr < l \Or r < ql}
+    \Return IDENTITY \Comment{disjoint}
+  \EndIf
+  \If{ql ≤ l \And r ≤ qr}
+    \Return t[node] \Comment{fully inside}
+  \EndIf
+  \State m ← (l + r) / 2
+  \Return op(\textsc{query}(2·node, l, m, ql, qr), \textsc{query}(2·node + 1, m + 1, r, ql, qr))
+\EndProcedure
+\Procedure{update}{node, l, r, i, v} \Comment{a[i] = v}
+  \If{l = r}
+    \State t[node] ← v
+    \Return
+  \EndIf
+  \State m ← (l + r) / 2
+  \If{i ≤ m}
+    \State \textsc{update}(2·node, l, m, i, v)
+  \Else
+    \State \textsc{update}(2·node + 1, m + 1, r, i, v)
+  \EndIf
+  \State t[node] ← op(t[2·node], t[2·node + 1])
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -315,28 +334,43 @@ static class IterSegTree {                         // range sum, point assignmen
 
 Range **updates** ("add `v` to every element of `a[l..r]`") would touch every leaf in the range, `O(n)`. Lazy propagation stops at the `O(log n)` fully covered nodes, updates their stored answers directly, and leaves a **tag** saying "my children still owe this update". The tag is pushed one level down only when a later operation needs to go below that node.
 
-```
-apply(node, l, r, v):                   -- add v to every element of [l, r]
-    sum[node] += v · (r − l + 1)
-    tag[node] += v
-
-push(node, l, r):                       -- hand the pending update to the children
-    if tag[node] ≠ 0:
-        apply(left, l, m, tag[node]); apply(right, m + 1, r, tag[node])
-        tag[node] = 0
-
-rangeAdd(node, l, r, ql, qr, v):
-    if disjoint: return
-    if fully covered: apply(node, l, r, v); return     -- stop here
-    push(node, l, r)
-    recurse into both children
-    sum[node] = sum[left] + sum[right]
-
-query(node, l, r, ql, qr):
-    if disjoint: return 0
-    if fully covered: return sum[node]
-    push(node, l, r)                                   -- children must be up to date
-    return query(left, …) + query(right, …)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{apply}{node, l, r, v} \Comment{add v to every element of [l, r]}
+  \State sum[node] += v · (r − l + 1)
+  \State tag[node] += v
+\EndProcedure
+\Procedure{push}{node, l, r} \Comment{hand the pending update to the children}
+  \If{tag[node] ≠ 0}
+    \State \textsc{apply}(left, l, m, tag[node]); \textsc{apply}(right, m + 1, r, tag[node])
+    \State tag[node] ← 0
+  \EndIf
+\EndProcedure
+\Procedure{rangeAdd}{node, l, r, ql, qr, v}
+  \If{disjoint}
+    \Return
+  \EndIf
+  \If{fully covered}
+    \State \textsc{apply}(node, l, r, v)
+    \Return \Comment{stop here}
+  \EndIf
+  \State \textsc{push}(node, l, r)
+  \State recurse into both children
+  \State sum[node] ← sum[left] + sum[right]
+\EndProcedure
+\Procedure{query}{node, l, r, ql, qr}
+  \If{disjoint}
+    \Return 0
+  \EndIf
+  \If{fully covered}
+    \Return sum[node]
+  \EndIf
+  \State \textsc{push}(node, l, r) \Comment{children must be up to date}
+  \Return \textsc{query}(left, …) + \textsc{query}(right, …)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Segment Trees - Lazy Propagation.excalidraw|800]]

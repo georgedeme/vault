@@ -25,16 +25,25 @@ This note covers the choose / explore / unchoose template, the three core enumer
 
 ## 1. The Template
 
-```
-backtrack(state):
-    if state is a complete solution:
-        record a COPY of it
-        return
-    for each choice c available in state:
-        if c can't lead to a valid solution: continue     -- prune
-        apply c to state                                   -- choose
-        backtrack(state)                                   -- explore
-        undo c                                             -- unchoose
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{backtrack}{state}
+  \If{state is a complete solution}
+    \State record a COPY of it
+    \Return
+  \EndIf
+  \For{each choice c available in state}
+    \If{c can't lead to a valid solution}
+      \Continue \Comment{prune}
+    \EndIf
+    \State apply c to state \Comment{choose}
+    \State \textsc{backtrack}(state) \Comment{explore}
+    \State undo c \Comment{unchoose}
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 > [!important] The undo step is the whole point
@@ -119,14 +128,25 @@ static void subsetsDup(int[] a, int start, List<Integer> path, List<List<Integer
 
 Every position can hold any element not used yet. The tree has `n` choices at the top, `n − 1` below, …, so `n!` leaves.
 
-```
-permute(path):
-    if |path| = n: record a copy; return
-    for i = 0 .. n−1:
-        if used[i]: continue
-        used[i] = true; path.add(a[i])
-        permute(path)
-        path.removeLast(); used[i] = false
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{permute}{path}
+  \If{|path| = n}
+    \State record a copy
+    \Return
+  \EndIf
+  \For{i ← 0 .. n−1}
+    \If{used[i]}
+      \Continue
+    \EndIf
+    \State used[i] ← true; path.add(a[i])
+    \State \textsc{permute}(path)
+    \State path.removeLast(); used[i] ← false
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -537,14 +557,25 @@ Place `n` queens on an `n × n` board so that no two attack each other. One quee
 
 ![[Backtracking - N-Queens Diagonals.excalidraw|800]]
 
-```
-place(r):
-    if r = n: record the board; return
-    for c = 0 .. n−1:
-        if col[c] or diag[r − c] or anti[r + c]: continue
-        mark col[c], diag[r − c], anti[r + c]; queen[r] = c
-        place(r + 1)
-        unmark them
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{place}{r}
+  \If{r = n}
+    \State record the board
+    \Return
+  \EndIf
+  \For{c ← 0 .. n−1}
+    \If{col[c] \Or diag[r − c] \Or anti[r + c]}
+      \Continue
+    \EndIf
+    \State mark col[c], diag[r − c], anti[r + c]; queen[r] ← c
+    \State \textsc{place}(r + 1)
+    \State unmark them
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

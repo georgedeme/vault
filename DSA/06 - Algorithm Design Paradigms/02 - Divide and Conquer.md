@@ -24,13 +24,19 @@ This note covers the general template and how to analyse it with recurrences, th
 
 ## 1. The Pattern
 
-```
-solve(problem):
-    if problem is small enough:
-        return the answer directly              -- base case
-    split problem into subproblems P₁ … Pₐ        -- divide
-    rᵢ = solve(Pᵢ) for each i                    -- conquer (recursively)
-    return combine(r₁, …, rₐ)                    -- combine
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{solve}{problem}
+  \If{problem is small enough}
+    \Return the answer directly \Comment{base case}
+  \EndIf
+  \State split problem into subproblems P₁ … Pₐ \Comment{divide}
+  \State rᵢ ← \textsc{solve}(Pᵢ) for each i \Comment{conquer (recursively)}
+  \Return combine(r₁, …, rₐ) \Comment{combine}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 > [!note] Three related shapes
@@ -77,14 +83,23 @@ Many problems ask for the number of pairs `i < j` with some relation between `a[
 
 An inversion is a pair `i < j` with `a[i] > a[j]`. While merging, whenever the next element comes from the **right** half, it's smaller than every element still waiting in the left half, and each of those forms an inversion with it.
 
-```
-sortCount(a, lo, hi):                         -- a[lo..hi), returns inversions, sorts a[lo..hi)
-    if hi − lo ≤ 1: return 0
-    mid = (lo + hi) / 2
-    count = sortCount(a, lo, mid) + sortCount(a, mid, hi)
-    merge the halves; each time the right half's element is taken
-        while i < mid elements remain on the left: count += mid − i
-    return count
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{sortCount}{a, lo, hi} \Comment{a[lo..hi), returns inversions, sorts a[lo..hi)}
+  \If{hi − lo ≤ 1}
+    \Return 0
+  \EndIf
+  \State mid ← (lo + hi) / 2
+  \State count ← \textsc{sortCount}(a, lo, mid) + \textsc{sortCount}(a, mid, hi)
+  \State merge the halves; during the merge:
+  \If{the right half's element is taken}
+    \State count += mid − i \Comment{it jumps over the mid − i elements still on the left}
+  \EndIf
+  \Return count
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -192,15 +207,25 @@ static long reverseRec(int[] a, int[] tmp, int lo, int hi) {
 
 Find the `k`-th smallest element without sorting. Partition around a pivot as in quicksort ([[DSA/03 - Sorting and Searching/01 - Sorting Algorithms#4. Quicksort|Sorting § 4]]); the pivot lands at its final sorted position `p`. If `p = k`, done; otherwise **only one side** can contain the answer, so recurse into that side alone.
 
-```
-quickselect(a, k):                            -- k is 0-based
-    lo = 0; hi = n − 1
-    loop:
-        pick a random pivot in a[lo..hi]
-        partition a[lo..hi] into  < pivot | = pivot | > pivot
-        if k is in the "<" part: hi = end of that part
-        else if k is in the ">" part: lo = start of that part
-        else: return pivot
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{quickselect}{a, k} \Comment{k is 0-based}
+  \State lo ← 0; hi ← n − 1
+  \While{\True}
+    \State pick a random pivot in a[lo..hi]
+    \State partition a[lo..hi] into < pivot | = pivot | > pivot
+    \If{k is in the "<" part}
+      \State hi ← end of that part
+    \ElsIf{k is in the ">" part}
+      \State lo ← start of that part
+    \Else
+      \Return pivot
+    \EndIf
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -242,12 +267,19 @@ static int findKthLargest(int[] a, int k) {       // k-th largest, 1-based
 
 > [!info]- Median of medians: worst-case O(n) selection
 > Choose the pivot so that it's guaranteed to be near the middle:
-> ```
-> select(a, k):
->     if |a| < 5: sort and return a[k]
->     split a into groups of 5; take the median of each group
->     pivot = select(medians, |medians| / 2)        -- the median of the medians
->     partition around pivot and continue in the side containing k
+> ```pseudo
+> \begin{algorithm}
+> \begin{algorithmic}
+> \Procedure{select}{a, k}
+>   \If{|a| < 5}
+>     \State sort \And return a[k]
+>   \EndIf
+>   \State split a into groups of 5; take the median of each group
+>   \State pivot ← \textsc{select}(medians, |medians| / 2) \Comment{the median of the medians}
+>   \State partition around pivot \And continue in the side containing k
+> \EndProcedure
+> \end{algorithmic}
+> \end{algorithm}
 > ```
 > Half of the `n/5` group medians are `≤` the pivot, and each of those groups has 3 elements `≤` its median, so at least `3n/10` elements are `≤` the pivot (and as many `≥`). The side that remains has at most `7n/10` elements: `T(n) ≤ T(n/5) + T(7n/10) + O(n) = O(n)`, because `1/5 + 7/10 < 1`. With groups of 3 the fractions add up to `1` and the bound degrades to `O(n log n)`.
 > ```java
@@ -320,15 +352,23 @@ The D&C version still matters: returning **four** values per half (total, best p
 
 Given `n` points in the plane, find the smallest distance between two of them. Checking all pairs is `O(n²)`. D&C gets `O(n log n)`.
 
-```
-closest(P sorted by x):
-    if |P| ≤ 3: brute force
-    split at the median x into left L and right R (the line x = midX)
-    δ = min(closest(L), closest(R))
-    strip = points with |x − midX| < δ, sorted by y
-    for each point p in strip:
-        compare p with the following strip points while their y differs by < δ
-    return the smallest distance found
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{closest}{P sorted by x}
+  \If{|P| ≤ 3}
+    \State brute force
+  \EndIf
+  \State split at the median x into left L \And right R (the line x = midX)
+  \State δ ← min(\textsc{closest}(L), \textsc{closest}(R))
+  \State strip ← points with |x − midX| < δ, sorted by y
+  \For{each point p in strip}
+    \State compare p with the following strip points while their y differs by < δ
+  \EndFor
+  \Return the smallest distance found
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 **Why the strip check is linear**: a pair closer than `δ` that crosses the line has both points within `δ` of it, and their `y` values differ by less than `δ`. For a point `p`, the candidates lie in a `2δ × δ` rectangle above it. Split that rectangle into eight `δ/2 × δ/2` squares; two points in one square would be closer than `δ` on the **same** side, which contradicts `δ` being the best distance on each side. So at most 7 other points need checking per strip point.
@@ -390,13 +430,20 @@ static long dist2(int[] a, int[] b) {
 
 Multiplying two `n`-digit numbers by the school method is `O(n²)`. Split each number into a high and low half, `x = x₁·B + x₀` and `y = y₁·B + y₀`. The product needs `x₁y₁`, `x₀y₀` and `x₁y₀ + x₀y₁`, which looks like four half-size products, but the middle term is `(x₁ + x₀)(y₁ + y₀) − x₁y₁ − x₀y₀`: **three** products suffice. `T(n) = 3T(n/2) + O(n) = O(n^(log₂ 3)) ≈ O(n^1.585)`.
 
-```
-karatsuba(x, y):
-    if x and y are small: return x · y
-    split: x = x₁·B + x₀, y = y₁·B + y₀
-    z₂ = karatsuba(x₁, y₁); z₀ = karatsuba(x₀, y₀)
-    z₁ = karatsuba(x₁ + x₀, y₁ + y₀) − z₂ − z₀
-    return z₂·B² + z₁·B + z₀
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{karatsuba}{x, y}
+  \If{x \And y are small}
+    \Return x · y
+  \EndIf
+  \State split: x = x₁·B + x₀, y = y₁·B + y₀
+  \State z₂ ← \textsc{karatsuba}(x₁, y₁); z₀ ← \textsc{karatsuba}(x₀, y₀)
+  \State z₁ ← \textsc{karatsuba}(x₁ + x₀, y₁ + y₀) − z₂ − z₀
+  \Return z₂·B² + z₁·B + z₀
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

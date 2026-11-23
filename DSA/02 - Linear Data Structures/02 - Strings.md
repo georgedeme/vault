@@ -180,12 +180,18 @@ Counting how many times each character appears is the first step of most anagram
 | any `char` | `int[65536]` (256 KB) or `HashMap<Character, Integer>` | `c` |
 | full Unicode (code points) | `HashMap<Integer, Integer>` | `s.codePointAt(i)` |
 
-```
-counts(s):
-    cnt = array of 26 zeros
-    for each character c in s:
-        cnt[c − 'a'] += 1
-    return cnt
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{counts}{s}
+  \State cnt ← array of 26 zeros
+  \For{each character c in s}
+    \State cnt[c − `a'] += 1
+  \EndFor
+  \Return cnt
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -245,13 +251,19 @@ static boolean isAnagram(String s, String t) {
 
 Every word in a group must map to the **same key**, and words in different groups to different keys.
 
-```
-groupAnagrams(words):
-    groups = empty map from key to list
-    for w in words:
-        key = canonical form of w         -- sorted letters, or a count signature
-        groups[key].append(w)
-    return all lists in groups
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{groupAnagrams}{words}
+  \State groups ← empty map from key to list
+  \ForAll{w ∈ words}
+    \State key ← canonical form of w \Comment{sorted letters, or a count signature}
+    \State groups[key].append(w)
+  \EndFor
+  \Return all lists in groups
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -317,13 +329,21 @@ static boolean isIsomorphic(String s, String t) {      // ASCII input
 
 ### 7.1 Two-pointer check
 
-```
-isPalindrome(s):
-    lo = 0; hi = len(s) − 1
-    while lo < hi:
-        if s[lo] ≠ s[hi]: return false
-        lo += 1; hi −= 1
-    return true
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{isPalindrome}{s}
+  \State lo ← 0; hi ← len(s) − 1
+  \While{lo < hi}
+    \If{s[lo] ≠ s[hi]}
+      \Return false
+    \EndIf
+    \State lo += 1; hi −= 1
+  \EndWhile
+  \Return true
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 `O(n)` time, `O(1)` space. Don't build `new StringBuilder(s).reverse().toString()` and compare: it's also `O(n)`, but it allocates two extra strings and can't be adapted to the variants below.
@@ -426,14 +446,22 @@ static String reverseWords(String s) {
 
 `"aaabccdddd"` → `"a3b1c2d4"`. Process **maximal runs** with an inner loop, rather than comparing each character with the previous one:
 
-```
-encode(s):
-    i = 0
-    while i < n:
-        j = i
-        while j < n and s[j] == s[i]: j += 1     -- s[i..j−1] is one run
-        output s[i], (j − i)
-        i = j
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{encode}{s}
+  \State i ← 0
+  \While{i < n}
+    \State j ← i
+    \While{j < n \And s[j] = s[i]}
+      \State j += 1 \Comment{s[i..j−1] is one run}
+    \EndWhile
+    \State output s[i], (j − i)
+    \State i ← j
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -530,14 +558,22 @@ static boolean isSubsequence(String s, String t) {
 
 The usual specification: skip leading spaces, read an optional sign, read digits until a non-digit, and clamp to the `int` range on overflow.
 
-```
-atoi(s):
-    skip spaces; read optional '+' or '−' into sign
-    result = 0
-    while next char is a digit d:
-        if result > (MAX − d) / 10: return sign = + ? MAX : MIN    -- result·10 + d would exceed MAX
-        result = result × 10 + d
-    return sign × result
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{atoi}{s}
+  \State skip spaces; read optional `+' \Or `−' into sign
+  \State result ← 0
+  \While{next char is a digit d}
+    \If{result > (MAX − d) / 10}
+      \Return sign = + ? MAX : MIN \Comment{result·10 + d would exceed MAX}
+    \EndIf
+    \State result ← result × 10 + d
+  \EndWhile
+  \Return sign × result
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

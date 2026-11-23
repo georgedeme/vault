@@ -67,26 +67,35 @@ Two repair procedures do all the work:
 - **sift up**: an element that's smaller than its parent swaps with it, repeatedly, until it isn't.
 - **sift down**: an element that's larger than its smaller child swaps with that child, repeatedly, until it isn't (or it's a leaf).
 
-```
-push(x):
-    a[n] = x; n = n + 1
-    siftUp(n − 1)
-
-pop():                                  -- remove and return the minimum
-    top = a[0]
-    n = n − 1; a[0] = a[n]              -- move the last element to the root
-    siftDown(0)
-    return top
-
-siftUp(i):
-    while i > 0 and a[parent(i)] > a[i]:
-        swap(a[i], a[parent(i)]); i = parent(i)
-
-siftDown(i):
-    loop:
-        s = index of the smallest of a[i], a[left(i)], a[right(i)]   -- children that exist
-        if s = i: return
-        swap(a[i], a[s]); i = s
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{push}{x}
+  \State a[n] ← x; n ← n + 1
+  \State \textsc{siftUp}(n − 1)
+\EndProcedure
+\Procedure{pop}{} \Comment{remove and return the minimum}
+  \State top ← a[0]
+  \State n ← n − 1; a[0] ← a[n] \Comment{move the last element to the root}
+  \State \textsc{siftDown}(0)
+  \Return top
+\EndProcedure
+\Procedure{siftUp}{i}
+  \While{i > 0 \And a[parent(i)] > a[i]}
+    \State swap(a[i], a[parent(i)]); i ← parent(i)
+  \EndWhile
+\EndProcedure
+\Procedure{siftDown}{i}
+  \While{\True}
+    \State s ← index of the smallest of a[i], a[left(i)], a[right(i)] \Comment{children that exist}
+    \If{s = i}
+      \Return
+    \EndIf
+    \State swap(a[i], a[s]); i ← s
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ![[Heaps - Sift Down After Extract.excalidraw|800]]
@@ -165,9 +174,16 @@ Other operations built from the two:
 
 Inserting `n` elements one at a time costs `O(n log n)`. Instead, put them all in the array and sift down every internal node, **from the last one back to the root**:
 
-```
-heapify(a):
-    for i = n/2 − 1 down to 0: siftDown(i)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{heapify}{a}
+  \For{i ← n/2 − 1 \DownTo 0}
+    \State siftDown(i)
+  \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -246,13 +262,21 @@ PriorityQueue<String> byLength = new PriorityQueue<>(Comparator.comparingInt(Str
 
 Keep the `k` largest elements seen so far in a **min**-heap. Its root is the smallest of them, the `k`-th largest so far, and it's exactly the element to evict when something larger arrives.
 
-```
-kthLargest(a, k):
-    heap = empty min-heap
-    for x in a:
-        push x
-        if size > k: pop                -- evict the smallest of the k + 1
-    return peek                         -- the k-th largest
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{kthLargest}{a, k}
+  \State heap ← empty min-heap
+  \ForAll{x ∈ a}
+    \State push x
+    \If{size > k}
+      \State pop \Comment{evict the smallest of the k + 1}
+    \EndIf
+  \EndFor
+  \Return peek \Comment{the k-th largest}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -346,12 +370,20 @@ Compare **squared** distances: `Math.sqrt` is slower and introduces rounding, an
 
 Merging `k` sorted sequences: the next output is the smallest of the `k` current heads. A min-heap of the heads gives it in `O(log k)`; after taking one, push its successor from the same sequence.
 
-```
-mergeK(lists):
-    heap = min-heap of (head value, list id, position) for each non-empty list
-    while heap not empty:
-        (v, i, j) = pop; output v
-        if list i has an element at j + 1: push (lists[i][j + 1], i, j + 1)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{mergeK}{lists}
+  \State heap ← min-heap of (head value, list id, position) for each non-empty list
+  \While{heap \Not empty}
+    \State (v, i, j) ← pop; output v
+    \If{list i has an element at j + 1}
+      \State push (lists[i][j + 1], i, j + 1)
+    \EndIf
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -428,15 +460,25 @@ Other `k`-way-merge problems: **`k` pairs with the smallest sums** from two sort
 
 Split the numbers into a **lower half** in a max-heap and an **upper half** in a min-heap, keeping the sizes equal or the lower half one larger. The median is then at the top of one or both heaps.
 
-```
-addNum(x):
-    push x into lo (max-heap)
-    move lo's maximum into hi            -- keeps every element of lo ≤ every element of hi
-    if hi.size > lo.size: move hi's minimum back into lo
-
-median:
-    if lo.size > hi.size: lo.top
-    else: (lo.top + hi.top) / 2
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{addNum}{x}
+  \State push x into lo (max-heap)
+  \State move lo's maximum into hi \Comment{keeps every element of lo ≤ every element of hi}
+  \If{hi.size > lo.size}
+    \State move hi's minimum back into lo
+  \EndIf
+\EndProcedure
+\Procedure{median}{}
+  \If{lo.size > hi.size}
+    \Return lo.top
+  \Else
+    \Return (lo.top + hi.top) / 2
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -637,10 +679,17 @@ A binary heap can't find an arbitrary element quickly, so "delete `x`" and "chan
 
 Don't remove the element; **mark** it as dead (in a hash map of counts, a set of ids, or by an index/version check), and when a dead element reaches the top, pop it and discard it.
 
-```
-lazyPop():
-    while top is marked dead: pop it (and unmark it)
-    return pop
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{lazyPop}{}
+  \While{top is marked dead}
+    \State pop it (\And unmark it)
+  \EndWhile
+  \Return pop
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 To change a priority, push a **new** entry and mark the old one dead (or detect staleness on pop by comparing with the current value). Dijkstra in Java usually does exactly this: `if (d > dist[u]) continue;` skips outdated `(d, u)` entries.

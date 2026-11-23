@@ -102,17 +102,29 @@ This is how heaps ([[DSA/04 - Trees and Hierarchical Structures/04 - Heaps and P
 
 Problems write trees as level-order arrays with `null` for missing children, such as `[1, 2, 3, 4, 5, null, 6, null, null, 7]`. Unlike the heap layout, **children of `null` are not listed**, so a node's index can't be computed from its parent's. The builder needs a queue:
 
-```
-fromLevelOrder(a):
-    if a is empty or a[0] is null: return null
-    root = node(a[0]); queue = [root]; i = 1
-    while i < length(a):
-        cur = queue.pop()
-        if a[i] ≠ null: cur.left = node(a[i]); queue.push(cur.left)
-        i = i + 1
-        if i < length(a) and a[i] ≠ null: cur.right = node(a[i]); queue.push(cur.right)
-        i = i + 1
-    return root
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{fromLevelOrder}{a}
+  \If{a is empty \Or a[0] is null}
+    \Return null
+  \EndIf
+  \State root ← node(a[0]); queue ← [root]; i ← 1
+  \While{i < length(a)}
+    \State cur ← queue.pop()
+    \If{a[i] ≠ null}
+      \State cur.left ← node(a[i]); queue.push(cur.left)
+    \EndIf
+    \State i ← i + 1
+    \If{i < length(a) \And a[i] ≠ null}
+      \State cur.right ← node(a[i]); queue.push(cur.right)
+    \EndIf
+    \State i ← i + 1
+  \EndWhile
+  \Return root
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -154,14 +166,21 @@ The array must be `Integer[]` (not `int[]`) to hold `null`s. The running example
 
 A traversal visits every node once. The three depth-first orders differ only in **when** a node is visited relative to its two subtrees:
 
-```
-dfs(node):
-    if node = null: return
-    visit(node)              -- preorder:  node, left, right
-    dfs(node.left)
-    visit(node)              -- inorder:   left, node, right
-    dfs(node.right)
-    visit(node)              -- postorder: left, right, node
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{dfs}{node}
+  \If{node = null}
+    \Return
+  \EndIf
+  \State visit(node) \Comment{preorder: node, left, right}
+  \State \textsc{dfs}(node.left)
+  \State visit(node) \Comment{inorder: left, node, right}
+  \State \textsc{dfs}(node.right)
+  \State visit(node) \Comment{postorder: left, right, node}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -234,12 +253,18 @@ Recursion depth equals the tree's height, so a degenerate tree with `10⁵` node
 
 ### 4.1 Preorder
 
-```
-preorderIterative(root):
-    stack = [root]                      -- if root ≠ null
-    while stack not empty:
-        n = stack.pop(); visit(n)
-        push n.right, then n.left       -- skip nulls; left is pushed last, so popped first
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{preorderIterative}{root}
+  \State stack ← [root] \Comment{if root ≠ null}
+  \While{stack \Not empty}
+    \State n ← stack.pop(); visit(n)
+    \State push n.right, then n.left \Comment{skip nulls; left is pushed last, so popped first}
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -265,13 +290,21 @@ static List<Integer> preorderIterative(TreeNode root) {
 
 Go left as far as possible, pushing every node on the way. Pop one, visit it, then do the same for its right subtree.
 
-```
-inorderIterative(root):
-    cur = root; stack = []
-    while cur ≠ null or stack not empty:
-        while cur ≠ null: stack.push(cur); cur = cur.left
-        cur = stack.pop(); visit(cur)
-        cur = cur.right
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{inorderIterative}{root}
+  \State cur ← root; stack ← []
+  \While{cur ≠ null \Or stack \Not empty}
+    \While{cur ≠ null}
+      \State stack.push(cur); cur ← cur.left
+    \EndWhile
+    \State cur ← stack.pop(); visit(cur)
+    \State cur ← cur.right
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -313,14 +346,25 @@ static List<Integer> postorderByReversal(TreeNode root) {
 
 This gives the right **output**, but nodes are still **processed** parent-first. It can't compute anything that needs the children's results (height, subtree sums) on the fly. For that, use a true postorder with one stack and a pointer to the last visited node:
 
-```
-postorderIterative(root):
-    cur = root; last = null; stack = []
-    while cur ≠ null or stack not empty:
-        while cur ≠ null: stack.push(cur); cur = cur.left
-        top = stack.peek()
-        if top.right ≠ null and top.right ≠ last:  cur = top.right    -- right subtree not done
-        else: visit(top); last = stack.pop()
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{postorderIterative}{root}
+  \State cur ← root; last ← null; stack ← []
+  \While{cur ≠ null \Or stack \Not empty}
+    \While{cur ≠ null}
+      \State stack.push(cur); cur ← cur.left
+    \EndWhile
+    \State top ← stack.peek()
+    \If{top.right ≠ null \And top.right ≠ last}
+      \State cur ← top.right \Comment{right subtree not done}
+    \Else
+      \State visit(top); last ← stack.pop()
+    \EndIf
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -344,15 +388,26 @@ The `top.right != last` test is what tells "coming up from the left" apart from 
 
 Morris traversal avoids the stack by temporarily **threading** the tree: before descending into a node's left subtree, it points the right pointer of that subtree's rightmost node (the inorder predecessor) back at the node, so it can find its way back up.
 
-```
-morrisInorder(root):
-    cur = root
-    while cur ≠ null:
-        if cur.left = null: visit(cur); cur = cur.right
-        else:
-            pred = rightmost node of cur.left (stop if pred.right = cur)
-            if pred.right = null: pred.right = cur; cur = cur.left           -- first time: add thread
-            else:                 pred.right = null; visit(cur); cur = cur.right   -- second time: remove it
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{morrisInorder}{root}
+  \State cur ← root
+  \While{cur ≠ null}
+    \If{cur.left = null}
+      \State visit(cur); cur ← cur.right
+    \Else
+      \State pred ← rightmost node of cur.left (stop if pred.right = cur)
+      \If{pred.right = null}
+        \State pred.right ← cur; cur ← cur.left \Comment{first time: add thread}
+      \Else
+        \State pred.right ← null; visit(cur); cur ← cur.right \Comment{second time: remove it}
+      \EndIf
+    \EndIf
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -382,15 +437,22 @@ static List<Integer> morrisInorder(TreeNode root) {
 
 Breadth-first search with a queue visits nodes in order of depth. To process one level at a time, record the queue's size at the start of each level:
 
-```
-levelOrder(root):
-    queue = [root]                      -- if root ≠ null
-    while queue not empty:
-        size = queue.size()             -- the nodes of exactly one level
-        repeat size times:
-            n = queue.pop(); visit(n)
-            push n.left, n.right        -- skip nulls
-        -- end of a level
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{levelOrder}{root}
+  \State queue ← [root] \Comment{if root ≠ null}
+  \While{queue \Not empty}
+    \State size ← queue.size() \Comment{the nodes of exactly one level}
+    \For{i ← 1 \To size}
+      \State n ← queue.pop(); visit(n)
+      \State push n.left, n.right \Comment{skip nulls}
+    \EndFor
+    \Comment{end of a level}
+  \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -499,13 +561,28 @@ static int minDepth(TreeNode n) {                  // nodes on the shortest root
 
 The obvious version compares `height(left)` and `height(right)` at every node, recomputing heights from scratch: `O(n log n)` for balanced trees and `O(n²)` for degenerate ones. Instead, compute height bottom-up and return a sentinel as soon as any subtree is unbalanced:
 
-```
-checkHeight(n):                         -- height, or −1 if the subtree is unbalanced
-    if n = null: return 0
-    l = checkHeight(n.left);  if l = −1: return −1
-    r = checkHeight(n.right); if r = −1: return −1
-    if |l − r| > 1: return −1
-    return 1 + max(l, r)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{checkHeight}{n} \Comment{height, or −1 if the subtree is unbalanced}
+  \If{n = null}
+    \Return 0
+  \EndIf
+  \State l ← \textsc{checkHeight}(n.left)
+  \If{l = −1}
+    \Return −1
+  \EndIf
+  \State r ← \textsc{checkHeight}(n.right)
+  \If{r = −1}
+    \Return −1
+  \EndIf
+  \If{|l − r| > 1}
+    \Return −1
+  \EndIf
+  \Return 1 + max(l, r)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -550,12 +627,19 @@ static int countNodes(TreeNode root) {
 
 The <span class="hl-blue">diameter</span> is the number of **edges** on the longest path between any two nodes. Every path has a highest node where it bends; the longest path bending at `n` goes down the deepest branch on each side, with `height(left) + height(right)` edges (heights in nodes). The recursion returns a height, while the answer is a path length, so the best value goes in a separate variable:
 
-```
-height(n):                              -- in nodes; also updates best
-    if n = null: return 0
-    l = height(n.left); r = height(n.right)
-    best = max(best, l + r)             -- longest path that bends at n, in edges
-    return 1 + max(l, r)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{height}{n} \Comment{in nodes; also updates best}
+  \If{n = null}
+    \Return 0
+  \EndIf
+  \State l ← \textsc{height}(n.left); r ← \textsc{height}(n.right)
+  \State best ← max(best, l + r) \Comment{longest path that bends at n, in edges}
+  \Return 1 + max(l, r)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -782,15 +866,22 @@ One traversal isn't enough to determine a tree: `[1, 2]` is the preorder of both
 - That value's position in the inorder sequence splits it: everything before it is the left subtree, everything after is the right subtree.
 - Preorder lists the whole left subtree right after the root, then the right subtree, so recursing **left first** consumes the preorder values in order.
 
-```
-build(lo, hi):                          -- builds the subtree whose inorder range is in[lo..hi]
-    if lo > hi: return null
-    val = pre[next]; next = next + 1
-    m = position of val in the inorder array
-    node = new node(val)
-    node.left = build(lo, m − 1)
-    node.right = build(m + 1, hi)
-    return node
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{build}{lo, hi} \Comment{builds the subtree whose inorder range is in[lo..hi]}
+  \If{lo > hi}
+    \Return null
+  \EndIf
+  \State val ← pre[next]; next ← next + 1
+  \State m ← position of val in the inorder array
+  \State node ← new node(val)
+  \State node.left ← \textsc{build}(lo, m − 1)
+  \State node.right ← \textsc{build}(m + 1, hi)
+  \Return node
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -874,16 +965,26 @@ static TreeNode buildPostIn(int[] post, int[] next, int lo, int hi, Map<Integer,
 
 To store a tree as a string and rebuild it exactly, write the preorder sequence **with a marker for every `null`**. The markers fix the shape, so one traversal is enough.
 
-```
-serialize(n):
-    if n = null: write "#"; return
-    write n.val; serialize(n.left); serialize(n.right)
-
-deserialize(tokens):
-    t = next token
-    if t = "#": return null
-    n = node(t); n.left = deserialize(tokens); n.right = deserialize(tokens)
-    return n
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{serialize}{n}
+  \If{n = null}
+    \State write "\#"
+    \Return
+  \EndIf
+  \State write n.val; \textsc{serialize}(n.left); \textsc{serialize}(n.right)
+\EndProcedure
+\Procedure{deserialize}{tokens}
+  \State t ← next token
+  \If{t = "\#"}
+    \Return null
+  \EndIf
+  \State n ← node(t); n.left ← \textsc{deserialize}(tokens); n.right ← \textsc{deserialize}(tokens)
+  \Return n
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java

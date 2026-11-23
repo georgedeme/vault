@@ -2,7 +2,8 @@
   "theme": "obsidian",
   "accentColor": "#7ce67a",
   "enabledCssSnippets": [
-    "colors"
+    "colors",
+    "pseudocode"
   ],
   "cssTheme": "Claude Warm",
   "showRibbon": true

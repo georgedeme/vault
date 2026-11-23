@@ -84,10 +84,17 @@ Limits worth knowing: `12!` is the largest factorial that fits in `int`, `20!` t
 
 Any common divisor of `a` and `b` also divides `a − q·b` for any `q`, in particular `a mod b`. So **`gcd(a, b) = gcd(b, a mod b)`**, and the numbers shrink quickly.
 
-```
-gcd(a, b):
-    if b == 0: return a
-    return gcd(b, a mod b)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{gcd}{a, b}
+  \If{b = 0}
+    \Return a
+  \EndIf
+  \Return \textsc{gcd}(b, a mod b)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -140,11 +147,18 @@ Useful properties:
 
 Unwinding the recursion: if `b·x₁ + (a mod b)·y₁ = g` and `a mod b = a − ⌊a/b⌋·b`, then `a·y₁ + b·(x₁ − ⌊a/b⌋·y₁) = g`.
 
-```
-extgcd(a, b):                         -- returns (g, x, y) with a·x + b·y = g
-    if b == 0: return (a, 1, 0)
-    (g, x1, y1) = extgcd(b, a mod b)
-    return (g, y1, x1 − (a div b)·y1)
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{extgcd}{a, b} \Comment{returns (g, x, y) with a·x + b·y = g}
+  \If{b = 0}
+    \Return (a, 1, 0)
+  \EndIf
+  \State (g, x1, y1) ← \textsc{extgcd}(b, a mod b)
+  \Return (g, y1, x1 − (a div b)·y1)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -240,15 +254,23 @@ Computing `aᵉ` by repeated multiplication takes `e − 1` steps, which is hope
 
 ![[Math - Fast Exponentiation Bits.excalidraw|800]]
 
-```
-modpow(a, e, m):                  -- e ≥ 0
-    result = 1 mod m
-    a = a mod m
-    while e > 0:
-        if e is odd: result = result × a mod m
-        a = a × a mod m
-        e = e div 2
-    return result
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{modpow}{a, e, m} \Comment{e ≥ 0}
+  \State result ← 1 mod m
+  \State a ← a mod m
+  \While{e > 0}
+    \If{e is odd}
+      \State result ← result × a mod m
+    \EndIf
+    \State a ← a × a mod m
+    \State e ← e div 2
+  \EndWhile
+  \Return result
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -324,10 +346,15 @@ This works when `m` isn't prime (as long as `gcd(a, m) = 1`), and it's typically
 
 For a prime `p` and `i < p`: write `p = q·i + r` with `q = ⌊p/i⌋`, `r = p mod i`. Then `0 ≡ q·i + r`, so `i⁻¹ ≡ −q · r⁻¹ (mod p)`, and `r < i` has already been computed.
 
-```
-inv[1] = 1
-for i = 2 to n:
-    inv[i] = −(p div i) × inv[p mod i]  mod p
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State inv[1] ← 1
+\For{i ← 2 \To n}
+  \State inv[i] ← −(p div i) × inv[p mod i] mod p
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -356,12 +383,22 @@ static long[] inversesUpTo(int n, long p) {   // n < p, p prime
 
 If `n = a·b` with `a ≤ b`, then `a ≤ √n`. So `n` is composite iff it has a divisor in `[2, √n]`.
 
-```
-isPrime(n):
-    if n < 2: return false
-    for d = 2 while d·d ≤ n:
-        if n mod d == 0: return false
-    return true
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{isPrime}{n}
+  \If{n < 2}
+    \Return false
+  \EndIf
+  \For{d ← 2 \textbf{while} d·d ≤ n}
+    \If{n mod d = 0}
+      \Return false
+    \EndIf
+  \EndFor
+  \Return true
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -384,14 +421,22 @@ static boolean isPrime(long n) {
 
 Cross out every multiple of each prime. Anything left uncrossed is prime.
 
-```
-sieve(n):
-    composite[0..n] = false
-    for i = 2 while i·i ≤ n:
-        if not composite[i]:
-            for j = i·i to n step i:        -- smaller multiples were crossed by smaller primes
-                composite[j] = true
-    primes = all i in [2, n] with not composite[i]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{sieve}{n}
+  \State composite[0..n] ← false
+  \For{i ← 2 \textbf{while} i·i ≤ n}
+    \If{\Not composite[i]}
+      \For{j ← i·i \To n \textbf{step} i} \Comment{smaller multiples were crossed by smaller primes}
+        \State composite[j] ← true
+      \EndFor
+    \EndIf
+  \EndFor
+  \State primes ← all i in [2, n] with \Not composite[i]
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -425,13 +470,23 @@ static boolean[] sieve(int n) {               // isPrime[i] for 0..n
 
 Storing each number's **smallest prime factor** (`spf`) lets you factorize any `x ≤ n` in `O(log x)` by repeatedly dividing by `spf[x]`. The linear sieve fills `spf` in `O(n)` by crossing out each composite exactly once, from its smallest prime factor.
 
-```
-spf[0..n] = 0; primes = []
-for i = 2 to n:
-    if spf[i] == 0: spf[i] = i; primes.append(i)       -- i is prime
-    for p in primes:
-        if p > spf[i] or i·p > n: break
-        spf[i·p] = p                                    -- p is the smallest prime of i·p
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State spf[0..n] ← 0; primes ← []
+\For{i ← 2 \To n}
+  \If{spf[i] = 0}
+    \State spf[i] ← i; primes.append(i) \Comment{i is prime}
+  \EndIf
+  \ForAll{p ∈ primes}
+    \If{p > spf[i] \Or i·p > n}
+      \Break
+    \EndIf
+    \State spf[i·p] ← p \Comment{p is the smallest prime of i·p}
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -472,14 +527,23 @@ static List<Integer> factorizeWithSpf(int x, int[] spf) {   // x ≥ 2
 
 ### 7.1 Trial-division factorization — O(√n)
 
-```
-factorize(n):                     -- n ≥ 2
-    factors = []
-    for p = 2 while p·p ≤ n:
-        while n mod p == 0:
-            factors.append(p); n = n / p
-    if n > 1: factors.append(n)    -- what's left is a prime > √(original n)
-    return factors
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{factorize}{n} \Comment{n ≥ 2}
+  \State factors ← []
+  \For{p ← 2 \textbf{while} p·p ≤ n}
+    \While{n mod p = 0}
+      \State factors.append(p); n ← n / p
+    \EndWhile
+  \EndFor
+  \If{n > 1}
+    \State factors.append(n) \Comment{what's left is a prime > √(original n)}
+  \EndIf
+  \Return factors
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -556,15 +620,26 @@ static List<Long> divisors(long n) {          // n ≥ 1, unsorted
 
 For a single `n`, factorize and apply the formula as `result -= result / p`, which keeps everything in integers:
 
-```
-phi(n):
-    result = n
-    for p = 2 while p·p ≤ n:
-        if n mod p == 0:
-            while n mod p == 0: n = n / p
-            result = result − result / p
-    if n > 1: result = result − result / n     -- leftover prime factor
-    return result
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{phi}{n}
+  \State result ← n
+  \For{p ← 2 \textbf{while} p·p ≤ n}
+    \If{n mod p = 0}
+      \While{n mod p = 0}
+        \State n ← n / p
+      \EndWhile
+      \State result ← result − result / p
+    \EndIf
+  \EndFor
+  \If{n > 1}
+    \State result ← result − result / n \Comment{leftover prime factor}
+  \EndIf
+  \Return result
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -635,12 +710,18 @@ Consequences:
 
 ### 9.2 Pascal's triangle — O(n²) table
 
-```
-C[0..n][0..n] = 0
-for i = 0 to n:
-    C[i][0] = 1
-    for j = 1 to i:
-        C[i][j] = C[i−1][j−1] + C[i−1][j]
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State C[0..n][0..n] ← 0
+\For{i ← 0 \To n}
+  \State C[i][0] ← 1
+  \For{j ← 1 \To i}
+    \State C[i][j] ← C[i−1][j−1] + C[i−1][j]
+  \EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -662,12 +743,20 @@ It uses only addition, so it works with **any modulus**, prime or not, and witho
 
 The standard method for many `C(n, k) mod p` queries with prime `p > n`:
 
-```
-fact[0] = 1
-for i = 1 to N: fact[i] = fact[i−1] × i mod p
-invFact[N] = modpow(fact[N], p − 2, p)
-for i = N down to 1: invFact[i−1] = invFact[i] × i mod p      -- 1/(i−1)! = i / i!
-C(n, k) = 0 if k < 0 or k > n, else fact[n] × invFact[k] × invFact[n−k] mod p
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\State fact[0] ← 1
+\For{i ← 1 \To N}
+  \State fact[i] ← fact[i−1] × i mod p
+\EndFor
+\State invFact[N] ← modpow(fact[N], p − 2, p)
+\For{i ← N \DownTo 1}
+  \State invFact[i−1] ← invFact[i] × i mod p \Comment{1/(i−1)! = i / i!}
+\EndFor
+\State C(n, k) = 0 if k < 0 \Or k > n, else fact[n] × invFact[k] × invFact[n−k] mod p
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
@@ -739,12 +828,19 @@ After step `i`, `r = C(n − k + i, i)`, an integer, so the division is always e
 
 Merge two congruences at a time. From `x = a₁ + m₁·t`, we need `m₁·t ≡ a₂ − a₁ (mod m₂)`. Divide by `g = gcd(m₁, m₂)` and multiply by the inverse of `m₁/g` modulo `m₂/g`:
 
-```
-crt(a1, m1, a2, m2):
-    (g, p, q) = extgcd(m1, m2)                 -- m1·p + m2·q = g
-    if (a2 − a1) mod g ≠ 0: return NO SOLUTION
-    t = ((a2 − a1) / g) × p  mod (m2 / g)
-    return (a1 + m1·t  mod lcm,  lcm)          -- lcm = m1 / g × m2
+```pseudo
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{crt}{a1, m1, a2, m2}
+  \State (g, p, q) ← extgcd(m1, m2) \Comment{m1·p + m2·q = g}
+  \If{(a2 − a1) mod g ≠ 0}
+    \Return NO SOLUTION
+  \EndIf
+  \State t ← ((a2 − a1) / g) × p mod (m2 / g)
+  \Return (a1 + m1·t mod lcm, lcm) \Comment{lcm = m1 / g × m2}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 ```
 
 ```java
