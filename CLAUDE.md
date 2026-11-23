@@ -67,6 +67,14 @@ comparisons. They add to the text and never replace it.
 
 For data structures and algorithms notes: state the algorithm in
 pseudocode first, then give a working Java implementation.
+Write the pseudocode in a `pseudo` code block (Pseudocode plugin,
+pseudocode.js / algorithmicx syntax): `\begin{algorithm}` +
+`\caption{Name}` + `\begin{algorithmic}`, then `\Procedure{Name}{$args$}`,
+`\State`, `\If{}`/`\ElsIf{}`/`\Else`/`\EndIf`, `\For{}`/`\EndFor`,
+`\While{}`/`\EndWhile`, `\Return`, `\Call{}{}`, `\Comment{}`, math in
+`$...$` (`\gets` for assignment). Line numbers are on, so prose can
+refer to "line 4". Only use `pseudo` blocks outside `Public/`: Quartz
+can't render them, so published notes keep plain pseudocode code blocks.
 Layout: `DSA/00 - Syllabus`, one folder per syllabus part
 (`DSA/NN - Part Name/`) with numbered chapter notes
 (`NN - Chapter.md`) and a `99 - Drawings` folder. Links between DSA
