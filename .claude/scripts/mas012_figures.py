@@ -25,6 +25,10 @@ CHAPTERS = {
     "c2": "02 - Συναρτήσεις",
     "c3": "03 - Όρια και Συνέχεια",
     "c4": "04 - Παράγωγος",
+    "c5": "05 - Εφαρμογές των Παραγώγων",
+    "c6": "06 - Ολοκλήρωμα",
+    "c7": "07 - Τεχνικές Ολοκλήρωσης",
+    "c8": "08 - Εφαρμογές Ορισμένου Ολοκληρώματος",
 }
 FIG_DIR = "99 - Σχήματα"
 DPI = 200
@@ -1874,6 +1878,419 @@ def _():
     label(ax, 0.05, 0.45, "$x^2$", fs=9)
     label(ax, 1.62, 3.15, "$x + 2$", fs=9)
     save(fig, "c2-08-piecewise-range")
+
+
+# =======================================================================
+# CHAPTER 5 — Εφαρμογές των Παραγώγων
+# =======================================================================
+
+@figure("c5-02-linapprox")
+def _():
+    fig, ax = plt.subplots(figsize=(6.4, 3.8))
+    maxes(ax, (-0.3, 4.4), (-0.3, 2.7), xticks=[1, 3], xtl=["$a$", "$a + dx$"],
+          yticks=[1, 2], ytl=["$f(a)$", "$L(a+dx)$"])
+    x = X(0.05, 4.2)
+    curve(ax, x, np.sqrt(x), C1)
+    # tangent at a=1: L(x) = 1 + 0.5*(x-1)
+    xt = X(0.1, 4.1)
+    curve(ax, xt, 1 + 0.5 * (xt - 1), C2, lw=1.7)
+    a, b = 1.0, 3.0
+    fa, fb, lb = np.sqrt(a), np.sqrt(b), 1 + 0.5 * (b - a)
+    seg(ax, (a, 0), (a, fa))
+    seg(ax, (b, 0), (b, lb))
+    seg(ax, (a, fa), (b, fa))
+    dot(ax, a, fa, False, C1)
+    dot(ax, b, fb, False, C1)
+    dot(ax, b, lb, False, C2)
+    # dy and Delta y brackets
+    ax.annotate("", xy=(b + 0.14, fa), xytext=(b + 0.14, fb),
+                arrowprops=dict(arrowstyle="<->", color=C1, lw=1.3))
+    label(ax, b + 0.22, (fa + fb) / 2, r"$\Delta y$", color=C1, fs=9.5)
+    ax.annotate("", xy=(b + 0.55, fa), xytext=(b + 0.55, lb),
+                arrowprops=dict(arrowstyle="<->", color=C2, lw=1.3))
+    label(ax, b + 0.63, (fa + lb) / 2, r"$dy$", color=C2, fs=9.5)
+    label(ax, (a + b) / 2, fa - 0.14, r"$dx = \Delta x$", ha="center", fs=9, color=INK2)
+    label(ax, 3.68, np.sqrt(3.68) - 0.14, r"$y = f(x)$", color=C1, fs=9.5)
+    label(ax, 1.18, 1.50, r"$L(x) = f(a) + f'(a)(x-a)$", color=C2, fs=8.8, rotation=16)
+    note(ax, (b, (fb + lb) / 2), "σφάλμα (κοίλη ⇒\nυπερεκτίμηση)", (1.45, 2.25), fs=8.5)
+    save(fig, "c5-02-linapprox")
+
+
+@figure("c5-04-rolle-mvt")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(9.2, 3.5))
+    # Left: Rolle
+    ax = axs[0]
+    maxes(ax, (-0.3, 4.3), (-0.3, 3.2), xticks=[0.6, 2.0, 3.4], xtl=["$a$", "$c$", "$b$"],
+          yticks=[1.0], ytl=["$f(a)=f(b)$"])
+    x = X(0.4, 3.6)
+    y = 2.5 - 0.765 * (x - 2.0) ** 2
+    curve(ax, x, y, C1)
+    a, c, b = 0.6, 2.0, 3.4
+    fa = 2.5 - 0.765 * (a - 2.0) ** 2
+    seg(ax, (a, 0), (a, fa))
+    seg(ax, (b, 0), (b, fa))
+    seg(ax, (c, 0), (c, 2.5))
+    seg(ax, (a, fa), (b, fa), MUTED, ls=(0, (3, 2.5)))
+    ax.plot([1.1, 2.9], [2.5, 2.5], color=C2, lw=1.7)
+    dot(ax, a, fa, False, C1)
+    dot(ax, b, fa, False, C1)
+    dot(ax, c, 2.5, False, C2)
+    label(ax, 2.0, 2.75, r"$f'(c) = 0$", ha="center", color=C2, fs=9.5)
+    ax.set_title("Θεώρημα Rolle", fontsize=10)
+
+    # Right: MVT
+    ax = axs[1]
+    maxes(ax, (-0.3, 4.3), (-0.3, 3.4), xticks=[0.6, 2.0, 3.5], xtl=["$a$", "$c$", "$b$"],
+          yticks=[])
+    x = X(0.4, 3.7)
+    # y = 0.5 + 0.9*x - 0.14*(x-2)^2 -> smooth concave down rising
+    f = lambda t: 0.45 + 0.65 * t + 0.75 * np.sin(0.85 * (t - 0.6))
+    df = lambda t: 0.65 + 0.75 * 0.85 * np.cos(0.85 * (t - 0.6))
+    a, b = 0.6, 3.5
+    m = (f(b) - f(a)) / (b - a)
+    # solve df(c) = m
+    c = 0.6 + np.arccos((m - 0.65) / (0.75 * 0.85)) / 0.85
+    curve(ax, x, f(x), C1)
+    seg(ax, (a, 0), (a, f(a)))
+    seg(ax, (b, 0), (b, f(b)))
+    seg(ax, (c, 0), (c, f(c)))
+    curve(ax, X(a, b), f(a) + m * (X(a, b) - a), C3, lw=1.6, ls="--")
+    curve(ax, X(c - 0.95, c + 0.95), f(c) + m * (X(c - 0.95, c + 0.95) - c), C2, lw=1.7)
+    dot(ax, a, f(a), False, C1)
+    dot(ax, b, f(b), False, C1)
+    dot(ax, c, f(c), False, C2)
+    ax.set_xticks([a, c, b])
+    ax.set_xticklabels(["$a$", "$c$", "$b$"])
+    label(ax, 2.45, 1.35, "τέμνουσα", color=C3, fs=8.8)
+    label(ax, 1.05, 2.85, r"εφαπτομένη $\parallel$ τέμνουσα", color=C2, fs=8.8)
+    ax.set_title("Θεώρημα Μέσης Τιμής (Lagrange)", fontsize=10)
+    fig.tight_layout(w_pad=2.5)
+    save(fig, "c5-04-rolle-mvt")
+
+
+@figure("c5-05-extrema-inflection")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(9.2, 3.6))
+    # Left: x^3 - 3x showing max, inflection, min
+    ax = axs[0]
+    maxes(ax, (-2.3, 2.3), (-2.8, 2.8), xticks=[-1, 1], yticks=[-2, 2])
+    x = X(-2.05, 2.05)
+    curve(ax, x, x**3 - 3 * x, C1)
+    dot(ax, -1, 2, False, C2)
+    dot(ax, 0, 0, False, C3)
+    dot(ax, 1, -2, False, C4)
+    ax.plot([-1.55, -0.45], [2.0, 2.0], color=C2, lw=1.4, ls="--")
+    ax.plot([0.45, 1.55], [-2.0, -2.0], color=C4, lw=1.4, ls="--")
+    note(ax, (-1, 2), "τοπ. μέγιστο\n$f'=0, f''<0$", (-2.2, 1.15), fs=8)
+    note(ax, (0, 0), "σημείο καμπής\n$f''$ αλλάζει πρόσημο", (0.25, 1.55), fs=8)
+    note(ax, (1, -2), "τοπ. ελάχιστο\n$f'=0, f''>0$", (-0.35, -2.35), fs=8)
+    ax.set_title(r"$f(x) = x^3 - 3x$: ακρότατα & καμπή", fontsize=10)
+
+    # Right: trap x^4 vs |x|
+    ax = axs[1]
+    maxes(ax, (-1.8, 1.8), (-0.4, 2.4), xticks=[-1, 1], yticks=[1, 2])
+    x = X(-1.3, 1.3)
+    curve(ax, x, x**4, C1, label=r"$x^4$ ($f''(0)=0$, ελάχιστο)")
+    x2 = X(-1.5, 1.5)
+    curve(ax, x2, np.abs(x2) + 0.55, C2, label=r"$|x|+0.55$ ($\nexists f'(0)$, ελάχιστο)")
+    dot(ax, 0, 0, False, C1)
+    dot(ax, 0, 0.55, False, C2)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.02), fontsize=8.3, frameon=True, facecolor="white", edgecolor="none", framealpha=0.92)
+    ax.set_title("Παγίδες: $f''(0)=0$ και γωνία", fontsize=10)
+    fig.tight_layout(w_pad=2.5)
+    save(fig, "c5-05-extrema-inflection")
+
+
+@figure("c5-07-newton")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(9.2, 3.6))
+    # Left: convergence on x^2 - 2
+    ax = axs[0]
+    maxes(ax, (0.4, 2.6), (-1.4, 3.2), xticks=[np.sqrt(2), 1.5, 2.2],
+          xtl=[r"$r$", r"$x_1$", r"$x_0$"], yticks=[])
+    x = X(0.5, 2.45)
+    f = lambda t: t**2 - 2
+    df = lambda t: 2 * t
+    curve(ax, x, f(x), C1)
+    x0 = 2.2
+    x1 = x0 - f(x0) / df(x0)
+    x2 = x1 - f(x1) / df(x1)
+    seg(ax, (x0, 0), (x0, f(x0)))
+    curve(ax, X(x1 - 0.1, x0 + 0.15), f(x0) + df(x0) * (X(x1 - 0.1, x0 + 0.15) - x0), C2, lw=1.6)
+    seg(ax, (x1, 0), (x1, f(x1)))
+    curve(ax, X(x2 - 0.1, x1 + 0.15), f(x1) + df(x1) * (X(x2 - 0.1, x1 + 0.15) - x1), C3, lw=1.6)
+    dot(ax, x0, f(x0), False, C2)
+    dot(ax, x1, 0, False, C2, ms=5)
+    dot(ax, x1, f(x1), False, C3, ms=5)
+    dot(ax, np.sqrt(2), 0, False, C1, ms=5.5)
+    label(ax, 1.95, 2.5, r"$f(x)=x^2-2$", color=C1, fs=9)
+    ax.set_title(r"Γρήγορη σύγκλιση ($x_0 \to x_1 \to r$)", fontsize=10)
+
+    # Right: failure on x^(1/3)
+    ax = axs[1]
+    maxes(ax, (-2.3, 2.3), (-1.6, 1.6), xticks=[-1, 0.5, 2], xtl=["$x_1$", "$x_0$", "$x_2$"], yticks=[])
+    x = X(-2.2, 2.2)
+    y = np.cbrt(x)
+    curve(ax, x, y, C1)
+    x0 = 0.5
+    x1 = -2 * x0
+    x2 = -2 * x1
+    seg(ax, (x0, 0), (x0, np.cbrt(x0)))
+    curve(ax, X(x1 - 0.15, x0 + 0.35), np.cbrt(x0) + (1 / (3 * x0**(2/3))) * (X(x1 - 0.15, x0 + 0.35) - x0), C2, lw=1.5)
+    seg(ax, (x1, 0), (x1, np.cbrt(x1)))
+    curve(ax, X(x1 - 0.2, x2 + 0.1), np.cbrt(x1) + (1 / (3 * abs(x1)**(2/3))) * (X(x1 - 0.2, x2 + 0.1) - x1), C4, lw=1.5)
+    dot(ax, x0, np.cbrt(x0), False, C2, ms=5)
+    dot(ax, x1, np.cbrt(x1), False, C4, ms=5)
+    dot(ax, 0, 0, False, C1, ms=5)
+    label(ax, 1.2, 1.35, r"$f(x)=\sqrt[3]{x}$", color=C1, fs=9)
+    label(ax, -2.1, -1.35, r"$x_{n+1} = -2x_n$ (αποκλίνει!)", color=C4, fs=8.5)
+    ax.set_title("Αποτυχία: απόκλιση σε κατακόρυφη εφαπτομένη", fontsize=10)
+    fig.tight_layout(w_pad=2.5)
+    save(fig, "c5-07-newton")
+
+
+# =======================================================================
+# CHAPTER 6 — Ολοκλήρωμα
+# =======================================================================
+
+@figure("c6-02-riemann")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(9.2, 3.5))
+    # Left: lower and upper Darboux sums on x^2/2 + 0.4
+    ax = axs[0]
+    maxes(ax, (-0.3, 3.4), (-0.3, 3.2), xticks=[0.5, 2.5], xtl=["$a$", "$b$"], yticks=[])
+    f = lambda t: 0.35 * t**2 + 0.5
+    x = X(0.2, 2.8)
+    curve(ax, x, f(x), C1)
+    xs = np.linspace(0.5, 2.5, 5)
+    for i in range(4):
+        w = xs[i + 1] - xs[i]
+        ax.add_patch(plt.Rectangle((xs[i], 0), w, f(xs[i + 1]), fc=C2, alpha=0.18, ec=C2, lw=1.0))
+        ax.add_patch(plt.Rectangle((xs[i], 0), w, f(xs[i]), fc=C1, alpha=0.28, ec=C1, lw=1.1))
+    label(ax, 0.7, 2.65, r"$L_4 \leq \int_a^b f \leq U_4$", fs=9.5, color=INK)
+    ax.set_title("Κάτω ($L_n$) και άνω ($U_n$) αθροίσματα", fontsize=10)
+
+    # Right: signed area for sin(x)
+    ax = axs[1]
+    maxes(ax, (-0.3, 2 * PI + 0.4), (-1.45, 1.45), xticks=[PI, 2 * PI], xtl=[r"$\pi$", r"$2\pi$"], yticks=[-1, 1])
+    x1 = X(0, PI)
+    x2 = X(PI, 2 * PI)
+    curve(ax, X(0, 2 * PI), np.sin(X(0, 2 * PI)), C1)
+    ax.fill_between(x1, 0, np.sin(x1), color=C3, alpha=0.25)
+    ax.fill_between(x2, 0, np.sin(x2), color=C2, alpha=0.25)
+    label(ax, PI / 2, 0.45, "$+A_1$", ha="center", color=C3, fs=10)
+    label(ax, 3 * PI / 2, -0.45, "$-A_2$", ha="center", color=C2, fs=10)
+    ax.set_title(r"Προσημασμένο εμβαδόν: $\int_0^{2\pi}\sin x\,dx = 0$", fontsize=10)
+    fig.tight_layout(w_pad=2.5)
+    save(fig, "c6-02-riemann")
+
+
+@figure("c6-03-ftc")
+def _():
+    fig, ax = plt.subplots(figsize=(6.4, 3.6))
+    maxes(ax, (-0.3, 4.5), (-0.3, 2.9), xticks=[0.6, 2.7, 3.2], xtl=["$a$", "$x$", "$x+h$"], yticks=[])
+    f = lambda t: 1.5 + 0.55 * np.sin(1.1 * t) + 0.1 * t
+    t = X(0.3, 4.1)
+    curve(ax, t, f(t), C1)
+    t1 = X(0.6, 2.7)
+    t2 = X(2.7, 3.2)
+    ax.fill_between(t1, 0, f(t1), color=C1, alpha=0.18)
+    ax.fill_between(t2, 0, f(t2), color=C2, alpha=0.35)
+    seg(ax, (0.6, 0), (0.6, f(0.6)), C1, ls="-")
+    seg(ax, (2.7, 0), (2.7, f(2.7)), C2, ls="-")
+    seg(ax, (3.2, 0), (3.2, f(3.2)), C2, ls="-")
+    label(ax, 1.65, 0.85, r"$A(x) = \int_a^x f(t)\,dt$", ha="center", color=C1, fs=9.5)
+    note(ax, (2.95, 0.9), r"$\Delta A \approx f(x)\cdot h$", (3.35, 2.35), fs=9, color=C2)
+    label(ax, 3.85, f(3.85) + 0.15, "$f(t)$", color=C1, fs=9.5)
+    ax.set_title(r"ΘΘΟΛ (Μέρος 1): $A'(x) = \lim_{h\to 0}\frac{\Delta A}{h} = f(x)$", fontsize=10)
+    save(fig, "c6-03-ftc")
+
+
+@figure("c6-04-mvt-int")
+def _():
+    fig, ax = plt.subplots(figsize=(6.2, 3.6))
+    maxes(ax, (-0.3, 4.3), (-0.3, 3.2), xticks=[0.6, 3.6], xtl=["$a$", "$b$"], yticks=[])
+    f = lambda t: 1.3 + 0.85 * np.sin(1.15 * (t - 0.6)) + 0.25 * (t - 0.6)
+    a, b = 0.6, 3.6
+    t = X(a, b)
+    favg = np.trapezoid(f(t), t) / (b - a)
+    # find c where f(c) == favg
+    idx = np.argmin(np.abs(f(t) - favg))
+    c = t[idx]
+    curve(ax, X(0.3, 3.9), f(X(0.3, 3.9)), C1)
+    ax.fill_between(t, 0, f(t), color=C1, alpha=0.15)
+    ax.add_patch(plt.Rectangle((a, 0), b - a, favg, fc=C2, alpha=0.18, ec=C2, lw=1.6, ls="--"))
+    seg(ax, (c, 0), (c, favg), C2)
+    dot(ax, c, favg, False, C2)
+    ax.set_xticks([a, c, b])
+    ax.set_xticklabels(["$a$", "$c$", "$b$"])
+    ax.set_yticks([favg])
+    ax.set_yticklabels([r"$f_{\mathrm{avg}}=f(c)$"])
+    label(ax, 2.4, favg + 0.65, "ίσο εμβαδόν με\nτο ορθογώνιο", color=INK2, fs=8.8)
+    ax.set_title(r"Θεώρημα Μέσης Τιμής για Ολοκληρώματα: $\int_a^b f = f(c)(b-a)$", fontsize=9.8)
+    save(fig, "c6-04-mvt-int")
+
+
+# =======================================================================
+# CHAPTER 7 — Τεχνικές Ολοκλήρωσης
+# =======================================================================
+
+@figure("c7-03-trigsub")
+def _():
+    fig, axs = plt.subplots(1, 3, figsize=(9.6, 3.1))
+    specs = [
+        (r"$\sqrt{a^2 - x^2}$" + "\n" + r"$x = a\sin\theta$", "$a$", "$x$", r"$\sqrt{a^2-x^2}$", C1),
+        (r"$\sqrt{a^2 + x^2}$" + "\n" + r"$x = a\tan\theta$", r"$\sqrt{a^2+x^2}$", "$x$", "$a$", C2),
+        (r"$\sqrt{x^2 - a^2}$" + "\n" + r"$x = a\sec\theta$", "$x$", r"$\sqrt{x^2-a^2}$", "$a$", C3),
+    ]
+    for ax, (title, hyp, opp, adj, col) in zip(axs, specs):
+        ax.set_xlim(-0.3, 3.4)
+        ax.set_ylim(-0.55, 2.35)
+        ax.set_aspect("equal")
+        ax.axis("off")
+        pts = np.array([[0.2, 0.2], [2.8, 0.2], [2.8, 1.85], [0.2, 0.2]])
+        ax.plot(pts[:, 0], pts[:, 1], color=col, lw=2.1)
+        ax.fill(pts[:3, 0], pts[:3, 1], color=col, alpha=0.08)
+        # right angle square
+        ax.plot([2.55, 2.55, 2.8], [0.2, 0.45, 0.45], color=INK2, lw=1.0)
+        # angle theta arc
+        ang = np.linspace(0, np.arctan2(1.65, 2.6), 30)
+        ax.plot(0.2 + 0.55 * np.cos(ang), 0.2 + 0.55 * np.sin(ang), color=INK2, lw=1.1)
+        label(ax, 0.9, 0.42, r"$\theta$", fs=10, color=INK)
+        label(ax, 1.5, -0.08, adj, ha="center", va="top", fs=9.8, color=INK)
+        label(ax, 2.95, 1.02, opp, ha="left", va="center", fs=9.8, color=INK)
+        label(ax, 1.25, 1.22, hyp, ha="right", va="bottom", fs=9.8, color=col)
+        ax.set_title(title, fontsize=9.8, pad=4)
+    fig.tight_layout(w_pad=1.5)
+    save(fig, "c7-03-trigsub")
+
+
+@figure("c7-04-partial-fractions")
+def _():
+    fig, ax = plt.subplots(figsize=(6.8, 3.6))
+    maxes(ax, (-3.4, 3.4), (-3.2, 3.2), xticks=[-2, -1, 1, 2], yticks=[-2, -1, 1, 2])
+    for xlo, xhi in [(-3.3, -1.08), (-0.92, 0.92), (1.08, 3.3)]:
+        x = X(xlo, xhi)
+        curve(ax, x, 1.0 / (x**2 - 1), C1, label=r"$\frac{1}{x^2-1}$" if xlo < -2 else None)
+    for xlo, xhi in [(-3.3, 0.92), (1.08, 3.3)]:
+        x = X(xlo, xhi)
+        curve(ax, x, 0.5 / (x - 1), C2, lw=1.3, ls="--", label=r"$\frac{1/2}{x-1}$" if xlo < 0 else None)
+    for xlo, xhi in [(-3.3, -1.08), (-0.92, 3.3)]:
+        x = X(xlo, xhi)
+        curve(ax, x, -0.5 / (x + 1), C3, lw=1.3, ls=":", label=r"$-\frac{1/2}{x+1}$" if xlo < -2 else None)
+    vline(ax, -1, MUTED)
+    vline(ax, 1, MUTED)
+    ax.legend(loc="lower right", fontsize=8.8, frameon=True, facecolor="white", edgecolor="none", framealpha=0.92)
+    ax.set_title(r"Ανάλυση σε απλούς πόλους: $\frac{1}{x^2-1} = \frac{1/2}{x-1} - \frac{1/2}{x+1}$", fontsize=9.8)
+    save(fig, "c7-04-partial-fractions")
+
+
+# =======================================================================
+# CHAPTER 8 — Εφαρμογές Ορισμένου Ολοκληρώματος
+# =======================================================================
+
+@figure("c8-01-area-between")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(9.2, 3.6))
+    # Left: vertical strip dx (y = x vs y = x^2)
+    ax = axs[0]
+    maxes(ax, (-0.25, 1.35), (-0.25, 1.35), xticks=[1], yticks=[1])
+    x = X(0, 1.2)
+    curve(ax, x, x, C1)
+    curve(ax, x, x**2, C2)
+    xf = X(0, 1)
+    ax.fill_between(xf, xf**2, xf, color=C1, alpha=0.14)
+    # sample vertical strip
+    xs = 0.55
+    ax.add_patch(plt.Rectangle((xs - 0.04, xs**2), 0.08, xs - xs**2, fc=C3, alpha=0.5, ec=C3, lw=1.2))
+    dot(ax, 0, 0, False, INK, ms=4.5)
+    dot(ax, 1, 1, False, INK, ms=4.5)
+    label(ax, 0.25, 0.65, "$y=x$", color=C1, fs=9)
+    label(ax, 0.78, 0.35, "$y=x^2$", color=C2, fs=9)
+    label(ax, xs, 0.08, "$dx$", ha="center", color=C3, fs=8.8)
+    ax.set_title("Κάθετες λωρίδες ($dx$): πάνω $-$ κάτω", fontsize=9.8)
+
+    # Right: horizontal strip dy (x = y^2 vs x = y + 2)
+    ax = axs[1]
+    maxes(ax, (-0.5, 4.6), (-1.4, 2.5), xticks=[1, 4], yticks=[-1, 2])
+    y = X(-1.3, 2.3)
+    curve(ax, y**2, y, C2)
+    curve(ax, y + 2, y, C1)
+    yf = X(-1, 2)
+    ax.fill_betweenx(yf, yf**2, yf + 2, color=C1, alpha=0.14)
+    ys = 0.7
+    ax.add_patch(plt.Rectangle((ys**2, ys - 0.09), (ys + 2) - ys**2, 0.18, fc=C3, alpha=0.5, ec=C3, lw=1.2))
+    dot(ax, 1, -1, False, INK, ms=4.5)
+    dot(ax, 4, 2, False, INK, ms=4.5)
+    label(ax, 3.0, 0.1, "$x=y+2$", color=C1, fs=9)
+    label(ax, 0.55, 1.5, "$x=y^2$", color=C2, fs=9)
+    label(ax, 1.5, ys + 0.24, "$dy$", ha="center", color=C3, fs=8.8)
+    ax.set_title("Οριζόντιες λωρίδες ($dy$): δεξιά $-$ αριστερά", fontsize=9.8)
+    fig.tight_layout(w_pad=2.5)
+    save(fig, "c8-01-area-between")
+
+
+@figure("c8-02-washer-shell")
+def _():
+    fig, axs = plt.subplots(1, 2, figsize=(9.2, 3.6))
+    # Left: Washer perpendicular to x-axis
+    ax = axs[0]
+    maxes(ax, (-0.3, 1.4), (-1.2, 1.3), xticks=[1], yticks=[1])
+    xf = X(0, 1)
+    curve(ax, xf, np.sqrt(xf), C1)
+    curve(ax, xf, xf**2, C2)
+    curve(ax, xf, -np.sqrt(xf), C1, lw=1.1, ls=":")
+    curve(ax, xf, -xf**2, C2, lw=1.1, ls=":")
+    ax.fill_between(xf, xf**2, np.sqrt(xf), color=C1, alpha=0.14)
+    xs = 0.55
+    R, r = np.sqrt(xs), xs**2
+    ax.add_patch(plt.Rectangle((xs - 0.035, r), 0.07, R - r, fc=C3, alpha=0.55, ec=C3, lw=1.2))
+    ax.annotate("", xy=(xs + 0.1, R), xytext=(xs + 0.1, 0), arrowprops=dict(arrowstyle="<->", color=C1, lw=1.1))
+    label(ax, xs + 0.14, R * 0.72, "$R$", color=C1, fs=9)
+    ax.annotate("", xy=(xs - 0.08, r), xytext=(xs - 0.08, 0), arrowprops=dict(arrowstyle="<->", color=C2, lw=1.1))
+    label(ax, xs - 0.18, r * 0.5, "$r$", color=C2, fs=9)
+    ax.set_title(r"Ροδέλα ($\perp$ άξονα $x$): $\pi(R^2-r^2)\,dx$", fontsize=9.6)
+
+    # Right: Cylindrical shell parallel to y-axis
+    ax = axs[1]
+    maxes(ax, (-1.2, 1.3), (-0.2, 0.42), xticks=[0.6, 1], xtl=["$x$", "$1$"], yticks=[0.25])
+    xf = X(0, 1)
+    curve(ax, xf, xf - xf**2, C1)
+    curve(ax, -xf, xf - xf**2, C1, lw=1.1, ls=":")
+    ax.fill_between(xf, 0, xf - xf**2, color=C1, alpha=0.14)
+    xs = 0.6
+    h = xs - xs**2
+    ax.add_patch(plt.Rectangle((xs - 0.03, 0), 0.06, h, fc=C3, alpha=0.55, ec=C3, lw=1.2))
+    ax.add_patch(plt.Rectangle((-xs - 0.03, 0), 0.06, h, fc=C3, alpha=0.22, ec=C3, lw=1.0, ls="--"))
+    ax.annotate("", xy=(xs, h + 0.05), xytext=(0, h + 0.05), arrowprops=dict(arrowstyle="<->", color=C2, lw=1.2))
+    label(ax, xs / 2, h + 0.08, "$r = x$", ha="center", color=C2, fs=9)
+    label(ax, xs + 0.08, h / 2, "$h(x)$", color=C3, fs=9)
+    ax.set_title(r"Κυλινδρικός φλοιός ($\parallel$ άξονα $y$): $2\pi x h(x)\,dx$", fontsize=9.6)
+    fig.tight_layout(w_pad=2.5)
+    save(fig, "c8-02-washer-shell")
+
+
+@figure("c8-03-arclength")
+def _():
+    fig, ax = plt.subplots(figsize=(6.4, 3.6))
+    maxes(ax, (-0.3, 4.3), (-0.3, 2.9), xticks=[0.5, 3.8], xtl=["$a$", "$b$"], yticks=[])
+    f = lambda t: 0.6 + 0.45 * t + 0.55 * np.sin(1.2 * t)
+    t = X(0.5, 3.8)
+    curve(ax, t, f(t), C1)
+    pts = np.linspace(0.5, 3.8, 6)
+    ax.plot(pts, f(pts), color=C2, lw=1.5, ls="--", marker="o", ms=4.5, mfc=C2)
+    # zoom triangle on steep first segment
+    x1, x2 = pts[0], pts[1]
+    y1, y2 = f(x1), f(x2)
+    seg(ax, (x1, y1), (x2, y1), C3, ls="-", lw=1.5)
+    seg(ax, (x2, y1), (x2, y2), C3, ls="-", lw=1.5)
+    label(ax, (x1 + x2) / 2, y1 - 0.16, r"$\Delta x_i$", ha="center", color=C3, fs=9.2)
+    label(ax, x2 + 0.08, (y1 + y2) / 2, r"$\Delta y_i$", color=C3, fs=9.2)
+    note(ax, ((x1 + x2) / 2, (y1 + y2) / 2), r"$\Delta s_i = \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2}$",
+         (0.65, 2.35), fs=9, color=C2)
+    ax.set_title(r"Μήκος τόξου: $L = \int_a^b \sqrt{1 + [f'(x)]^2}\,dx$", fontsize=10)
+    save(fig, "c8-03-arclength")
 
 
 # =======================================================================
