@@ -6,7 +6,7 @@ publish: true
 Πλήρης υλοποίηση σε Java των αντικειμένων **`Cell`**, **`CellGrid`** και **`Ant`** για την άσκηση προσομοίωσης αποικιών μυρμηγκιών (`AntColonies.java`) του **ΕΠΛ 131**.
 
 > [!note] Τι δίνεται ήδη στο περίγραμμα
-> Τα πεδία, οι κατασκευαστές, οι μέθοδοι `toString()` (και των τριών κλάσεων) και η `draw()` της `CellGrid` δίνονται ήδη στα αρχεία-περιγράμματα. Οι κώδικες παρακάτω περιλαμβάνουν **όλες** τις απαιτούμενες μεθόδους της διεπαφής (API) ώστε να μπορείς είτε να αντιγράψεις μόνο τις μεθόδους που λείπουν, είτε να μεταγλωττίσεις απευθείας τις κλάσεις.
+> Τα πεδία, οι κατασκευαστές και η `draw()` της `CellGrid` δίνονται ήδη στα αρχεία-περιγράμματα. Οι κώδικες παρακάτω περιλαμβάνουν **όλες** τις απαιτούμενες μεθόδους της διεπαφής (API) — συμπεριλαμβανομένων των **`toString()`** και των τριών κλάσεων.
 
 ---
 
@@ -146,7 +146,22 @@ public class Cell {
         }
     }
 
-    // Η toString() δίνεται ήδη στο περίγραμμα του μαθήματος.
+    public String toString() {
+        String s = hasNest ? "Cell that has a nest.\n" : "Cell that does not have a nest.\n";
+        if (foodAmount == 0) {
+            s += "- There are no seeds.\n";
+        } else if (hasNest) {
+            s += "- The nest has " + foodAmount + " stored seeds.\n";
+        } else {
+            s += "- The cell has " + foodAmount + " seeds for collection.\n";
+        }
+        if (!hasNest && scentAmount > 0) {
+            s += "- Currently it is annotated with " + scentAmount + " units of scent.\n";
+        }
+        int nAnts = (antIds == null) ? 0 : antIds.length;
+        s += "- At present there are " + nAnts + " ants on it.\n";
+        return s;
+    }
 }
 ```
 
@@ -212,7 +227,21 @@ public class CellGrid {
         return true;
     }
 
-    // Οι toString() και draw() δίνονται ήδη στο περίγραμμα του μαθήματος.
+    public String toString() {
+        String s = "A " + size + "x" + size + " Terain as follows:\n";
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                Cell c = grid[i][j];
+                if (c.withNest() || c.hasFood() || c.getScent() > 0 || c.hasAnts()) {
+                    s += "Cell(" + i + "," + j + "):\n" + c.toString();
+                }
+            }
+        }
+        s += "All other cells are empty.\n";
+        return s;
+    }
+
+    // Η draw() δίνεται ήδη στο περίγραμμα του μαθήματος (χρησιμοποιεί StdDraw).
 }
 ```
 
@@ -238,8 +267,9 @@ public class Ant {
     private int previousX;       // η συντεταγμένη X της αμέσως προηγούμενης θέσης του
     private int previousY;       // η συντεταγμένη Y της αμέσως προηγούμενης θέσης του
     private int[] nestPos;       // οι συντεταγμένες της φωλιάς του
-    private boolean carriesFood; // κατά πόσο μεταφέρει ένα σπόρο
-    private String color;        // το χρώμα του
+    private boolean carriesFood;   // κατά πόσο μεταφέρει ένα σπόρο
+    private boolean justFoundFood; // αν μόλις βρήκε τροφή στο τρέχον βήμα (για toString)
+    private String color;          // το χρώμα του
 
     public Ant(CellGrid grid, int Id, String col, int[] NestPos) {
         terain = grid;
@@ -254,6 +284,7 @@ public class Ant {
         previousX = -1;
         previousY = -1;      // αρχικές εικονικές τιμές
         carriesFood = false;
+        justFoundFood = false;
     }
 
     public boolean isAtNest() {
@@ -362,10 +393,13 @@ public class Ant {
         if (!nextCell.withNest() && nextCell.hasFood()) {
             nextCell.getFood();
             carriesFood = true;
+            justFoundFood = true;
         }
     }
 
     private void goBackNest(int time) {
+        justFoundFood = false;
+
         // Αν έφτασε ήδη στη φωλιά του, αφήνει τον σπόρο
         if (isAtNest()) {
             terain.getCell(pos[0], pos[1]).putFood();
@@ -413,7 +447,20 @@ public class Ant {
         terain.getCell(pos[0], pos[1]).addAnt(id);
     }
 
-    // Η toString() δίνεται ήδη στο περίγραμμα του μαθήματος.
+    public String toString() {
+        String prefix = color + " Ant-" + id + " at (" + pos[0] + "," + pos[1] + "). ";
+        if (isAtNest() && !carriesFood) {
+            return prefix + "It is at its nest and does not hold any food.";
+        } else if (isAtNest() && carriesFood) {
+            return prefix + "It has returned to its nest and has food to deliver.";
+        } else if (!carriesFood) {
+            return prefix + "It is out looking for food.";
+        } else if (justFoundFood) {
+            return prefix + "It has found food!";
+        } else {
+            return prefix + "It is going back to its nest with food.";
+        }
+    }
 }
 ```
 
