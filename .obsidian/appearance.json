@@ -1,10 +1,10 @@
 {
   "theme": "obsidian",
-  "accentColor": "#7ce67a",
+  "accentColor": "",
   "enabledCssSnippets": [
     "colors",
     "pseudocode"
   ],
-  "cssTheme": "Claude Warm",
+  "cssTheme": "Obsidian Nord",
   "showRibbon": true
 }
